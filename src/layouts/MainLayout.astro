@@ -1,0 +1,84 @@
+---
+// MainLayout.astro — Main layout with lafoidieu design system + i18n support
+
+import { SUPPORTED_LANGS, DEFAULT_LANG, getLocalizedUrls, generateHreflangLinks } from '../utils/i18n.ts';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalURL: string;
+  ogImage: string;
+  lang?: string;
+  currentPath?: string;
+}
+
+const {
+  title = "Kiki en Christ",
+  description = "Livres chrétiens pour fortifier votre foi",
+  canonicalURL = "https://kikienchrist.vercel.app/",
+  ogImage = "https://kikienchrist.vercel.app/og/accueil.png",
+  lang = 'fr',
+  currentPath = '/'
+} = Astro.props;
+
+const locale = SUPPORTED_LANGS.includes(lang as any) ? lang : DEFAULT_LANG;
+const dir = locale === 'he' || locale === 'ar' ? 'rtl' : 'ltr';
+const baseUrl = 'https://kikienchrist.vercel.app';
+
+// Generate hreflang alternate URLs
+const hreflangLinks = generateHreflangLinks(baseUrl, currentPath);
+---
+
+<!DOCTYPE html>
+<html lang={locale} dir={dir}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Astro">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonicalURL}>
+
+  <!-- Hreflang alternates for SEO -->
+  <Fragment set:html={hreflangLinks} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kiki en Christ">
+  <meta property="og:locale" content={locale === 'fr' ? 'fr_FR' : locale === 'en' ? 'en_US' : locale === 'es' ? 'es_ES' : locale === 'de' ? 'de_DE' : locale === 'pt' ? 'pt_PT' : locale === 'it' ? 'it_IT' : locale === 'ru' ? 'ru_RU' : locale === 'zh' ? 'zh_CN' : 'hi_IN'}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonicalURL}>
+  <meta property="og:image" content={ogImage}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content={title}>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImage}>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://assets.lulu.com" crossorigin>
+  <link rel="preconnect" href="https://www.lulu.com" crossorigin>
+  <link rel="preconnect" href="https://payhip.com" crossorigin>
+  <link rel="preconnect" href="https://play.google.com" crossorigin>
+
+  <!-- Lafoidieu Design System CSS -->
+  <link rel="stylesheet" href="/styles/lafoidieu-design.css">
+
+  <!-- JSON-LD Structured Data will be injected per-page -->
+  <slot name="json-ld" />
+</head>
+<body class="bq">
+  <slot />
+
+  <!-- Footer is included in each page or via a layout wrapper -->
+</body>
+</html>

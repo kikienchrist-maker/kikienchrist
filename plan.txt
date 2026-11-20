@@ -1,0 +1,7 @@
+Plan to port lafoidieu design system to Astro:
+1. Copy lafoidieu\out\site\index.html to C:\Users\Admin\Desktop\kikienchrist-vercel-sync\src
+2. Create Astro project structure with components using prefixed variables (e.g., lafoidieuHero, lafoidieuBookGrid)
+3. Implement hero fan animation with const showFan = fanImages.length === 4 condition
+4. Replace Lulu CDN thumbs with cover images from C:\Users\Admin\Desktop\COUVERTURES\ for 9 languages
+5. Generate JSON-LD structured data from frontmatter variables
+6. Configure Astro for Vercel deployment with language routing for 4 books × 9 languages

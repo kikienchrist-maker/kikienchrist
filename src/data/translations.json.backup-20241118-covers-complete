@@ -1,0 +1,3019 @@
+{
+  "fr": {
+    "lang": "fr",
+    "dir": "ltr",
+    "name": "Français",
+    "meta": {
+      "title": "Livres chrétiens pour fortifier votre foi — Kiki en Christ",
+      "description": "Quatre livres pour ceux qui cherchent Dieu au-delà des dogmes. Papier, ebook et audio, en français et jusqu'à 9 langues. Livraison en 3-5 jours.",
+      "ogTitle": "Livres chrétiens pour fortifier votre foi — Kiki en Christ",
+      "ogDescription": "Quatre livres pour ceux qui cherchent Dieu au-delà des dogmes. Papier, ebook et audio, en français et jusqu'à 9 langues. Livraison en 3-5 jours."
+    },
+    "hero": {
+      "eyebrow": "Nouveauté",
+      "title": "Des livres pour ceux qui cherchent Dieu au-delà des dogmes",
+      "subtitle": "Quatre ouvrages indépendants. Papier, ebook et audio. Disponibles en 9 langues. Inscrivez-vous pour recevoir le guide « 7 prières » offert.",
+      "ctaText": "Découvrir les livres",
+      "ctaHref": "#livres",
+      "secondaryCtaText": "Obtenir le guide gratuit",
+      "secondaryCtaHref": "#newsletter"
+    },
+    "bandeau": {
+      "paper": "Papier",
+      "ebook": "Ebook",
+      "audio": "Audio"
+    },
+    "books": {
+      "sectionTitle": "Quatre ouvrages pour fortifier votre foi",
+      "sectionIntro": "Chaque livre se suffit à lui-même. Commencez par celui qui vous appelle.",
+      "seriesPrefix": "Livre",
+      "hook": "Un livre pour ceux qui cherchent Dieu au-delà des dogmes.",
+      "benefits": [
+        "Une foi personnelle, sans intermédiaire",
+        "Accessible à tous, où que vous soyez",
+        "Garantie satisfait ou remboursé 30 jours"
+      ],
+      "metaSuffix": "pages",
+      "languagesLabel": "9 langues disponibles",
+      "languages": [
+        {
+          "code": "fr",
+          "name": "Français",
+          "fmt": "Papier · Ebook · Audio"
+        },
+        {
+          "code": "en",
+          "name": "English",
+          "fmt": "Paperback · Ebook · Audio"
+        },
+        {
+          "code": "es",
+          "name": "Español",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "pt",
+          "name": "Português",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "de",
+          "name": "Deutsch",
+          "fmt": "Buch · Ebook · Audio"
+        },
+        {
+          "code": "it",
+          "name": "Italiano",
+          "fmt": "Carta · Ebook · Audio"
+        },
+        {
+          "code": "ru",
+          "name": "Русский",
+          "fmt": "Бумага · Ebook · Аудио"
+        },
+        {
+          "code": "zh",
+          "name": "中文",
+          "fmt": "纸书 · 电子书 · 有声书"
+        },
+        {
+          "code": "hi",
+          "name": "हिन्दी",
+          "fmt": "कागज़ · ईबुक · ऑडियो"
+        }
+      ]
+    },
+    "newsletter": {
+      "title": "Recevez « 7 prières » gratuitement",
+      "description": "Un guide PDF pour apprivoiser la prière, même (surtout) quand on ne sait pas par où commencer.",
+      "placeholder": "Votre email",
+      "buttonText": "Je veux le guide",
+      "tinyText": "Pas de spam. Désinscription en 1 clic. Vos données restent privées."
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "items": [
+        {
+          "question": "Ces livres sont-ils liés à une confession particulière ?",
+          "answer": "Non. Ils s'adressent à toute personne en quête de Dieu, au-delà des étiquettes confessionnelles."
+        },
+        {
+          "question": "Peut-on les lire dans n'importe quel ordre ?",
+          "answer": "Oui. Chaque ouvrage est autonome. Commencez par celui qui résonne avec votre question du moment."
+        },
+        {
+          "question": "Existe-t-il en version papier ?",
+          "answer": "Oui, brochés sur Lulu. Ebooks sur Payhip. Audio sur Google Play. Les liens sont sur chaque fiche."
+        },
+        {
+          "question": "Les traductions sont-elles fidèles ?",
+          "answer": "Chaque version est relue par un locuteur natif. Le sens théologique est préservé."
+        }
+      ]
+    },
+    "cta": {
+      "text": "Prêt à commencer votre chemin ? Choisissez le livre qui résonne — le premier pas change tout.",
+      "buttonText": "Voir les 4 livres",
+      "buttonHref": "#livres"
+    },
+    "footer": {
+      "nav": [
+        "Accueil",
+        "Livres",
+        "Newsletter",
+        "FAQ",
+        "Contact"
+      ],
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
+      "availability": "Livres disponibles en papier, ebook et audio.",
+      "copyright": "Kiki en Christ. Tous droits réservés."
+    },
+    "bookData": {
+      "visage": {
+        "name": "Le visage de Dieu : la quête de la spiritualité et de la transcendance",
+        "description": "Un livre pour ceux qui cherchent Dieu au-delà des dogmes.",
+        "coverImage": "https://i.ibb.co/JWPJz0pQ/frontcover.jpg",
+        "offers": [
+          {
+            "price": "13.90",
+            "priceCurrency": "EUR",
+            "url": "https://www.lulu.com/fr/shop/kiki-en-christ/le-visage-de-dieu-la-qu%C3%AAte-de-la-spiritualit%C3%A9-et-de-la-transcendance/paperback/product-z6gg2r.html?q=KIKI+EN+CHRIST&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/XnmIq",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/kiki_en_christ_Le_visage_de_Dieu_la_qu%C3%AAte_de_la_sp?id=AQAAAECiySyJnM",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Français",
+            "fmt": "Papier · Ebook · Audio"
+          },
+          {
+            "code": "en",
+            "name": "English",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Español",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "pt",
+            "name": "Português",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "de",
+            "name": "Deutsch",
+            "fmt": "Buch · Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "5 langues disponibles"
+      },
+      "trinite": {
+        "name": "Les secrets de la Trinité enfin dévoilés : une critique percutante",
+        "description": "Un livre pour ceux qui cherchent Dieu au-delà des dogmes.",
+        "coverImage": "https://i.ibb.co/0Vmhm3xK/frontcover-png.png",
+        "offers": [
+          {
+            "price": "9.99",
+            "priceCurrency": "EUR",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/les-secrets-de-la-trinit%C3%A9-enfin-d%C3%A9voil%C3%A9s-une-critique-percutante/paperback/product-nk9wg4.html?q=Kiki+en+Christ+&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/OH3xG",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/KIKI_EN_CHRIST_Les_secrets_de_la_Trinit%C3%A9_enfin_d%C3%A9v?id=AQAAAEBi8HWwBM",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Français",
+            "fmt": "Papier · Ebook · Audio"
+          },
+          {
+            "code": "en",
+            "name": "English",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Español",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "pt",
+            "name": "Português",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "de",
+            "name": "Deutsch",
+            "fmt": "Buch · Ebook · Audio"
+          },
+          {
+            "code": "it",
+            "name": "Italiano",
+            "fmt": "Carta · Ebook"
+          },
+          {
+            "code": "ru",
+            "name": "Русский",
+            "fmt": "Бумага · Ebook"
+          },
+          {
+            "code": "zh",
+            "name": "中文",
+            "fmt": "纸书 · 电子书"
+          },
+          {
+            "code": "hi",
+            "name": "हिंदी",
+            "fmt": "Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "9 langues disponibles"
+      },
+      "combat": {
+        "name": "Le dernier Combat : garder la Foi",
+        "description": "Un livre pour ceux qui cherchent Dieu au-delà des dogmes.",
+        "coverImage": "https://i.ibb.co/5WpYQPJG/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "9.99",
+            "priceCurrency": "EUR",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/le-dernier-combat-garder-la-foi/paperback/product-7kgm227.html?q=Kiki+en+Christ+&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/cxuzQ",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/KIKI_EN_CHRIST_Le_dernier_Combat_garder_la_Foi?id=AQAAAEAy2ESYZM&hl=en_CA",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Français",
+            "fmt": "Papier · Ebook · Audio"
+          },
+          {
+            "code": "en",
+            "name": "English",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Español",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "pt",
+            "name": "Português",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "de",
+            "name": "Deutsch",
+            "fmt": "Buch · Ebook · Audio"
+          },
+          {
+            "code": "hi",
+            "name": "हिंदी",
+            "fmt": "Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "6 langues disponibles"
+      },
+      "salut": {
+        "name": "Le mystère du Salut",
+        "description": "Un livre pour ceux qui cherchent Dieu au-delà des dogmes.",
+        "coverImage": "https://i.ibb.co/wFxLtYf8/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "7.99",
+            "priceCurrency": "EUR",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/le-myst%C3%A8re-du-salut/paperback/product-nvg4d9k.html?q=Le+myst%C3%A8re+du+Salut&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/jXRqE",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details?id=AQAAAEByGxlbeM",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Français",
+            "fmt": "Papier · Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "1 langue disponible"
+      }
+    }
+  },
+  "en": {
+    "lang": "en",
+    "dir": "ltr",
+    "name": "English",
+    "meta": {
+      "title": "Christian books to strengthen your faith — Kiki en Christ",
+      "description": "Four books for those seeking God beyond dogma. Paperback, ebook, and audio, in English and up to 9 languages. Ships in 3-5 days.",
+      "ogTitle": "Christian books to strengthen your faith — Kiki en Christ",
+      "ogDescription": "Four books for those seeking God beyond dogma. Paperback, ebook, and audio, in English and up to 9 languages. Ships in 3-5 days."
+    },
+    "hero": {
+      "eyebrow": "New Release",
+      "title": "Books for those seeking God beyond dogma",
+      "subtitle": "Four independent books. Paperback, ebook, and audio. Available in 9 languages. Sign up to receive the free « 7 Prayers » guide.",
+      "ctaText": "Discover the books",
+      "ctaHref": "#books",
+      "secondaryCtaText": "Get the free guide",
+      "secondaryCtaHref": "#newsletter"
+    },
+    "bandeau": {
+      "paper": "Paperback",
+      "ebook": "Ebook",
+      "audio": "Audio"
+    },
+    "books": {
+      "sectionTitle": "Four books to strengthen your faith",
+      "sectionIntro": "Each book stands alone. Start with the one that calls you.",
+      "seriesPrefix": "Book",
+      "hook": "A book for those seeking God beyond dogma.",
+      "benefits": [
+        "A personal faith, without intermediaries",
+        "Accessible to everyone, wherever you are",
+        "30-day satisfaction guarantee"
+      ],
+      "metaSuffix": "pages",
+      "languagesLabel": "1 language available",
+      "languages": [
+        {
+          "code": "fr",
+          "name": "Français",
+          "fmt": "Papier · Ebook · Audio"
+        },
+        {
+          "code": "en",
+          "name": "English",
+          "fmt": "Paperback · Ebook · Audio"
+        },
+        {
+          "code": "es",
+          "name": "Español",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "pt",
+          "name": "Português",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "de",
+          "name": "Deutsch",
+          "fmt": "Buch · Ebook · Audio"
+        },
+        {
+          "code": "it",
+          "name": "Italiano",
+          "fmt": "Carta · Ebook · Audio"
+        },
+        {
+          "code": "ru",
+          "name": "Русский",
+          "fmt": "Бумага · Ebook · Аудио"
+        },
+        {
+          "code": "zh",
+          "name": "中文",
+          "fmt": "纸书 · 电子书 · 有声书"
+        },
+        {
+          "code": "hi",
+          "name": "हिन्दी",
+          "fmt": "कागज़ · ईबुक · ऑडियो"
+        }
+      ]
+    },
+    "newsletter": {
+      "title": "Receive « 7 Prayers » for free",
+      "description": "A PDF guide to help you start praying, especially when you don't know where to begin.",
+      "placeholder": "Your email",
+      "buttonText": "I want the guide",
+      "tinyText": "No spam. Unsubscribe in 1 click. Your data stays private."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "question": "Are these books tied to a specific denomination?",
+          "answer": "No. They speak to anyone seeking God beyond denominational labels."
+        },
+        {
+          "question": "Can they be read in any order?",
+          "answer": "Yes. Each book is self-contained. Start with the one that resonates with your current question."
+        },
+        {
+          "question": "Are they available in paperback?",
+          "answer": "Yes, paperbacks on Lulu. Ebooks on Payhip. Audio on Google Play. Links are on each book's page."
+        },
+        {
+          "question": "Are translations faithful?",
+          "answer": "Each version is reviewed by a native speaker. The theological meaning is preserved."
+        }
+      ]
+    },
+    "cta": {
+      "text": "Ready to begin your journey? Choose the book that resonates — the first step changes everything.",
+      "buttonText": "View all 4 books",
+      "buttonHref": "#books"
+    },
+    "footer": {
+      "nav": [
+        "Home",
+        "Books",
+        "Newsletter",
+        "FAQ",
+        "Contact"
+      ],
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
+      "availability": "Books available in paperback, ebook, and audio.",
+      "copyright": "Kiki en Christ. All rights reserved."
+    },
+    "bookData": {
+      "visage": {
+        "name": "The Face of God: The Quest for Spirituality and Transcendence",
+        "description": "A book for those seeking God beyond dogma.",
+        "coverImage": "https://i.ibb.co/LXVxNhmR/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "13.99",
+            "priceCurrency": "USD",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/the-face-of-god-the-quest-for-spirituality-and-transcendence/paperback/product-57g8e9g.html?srsltid=AfmBOoqg3HaEAZa8UckvdiXAxyD1onG2MVzgP3__w_DH8vgEkCi-HdaD&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/gps0X",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/KIKI_EN_CHRIST_The_Face_of_God_The_Quest_for_Spiri?id=AQAAAEAyeGA4QM",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "French",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "en",
+            "name": "English",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Spanish",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "pt",
+            "name": "Portuguese",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "de",
+            "name": "German",
+            "fmt": "Buch · Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "5 languages available"
+      },
+      "trinite": {
+        "name": "The Secrets of the Trinity Revealed: A Hard-Hitting Review",
+        "description": "A book for those seeking God beyond dogma.",
+        "coverImage": "https://i.ibb.co/7sYvCbw/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "9.99",
+            "priceCurrency": "USD",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/the-secrets-of-the-trinity-revealed-a-hard-hitting-review/paperback/product-p2wk4p.html?q=Kiki+en+Christ+&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/5RCis",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/KIKI_EN_CHRIST_The_secrets_of_the_Trinity_revealed?id=AQAAAEBi7BisaM",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "French",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "en",
+            "name": "English",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Spanish",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "pt",
+            "name": "Portuguese",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "de",
+            "name": "German",
+            "fmt": "Buch · Ebook · Audio"
+          },
+          {
+            "code": "it",
+            "name": "Italian",
+            "fmt": "Carta · Ebook"
+          },
+          {
+            "code": "ru",
+            "name": "Russian",
+            "fmt": "Бумага · Ebook"
+          },
+          {
+            "code": "zh",
+            "name": "Chinese",
+            "fmt": "纸书 · 电子书"
+          },
+          {
+            "code": "hi",
+            "name": "Hindi",
+            "fmt": "Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "9 languages available"
+      },
+      "combat": {
+        "name": "The Last Battle: Keeping the Faith",
+        "description": "A book for those seeking God beyond dogma.",
+        "coverImage": "https://i.ibb.co/5hKs0d3r/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "9.99",
+            "priceCurrency": "USD",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/the-last-battle-keeping-the-faith/paperback/product-kv9kyj8.html?q=Kiki+en+Christ+&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/URhyp",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/KIKI_EN_CHRIST_The_Last_Battle_Keeping_the_Faith?id=AQAAAEAyOGx4TM&hl=en_CA",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "French",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "en",
+            "name": "English",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Spanish",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "pt",
+            "name": "Portuguese",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "de",
+            "name": "German",
+            "fmt": "Buch · Ebook · Audio"
+          },
+          {
+            "code": "hi",
+            "name": "Hindi",
+            "fmt": "Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "6 languages available"
+      },
+      "salut": {
+        "name": "The Mystery of Salvation",
+        "description": "A book for those seeking God beyond dogma.",
+        "coverImage": "https://i.ibb.co/rGPjrpvd/SALUT-sans-criture-2.png",
+        "offers": [],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "French",
+            "fmt": "Paperback · Ebook · Audio"
+          }
+        ]
+      }
+    }
+  },
+  "es": {
+    "lang": "es",
+    "dir": "ltr",
+    "name": "Español",
+    "meta": {
+      "title": "Libros cristianos para fortalecer tu fe — Kiki en Christ",
+      "description": "Cuatro libros para quienes buscan a Dios más allá del dogma. Tapa blanda, ebook y audio, en español y hasta 9 idiomas. Envío en 3-5 días.",
+      "ogTitle": "Libros cristianos para fortalecer tu fe — Kiki en Christ",
+      "ogDescription": "Cuatro libros para quienes buscan a Dios más allá del dogma. Tapa blanda, ebook y audio, en español y hasta 9 idiomas. Envío en 3-5 días."
+    },
+    "hero": {
+      "eyebrow": "Novedad",
+      "title": "Libros para quienes buscan a Dios más allá del dogma",
+      "subtitle": "Cuatro libros independientes. Tapa blanda, ebook y audio. Disponibles en 9 idiomas. Regístrate para recibir la guía gratis « 7 oraciones ».",
+      "ctaText": "Descubrir los libros",
+      "ctaHref": "#libros",
+      "secondaryCtaText": "Obtener la guía gratis",
+      "secondaryCtaHref": "#newsletter"
+    },
+    "bandeau": {
+      "paper": "Papel",
+      "ebook": "Ebook",
+      "audio": "Audio"
+    },
+    "books": {
+      "sectionTitle": "Cuatro obras para fortalecer tu fe",
+      "sectionIntro": "Cada libro basta por sí mismo. Empieza por el que te llama.",
+      "seriesPrefix": "Libro",
+      "hook": "Un libro para quienes buscan a Dios más allá del dogma.",
+      "benefits": [
+        "Una fe personal, sin intermediarios",
+        "Accesible para todos, estés donde estés",
+        "Garantía de satisfacción 30 días"
+      ],
+      "metaSuffix": "páginas",
+      "languagesLabel": "9 idiomas disponibles",
+      "languages": [
+        {
+          "code": "fr",
+          "name": "Français",
+          "fmt": "Papier · Ebook · Audio"
+        },
+        {
+          "code": "en",
+          "name": "English",
+          "fmt": "Paperback · Ebook · Audio"
+        },
+        {
+          "code": "es",
+          "name": "Español",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "pt",
+          "name": "Português",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "de",
+          "name": "Deutsch",
+          "fmt": "Buch · Ebook · Audio"
+        },
+        {
+          "code": "it",
+          "name": "Italiano",
+          "fmt": "Carta · Ebook · Audio"
+        },
+        {
+          "code": "ru",
+          "name": "Русский",
+          "fmt": "Бумага · Ebook · Аудио"
+        },
+        {
+          "code": "zh",
+          "name": "中文",
+          "fmt": "纸书 · 电子书 · 有声书"
+        },
+        {
+          "code": "hi",
+          "name": "हिन्दी",
+          "fmt": "कागज़ · ईबुक · ऑडियो"
+        }
+      ]
+    },
+    "newsletter": {
+      "title": "Recibe « 7 oraciones » gratis",
+      "description": "Una guía PDF para iniciarte en la oración, especialmente cuando no sabes por dónde empezar.",
+      "placeholder": "Tu email",
+      "buttonText": "Quiero la guía",
+      "tinyText": "Sin spam. Baja en 1 clic. Tus datos quedan privados."
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "items": [
+        {
+          "question": "¿Estos libros están ligados a una confesión concreta?",
+          "answer": "No. Se dirigen a cualquiera que busque a Dios más allá de etiquetas confesionales."
+        },
+        {
+          "question": "¿Pueden leerse en cualquier orden?",
+          "answer": "Sí. Cada obra es autónoma. Empieza por la que resuene con tu pregunta actual."
+        },
+        {
+          "question": "¿Existen en tapa blanda?",
+          "answer": "Sí, en Lulu. Ebooks en Payhip. Audio en Google Play. Los enlaces están en cada ficha."
+        },
+        {
+          "question": "¿Son fieles las traducciones?",
+          "answer": "Cada versión es revisada por un nativo. Se preserva el sentido teológico."
+        }
+      ]
+    },
+    "cta": {
+      "text": "¿Listo para empezar tu camino? Elige el libro que resuene — el primer paso lo cambia todo.",
+      "buttonText": "Ver los 4 libros",
+      "buttonHref": "#libros"
+    },
+    "footer": {
+      "nav": [
+        "Inicio",
+        "Libros",
+        "Newsletter",
+        "FAQ",
+        "Contacto"
+      ],
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
+      "availability": "Libros disponibles en papel, ebook y audio.",
+      "copyright": "Kiki en Christ. Todos los derechos reservados."
+    },
+    "bookData": {
+      "visage": {
+        "name": "El rostro de Dios: la búsqueda de la espiritualidad y la trascendencia",
+        "description": "Un libro para quienes buscan a Dios más allá del dogma.",
+        "coverImage": "https://i.ibb.co/cS6JLggQ/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "12.99",
+            "priceCurrency": "EUR",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/el-rostro-de-dios-la-b%C3%BAsqueda-de-la-espiritualidad-y-la-trascendencia/paperback/product-84kyme5.html?q=Kiki+en+christ+&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/dyiq3",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/KIKI_EN_CHRIST_El_rostro_de_Dios_la_b%C3%BAsqueda_de_la?id=AQAAAEAyeCA4AM",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Francés",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "en",
+            "name": "Inglés",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Español",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "pt",
+            "name": "Portugués",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "de",
+            "name": "Alemán",
+            "fmt": "Buch · Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "5 idiomas disponibles"
+      },
+      "trinite": {
+        "name": "Los secretos de la Trinidad por fin revelados: una crítica contundente",
+        "description": "Un libro para quienes buscan a Dios más allá del dogma.",
+        "coverImage": "https://i.ibb.co/nsKq61CF/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "9.99",
+            "priceCurrency": "EUR",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/los-secretos-de-la-trinidad-revelados-al-fin-una-cr%C3%ADtica-contundente/paperback/product-kygr49.html?q=Kiki+en+Christ+&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/TWvhn",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/KIKI_EN_CHRIST_Los_secretos_de_la_Trinidad_revelad?id=AQAAAEBiykeKNM",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Francés",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "en",
+            "name": "Inglés",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Español",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "pt",
+            "name": "Portugués",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "de",
+            "name": "Alemán",
+            "fmt": "Buch · Ebook · Audio"
+          },
+          {
+            "code": "it",
+            "name": "Italiano",
+            "fmt": "Carta · Ebook"
+          },
+          {
+            "code": "ru",
+            "name": "Ruso",
+            "fmt": "Бумага · Ebook"
+          },
+          {
+            "code": "zh",
+            "name": "Chino",
+            "fmt": "纸书 · 电子书"
+          },
+          {
+            "code": "hi",
+            "name": "Hindi",
+            "fmt": "Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "9 idiomas disponibles"
+      },
+      "combat": {
+        "name": "La última batalla: mantener la fe",
+        "description": "Un libro para quienes buscan a Dios más allá del dogma.",
+        "coverImage": "https://i.ibb.co/731s6mZ/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "9.99",
+            "priceCurrency": "EUR",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/la-%C3%BAltima-batalla-mantener-la-fe/paperback/product-jene22m.html?q=Kiki+en+Christ+&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/7zUWJ",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/KIKI_EN_CHRIST_La_%C3%BAltima_Batalla_Mantener_la_Fe?id=AQAAAEAy2CSYBM&hl=en_CA",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Francés",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "en",
+            "name": "Inglés",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Español",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "pt",
+            "name": "Portugués",
+            "fmt": "Papel · Ebook · Audio"
+          },
+          {
+            "code": "de",
+            "name": "Alemán",
+            "fmt": "Buch · Ebook · Audio"
+          },
+          {
+            "code": "hi",
+            "name": "Hindi",
+            "fmt": "Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "6 idiomas disponibles"
+      },
+      "salut": {
+        "name": "El misterio de la Salvación",
+        "description": "Un libro para quienes buscan a Dios más allá del dogma.",
+        "coverImage": "https://i.ibb.co/h1DFdmWB/SALUT-sans-criture-2.png",
+        "offers": [],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Francés",
+            "fmt": "Papel · Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "1 idioma disponible"
+      }
+    }
+  },
+  "pt": {
+    "lang": "pt",
+    "dir": "ltr",
+    "name": "Português",
+    "meta": {
+      "title": "Livros cristãos para fortalecer a sua fé — Kiki en Christ",
+      "description": "Quatro livros para quem busca a Deus além do dogma. Capa comum, ebook e áudio, em português e até 9 idiomas. Envio em 3-5 dias.",
+      "ogTitle": "Livros cristãos para fortalecer a sua fé — Kiki en Christ",
+      "ogDescription": "Quatro livros para quem busca a Deus além do dogma. Capa comum, ebook e áudio, em português e até 9 idiomas. Envio em 3-5 dias."
+    },
+    "hero": {
+      "eyebrow": "Novidade",
+      "title": "Livros para quem busca a Deus além do dogma",
+      "subtitle": "Quatro livros independentes. Capa comum, ebook e áudio. Disponíveis em 9 idiomas. Inscreva-se para receber o guia grátis « 7 orações ».",
+      "ctaText": "Descobrir os livros",
+      "ctaHref": "#livros",
+      "secondaryCtaText": "Obter o guia grátis",
+      "secondaryCtaHref": "#newsletter"
+    },
+    "bandeau": {
+      "paper": "Papel",
+      "ebook": "Ebook",
+      "audio": "Audio"
+    },
+    "books": {
+      "sectionTitle": "Quatro obras para fortalecer a sua fé",
+      "sectionIntro": "Cada livro basta por si mesmo. Comece pelo que o chama.",
+      "seriesPrefix": "Livro",
+      "hook": "Um livro para quem busca a Deus além do dogma.",
+      "benefits": [
+        "Uma fé pessoal, sem intermediários",
+        "Acessível a todos, onde quer que esteja",
+        "Garantia de satisfação 30 dias"
+      ],
+      "metaSuffix": "páginas",
+      "languagesLabel": "9 idiomas disponíveis",
+      "languages": [
+        {
+          "code": "fr",
+          "name": "Français",
+          "fmt": "Papier · Ebook · Audio"
+        },
+        {
+          "code": "en",
+          "name": "English",
+          "fmt": "Paperback · Ebook · Audio"
+        },
+        {
+          "code": "es",
+          "name": "Español",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "pt",
+          "name": "Português",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "de",
+          "name": "Deutsch",
+          "fmt": "Buch · Ebook · Audio"
+        },
+        {
+          "code": "it",
+          "name": "Italiano",
+          "fmt": "Carta · Ebook · Audio"
+        },
+        {
+          "code": "ru",
+          "name": "Русский",
+          "fmt": "Бумага · Ebook · Аудио"
+        },
+        {
+          "code": "zh",
+          "name": "中文",
+          "fmt": "纸书 · 电子书 · 有声书"
+        },
+        {
+          "code": "hi",
+          "name": "हिन्दी",
+          "fmt": "कागज़ · ईबुक · ऑडियो"
+        }
+      ]
+    },
+    "newsletter": {
+      "title": "Receba « 7 orações » grátis",
+      "description": "Um guia PDF para começar a orar, especialmente quando não sabe por onde começar.",
+      "placeholder": "Seu email",
+      "buttonText": "Quero o guia",
+      "tinyText": "Sem spam. Cancelar em 1 clique. Seus dados ficam privados."
+    },
+    "faq": {
+      "title": "Perguntas frequentes",
+      "items": [
+        {
+          "question": "Estes livros estão ligados a uma confissão específica?",
+          "answer": "Não. Dirigem-se a quem busca a Deus além de rótulos confessionais."
+        },
+        {
+          "question": "Podem ser lidos em qualquer ordem?",
+          "answer": "Sim. Cada obra é autónoma. Comece pela que ressoa com a sua questão actual."
+        },
+        {
+          "question": "Existem em capa comum?",
+          "answer": "Sim, na Lulu. Ebooks na Payhip. Áudio no Google Play. Links em cada ficha."
+        },
+        {
+          "question": "As traduções são fiéis?",
+          "answer": "Cada versão é revista por um nativo. O sentido teológico é preservado."
+        }
+      ]
+    },
+    "cta": {
+      "text": "Pronto para começar o seu caminho? Escolha o livro que ressoa — o primeiro passo muda tudo.",
+      "buttonText": "Ver os 4 livros",
+      "buttonHref": "#livros"
+    },
+    "footer": {
+      "nav": [
+        "Início",
+        "Livros",
+        "Newsletter",
+        "FAQ",
+        "Contacto"
+      ],
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
+      "availability": "Livros disponíveis em papel, ebook e áudio.",
+      "copyright": "Kiki en Christ. Todos os direitos reservados."
+    },
+    "bookData": {
+      "visage": {
+        "name": "O rosto de Deus: a busca pela espiritualidade e transcendência",
+        "description": "Um livro para quem busca a Deus além do dogma.",
+        "coverImage": "https://i.ibb.co/DfFkQ3j9/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "12.99",
+            "priceCurrency": "EUR",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/a-face-de-deus-a-busca-pela-espiritualidade-e-transcend%C3%AAncia/paperback/product-rme76r2.html?q=kiki+en+christ+&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/3o72q",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/KIKI_EN_CHRIST_El_rostro_de_Dios_la_b%C3%BAsqueda_de_la?id=AQAAAEAyeCA4AM&pli=1",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Francês",
+            "fmt": "Capa comum · Ebook · Áudio"
+          },
+          {
+            "code": "en",
+            "name": "Inglês",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Espanhol",
+            "fmt": "Capa comum · Ebook · Áudio"
+          },
+          {
+            "code": "pt",
+            "name": "Português",
+            "fmt": "Capa comum · Ebook · Áudio"
+          },
+          {
+            "code": "de",
+            "name": "Alemão",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "5 idiomas disponíveis"
+      },
+      "trinite": {
+        "name": "Os segredos da Trindade enfim revelados: uma crítica contundente",
+        "description": "Um livro para quem busca a Deus além do dogma.",
+        "coverImage": "https://i.ibb.co/5WfDgpyj/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "9.99",
+            "priceCurrency": "EUR",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/os-segredos-da-trindade-revelado-uma-cr%C3%ADtica-contundente/paperback/product-jvr45j.html?q=Kiki+en+Christ+&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/Ia4ul",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/KIKI_EN_CHRIST_Os_segredos_da_Trindade_revelado_um?id=AQAAAEBiDWxNHM",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Francês",
+            "fmt": "Capa comum · Ebook · Áudio"
+          },
+          {
+            "code": "en",
+            "name": "Inglês",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Espanhol",
+            "fmt": "Capa comum · Ebook · Áudio"
+          },
+          {
+            "code": "pt",
+            "name": "Português",
+            "fmt": "Capa comum · Ebook · Áudio"
+          },
+          {
+            "code": "de",
+            "name": "Alemão",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "it",
+            "name": "Italiano",
+            "fmt": "Capa comum · Ebook"
+          },
+          {
+            "code": "ru",
+            "name": "Russo",
+            "fmt": "Capa comum · Ebook"
+          },
+          {
+            "code": "zh",
+            "name": "Chinês",
+            "fmt": "Capa comum · Ebook"
+          },
+          {
+            "code": "hi",
+            "name": "Hindi",
+            "fmt": "Ebook · Áudio"
+          }
+        ],
+        "languagesLabel": "9 idiomas disponíveis"
+      },
+      "combat": {
+        "name": "A última batalha: manter a fé",
+        "description": "Um livro para quem busca a Deus além do dogma.",
+        "coverImage": "https://i.ibb.co/qFD0JVxF/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "9.99",
+            "priceCurrency": "EUR",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/a-%C3%BAltima-batalha-mantendo-a-f%C3%A9/paperback/product-2m5d7p2.html?q=Kiki+en+Christ+&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/2ljaU",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/KIKI_EN_CHRIST_A_%C3%9Altima_Batalha_Mantendo_a_F%C3%A9?id=AQAAAEAy5BykPM&hl=en_CA",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Francês",
+            "fmt": "Capa comum · Ebook · Áudio"
+          },
+          {
+            "code": "en",
+            "name": "Inglês",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Espanhol",
+            "fmt": "Capa comum · Ebook · Áudio"
+          },
+          {
+            "code": "pt",
+            "name": "Português",
+            "fmt": "Capa comum · Ebook · Áudio"
+          },
+          {
+            "code": "de",
+            "name": "Alemão",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "hi",
+            "name": "Hindi",
+            "fmt": "Ebook · Áudio"
+          }
+        ],
+        "languagesLabel": "6 idiomas disponíveis"
+      },
+      "salut": {
+        "name": "O mistério da Salvação",
+        "description": "Um livro para quem busca a Deus além do dogma.",
+        "coverImage": "https://i.ibb.co/h1DFdmWB/SALUT-sans-criture-2.png",
+        "offers": [],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Francês",
+            "fmt": "Capa comum · Ebook · Áudio"
+          }
+        ],
+        "languagesLabel": "1 idioma disponível"
+      }
+    }
+  },
+  "de": {
+    "lang": "de",
+    "dir": "ltr",
+    "name": "Deutsch",
+    "meta": {
+      "title": "Christliche Bücher für Ihren Glauben — Kiki en Christ",
+      "description": "Vier Bücher für diejenigen, die Gott jenseits von Dogmen suchen. Taschenbuch, E-Book und Hörbuch, auf Deutsch und in bis zu 9 Sprachen. Versand in 3-5 Tagen.",
+      "ogTitle": "Christliche Bücher für Ihren Glauben — Kiki en Christ",
+      "ogDescription": "Vier Bücher für diejenigen, die Gott jenseits von Dogmen suchen. Taschenbuch, E-Book und Hörbuch, auf Deutsch und in bis zu 9 Sprachen. Versand in 3-5 Tagen."
+    },
+    "hero": {
+      "eyebrow": "Neuerscheinung",
+      "title": "Bücher für diejenigen, die Gott jenseits von Dogmen suchen",
+      "subtitle": "Vier unabhängige Bücher. Taschenbuch, E-Book und Hörbuch. Erhältlich in 9 Sprachen. Registrieren Sie sich für den kostenlosen « 7 Gebete »-Leitfaden.",
+      "ctaText": "Bücher entdecken",
+      "ctaHref": "#bücher",
+      "secondaryCtaText": "Kostenlosen Leitfaden erhalten",
+      "secondaryCtaHref": "#newsletter"
+    },
+    "bandeau": {
+      "paper": "Buch",
+      "ebook": "Ebook",
+      "audio": "Audio"
+    },
+    "books": {
+      "sectionTitle": "Vier Bücher, um Ihren Glauben zu stärken",
+      "sectionIntro": "Jedes Buch steht für sich. Beginnen Sie mit dem, das Sie anspricht.",
+      "seriesPrefix": "Buch",
+      "hook": "Ein Buch für diejenigen, die Gott jenseits von Dogmen suchen.",
+      "benefits": [
+        "Ein persönlicher Glaube, ohne Vermittler",
+        "Für jeden zugänglich, wo immer Sie sind",
+        "30-Tage-Zufriedenheitsgarantie"
+      ],
+      "metaSuffix": "Seiten",
+      "languagesLabel": "9 Sprachen verfügbar",
+      "languages": [
+        {
+          "code": "fr",
+          "name": "Français",
+          "fmt": "Papier · Ebook · Audio"
+        },
+        {
+          "code": "en",
+          "name": "English",
+          "fmt": "Paperback · Ebook · Audio"
+        },
+        {
+          "code": "es",
+          "name": "Español",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "pt",
+          "name": "Português",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "de",
+          "name": "Deutsch",
+          "fmt": "Buch · Ebook · Audio"
+        },
+        {
+          "code": "it",
+          "name": "Italiano",
+          "fmt": "Carta · Ebook · Audio"
+        },
+        {
+          "code": "ru",
+          "name": "Русский",
+          "fmt": "Бумага · Ebook · Аудио"
+        },
+        {
+          "code": "zh",
+          "name": "中文",
+          "fmt": "纸书 · 电子书 · 有声书"
+        },
+        {
+          "code": "hi",
+          "name": "हिन्दी",
+          "fmt": "कागज़ · ईबुक · ऑडियो"
+        }
+      ]
+    },
+    "newsletter": {
+      "title": "Erhalten Sie « 7 Gebete » kostenlos",
+      "description": "Ein PDF-Leitfaden, um das Beten zu lernen, besonders wenn Sie nicht wissen, wo Sie anfangen sollen.",
+      "placeholder": "Ihre E-Mail",
+      "buttonText": "Ich möchte den Leitfaden",
+      "tinyText": "Kein Spam. Abmeldung mit 1 Klick. Ihre Daten bleiben privat."
+    },
+    "faq": {
+      "title": "Häufige Fragen",
+      "items": [
+        {
+          "question": "Sind diese Bücher an eine bestimmte Konfession gebunden?",
+          "answer": "Nein. Sie sprechen jeden an, der Gott jenseits konfessioneller Etiketten sucht."
+        },
+        {
+          "question": "Können sie in beliebiger Reihenfolge gelesen werden?",
+          "answer": "Ja. Jedes Buch ist in sich abgeschlossen. Beginnen Sie mit dem, das Ihre aktuelle Frage berührt."
+        },
+        {
+          "question": "Gibt es sie als Taschenbuch?",
+          "answer": "Ja, als Taschenbuch bei Lulu. E-Books bei Payhip. Hörbücher bei Google Play. Links auf jeder Buchseite."
+        },
+        {
+          "question": "Sind die Übersetzungen getreu?",
+          "answer": "Jede Version wird von einem Muttersprachler geprüft. Die theologische Bedeutung bleibt erhalten."
+        }
+      ]
+    },
+    "cta": {
+      "text": "Bereit, Ihren Weg zu beginnen? Wählen Sie das Buch, das Sie anspricht — der erste Schritt verändert alles.",
+      "buttonText": "Alle 4 Bücher ansehen",
+      "buttonHref": "#bücher"
+    },
+    "footer": {
+      "nav": [
+        "Start",
+        "Bücher",
+        "Newsletter",
+        "FAQ",
+        "Kontakt"
+      ],
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
+      "availability": "Bücher erhältlich als Taschenbuch, E-Book und Hörbuch.",
+      "copyright": "Kiki en Christ. Alle Rechte vorbehalten."
+    },
+    "bookData": {
+      "visage": {
+        "name": "Das Antlitz Gottes: die Suche nach Spiritualität und Transzendenz",
+        "description": "Ein Buch für diejenigen, die Gott jenseits von Dogmen suchen.",
+        "coverImage": "https://i.ibb.co/svp7S2KB/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "13.90",
+            "priceCurrency": "EUR",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/das-antlitz-gottes-die-suche-nach-spiritualit%C3%A4t-und-transzendenz/paperback/product-95z4w2d.html?q=Kiki+en+christ+&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/rzYBH",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/KIKI_EN_CHRIST_Das_Antlitz_Gottes_Die_Suche_nach_S?id=AQAAAEAy1naWVM",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Französisch",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "en",
+            "name": "Englisch",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Spanisch",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "pt",
+            "name": "Portugiesisch",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "de",
+            "name": "Deutsch",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "5 Sprachen verfügbar"
+      },
+      "trinite": {
+        "name": "Die Geheimnisse der Dreifaltigkeit endlich enthüllt: eine schonungslose Analyse",
+        "description": "Ein Buch für diejenigen, die Gott jenseits von Dogmen suchen.",
+        "coverImage": "https://i.ibb.co/Pz96FFgn/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "9.99",
+            "priceCurrency": "EUR",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/die-geheimnisse-der-dreifaltigkeit-endlich-enth%C3%BCllt-eine-eindringliche-kritik/paperback/product-7424g6.html?q=Kiki+en+Christ+&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/a4OrP",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/KIKI_EN_CHRIST_Die_Geheimnisse_der_Dreifaltigkeit?id=AQAAAEBiUSgRWM",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Französisch",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "en",
+            "name": "Englisch",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Spanisch",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "pt",
+            "name": "Portugiesisch",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "de",
+            "name": "Deutsch",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "it",
+            "name": "Italienisch",
+            "fmt": "Taschenbuch · Ebook"
+          },
+          {
+            "code": "ru",
+            "name": "Russisch",
+            "fmt": "Taschenbuch · Ebook"
+          },
+          {
+            "code": "zh",
+            "name": "Chinesisch",
+            "fmt": "Taschenbuch · Ebook"
+          },
+          {
+            "code": "hi",
+            "name": "Hindi",
+            "fmt": "Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "9 Sprachen verfügbar"
+      },
+      "combat": {
+        "name": "Der letzte Kampf: den Glauben bewahren",
+        "description": "Ein Buch für diejenigen, die Gott jenseits von Dogmen suchen.",
+        "coverImage": "https://i.ibb.co/4ZFF1jJP/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "9.99",
+            "priceCurrency": "EUR",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/die-letzte-schlacht-den-glauben-bewahren/paperback/product-gjg4rnz.html?q=Kiki+en+Christ+&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/kvK0q",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/KIKI_EN_CHRIST_Die_letzte_Schlacht_Den_Glauben_bew?id=AQAAAEAyPCV8BM&hl=en_CA",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Französisch",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "en",
+            "name": "Englisch",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Spanisch",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "pt",
+            "name": "Portugiesisch",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "de",
+            "name": "Deutsch",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "hi",
+            "name": "Hindi",
+            "fmt": "Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "6 Sprachen verfügbar"
+      },
+      "salut": {
+        "name": "Das Geheimnis der Erlösung",
+        "description": "Ein Buch für diejenigen, die Gott jenseits von Dogmen suchen.",
+        "coverImage": "https://i.ibb.co/h1DFdmWB/SALUT-sans-criture-2.png",
+        "offers": [],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Französisch",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "1 Sprache verfügbar"
+      }
+    }
+  },
+  "it": {
+    "lang": "it",
+    "dir": "ltr",
+    "name": "Italiano",
+    "meta": {
+      "title": "Libri cristiani per rafforzare la tua fede — Kiki en Christ",
+      "description": "Quattro libri per chi cerca Dio oltre i dogmi. Brossura, ebook e audiolibro, in italiano e fino a 9 lingue. Spedizione in 3-5 giorni.",
+      "ogTitle": "Libri cristiani per rafforzare la tua fede — Kiki en Christ",
+      "ogDescription": "Quattro libri per chi cerca Dio oltre i dogmi. Brossura, ebook e audiolibro, in italiano e fino a 9 lingue. Spedizione in 3-5 giorni."
+    },
+    "hero": {
+      "eyebrow": "Novità",
+      "title": "Libri per chi cerca Dio oltre i dogmi",
+      "subtitle": "Quattro libri indipendenti. Brossura, ebook e audiolibro. Disponibili in 9 lingue. Iscriviti per ricevere la guida gratis « 7 preghiere ».",
+      "ctaText": "Scopri i libri",
+      "ctaHref": "#libri",
+      "secondaryCtaText": "Ottieni la guida gratis",
+      "secondaryCtaHref": "#newsletter"
+    },
+    "bandeau": {
+      "paper": "Carta",
+      "ebook": "Ebook",
+      "audio": "Audio"
+    },
+    "books": {
+      "sectionTitle": "Quattro opere per rafforzare la tua fede",
+      "sectionIntro": "Ogni libro basta a se stesso. Inizia con quello che ti chiama.",
+      "seriesPrefix": "Libro",
+      "hook": "Un libro per chi cerca Dio oltre i dogmi.",
+      "benefits": [
+        "Una fede personale, senza intermediari",
+        "Accessibile a tutti, ovunque tu sia",
+        "Garanzia soddisfatti o rimborsati 30 giorni"
+      ],
+      "metaSuffix": "pagine",
+      "languagesLabel": "9 lingue disponibili",
+      "languages": [
+        {
+          "code": "fr",
+          "name": "Français",
+          "fmt": "Papier · Ebook · Audio"
+        },
+        {
+          "code": "en",
+          "name": "English",
+          "fmt": "Paperback · Ebook · Audio"
+        },
+        {
+          "code": "es",
+          "name": "Español",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "pt",
+          "name": "Português",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "de",
+          "name": "Deutsch",
+          "fmt": "Buch · Ebook · Audio"
+        },
+        {
+          "code": "it",
+          "name": "Italiano",
+          "fmt": "Carta · Ebook · Audio"
+        },
+        {
+          "code": "ru",
+          "name": "Русский",
+          "fmt": "Бумага · Ebook · Аудио"
+        },
+        {
+          "code": "zh",
+          "name": "中文",
+          "fmt": "纸书 · 电子书 · 有声书"
+        },
+        {
+          "code": "hi",
+          "name": "हिन्दी",
+          "fmt": "कागज़ · ईबुक · ऑडियो"
+        }
+      ]
+    },
+    "newsletter": {
+      "title": "Ricevi « 7 preghiere » gratis",
+      "description": "Una guida PDF per iniziare a pregare, soprattutto quando non sai da dove cominciare.",
+      "placeholder": "La tua email",
+      "buttonText": "Voglio la guida",
+      "tinyText": "Niente spam. Disiscrizione in 1 clic. I tuoi dati restano privati."
+    },
+    "faq": {
+      "title": "Domande frequenti",
+      "items": [
+        {
+          "question": "Questi libri sono legati a una confessione specifica?",
+          "answer": "No. Si rivolgono a chiunque cerchi Dio oltre le etichette confessionali."
+        },
+        {
+          "question": "Possono essere letti in qualsiasi ordine?",
+          "answer": "Sì. Ogni opera è autonoma. Inizia con quella che risuona con la tua domanda attuale."
+        },
+        {
+          "question": "Esistono in brossura?",
+          "answer": "Sì, su Lulu. Ebook su Payhip. Audiolibri su Google Play. I link sono in ogni scheda."
+        },
+        {
+          "question": "Le traduzioni sono fedeli?",
+          "answer": "Ogni versione è rivista da un madrelingua. Il senso teologico è preservato."
+        }
+      ]
+    },
+    "cta": {
+      "text": "Pronto a iniziare il tuo cammino? Scegli il libro che risuona — il primo passo cambia tutto.",
+      "buttonText": "Vedi i 4 libri",
+      "buttonHref": "#libri"
+    },
+    "footer": {
+      "nav": [
+        "Home",
+        "Libri",
+        "Newsletter",
+        "FAQ",
+        "Contatto"
+      ],
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
+      "availability": "Libri disponibili in brossura, ebook e audiolibro.",
+      "copyright": "Kiki en Christ. Tutti i diritti riservati."
+    },
+    "bookData": {
+      "visage": {
+        "name": "Il volto di Dio: la ricerca della spiritualità e della trascendenza",
+        "description": "Un libro per chi cerca Dio oltre i dogmi.",
+        "coverImage": "https://i.ibb.co/C3QMY5g5/Design-sans-titre-1-1.png",
+        "offers": [],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Francese",
+            "fmt": "Brossura · Ebook · Audio"
+          },
+          {
+            "code": "en",
+            "name": "Inglese",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Spagnolo",
+            "fmt": "Brossura · Ebook · Audio"
+          },
+          {
+            "code": "pt",
+            "name": "Portoghese",
+            "fmt": "Brossura · Ebook · Audio"
+          },
+          {
+            "code": "de",
+            "name": "Tedesco",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "5 lingue disponibili"
+      },
+      "trinite": {
+        "name": "I segreti della Trinità finalmente svelati: una critica incisiva",
+        "description": "Un libro per chi cerca Dio oltre i dogmi.",
+        "coverImage": "https://i.ibb.co/HT0VRnk5/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "9.99",
+            "priceCurrency": "EUR",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/i-segreti-della-trinit%C3%A0-finalmente-svelati-una-critica-potente/paperback/product-5r5dp7.html?q=Kiki+en+Christ+&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/DuE5m",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Francese",
+            "fmt": "Brossura · Ebook · Audio"
+          },
+          {
+            "code": "en",
+            "name": "Inglese",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Spagnolo",
+            "fmt": "Brossura · Ebook · Audio"
+          },
+          {
+            "code": "pt",
+            "name": "Portoghese",
+            "fmt": "Brossura · Ebook · Audio"
+          },
+          {
+            "code": "de",
+            "name": "Tedesco",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "it",
+            "name": "Italiano",
+            "fmt": "Brossura · Ebook"
+          },
+          {
+            "code": "ru",
+            "name": "Russo",
+            "fmt": "Brossura · Ebook"
+          },
+          {
+            "code": "zh",
+            "name": "Cinese",
+            "fmt": "Brossura · Ebook"
+          },
+          {
+            "code": "hi",
+            "name": "Hindi",
+            "fmt": "Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "9 lingue disponibili"
+      },
+      "combat": {
+        "name": "L'ultima battaglia: mantenere la fede",
+        "description": "Un libro per chi cerca Dio oltre i dogmi.",
+        "coverImage": "https://i.ibb.co/hRgzNs32/FOI-sans-criture.jpg",
+        "offers": [],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Francese",
+            "fmt": "Brossura · Ebook · Audio"
+          },
+          {
+            "code": "en",
+            "name": "Inglese",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Spagnolo",
+            "fmt": "Brossura · Ebook · Audio"
+          },
+          {
+            "code": "pt",
+            "name": "Portoghese",
+            "fmt": "Brossura · Ebook · Audio"
+          },
+          {
+            "code": "de",
+            "name": "Tedesco",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "hi",
+            "name": "Hindi",
+            "fmt": "Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "6 lingue disponibili"
+      },
+      "salut": {
+        "name": "Il mistero della Salvezza",
+        "description": "Un libro per chi cerca Dio oltre i dogmi.",
+        "coverImage": "https://i.ibb.co/h1DFdmWB/SALUT-sans-criture-2.png",
+        "offers": [],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Francese",
+            "fmt": "Brossura · Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "1 lingua disponibile"
+      }
+    }
+  },
+  "ru": {
+    "lang": "ru",
+    "dir": "ltr",
+    "name": "Русский",
+    "meta": {
+      "title": "Христианские книги для укрепления вашей веры — Kiki en Christ",
+      "description": "Четыре книги для тех, кто ищет Бога за пределами догм. Мягкая обложка, электронная книга и аудиокнига, на русском и до 9 языков. Доставка за 3-5 дней.",
+      "ogTitle": "Христианские книги для укрепления вашей веры — Kiki en Christ",
+      "ogDescription": "Четыре книги для тех, кто ищет Бога за пределами догм. Мягкая обложка, электронная книга и аудиокнига, на русском и до 9 языков. Доставка за 3-5 дней."
+    },
+    "hero": {
+      "eyebrow": "Новинка",
+      "title": "Книги для тех, кто ищет Бога за пределами догм",
+      "subtitle": "Четыре независимые книги. Мягкая обложка, электронная книга и аудиокнига. Доступны на 9 языках. Зарегистрируйтесь, чтобы получить бесплатное руководство « 7 молитв ».",
+      "ctaText": "Узнать о книгах",
+      "ctaHref": "#knigi",
+      "secondaryCtaText": "Получить руководство бесплатно",
+      "secondaryCtaHref": "#newsletter"
+    },
+    "bandeau": {
+      "paper": "Бумага",
+      "ebook": "Ebook",
+      "audio": "Аудио"
+    },
+    "books": {
+      "sectionTitle": "Четыре книги для укрепления вашей веры",
+      "sectionIntro": "Каждая книга самостоятельна. Начните с той, что зовёт вас.",
+      "seriesPrefix": "Книга",
+      "hook": "Книга для тех, кто ищет Бога за пределами догм.",
+      "benefits": [
+        "Личная вера без посредников",
+        "Доступна каждому, где бы вы ни были",
+        "Гарантия возврата в течение 30 дней"
+      ],
+      "metaSuffix": "стр.",
+      "languagesLabel": "9 языков доступно",
+      "languages": [
+        {
+          "code": "fr",
+          "name": "Français",
+          "fmt": "Papier · Ebook · Audio"
+        },
+        {
+          "code": "en",
+          "name": "English",
+          "fmt": "Paperback · Ebook · Audio"
+        },
+        {
+          "code": "es",
+          "name": "Español",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "pt",
+          "name": "Português",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "de",
+          "name": "Deutsch",
+          "fmt": "Buch · Ebook · Audio"
+        },
+        {
+          "code": "it",
+          "name": "Italiano",
+          "fmt": "Carta · Ebook · Audio"
+        },
+        {
+          "code": "ru",
+          "name": "Русский",
+          "fmt": "Бумага · Ebook · Аудио"
+        },
+        {
+          "code": "zh",
+          "name": "中文",
+          "fmt": "纸书 · 电子书 · 有声书"
+        },
+        {
+          "code": "hi",
+          "name": "हिन्दी",
+          "fmt": "कागज़ · ईबुक · ऑडियो"
+        }
+      ]
+    },
+    "newsletter": {
+      "title": "Получите « 7 молитв » бесплатно",
+      "description": "PDF-руководство, как начать молиться, особенно когда не знаете, с чего начать.",
+      "placeholder": "Ваш email",
+      "buttonText": "Хочу руководство",
+      "tinyText": "Нет спама. Отписка в 1 клик. Ваши данные остаются приватными."
+    },
+    "faq": {
+      "title": "Частые вопросы",
+      "items": [
+        {
+          "question": "Эти книги привязаны к определённому исповеданию?",
+          "answer": "Нет. Они адресованы всем, кто ищет Бога за пределами конфессиональных ярлыков."
+        },
+        {
+          "question": "Можно ли читать их в любом порядке?",
+          "answer": "Да. Каждая книга автономна. Начните с той, что откликается на ваш текущий вопрос."
+        },
+        {
+          "question": "Есть ли они в мягкой обложке?",
+          "answer": "Да, на Lulu. Электронные книги на Payhip. Аудиокниги на Google Play. Ссылки на каждой странице книги."
+        },
+        {
+          "question": "Сохраняют ли переводы верность?",
+          "answer": "Каждая версия проверена носителем языка. Богословский смысл сохранён."
+        }
+      ]
+    },
+    "cta": {
+      "text": "Готовы начать свой путь? Выберите книгу, которая откликается — первый шаг меняет всё.",
+      "buttonText": "Посмотреть все 4 книги",
+      "buttonHref": "#knigi"
+    },
+    "footer": {
+      "nav": [
+        "Главная",
+        "Книги",
+        "Newsletter",
+        "FAQ",
+        "Контакты"
+      ],
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
+      "availability": "Книги доступны в мягкой обложке, электронном и аудио формате.",
+      "copyright": "Kiki en Christ. Все права защищены."
+    },
+    "bookData": {
+      "visage": {
+        "name": "Лик Бога: поиск духовности и трансцендентности",
+        "description": "Книга для тех, кто ищет Бога за пределами догм.",
+        "coverImage": "https://i.ibb.co/chCbYZLy/Design-sans-titre-1-1.png",
+        "offers": [],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Французский",
+            "fmt": "Мягкая обложка · Электронная · Аудио"
+          },
+          {
+            "code": "en",
+            "name": "Английский",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Испанский",
+            "fmt": "Мягкая обложка · Электронная · Аудио"
+          },
+          {
+            "code": "pt",
+            "name": "Португальский",
+            "fmt": "Мягкая обложка · Электронная · Аудио"
+          },
+          {
+            "code": "de",
+            "name": "Немецкий",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "5 языков доступно"
+      },
+      "trinite": {
+        "name": "Тайны Троицы наконец раскрыты: пронзительный разбор",
+        "description": "Книга для тех, кто ищет Бога за пределами догм.",
+        "coverImage": "https://i.ibb.co/DDQpYQD4/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "9.99",
+            "priceCurrency": "EUR",
+            "url": "https://www.lulu.com/shop/kiki-en-christ/%D1%82%D0%B0%D0%B9%D0%BD%D1%8B-%D1%82%D1%80%D0%BE%D0%B8%D1%86%D1%8B-%D0%BD%D0%B0%D0%BA%D0%BE%D0%BD%D0%B5%D1%86-%D1%82%D0%BE-%D0%BF%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D0%BB-%D0%BD%D0%B5%D0%BB%D0%B8%D1%86%D0%B5%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%BD%D0%B0%D1%8F-%D0%BA%D1%80%D0%B8%D1%82%D0%B8%D0%BA%D0%B0/paperback/product-574gnv2.html?q=kiki+en+christ+&page=1&pageSize=4",
+            "seller": {
+              "name": "Lulu"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/LhHdt",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Французский",
+            "fmt": "Мягкая обложка · Электронная · Аудио"
+          },
+          {
+            "code": "en",
+            "name": "Английский",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Испанский",
+            "fmt": "Мягкая обложка · Электронная · Аудио"
+          },
+          {
+            "code": "pt",
+            "name": "Португальский",
+            "fmt": "Мягкая обложка · Электронная · Аудио"
+          },
+          {
+            "code": "de",
+            "name": "Немецкий",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "it",
+            "name": "Итальянский",
+            "fmt": "Мягкая обложка · Электронная"
+          },
+          {
+            "code": "ru",
+            "name": "Русский",
+            "fmt": "Мягкая обложка · Электронная"
+          },
+          {
+            "code": "zh",
+            "name": "Китайский",
+            "fmt": "Мягкая обложка · Электронная"
+          },
+          {
+            "code": "hi",
+            "name": "Хинди",
+            "fmt": "Электронная · Аудио"
+          }
+        ],
+        "languagesLabel": "9 языков доступно"
+      },
+      "combat": {
+        "name": "Последняя битва: сохранить веру",
+        "description": "Книга для тех, кто ищет Бога за пределами догм.",
+        "coverImage": "https://i.ibb.co/cS2dLK83/FOI-sans-criture.jpg",
+        "offers": [],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Французский",
+            "fmt": "Мягкая обложка · Электронная · Аудио"
+          },
+          {
+            "code": "en",
+            "name": "Английский",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "Испанский",
+            "fmt": "Мягкая обложка · Электронная · Аудио"
+          },
+          {
+            "code": "pt",
+            "name": "Португальский",
+            "fmt": "Мягкая обложка · Электронная · Аудио"
+          },
+          {
+            "code": "de",
+            "name": "Немецкий",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "hi",
+            "name": "Хинди",
+            "fmt": "Электронная · Аудио"
+          }
+        ],
+        "languagesLabel": "6 языков доступно"
+      },
+      "salut": {
+        "name": "Тайна спасения",
+        "description": "Книга для тех, кто ищет Бога за пределами догм.",
+        "coverImage": "https://i.ibb.co/h1DFdmWB/SALUT-sans-criture-2.png",
+        "offers": [],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "Французский",
+            "fmt": "Мягкая обложка · Электронная · Аудио"
+          }
+        ],
+        "languagesLabel": "1 язык доступен"
+      }
+    }
+  },
+  "zh": {
+    "lang": "zh",
+    "dir": "ltr",
+    "name": "中文",
+    "meta": {
+      "title": "坚固信心的基督教书籍 — Kiki en Christ",
+      "description": "为寻求超越教条之神的人而写的四本书。平装、电子书和有声书，提供中文及多达 9 种语言。3-5 天发货。",
+      "ogTitle": "坚固信心的基督教书籍 — Kiki en Christ",
+      "ogDescription": "为寻求超越教条之神的人而写的四本书。平装、电子书和有声书，提供中文及多达 9 种语言。3-5 天发货。"
+    },
+    "hero": {
+      "eyebrow": "新书",
+      "title": "为寻求超越教条之神的人而写的书",
+      "subtitle": "四本独立的书。平装、电子书和有声书。提供 9 种语言。注册赠送 « 7 个祷告 » 指南。",
+      "ctaText": "发现这些书",
+      "ctaHref": "#shu",
+      "secondaryCtaText": "免费获取指南",
+      "secondaryCtaHref": "#newsletter"
+    },
+    "bandeau": {
+      "paper": "纸书",
+      "ebook": "电子书",
+      "audio": "有声书"
+    },
+    "books": {
+      "sectionTitle": "四本书坚固你的信心",
+      "sectionIntro": "每本书都是独立的。从呼唤你的那一本开始。",
+      "seriesPrefix": "书",
+      "hook": "为寻求超越教条之神的人而写的书。",
+      "benefits": [
+        "个人的信仰，无中介",
+        "人人可得，无论身在何处",
+        "30 天满意保证"
+      ],
+      "metaSuffix": "页",
+      "languagesLabel": "提供 9 种语言",
+      "languages": [
+        {
+          "code": "fr",
+          "name": "Français",
+          "fmt": "Papier · Ebook · Audio"
+        },
+        {
+          "code": "en",
+          "name": "English",
+          "fmt": "Paperback · Ebook · Audio"
+        },
+        {
+          "code": "es",
+          "name": "Español",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "pt",
+          "name": "Português",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "de",
+          "name": "Deutsch",
+          "fmt": "Buch · Ebook · Audio"
+        },
+        {
+          "code": "it",
+          "name": "Italiano",
+          "fmt": "Carta · Ebook · Audio"
+        },
+        {
+          "code": "ru",
+          "name": "Русский",
+          "fmt": "Бумага · Ebook · Аудио"
+        },
+        {
+          "code": "zh",
+          "name": "中文",
+          "fmt": "纸书 · 电子书 · 有声书"
+        },
+        {
+          "code": "hi",
+          "name": "हिन्दी",
+          "fmt": "कागज़ · ईबुक · ऑडियो"
+        }
+      ]
+    },
+    "newsletter": {
+      "title": "免费获取 « 7 个祷告 »",
+      "description": "一份 PDF 指南，帮助你开始祷告，尤其是当你不知道从何开始时。",
+      "placeholder": "你的邮箱",
+      "buttonText": "我要指南",
+      "tinyText": "无垃圾邮件。一键退订。你的隐私受保护。"
+    },
+    "faq": {
+      "title": "常见问题",
+      "items": [
+        {
+          "question": "这些书是否属于特定教派？",
+          "answer": "不是。它们面向所有在教派标签之外寻求上帝的人。"
+        },
+        {
+          "question": "可以按任何顺序阅读吗？",
+          "answer": "可以。每本书都是独立的。从与你当下问题共鸣的那本开始。"
+        },
+        {
+          "question": "有平装版吗？",
+          "answer": "有，在 Lulu 平装。电子书在 Payhip。有声书在 Google Play。链接在每书页面。"
+        },
+        {
+          "question": "翻译是否忠实？",
+          "answer": "每个版本都经母语者审核。神学含义得以保留。"
+        }
+      ]
+    },
+    "cta": {
+      "text": "准备好开始你的旅程？选择呼唤你的那本书 — 第一步改变一切。",
+      "buttonText": "查看全部 4 本书",
+      "buttonHref": "#shu"
+    },
+    "footer": {
+      "nav": [
+        "首页",
+        "书籍",
+        "通讯",
+        "常见问题",
+        "联系"
+      ],
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
+      "availability": "书籍提供平装、电子书和有声书版本。",
+      "copyright": "Kiki en Christ. 保留所有权利。"
+    },
+    "bookData": {
+      "visage": {
+        "name": "神的面容：对灵性与超越的追寻",
+        "description": "为寻求超越教条之神的人而写的书。",
+        "coverImage": "https://i.ibb.co/spDxjH4h/Design-sans-titre-1-1.png",
+        "offers": [],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "法语",
+            "fmt": "平装 · 电子书 · 有声书"
+          },
+          {
+            "code": "en",
+            "name": "英语",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "西班牙语",
+            "fmt": "平装 · 电子书 · 有声书"
+          },
+          {
+            "code": "pt",
+            "name": "葡萄牙语",
+            "fmt": "平装 · 电子书 · 有声书"
+          },
+          {
+            "code": "de",
+            "name": "德语",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "5 种语言可用"
+      },
+      "trinite": {
+        "name": "三一奥秘终揭晓：深刻评析",
+        "description": "为寻求超越教条之神的人而写的书。",
+        "coverImage": "https://i.ibb.co/G4mdTkrG/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/gqNp1",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "法语",
+            "fmt": "平装 · 电子书 · 有声书"
+          },
+          {
+            "code": "en",
+            "name": "英语",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "西班牙语",
+            "fmt": "平装 · 电子书 · 有声书"
+          },
+          {
+            "code": "pt",
+            "name": "葡萄牙语",
+            "fmt": "平装 · 电子书 · 有声书"
+          },
+          {
+            "code": "de",
+            "name": "德语",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "it",
+            "name": "意大利语",
+            "fmt": "平装 · 电子书"
+          },
+          {
+            "code": "ru",
+            "name": "俄语",
+            "fmt": "平装 · 电子书"
+          },
+          {
+            "code": "zh",
+            "name": "中文",
+            "fmt": "平装 · 电子书"
+          },
+          {
+            "code": "hi",
+            "name": "印地语",
+            "fmt": "电子书 · 有声书"
+          }
+        ],
+        "languagesLabel": "9 种语言可用"
+      },
+      "combat": {
+        "name": "最后的争战：守住信心",
+        "description": "为寻求超越教条之神的人而写的书。",
+        "coverImage": "https://i.ibb.co/TDzmmTB7/FOI-sans-criture.jpg",
+        "offers": [],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "法语",
+            "fmt": "平装 · 电子书 · 有声书"
+          },
+          {
+            "code": "en",
+            "name": "英语",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "西班牙语",
+            "fmt": "平装 · 电子书 · 有声书"
+          },
+          {
+            "code": "pt",
+            "name": "葡萄牙语",
+            "fmt": "平装 · 电子书 · 有声书"
+          },
+          {
+            "code": "de",
+            "name": "德语",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "hi",
+            "name": "印地语",
+            "fmt": "电子书 · 有声书"
+          }
+        ],
+        "languagesLabel": "6 种语言可用"
+      },
+      "salut": {
+        "name": "救恩的奥秘",
+        "description": "为寻求超越教条之神的人而写的书。",
+        "coverImage": "https://i.ibb.co/h1DFdmWB/SALUT-sans-criture-2.png",
+        "offers": [],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "法语",
+            "fmt": "平装 · 电子书 · 有声书"
+          }
+        ],
+        "languagesLabel": "1 种语言可用"
+      }
+    }
+  },
+  "hi": {
+    "lang": "hi",
+    "dir": "ltr",
+    "name": "हिन्दी",
+    "meta": {
+      "title": "आपके विश्वास को मजबूत करने के लिए ईसाई किताबें — Kiki en Christ",
+      "description": "उन लोगों के लिए चार किताबें जो सिद्धांतों से परे परमेश्वर को खोजते हैं। पेपरबैक, ईबुक और ऑडियोबुक, हिन्दी में और 9 भाषाओं तक। 3-5 दिनों में डिलीवरी।",
+      "ogTitle": "आपके विश्वास को मजबूत करने के लिए ईसाई किताबें — Kiki en Christ",
+      "ogDescription": "उन लोगों के लिए चार किताबें जो सिद्धांतों से परे परमेश्वर को खोजते हैं। पेपरबैक, ईबुक और ऑडियोबुक, हिन्दी में और 9 भाषाओं तक। 3-5 दिनों में डिलीवरी।"
+    },
+    "hero": {
+      "eyebrow": "नई किताब",
+      "title": "उन लोगों के लिए किताबें जो सिद्धांतों से परे परमेश्वर को खोजते हैं",
+      "subtitle": "चार स्वतंत्र किताबें। पेपरबैक, ईबुक और ऑडियोबुक। 9 भाषाओं में उपलब्ध। मुफ्त « 7 प्रार्थनाएँ » गाइड पाने के लिए रजिस्टर करें।",
+      "ctaText": "किताबें खोजें",
+      "ctaHref": "#kitabein",
+      "secondaryCtaText": "मुफ्त गाइड प्राप्त करें",
+      "secondaryCtaHref": "#newsletter"
+    },
+    "bandeau": {
+      "paper": "कागज़",
+      "ebook": "ईबुक",
+      "audio": "ऑडियो"
+    },
+    "books": {
+      "sectionTitle": "आपके विश्वास को मजबूत करने के लिए चार किताबें",
+      "sectionIntro": "हर किताब अपने आप में पूरी है। उसे चुनें जो आपको बुलाती है।",
+      "seriesPrefix": "किताब",
+      "hook": "उन लोगों के लिए एक किताब जो सिद्धांतों से परे परमेश्वर को खोजते हैं।",
+      "benefits": [
+        "व्यक्तिगत विश्वास, बिना मध्यस्थ के",
+        "सभी के लिए सुलभ, जहाँ भी आप हों",
+        "30 दिन की संतुष्टि गारंटी"
+      ],
+      "metaSuffix": "पृष्ठ",
+      "languagesLabel": "9 भाषाएँ उपलब्ध",
+      "languages": [
+        {
+          "code": "fr",
+          "name": "Français",
+          "fmt": "Papier · Ebook · Audio"
+        },
+        {
+          "code": "en",
+          "name": "English",
+          "fmt": "Paperback · Ebook · Audio"
+        },
+        {
+          "code": "es",
+          "name": "Español",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "pt",
+          "name": "Português",
+          "fmt": "Papel · Ebook · Audio"
+        },
+        {
+          "code": "de",
+          "name": "Deutsch",
+          "fmt": "Buch · Ebook · Audio"
+        },
+        {
+          "code": "it",
+          "name": "Italiano",
+          "fmt": "Carta · Ebook · Audio"
+        },
+        {
+          "code": "ru",
+          "name": "Русский",
+          "fmt": "Бумага · Ebook · Аудио"
+        },
+        {
+          "code": "zh",
+          "name": "中文",
+          "fmt": "纸书 · 电子书 · 有声书"
+        },
+        {
+          "code": "hi",
+          "name": "हिन्दी",
+          "fmt": "कागज़ · ईबुक · ऑडियो"
+        }
+      ]
+    },
+    "newsletter": {
+      "title": "मुफ्त में « 7 प्रार्थनाएँ » प्राप्त करें",
+      "description": "प्रार्थना शुरू करने में मदद के लिए एक PDF गाइड, खासकर जब आप नहीं जानते कि कहाँ से शुरू करें।",
+      "placeholder": "आपका ईमेल",
+      "buttonText": "मुझे गाइड चाहिए",
+      "tinyText": "कोई स्पैम नहीं। एक क्लिक में अनसब्सक्राइब। आपका डेटा निजी रहता है।"
+    },
+    "faq": {
+      "title": "अक्सर पूछे जाने वाले प्रश्न",
+      "items": [
+        {
+          "question": "क्या ये किताबें किसी विशेष संप्रदाय से जुड़ी हैं?",
+          "answer": "नहीं। वे उन सभी लोगों के लिए हैं जो संप्रदायिक लेबल से परे परमेश्वर को खोजते हैं।"
+        },
+        {
+          "question": "क्या इन्हें किसी भी क्रम में पढ़ा जा सकता है?",
+          "answer": "हाँ। हर किताब स्वतंत्र है। उस किताब से शुरू करें जो आपके वर्तमान प्रश्न से मेल खाती है।"
+        },
+        {
+          "question": "क्या ये पेपरबैक में उपलब्ध हैं?",
+          "answer": "हाँ, लुलु पर पेपरबैक। पेहिप पर ईबुक। गूगल प्ले पर ऑडियोबुक। लिंक हर किताब के पेज पर हैं।"
+        },
+        {
+          "question": "क्या अनुवाद वफादार हैं?",
+          "answer": "हर संस्करण की समीक्षा एक मूल वक्ता द्वारा की गई है। धार्मिक अर्थ संरक्षित है।"
+        }
+      ]
+    },
+    "cta": {
+      "text": "अपनी यात्रा शुरू करने के लिए तैयार हैं? वह किताब चुनें जो आपको बुलाती है — पहला कदम सब कुछ बदल देता है।",
+      "buttonText": "सभी 4 किताबें देखें",
+      "buttonHref": "#kitabein"
+    },
+    "footer": {
+      "nav": [
+        "होम",
+        "किताबें",
+        "न्यूज़लेटर",
+        "FAQ",
+        "संपर्क"
+      ],
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
+      "availability": "किताबें पेपरबैक, ईबुक और ऑडियोबुक में उपलब्ध।",
+      "copyright": "Kiki en Christ. सर्वाधिकार सुरक्षित।"
+    },
+    "bookData": {
+      "visage": {
+        "name": "परमेश्वर का चेहरा: आध्यात्मिकता और पारमार्थिकता की खोज",
+        "description": "उन लोगों के लिए एक किताब जो सिद्धांतों से परे परमेश्वर को खोजते हैं।",
+        "coverImage": "https://i.ibb.co/d4q7KfNC/Design-sans-titre-1-1.png",
+        "offers": [],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "फ्रेंच",
+            "fmt": "पेपरबैक · ईबुक · ऑडियो"
+          },
+          {
+            "code": "en",
+            "name": "अंग्रेज़ी",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "स्पैनिश",
+            "fmt": "पेपरबैक · ईबुक · ऑडियो"
+          },
+          {
+            "code": "pt",
+            "name": "पुर्तगाली",
+            "fmt": "पेपरबैक · ईबुक · ऑडियो"
+          },
+          {
+            "code": "de",
+            "name": "जर्मन",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          }
+        ],
+        "languagesLabel": "5 भाषाएँ उपलब्ध"
+      },
+      "trinite": {
+        "name": "त्रिएकता के रहस्य अंततः प्रकट: एक तीखी आलोचना",
+        "description": "उन लोगों के लिए एक किताब जो सिद्धांतों से परे परमेश्वर को खोजते हैं।",
+        "coverImage": "https://i.ibb.co/JWRnXz34/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/GgHdc",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/KIKI_EN_CHRIST_%E0%A4%9F_%E0%A4%B0_%E0%A4%A8_%E0%A4%9F_%E0%A4%95_%E0%A4%B0%E0%A4%B9%E0%A4%B8_%E0%A4%AF_%E0%A4%85_%E0%A4%A4%E0%A4%A4_%E0%A4%AA_%E0%A4%B0%E0%A4%95%E0%A4%9F_%E0%A4%B9_%E0%A4%8F_%E0%A4%8F%E0%A4%95_%E0%A4%B6?id=AQAAAEAyZmomSM&hl=en_CA",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "फ्रेंच",
+            "fmt": "पेपरबैक · ईबुक · ऑडियो"
+          },
+          {
+            "code": "en",
+            "name": "अंग्रेज़ी",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "स्पैनिश",
+            "fmt": "पेपरबैक · ईबुक · ऑडियो"
+          },
+          {
+            "code": "pt",
+            "name": "पुर्तगाली",
+            "fmt": "पेपरबैक · ईबुक · ऑडियो"
+          },
+          {
+            "code": "de",
+            "name": "जर्मन",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "it",
+            "name": "इतालवी",
+            "fmt": "पेपरबैक · ईबुक"
+          },
+          {
+            "code": "ru",
+            "name": "रूसी",
+            "fmt": "पेपरबैक · ईबुक"
+          },
+          {
+            "code": "zh",
+            "name": "चीनी",
+            "fmt": "पेपरबैक · ईबुक"
+          },
+          {
+            "code": "hi",
+            "name": "हिंदी",
+            "fmt": "ईबुक · ऑडियो"
+          }
+        ],
+        "languagesLabel": "9 भाषाएँ उपलब्ध"
+      },
+      "combat": {
+        "name": "अंतिम युद्ध: विश्वास को बनाए रखना",
+        "description": "उन लोगों के लिए एक किताब जो सिद्धांतों से परे परमेश्वर को खोजते हैं।",
+        "coverImage": "https://i.ibb.co/pvf26vZZ/frontcover-jpg.jpg",
+        "offers": [
+          {
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "url": "https://payhip.com/b/mva21",
+            "seller": {
+              "name": "Payhip"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "price": "5.49",
+            "priceCurrency": "USD",
+            "url": "https://play.google.com/store/audiobooks/details/KIKI_EN_CHRIST_%E0%A4%86%E0%A4%96_%E0%A4%B0_%E0%A4%B2%E0%A4%A1_%E0%A4%88_%E0%A4%B5_%E0%A4%B5_%E0%A4%B5_%E0%A4%B8_%E0%A4%B0%E0%A4%95%E0%A4%B8%E0%A4%A8?id=AQAAAEAy_FO8cM&hl=en_CA",
+            "seller": {
+              "name": "Google Play"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "फ्रेंच",
+            "fmt": "पेपरबैक · ईबुक · ऑडियो"
+          },
+          {
+            "code": "en",
+            "name": "अंग्रेज़ी",
+            "fmt": "Paperback · Ebook · Audio"
+          },
+          {
+            "code": "es",
+            "name": "स्पैनिश",
+            "fmt": "पेपरबैक · ईबुक · ऑडियो"
+          },
+          {
+            "code": "pt",
+            "name": "पुर्तगाली",
+            "fmt": "पेपरबैक · ईबुक · ऑडियो"
+          },
+          {
+            "code": "de",
+            "name": "जर्मन",
+            "fmt": "Taschenbuch · Ebook · Audio"
+          },
+          {
+            "code": "hi",
+            "name": "हिंदी",
+            "fmt": "ईबुक · ऑडियो"
+          }
+        ],
+        "languagesLabel": "6 भाषाएँ उपलब्ध"
+      },
+      "salut": {
+        "name": "उद्धार का रहस्य",
+        "description": "उन लोगों के लिए एक किताब जो सिद्धांतों से परे परमेश्वर को खोजते हैं।",
+        "coverImage": "https://i.ibb.co/h1DFdmWB/SALUT-sans-criture-2.png",
+        "offers": [],
+        "languages": [
+          {
+            "code": "fr",
+            "name": "फ्रेंच",
+            "fmt": "पेपरबैक · ईबुक · ऑडियो"
+          }
+        ],
+        "languagesLabel": "1 भाषा उपलब्ध"
+      }
+    }
+  }
+}

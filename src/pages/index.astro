@@ -1,0 +1,65 @@
+---
+// Root index.astro - Entry point for "/" path
+// Middleware handles server-side redirect based on Accept-Language
+// This serves as fallback for static export or when middleware doesn't run
+
+import MainLayout from '../layouts/MainLayout.astro';
+import { DEFAULT_LANG, SUPPORTED_LANGS } from '../utils/i18n.ts';
+
+const canonicalURL = "https://kikienchrist.vercel.app/";
+const pageTitle = "Kiki en Christ - Livres chrétiens pour fortifier votre foi";
+const pageDescription = "Quatre livres pour ceux qui cherchent Dieu au-delà des dogmes. Disponibles en 9 langues.";
+
+// Client-side fallback redirect (runs if middleware didn't)
+const redirectScript = `
+<script>
+(function() {
+  // Only redirect if not already on a localized path
+  if (!/^\\/[a-z]{2}(\\/|$)/.test(window.location.pathname)) {
+    // Check for saved preference
+    const cookieMatch = document.cookie.match(/(^|; )preferred-lang=([^;]+)/);
+    const savedLang = cookieMatch ? cookieMatch[2] : null;
+    const lang = savedLang && ${JSON.stringify(SUPPORTED_LANGS)}.includes(savedLang) ? savedLang :
+                 (navigator.language || 'fr').split('-')[0];
+    const targetLang = ${JSON.stringify(SUPPORTED_LANGS)}.includes(lang) ? lang : '${DEFAULT_LANG}';
+    if (targetLang !== '${DEFAULT_LANG}') {
+      window.location.href = '/' + targetLang + '/';
+    }
+  }
+})();
+</script>
+`;
+---
+
+<MainLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalURL={canonicalURL}
+  ogImage="https://kikienchrist.vercel.app/og/accueil.png"
+  lang={DEFAULT_LANG}
+  currentPath="/"
+>
+  <slot name="json-ld" />
+
+  {redirectScript}
+
+  <!-- Fallback content for non-JS clients / crawlers -->
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=/fr/" />
+  </noscript>
+
+  <div style="text-align:center; padding:4rem 1rem;">
+    <p>Redirection vers votre langue...</p>
+    <p>
+      <a href="/fr/">Français</a> ·
+      <a href="/en/">English</a> ·
+      <a href="/es/">Español</a> ·
+      <a href="/de/">Deutsch</a> ·
+      <a href="/pt/">Português</a> ·
+      <a href="/it/">Italiano</a> ·
+      <a href="/ru/">Русский</a> ·
+      <a href="/zh/">中文</a> ·
+      <a href="/hi/">हिन्दी</a>
+    </p>
+  </div>
+</MainLayout>

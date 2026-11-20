@@ -1,0 +1,230 @@
+---
+// Hero.astro — Hero section component with fan images (lafoidieu design system)
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle: string;
+  ctaText: string;
+  ctaHref: string;
+  secondaryCtaText: string;
+  secondaryCtaHref: string;
+  fanImages?: string[];
+}
+
+const {
+  eyebrow = "Nouveauté",
+  title,
+  subtitle,
+  ctaText,
+  ctaHref,
+  secondaryCtaText,
+  secondaryCtaHref,
+  fanImages = [
+    "https://assets.lulu.com/cover_thumbs/z/6/z6gg2r-front-shortedge-384.jpg",
+    "https://assets.lulu.com/cover_thumbs/n/k/nk9wg4-front-shortedge-384.jpg",
+    "https://assets.lulu.com/cover_thumbs/7/k/7kgm227-front-shortedge-384.jpg",
+    "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
+  ]
+} = Astro.props;
+
+const showFan = fanImages.length === 4;
+---
+
+<section class="bq hero" aria-labelledby="hero-title">
+  <div class="wrap">
+    <header class="hero-head">
+      {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+      <h1 id="hero-title" class="hero-title">{title}</h1>
+      <p class="hero-subtitle">{subtitle}</p>
+    </header>
+
+    <div class="hero-ctas">
+      <a href={ctaHref} class="btn btn-primary">{ctaText}</a>
+      <a href={secondaryCtaHref} class="btn btn-ghost">{secondaryCtaText}</a>
+    </div>
+
+    {showFan && (
+      <div class="fan" aria-hidden="true">
+        <img class="fan-1" src={fanImages[0]} alt="" loading="eager" />
+        <img class="fan-2" src={fanImages[1]} alt="" loading="eager" />
+        <img class="fan-3" src={fanImages[2]} alt="" loading="eager" />
+        <img class="fan-4" src={fanImages[3]} alt="" loading="eager" />
+      </div>
+    )}
+  </div>
+</section>
+
+<style is:global>
+  /* Hero styles aligned with lafoidieu design system */
+  .bq .hero {
+    max-width: none;
+    position: relative;
+    padding: 0;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    background:
+      radial-gradient(90% 130% at 50% -40%, #fff 0%, rgba(255,255,255,0) 58%),
+      linear-gradient(180deg, #fffdf9 0%, #f8f2e7 100%);
+  }
+  .bq .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .5;
+    background-image: radial-gradient(rgba(28,26,23,.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .bq .hero .wrap {
+    position: relative;
+    z-index: 1;
+    padding-top: clamp(52px, 7.5vw, 92px);
+    padding-bottom: clamp(44px, 6.5vw, 74px);
+  }
+  .bq .hero .eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: nowrap;
+    font: 600 11.5px/1 system-ui, sans-serif;
+    letter-spacing: .26em;
+    text-transform: uppercase;
+    color: var(--gold-ink);
+    margin: 0 0 24px;
+  }
+  .bq .hero .eyebrow::before,
+  .bq .hero .eyebrow::after {
+    content: "";
+    height: 1px;
+    width: clamp(22px, 6vw, 56px);
+    flex: 0 0 auto;
+  }
+  .bq .hero .eyebrow::before { background: linear-gradient(90deg, transparent, var(--gold)); }
+  .bq .hero .eyebrow::after { background: linear-gradient(90deg, var(--gold), transparent); }
+
+  .bq .hero h1.hero-title {
+    font-size: clamp(31px, 5.2vw, 58px);
+    line-height: 1.07;
+    letter-spacing: -.022em;
+    font-weight: 400;
+    margin: 0 auto 24px;
+    max-width: 760px;
+    font-feature-settings: "kern", "liga";
+  }
+
+  .bq .hero .hero-subtitle {
+    font-size: clamp(16px, 1.9vw, 19.5px);
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 36px;
+  }
+
+  .bq .hero .hero-ctas {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .bq .hero .btn {
+    display: inline-block;
+    padding: 17px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    font: 600 15px/1 system-ui, sans-serif;
+    letter-spacing: .03em;
+    border: 1.5px solid transparent;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+  }
+  .bq .hero .btn-primary {
+    background: var(--ink);
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(28,26,23,.22);
+  }
+  .bq .hero .btn-primary:hover {
+    background: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(28,26,23,.3);
+  }
+  .bq .hero .btn-ghost {
+    border-color: #cfc5b3;
+    color: var(--ink);
+    background: #fff;
+  }
+  .bq .hero .btn-ghost:hover {
+    border-color: var(--ink);
+    background: #fffdf8;
+    transform: translateY(-1px);
+  }
+  .bq .hero .btn-primary::after {
+    content: "↓";
+    margin-left: 10px;
+    font-weight: 400;
+    opacity: .75;
+  }
+
+  /* FAN — Cover spread in Hero (lafoidieu exact) */
+  .bq .hero .fan {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: clamp(38px, 5vw, 62px) auto 0;
+    max-width: 720px;
+  }
+  .bq .hero .fan img {
+    position: relative;
+    display: block;
+    width: clamp(96px, 14.4vw, 182px);
+    height: auto;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(28,26,23,.2), 0 9px 18px -8px rgba(28,26,23,.32);
+    transition: transform .5s cubic-bezier(.16,1,.3,1);
+    transform-origin: 50% 100%;
+  }
+  .bq .hero .fan img + img { margin-left: clamp(-40px, -3.2vw, -20px); }
+  .bq .hero .fan .fan-1 { transform: rotate(-9deg) translateY(10px); z-index: 1; }
+  .bq .hero .fan .fan-2 { transform: rotate(-3deg); z-index: 2; }
+  .bq .hero .fan .fan-3 { transform: rotate(3deg); z-index: 3; }
+  .bq .hero .fan .fan-4 { transform: rotate(9deg) translateY(10px); z-index: 4; }
+  .bq .hero .fan:hover .fan-1 { transform: rotate(-12deg) translate(-8px, 4px); }
+  .bq .hero .fan:hover .fan-2 { transform: rotate(-4deg) translateY(-5px); }
+  .bq .hero .fan:hover .fan-3 { transform: rotate(4deg) translateY(-5px); }
+  .bq .hero .fan:hover .fan-4 { transform: rotate(12deg) translate(8px, 4px); }
+  @media (max-width: 900px) {
+    .bq .hero .fan img { width: clamp(88px, 26vw, 150px); }
+  }
+
+  /* Mobile: stack fan vertically on very small screens */
+  @media (max-width: 480px) {
+    .bq .hero .fan {
+      flex-direction: column;
+      align-items: center;
+      max-width: 100%;
+    }
+    .bq .hero .fan img {
+      width: clamp(120px, 35vw, 160px);
+      margin: 0 0 8px !important;
+    }
+    .bq .hero .fan .fan-1,
+    .bq .hero .fan .fan-2,
+    .bq .hero .fan .fan-3,
+    .bq .hero .fan .fan-4 {
+      transform: none !important;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .bq .hero .fan img { transition: none !important; }
+    .bq .hero .fan .fan-1 { transform: rotate(-4deg); }
+    .bq .hero .fan .fan-2 { transform: rotate(-1.5deg); }
+    .bq .hero .fan .fan-3 { transform: rotate(1.5deg); }
+    .bq .hero .fan .fan-4 { transform: rotate(4deg); }
+    .bq .hero .fan:hover img { transform: none; }
+  }
+</style>

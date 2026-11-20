@@ -1,0 +1,60 @@
+---
+// BandeauFormats.astro — Localized version
+
+interface Props {
+  paperLabel?: string;
+  ebookLabel?: string;
+  audioLabel?: string;
+}
+
+const bandPaperLabel = Astro.props.paperLabel ?? "Papier — Lulu";
+const bandEbookLabel = Astro.props.ebookLabel ?? "Ebook — Payhip";
+const bandAudioLabel = Astro.props.audioLabel ?? "Audio — Google Play";
+---
+
+<div class="band" role="region" aria-label="Formats disponibles">
+  <span>{bandPaperLabel}</span>
+  <strong>{bandEbookLabel}</strong>
+  <span>{bandAudioLabel}</span>
+</div>
+
+<style is:global>
+  .band {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    text-align: center;
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    font: 500 13px/1.5 system-ui, sans-serif;
+    color: #5c554a;
+  }
+  .band > span,
+  .band > strong {
+    position: relative;
+    padding: 16px 26px;
+  }
+  .band > span + span::before,
+  .band > strong::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 24%;
+    height: 52%;
+    width: 1px;
+    background: var(--line);
+  }
+  .band > strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  @media (max-width: 720px) {
+    .band { flex-direction: column; }
+    .band > span,
+    .band > strong { padding: 8px 20px; }
+    .band > span + span::before,
+    .band > strong::before { display: none; }
+  }
+</style>

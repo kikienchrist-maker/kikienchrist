@@ -1,0 +1,11 @@
+# Vercel/Netlify style redirects for static hosting fallback
+# These work as a fallback if middleware doesn't run (e.g., static export)
+
+# Language detection redirects (handled by middleware in production)
+# This file is for static export compatibility
+
+# Root redirects to default language
+/ /fr/ 302
+
+# Non-localized paths redirect to French as default
+/* /fr/:splat 302

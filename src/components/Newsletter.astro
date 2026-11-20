@@ -1,0 +1,62 @@
+---
+// Newsletter.astro — Localized version
+
+interface Props {
+  title?: string;
+  description?: string;
+  placeholder?: string;
+  buttonText?: string;
+  action?: string;
+  tinyText?: string;
+}
+
+const nlTitle = Astro.props.title ?? "Le guide « 7 prières pour traverser l'épreuve »";
+const nlDescription = Astro.props.description ?? "Un verset, une méditation, un encouragement — chaque semaine dans votre boîte mail.";
+const nlPlaceholder = Astro.props.placeholder ?? "votre@email.com";
+const nlButtonText = Astro.props.buttonText ?? "Recevoir le guide gratuit";
+const nlAction = Astro.props.action ?? "#";
+const nlTinyText = Astro.props.tinyText ?? "Pas de spam. Désabonnement en un clic. Vos données sont respectées.";
+---
+
+<div class="leadbox" id="newsletter">
+  <h2>{nlTitle}</h2>
+  <p>{nlDescription}</p>
+
+  <form class="capture" action={nlAction} method="POST" data-netlify="true">
+    <input type="email" name="email" placeholder={nlPlaceholder} required />
+    <button class="btn btn-primary" type="submit">{nlButtonText}</button>
+  </form>
+
+  <p class="tiny">{nlTinyText}</p>
+</div>
+
+<style is:global>
+  .leadbox form.capture {
+    display: flex;
+    gap: 9px;
+    max-width: 460px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .leadbox form.capture input {
+    flex: 1 1 220px;
+    min-width: 0;
+    padding: 15px 17px;
+    border: 1px solid #cfc5b3;
+    border-radius: 6px;
+    font: 400 15px system-ui, sans-serif;
+    background: #fff;
+  }
+  .leadbox form.capture input:focus {
+    outline: 2px solid var(--gold);
+    outline-offset: 1px;
+    border-color: var(--gold);
+  }
+  .leadbox form.capture button { flex: 0 0 auto; }
+  .leadbox .tiny {
+    font: 400 12px/1.6 system-ui, sans-serif;
+    color: #6d665a;
+    margin-top: 16px;
+  }
+</style>

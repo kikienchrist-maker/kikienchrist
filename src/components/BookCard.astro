@@ -1,0 +1,161 @@
+---
+// BookCard.astro — Localized version with translation props
+
+interface Book {
+  id: string;
+  position: number;
+  name: string;
+  isbn: string;
+  numberOfPages: number;
+  inLanguage: string;
+  image: string;
+  offers: Offer[];
+}
+
+interface Offer {
+  price: string;
+  priceCurrency: string;
+  url: string;
+  seller: { name: string };
+  availability: string;
+}
+
+interface LanguageItem {
+  code: string;
+  name: string;
+  fmt: string;
+}
+
+interface Props {
+  book: Book;
+  isEven?: boolean;
+  seriesPrefix?: string;
+  hook?: string;
+  benefits?: string[];
+  metaSuffix?: string;
+  languagesLabel?: string;
+  languages?: LanguageItem[];
+}
+
+const book = Astro.props.book;
+const isEven = Astro.props.isEven ?? false;
+const seriesPrefix = Astro.props.seriesPrefix ?? "Livre";
+const hook = Astro.props.hook ?? "Un livre pour ceux qui cherchent Dieu au-delà des dogmes.";
+const benefits = Astro.props.benefits ?? [
+  "Une foi personnelle, sans intermédiaire",
+  "Accessible à tous, où que vous soyez",
+  "Garantie satisfait ou remboursé 30 jours"
+];
+const metaSuffix = Astro.props.metaSuffix ?? "pages";
+const languagesLabel = Astro.props.languagesLabel ?? "9 langues disponibles";
+const languages = Astro.props.languages ?? [];
+
+function getPaperOffer() { return book.offers.find(o => o.seller.name === 'Lulu'); }
+function getEbookOffer() { return book.offers.find(o => o.seller.name === 'Payhip'); }
+function getAudioOffer() { return book.offers.find(o => o.seller.name === 'Google Play'); }
+
+function formatPrice(offer: Offer | undefined) {
+  return offer ? `${offer.price} ${offer.priceCurrency}` : null;
+}
+
+// Get the localized "Paper" term from the current language's fmt
+const currentLangCode = book.inLanguage?.toLowerCase();
+const currentLang = languages.find(l => l.code === currentLangCode);
+const paperLabel = currentLang?.fmt?.split(' · ')[0] ?? 'Paper';
+
+const paperOffer = getPaperOffer();
+const ebookOffer = getEbookOffer();
+const audioOffer = getAudioOffer();
+
+const paperPrice = formatPrice(paperOffer);
+const ebookPrice = formatPrice(ebookOffer);
+const audioPrice = formatPrice(audioOffer);
+---
+
+<article class="book" data-book-id={book.id}>
+  <div class="book-cover-col">
+    <img
+      class="cover"
+      src={book.image}
+      alt={`Couverture : ${book.name}`}
+      loading={book.position === 1 ? "eager" : "lazy"}
+      width="320"
+      height="480"
+    />
+  </div>
+
+  <div class="book-content-col">
+    <span class="series">{seriesPrefix} {book.position}</span>
+    <h3>{book.name}</h3>
+
+    <p class="hook">{hook}</p>
+
+    <ul>
+      {benefits.map((benefit, i) => (
+        <li>{benefit}</li>
+      ))}
+    </ul>
+
+    <p class="meta">
+      <strong>{book.numberOfPages} {metaSuffix}</strong> · ISBN {book.isbn}
+    </p>
+
+    <div class="prices">
+      {paperPrice && (
+        <span>
+          <b>{paperPrice.split(' ')[0]}</b> <span>{paperPrice.split(' ')[1]}</span>
+        </span>
+      )}
+      {ebookPrice && (
+        <span>
+          <b>{ebookPrice.split(' ')[0]}</b> <span>{ebookPrice.split(' ')[1]}</span>
+        </span>
+      )}
+      {audioPrice && (
+        <span>
+          <b>{audioPrice.split(' ')[0]}</b> <span>{audioPrice.split(' ')[1]}</span>
+        </span>
+      )}
+    </div>
+
+    <div class="actions">
+      {paperOffer && (
+        <a class="btn btn-small btn-primary" href={paperOffer.url} target="_blank" rel="noopener">
+          {paperLabel}
+        </a>
+      )}
+      {ebookOffer && (
+        <a class="btn btn-small btn-ghost" href={ebookOffer.url} target="_blank" rel="noopener">
+          Ebook
+        </a>
+      )}
+      {audioOffer && (
+        <a class="btn btn-small btn-ghost" href={audioOffer.url} target="_blank" rel="noopener">
+          Audio
+        </a>
+      )}
+    </div>
+
+    <details>
+      <summary>{languagesLabel}</summary>
+      <div class="langs">
+        {languages.map(lang => (
+          <a href={`/${lang.code}/`}>
+            {lang.name} <span class="fmt">{lang.fmt}</span>
+          </a>
+        ))}
+      </div>
+    </details>
+  </div>
+</article>
+
+<style is:global>
+  .book:nth-of-type(2n) > div:first-child { order: 2; }
+  .book:nth-of-type(2n) > div:last-child { order: 1; }
+  @media (min-width: 981px) {
+    .book:nth-of-type(2n) { grid-template-columns: 1fr 320px; }
+  }
+  @media (min-width: 761px) and (max-width: 980px) {
+    .book:nth-of-type(2n) { grid-template-columns: 1fr 250px; }
+  }
+</style>

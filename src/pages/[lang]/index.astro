@@ -1,0 +1,280 @@
+---
+// [lang]/index.astro — Localized homepage using translations.json
+// Dynamic route: / (fr), /en/, /es/, /de/, /pt/, /it/, /ru/, /zh/, /hi/
+
+import MainLayout from '../../layouts/MainLayout.astro';
+import Hero from '../../components/Hero.astro';
+import BookCard from '../../components/BookCard.astro';
+import BandeauFormats from '../../components/BandeauFormats.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTAStrip from '../../components/CTAStrip.astro';
+import Footer from '../../components/Footer.astro';
+import translations from '../../data/translations.json';
+import { SUPPORTED_LANGS, DEFAULT_LANG } from '../../utils/i18n.ts';
+
+const books = [
+  {
+    id: 'visage',
+    position: 1,
+    name: "Le visage de Dieu : la quête de la spiritualité et de la transcendance",
+    isbn: "9791035977887",
+    numberOfPages: 331,
+    inLanguage: "fr",
+    image: "https://payhip.com/cdn-cgi/image/format=auto,width=1500/https://pe56d.s3.amazonaws.com/o_1jr6cuoqbdjve1nhsh1jab2lb1m.jpg",
+    offers: [
+      { price: "13.90", priceCurrency: "EUR", url: "https://www.lulu.com/fr/shop/kiki-en-christ/le-visage-de-dieu-la-qu%C3%AAte-de-la-spiritualit%C3%A9-et-de-la-transcendance/paperback/product-z6gg2r.html", seller: { name: "Lulu" }, availability: "https://schema.org/InStock" },
+      { price: "3.99", priceCurrency: "USD", url: "https://payhip.com/b/XnmIq", seller: { name: "Payhip" }, availability: "https://schema.org/InStock" },
+      { price: "5.49", priceCurrency: "USD", url: "https://play.google.com/store/audiobooks/details?id=AQAAAECiySyJnM", seller: { name: "Google Play" }, availability: "https://schema.org/InStock" }
+    ]
+  },
+  {
+    id: 'trinite',
+    position: 2,
+    name: "Les secrets de la Trinité enfin dévoilés : une critique percutante",
+    isbn: "9781447566359",
+    numberOfPages: 146,
+    inLanguage: "fr",
+    image: "https://payhip.com/cdn-cgi/image/format=auto,width=1500/https://pe56d.s3.amazonaws.com/o_1jrcsv37b2fb46i1dte1rj08861f.jpg",
+    offers: [
+      { price: "9.99", priceCurrency: "EUR", url: "https://www.lulu.com/shop/kiki-en-christ/les-secrets-de-la-trinit%C3%A9-enfin-d%C3%A9voil%C3%A9s-une-critique-percutante/paperback/product-nk9wg4.html", seller: { name: "Lulu" }, availability: "https://schema.org/InStock" },
+      { price: "3.99", priceCurrency: "USD", url: "https://payhip.com/b/OH3xG", seller: { name: "Payhip" }, availability: "https://schema.org/InStock" },
+      { price: "5.49", priceCurrency: "USD", url: "https://play.google.com/store/audiobooks/details?id=AQAAAEBi7BisaM", seller: { name: "Google Play" }, availability: "https://schema.org/InStock" }
+    ]
+  },
+  {
+    id: 'combat',
+    position: 3,
+    name: "Le dernier Combat : garder la Foi",
+    isbn: "9781445771212",
+    numberOfPages: 85,
+    inLanguage: "fr",
+    image: "https://payhip.com/cdn-cgi/image/format=auto,width=1500/https://pe56d.s3.amazonaws.com/o_1jrfbrjdb17lq1329mbfk4hmnb1f.jpg",
+    offers: [
+      { price: "9.99", priceCurrency: "EUR", url: "https://www.lulu.com/shop/kiki-en-christ/le-dernier-combat-garder-la-foi/paperback/product-7kgm227.html", seller: { name: "Lulu" }, availability: "https://schema.org/InStock" },
+      { price: "3.99", priceCurrency: "USD", url: "https://payhip.com/b/cxuzQ", seller: { name: "Payhip" }, availability: "https://schema.org/InStock" },
+      { price: "5.49", priceCurrency: "USD", url: "https://play.google.com/store/audiobooks/details?id=AQAAAEAy2ESYZM", seller: { name: "Google Play" }, availability: "https://schema.org/InStock" }
+    ]
+  },
+  {
+    id: 'salut',
+    position: 4,
+    name: "Le mystère du Salut",
+    isbn: "9781326838447",
+    numberOfPages: 214,
+    inLanguage: "fr",
+    image: "https://payhip.com/cdn-cgi/image/format=auto,width=1500/https://pe56d.s3.amazonaws.com/o_1jrfa7u058qtnq2t961lbv16pp1f.jpg",
+    offers: [
+      { price: "7.99", priceCurrency: "EUR", url: "https://www.lulu.com/shop/kiki-en-christ/le-myst%C3%A8re-du-salut/paperback/product-nvg4d9k.html", seller: { name: "Lulu" }, availability: "https://schema.org/InStock" },
+      { price: "3.99", priceCurrency: "USD", url: "https://payhip.com/b/jXRqE", seller: { name: "Payhip" }, availability: "https://schema.org/InStock" },
+      { price: "5.49", priceCurrency: "USD", url: "https://play.google.com/store/audiobooks/details?id=AQAAAEByGxlbeM", seller: { name: "Google Play" }, availability: "https://schema.org/InStock" }
+    ]
+  }
+];
+
+export async function getStaticPaths() {
+  return SUPPORTED_LANGS.map(lang => ({
+    params: { lang },
+    props: { locale: lang }
+  }));
+}
+
+const { lang } = Astro.params;
+const locale = SUPPORTED_LANGS.includes(lang) ? lang : DEFAULT_LANG;
+const t = translations[locale] || translations.fr;
+
+// Ensure all sections have fallbacks to French
+const hero = t.hero || translations.fr.hero;
+const bandeau = t.bandeau || translations.fr.bandeau;
+const booksTrans = t.books || translations.fr.books;
+const newsletter = t.newsletter || translations.fr.newsletter;
+const faq = t.faq || translations.fr.faq;
+const cta = t.cta || translations.fr.cta;
+const footer = t.footer || translations.fr.footer;
+
+// Get translated book data for this locale (with fallback to French)
+const bookData = t.bookData || translations.fr.bookData || {};
+
+const canonicalURL = `https://kikienchrist.vercel.app/${locale === 'fr' ? '' : locale + '/'}`;
+const pageTitle = t.meta?.title || translations.fr.meta.title;
+const pageDescription = t.meta?.description || translations.fr.meta.description;
+const ogImage = "https://kikienchrist.vercel.app/og/accueil.png";
+const currentPath = locale === 'fr' ? '/' : `/${locale}/`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": t.books.sectionTitle,
+  "itemListElement": books.map((book, index) => {
+    const translated = bookData[book.id];
+    const coverImage = translated?.coverImage || book.image;
+    const offers = translated?.offers || book.offers;
+    return {
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Book",
+        "name": translated?.name || book.name,
+        "isbn": book.isbn,
+        "numberOfPages": book.numberOfPages,
+        "inLanguage": locale,
+        "bookFormat": "https://schema.org/Paperback",
+        "image": coverImage,
+        "author": { "@type": "Person", "name": "Kiki en Christ" },
+        "description": translated?.description,
+        "offers": offers.map(offer => ({
+          "@type": "Offer",
+          "availability": offer.availability,
+          "price": offer.price,
+          "priceCurrency": offer.priceCurrency,
+          "url": offer.url,
+          "itemCondition": "https://schema.org/NewCondition",
+          "seller": { "@type": "Organization", "name": offer.seller.name }
+        }))
+      }
+    };
+  })
+};
+
+const jsonLdString = JSON.stringify(jsonLd);
+---
+
+<MainLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalURL={canonicalURL}
+  ogImage={ogImage}
+  lang={locale}
+  currentPath={currentPath}
+>
+  <slot name="json-ld">
+    <script type="application/ld+json" set:html={jsonLdString} />
+  </slot>
+
+  <Hero
+    eyebrow={hero.eyebrow}
+    title={hero.title}
+    subtitle={hero.subtitle}
+    ctaText={hero.ctaText}
+    ctaHref={hero.ctaHref}
+    secondaryCtaText={hero.secondaryCtaText}
+    secondaryCtaHref={hero.secondaryCtaHref}
+    fanImages={locale === 'en' ? [
+      "https://i.ibb.co/1SF6t5p/frontcover-jpg.jpg",
+      "https://i.ibb.co/WWj7kDZD/frontcover-jpg.jpg",
+      "https://i.ibb.co/HptTVfN4/frontcover-jpg.jpg",
+      "https://i.ibb.co/rKLrXsBR/SALUT-sans-criture-2.png"
+    ] : locale === 'es' ? [
+      "https://i.ibb.co/r2vkZgRP/frontcover-jpg.jpg",
+      "https://i.ibb.co/pvSHYnGJ/frontcover-jpg.jpg",
+      "https://i.ibb.co/C5ZrMV28/frontcover-jpg.jpg",
+      "https://i.ibb.co/rKLrXsBR/SALUT-sans-criture-2.png"
+    ] : locale === 'de' ? [
+      "https://i.ibb.co/sJvYVTVT/frontcover-jpg.jpg",
+      "https://i.ibb.co/Z79DFH9/frontcover-jpg.jpg",
+      "https://i.ibb.co/NgSkgHWj/frontcover-jpg.jpg",
+      "https://i.ibb.co/rKLrXsBR/SALUT-sans-criture-2.png"
+    ] : locale === 'pt' ? [
+      "https://i.ibb.co/HTfgqjPG/frontcover-jpg.jpg",
+      "https://i.ibb.co/39WKXW2w/frontcover-jpg.jpg",
+      "https://i.ibb.co/JWFyYQkn/frontcover-jpg.jpg",
+      "https://i.ibb.co/rKLrXsBR/SALUT-sans-criture-2.png"
+    ] : locale === 'it' ? [
+      "https://i.ibb.co/WvTcVRPM/Design-sans-titre-1-1.png",
+      "https://i.ibb.co/yFyTD3fN/frontcover-jpg.jpg",
+      "https://i.ibb.co/qLL8vdJB/FOI-sans-criture.jpg",
+      "https://i.ibb.co/rKLrXsBR/SALUT-sans-criture-2.png"
+    ] : locale === 'ru' ? [
+      "https://i.ibb.co/WvTcVRPM/Design-sans-titre-1-1.png",
+      "https://i.ibb.co/6cs1gWRJ/frontcover-jpg.jpg",
+      "https://i.ibb.co/qLL8vdJB/FOI-sans-criture.jpg",
+      "https://i.ibb.co/rKLrXsBR/SALUT-sans-criture-2.png"
+    ] : locale === 'zh' ? [
+      "https://i.ibb.co/C3QMY5g5/Design-sans-titre-1-1.png",
+      "https://i.ibb.co/G4mdTkrG/frontcover-jpg.jpg",
+      "https://i.ibb.co/TDzmmTB7/FOI-sans-criture.jpg",
+      "https://i.ibb.co/h1DFdmWB/SALUT-sans-criture-2.png"
+    ] : locale === 'hi' ? [
+      "https://i.ibb.co/ZzF77ZTp/Design-sans-titre-1-1.png",
+      "https://i.ibb.co/HLtR2LdJ/frontcover-jpg.jpg",
+      "https://i.ibb.co/ycsdvs7z/frontcover-jpg.jpg",
+      "https://i.ibb.co/jPd8wf5z/SALUT-sans-criture-2.png"
+    ] : undefined}
+  />
+
+  <section id="livres" aria-labelledby="books-heading">
+    <h2 id="books-heading" class="section-title">{booksTrans.sectionTitle}</h2>
+    <p class="section-intro">{booksTrans.sectionIntro}</p>
+
+    <div class="books-formats-bandeau">
+      <BandeauFormats
+        paper={bandeau.paper}
+        ebook={bandeau.ebook}
+        audio={bandeau.audio}
+      />
+    </div>
+
+    <div class="books-grid">
+      {books.map((book, index) => {
+        const translated = bookData[book.id];
+        const coverImage = translated?.coverImage || book.image;
+        const offers = translated?.offers || book.offers;
+        const translatedBook = {
+          ...book,
+          name: translated?.name || book.name,
+          inLanguage: locale,
+          image: coverImage,
+          offers: offers
+        };
+        return (
+          <BookCard
+            book={translatedBook}
+            t={booksTrans}
+            locale={locale}
+            key={book.id}
+            hook={translated?.description || booksTrans.hook}
+            seriesPrefix={booksTrans.seriesPrefix}
+            benefits={booksTrans.benefits}
+            metaSuffix={booksTrans.metaSuffix}
+            languagesLabel={translated?.languagesLabel || booksTrans.languagesLabel}
+            languages={translated?.languages || booksTrans.languages}
+          />
+        );
+      })}
+    </div>
+  </section>
+
+  <Newsletter
+    title={newsletter.title}
+    description={newsletter.description}
+    placeholder={newsletter.placeholder}
+    buttonText={newsletter.buttonText}
+    tinyText={newsletter.tinyText}
+  />
+
+  <FAQ
+    title={faq.title}
+    items={faq.items}
+  />
+
+  <CTAStrip
+    text={cta?.text || "Prêt à commencer votre chemin ? Choisissez le livre qui résonne — le premier pas change tout."}
+    buttonText={cta?.buttonText || "Voir les 4 livres"}
+    buttonHref={cta?.buttonHref || "#livres"}
+  />
+
+  <Footer
+    nav={footer?.nav?.map((label) => ({
+      label,
+      href: label === 'Accueil' || label === 'Home' || label === 'Inicio' || label === 'Start' ? '/' : `/#${label.toLowerCase()}`
+    })) || []}
+    social={footer?.social?.map((label, i) => ({
+      label,
+      href: i === 0 ? "https://www.instagram.com/kikienchrist1/" : "https://fr.pinterest.com/kikienchrist/",
+      external: true
+    })) || []}
+    availability={footer?.availability || "Livres disponibles en papier, ebook et audio."}
+    copyright={footer?.copyright || "Kiki en Christ. Tous droits réservés."}
+    locale={locale}
+  />
+</MainLayout>

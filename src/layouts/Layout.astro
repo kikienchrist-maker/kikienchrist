@@ -1,0 +1,33 @@
+---
+// Layout.astro — Minimal test layout
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalURL: string;
+  ogImage: string;
+  lang?: string;
+}
+
+const {
+  title = "Default Title",
+  description = "Default Description",
+  canonicalURL = "https://default.com/",
+  ogImage = "https://default.com/og.png",
+  lang = 'fr'
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonicalURL}>
+</head>
+<body class="bq">
+  <slot />
+</body>
+</html>
