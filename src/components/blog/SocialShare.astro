@@ -1,5 +1,5 @@
 ---
-// SocialShare.astro - Partage social (Web Share API + fallback dropdown)
+// SocialShare.astro - Partage social (design system lafoidieu .bq)
 interface Props {
   url: string;
   title: string;
@@ -18,7 +18,6 @@ const {
   class: className = '',
 } = Astro.props;
 
-// Réseaux sociaux supportés
 const socialNetworks = [
   { 
     id: 'facebook', 
@@ -28,7 +27,7 @@ const socialNetworks = [
   },
   { 
     id: 'twitter', 
-    label: 'X (Twitter)', 
+    label: 'X', 
     icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>',
     url: (u: string, t: string) => `https://twitter.com/intent/tweet?url=${encodeURIComponent(u)}&text=${encodeURIComponent(t)}`,
   },
@@ -58,35 +57,34 @@ const socialNetworks = [
   },
   { 
     id: 'copy', 
-    label: 'Copier le lien', 
+    label: 'Copier', 
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
-    url: null, // Handled via JS
+    url: null,
   },
 ];
 
-// Traductions UI
 const ui = {
-  fr: { share: 'Partager', copied: 'Copié !', copyLink: 'Copier le lien', shareNative: 'Partage natif' },
-  en: { share: 'Share', copied: 'Copied!', copyLink: 'Copy link', shareNative: 'Native share' },
-  es: { share: 'Compartir', copied: '¡Copiado!', copyLink: 'Copiar enlace', shareNative: 'Compartir nativo' },
-  pt: { share: 'Compartilhar', copied: 'Copiado!', copyLink: 'Copiar link', shareNative: 'Compartilhar nativo' },
-  it: { share: 'Condividi', copied: 'Copiato!', copyLink: 'Copia link', shareNative: 'Condivisione nativa' },
-  de: { share: 'Teilen', copied: 'Kopiert!', copyLink: 'Link kopieren', shareNative: 'Nativ teilen' },
-  nl: { share: 'Delen', copied: 'Gekopieerd!', copyLink: 'Kopieer link', shareNative: 'Natuurlijk delen' },
-  pl: { share: 'Udostępnij', copied: 'Skopiowano!', copyLink: 'Kopiuj link', shareNative: 'Udostępnij natywnie' },
-  ar: { share: 'مشاركة', copied: 'تم النسخ!', copyLink: 'نسخ الرابط', shareNative: 'مشاركة أصلية' },
+  fr: { share: 'Partager', copied: 'Copié !', copyLink: 'Copier le lien' },
+  en: { share: 'Share', copied: 'Copied!', copyLink: 'Copy link' },
+  es: { share: 'Compartir', copied: '¡Copiado!', copyLink: 'Copiar enlace' },
+  pt: { share: 'Compartilhar', copied: 'Copiado!', copyLink: 'Copiar link' },
+  it: { share: 'Condividi', copied: 'Copiato!', copyLink: 'Copia link' },
+  de: { share: 'Teilen', copied: 'Kopiert!', copyLink: 'Link kopieren' },
+  nl: { share: 'Delen', copied: 'Gekopieerd!', copyLink: 'Kopieer link' },
+  pl: { share: 'Udostępnij', copied: 'Skopiowano!', copyLink: 'Kopiuj link' },
+  ar: { share: 'مشاركة', copied: 'تم النسخ!', copyLink: 'نسخ الرابط' },
 };
 
 const t = ui[lang as keyof typeof ui] || ui.fr;
 ---
 
 <div class={`social-share ${className}`} role="group" aria-label={t.share}>
-  {/* Bouton principal - Web Share API si dispo */}
+  {/* Web Share API */}
   {navigator.share && (
     <button 
       class="social-share-trigger native"
       type="button"
-      aria-label={t.shareNative}
+      aria-label={t.share}
       data-share-url={url}
       data-share-title={title}
       data-share-text={description}
@@ -100,7 +98,7 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
     </button>
   )}
 
-  {/* Dropdown réseaux sociaux */}
+  {/* Dropdown */}
   <div class="social-share-dropdown">
     <button 
       class="social-share-trigger"
@@ -150,7 +148,6 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
 </div>
 
 <script>
-  // Gestion partage
   class SocialShare {
     container: HTMLElement;
     triggers: NodeListOf<HTMLButtonElement>;
@@ -161,30 +158,23 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
       this.container = container;
       this.triggers = container.querySelectorAll('.social-share-trigger');
       this.menu = container.querySelector('.social-share-menu')!;
-      
       this.init();
     }
     
     init() {
-      // Web Share API (bouton natif)
       const nativeBtn = this.container.querySelector('.social-share-trigger.native');
       if (nativeBtn) {
         nativeBtn.addEventListener('click', (e) => this.handleNativeShare(e));
       }
       
-      // Dropdown triggers
-      const dropdownTrigger = this.container.query('.social-share-trigger:not(.native)');
+      const dropdownTrigger = this.container.querySelector('.social-share-trigger:not(.native)');
       if (dropdownTrigger) {
         dropdownTrigger.addEventListener('click', (e) => this.toggleMenu(e));
       }
       
-      // Menu items
       this.menu?.addEventListener('click', (e) => this.handleMenuClick(e));
       
-      // Fermer au clic extérieur
       document.addEventListener('click', (e) => this.handleOutsideClick(e));
-      
-      // Fermer à l'échap
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && this.isOpen) this.closeMenu();
       });
@@ -217,7 +207,6 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
       trigger?.setAttribute('aria-expanded', 'true');
       this.isOpen = true;
       
-      // Focus premier item
       const firstItem = this.menu.querySelector('[role="menuitem"]') as HTMLElement;
       firstItem?.focus();
     }
@@ -251,21 +240,19 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
       
       try {
         await navigator.clipboard.writeText(shareUrl);
-        this.showToast('Copié !');
+        this.showToast(t.copied);
       } catch {
-        // Fallback
         const textarea = document.createElement('textarea');
         textarea.value = shareUrl;
         document.body.appendChild(textarea);
         textarea.select();
         document.execCommand('copy');
         document.body.removeChild(textarea);
-        this.showToast('Copié !');
+        this.showToast(t.copied);
       }
     }
     
     showToast(message: string) {
-      // Simple toast notification
       const toast = document.createElement('div');
       toast.className = 'social-share-toast';
       toast.textContent = message;
@@ -287,7 +274,6 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
     }
   }
   
-  // Initialiser
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.social-share').forEach(el => new SocialShare(el as HTMLElement));
   });
@@ -309,29 +295,28 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
     border-radius: var(--radius-full);
     background: var(--color-paper);
     color: var(--color-ink);
-    font-size: var(--text-sm);
-    font-weight: 500;
+    font: 500 var(--text-sm)/1 system-ui, sans-serif;
     cursor: pointer;
     transition: all var(--transition-fast);
     white-space: nowrap;
   }
 
   .social-share-trigger:hover {
-    background: var(--color-gold-light);
+    background: var(--color-cream);
     border-color: var(--color-gold);
-    color: var(--color-gold);
+    color: var(--color-gold-ink);
   }
 
   .social-share-trigger.native {
     background: var(--color-gold);
     border-color: var(--color-gold);
-    color: var(--color-paper);
+    color: var(--color-ink);
   }
 
   .social-share-trigger.native:hover {
-    background: var(--color-gold-dark);
-    border-color: var(--color-gold-dark);
-    color: var(--color-paper);
+    background: var(--color-gold-soft);
+    border-color: var(--color-gold-soft);
+    color: var(--color-ink);
   }
 
   .share-text {
@@ -344,7 +329,6 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
     }
   }
 
-  /* Dropdown */
   .social-share-dropdown {
     position: relative;
     display: inline-block;
@@ -384,7 +368,7 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
     border: none;
     background: transparent;
     color: var(--color-ink);
-    font-size: var(--text-sm);
+    font: var(--text-sm)/1 system-ui, sans-serif;
     text-align: left;
     cursor: pointer;
     border-radius: var(--radius-md);
@@ -392,7 +376,8 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
   }
 
   .social-share-item:hover {
-    background: var(--color-gold-light);
+    background: var(--color-cream);
+    color: var(--color-gold-ink);
   }
 
   .social-icon {
@@ -409,7 +394,6 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
     height: 20px;
   }
 
-  /* Toast */
   .social-share-toast {
     position: fixed;
     bottom: var(--space-xl);

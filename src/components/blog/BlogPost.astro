@@ -1,5 +1,5 @@
 ---
-// BlogPost.astro - Composant article de blog complet avec SEO, JSON-LD, Lead Magnet, i18n
+// BlogPost.astro - Article complet unifié (design system lafoidieu .bq)
 import type { CollectionEntry } from 'astro:content';
 import MainLayout from '../../layouts/MainLayout.astro';
 import NewsletterForm from '../NewsletterForm.astro';
@@ -18,7 +18,6 @@ const { entry } = Astro.props;
 const { data, body, slug } = entry;
 const siteUrl = Astro.site?.toString() || 'https://kikienchrist.vercel.app';
 
-// Safe date parsing
 const parseDate = (dateStr: string) => {
   try {
     const d = new Date(dateStr);
@@ -28,10 +27,7 @@ const parseDate = (dateStr: string) => {
   }
 };
 
-// JSON-LD
 const jsonLd = generateBlogPostingJsonLd(entry as any, siteUrl);
-
-// Meta tags
 const metaTags = generateArticleMetaTags(entry as any, siteUrl);
 const canonical = metaTags.canonical;
 const ogTitle = metaTags['og:title'];
@@ -40,17 +36,13 @@ const ogImage = metaTags['og:image'];
 const noindex = data.noindex;
 const nofollow = data.nofollow;
 
-// Lecture time
 const readingTime = data.readingTime || Math.ceil((body?.split(/\s+/).length || 0) / 200);
-
 const catLabel = getCategoryLabel(data.category, data.lang);
 
-// Safe date format for display
 const formatDate = (dateStr: string, lang: string) => {
   const d = parseDate(dateStr);
   if (!d) return dateStr;
   try {
-    // Use supported locales, fallback to 'en' for unsupported ones
     const supportedLocales = ['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'pl'];
     const locale = supportedLocales.includes(lang) ? lang : 'en';
     return d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
@@ -110,572 +102,71 @@ const formatDate = (dateStr: string, lang: string) => {
             Mis à jour le {formatDate(data.updatedDate, data.lang)}
           </time>
         )}
-        <span class="reading-time" itemprop="timeRequired" content={`PT${readingTime}M`}>
-          🕐 {readingTime} min de lecture
-        </span>
       </div>
 
       <h1 class="blog-post-title" itemprop="headline">{data.title}</h1>
-      <p class="blog-post-excerpt" itemprop="description">{data.description}</p>
 
-      {data.featured && <span class="featured-badge">⭐ Article mis en avant</span>}
-
-      <!-- Author -->
-      <div class="author-info" itemprop="author" itemscope itemtype="https://schema.org/Person">
-        <img 
-          src={`/authors/${data.author.toLowerCase().replace(/\s+/g, '-')}.jpg`} 
-          alt="" 
-          class="author-avatar" 
-          itemprop="image"
-          loading="lazy"
-        />
-        <div class="author-details">
-          <span class="author-name" itemprop="name">{data.author}</span>
-          {data.authorRole && <span class="author-role" itemprop="jobTitle">{data.authorRole}</span>}
-        </div>
-        <a 
-          href={`/${data.lang}/auteur/${data.author.toLowerCase().replace(/\s+/g, '-')}/`} 
-          class="author-link"
-          aria-label={`Voir tous les articles de ${data.author}`}
-        >
-          Autres articles
-        </a>
-      </div>
-
-      {ogImage && (
-        <figure class="blog-post-hero-image">
-          <img 
-            src={ogImage} 
-            alt={data.title} 
-            width="1200" 
-            height="630"
-            loading="eager"
-            itemprop="image"
-          />
-        </figure>
+      {data.description && (
+        <p class="blog-post-description" itemprop="description">{data.description}</p>
       )}
 
+      <div class="blog-post-author">
+        <span class="reading-time" itemprop="timeRequired" content={`PT${readingTime}M`}>
+          🕐 {readingTime} min de lecture
+        </span>
+        {data.author && (
+          <span class="author-name" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <span itemprop="name">{data.author}</span>
+          </span>
+        )}
+      </div>
     </header>
 
-    <!-- Social Share Sticky -->
-    <SocialShare 
-      url={canonical} 
-      title={data.title} 
-      description={data.description}
-      image={ogImage}
-      lang={data.lang}
-      class="sticky-share"
-    />
+    <!-- Hero Image -->
+    {data.ogImage && (
+      <div class="blog-post-hero-image">
+        <img 
+          src={data.ogImage} 
+          alt="" 
+          width="880" 
+          height="495"
+          loading="eager"
+          itemprop="image"
+        />
+      </div>
+    )}
 
-    <!-- Table of Contents -->
-    <aside class="table-of-contents-wrapper">
-      <TableOfContents content={body} lang={data.lang} />
-    </aside>
-
-    <!-- Contenu Principal -->
-    <div class="blog-post-content" itemprop="articleBody">
-      <slot />
-    </div>
-
-    <!-- Tags & Series -->
-    <footer class="blog-post-footer">
-      {data.series && (
-        <nav class="series-nav" aria-label={`Série : ${data.series}`}>
-          <span class="series-label">📚 Série : </span>
-          <strong>{data.series}</strong>
-          {data.seriesOrder && <span class="series-order"> — Article {data.seriesOrder}</span>}
-          <a href={`/${data.lang}/blog/serie/${data.series.toLowerCase().replace(/\s+/g, '-')}/`} class="series-link">
-            Voir toute la série →
-          </a>
-        </nav>
-      )}
-
-      <div class="tags" aria-label="Mots-clés">
-        {data.tags.map(tag => (
-          <a 
-            href={`/${data.lang}/blog/tag/${tag.toLowerCase().replace(/\s+/g, '-')}/`} 
-            class="tag"
-            rel="tag"
-          >
-            #{tag}
-          </a>
-        ))}
+    <!-- Content Grid -->
+    <div class="blog-post-grid">
+      <div class="blog-post-content" itemprop="articleBody">
+        <slot />
       </div>
 
-      <nav class="post-navigation" aria-label="Navigation articles">
-        {/* TODO: Previous/Next post links - nécessite query collection */}
-      </nav>
-    </footer>
-
-    <!-- Lead Magnet CTA -->
-    {data.isLeadMagnet && data.leadMagnetFile && (
-      <section class="lead-magnet-cta" aria-labelledby="lead-magnet-title">
-        <div class="lead-magnet-content">
-          <h2 id="lead-magnet-title" class="lead-magnet-title">🎁 {data.leadMagnetTitle || 'Ressource gratuite'}</h2>
-          <p class="lead-magnet-description">{data.leadMagnetDescription || 'Téléchargez notre guide gratuit pour aller plus loin.'}</p>
-          <NewsletterForm 
-            leadMagnetUrl={data.leadMagnetFile}
-            leadMagnetTitle={data.leadMagnetTitle}
-            lang={data.lang}
-            inline={true}
+      <aside class="blog-post-sidebar">
+        {/* Social Share Sticky */}
+        <div class="sticky-share">
+          <SocialShare 
+            title={data.title}
+            url={canonical}
+            description={data.description}
           />
         </div>
-      </section>
-    )}
 
-    <!-- Related Podcast/Video -->
-    {(data.relatedPodcastEpisode || data.relatedVideo) && (
-      <section class="related-media" aria-labelledby="related-media-title">
-        <h2 id="related-media-title" class="section-title">🎧 Pour aller plus loin</h2>
-        <div class="media-grid">
-          {data.relatedPodcastEpisode && (
-            <a 
-              href={`/${data.lang}/podcast/${data.relatedPodcastEpisode}/`} 
-              class="media-card podcast"
-              aria-label={`Écouter l'épisode de podcast : ${data.relatedPodcastEpisode}`}
-            >
-              <span class="media-icon">🎙️</span>
-              <span class="media-label">Podcast lié</span>
-              <span class="media-title">Écouter l'épisode</span>
-            </a>
-          )}
-          {data.relatedVideo && (
-            <a 
-              href={data.relatedVideo} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="media-card video"
-              aria-label={`Regarder la vidéo liée`}
-            >
-              <span class="media-icon">📺</span>
-              <span class="media-label">Vidéo</span>
-              <span class="media-title">Regarder sur YouTube</span>
-            </a>
-          )}
-        </div>
-      </section>
-    )}
+        {/* Table of Contents */}
+        <TableOfContents />
+      </aside>
+    </div>
 
-    <!-- Newsletter CTA (toujours en bas d'article) -->
-    <section class="newsletter-cta" aria-labelledby="newsletter-title">
-      <h2 id="newsletter-title" class="section-title">📬 Recevez nos nouveaux articles</h2>
-      <NewsletterForm lang={data.lang} inline={false} />
+    <!-- Lead Magnet (Newsletter) -->
+    <section class="lead-magnet" aria-labelledby="lead-magnet-title">
+      <div class="eyebrow"><span>Guide gratuit</span></div>
+      <h3 id="lead-magnet-title">« 7 clés pour une prière quotidienne »</h3>
+      <p>Un guide PDF pour apprivoiser la prière, même (surtout) quand on ne sait pas par où commencer.</p>
+      <NewsletterForm lang={data.lang} inline={true} />
     </section>
 
     <!-- Related Posts -->
-    <RelatedPosts 
-      currentSlug={slug} 
-      currentLang={data.lang} 
-      category={data.category} 
-      tags={data.tags}
-      series={data.series}
-      limit={3}
-    />
+    <RelatedPosts entry={entry} />
 
   </article>
 </MainLayout>
-
-<style is:global>
-  .blog-post {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: var(--space-xl) var(--space-md);
-  }
-
-  .blog-post-header {
-    text-align: center;
-    margin-bottom: var(--space-2xl);
-    padding-bottom: var(--space-xl);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .blog-post-meta {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-md);
-    margin-bottom: var(--space-md);
-    font-size: var(--text-sm);
-    color: var(--color-ink-light);
-  }
-
-  .category-tag {
-    background: var(--color-gold-light);
-    color: var(--color-ink);
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-full);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-size: var(--text-xs);
-  }
-
-  .publish-date, .updated-date {
-    color: var(--color-ink-light);
-  }
-
-  .reading-time {
-    color: var(--color-gold);
-    font-weight: 500;
-  }
-
-  .featured-badge {
-    display: inline-block;
-    margin-top: var(--space-sm);
-    padding: var(--space-xs) var(--space-sm);
-    background: var(--color-gold);
-    color: var(--color-paper);
-    border-radius: var(--radius-full);
-    font-size: var(--text-xs);
-    font-weight: 600;
-  }
-
-  .blog-post-title {
-    font-size: clamp(var(--text-2xl), 5vw, var(--text-4xl));
-    line-height: 1.2;
-    margin-bottom: var(--space-md);
-    color: var(--color-ink);
-  }
-
-  .blog-post-excerpt {
-    font-size: var(--text-lg);
-    color: var(--color-ink-light);
-    margin-bottom: var(--space-xl);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .author-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-md);
-    margin-top: var(--space-xl);
-    padding-top: var(--space-xl);
-    border-top: 1px solid var(--color-border);
-  }
-
-  .author-avatar {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-
-  .author-details {
-    text-align: left;
-  }
-
-  .author-name {
-    display: block;
-    font-weight: 600;
-    color: var(--color-ink);
-  }
-
-  .author-role {
-    display: block;
-    font-size: var(--text-sm);
-    color: var(--color-ink-light);
-  }
-
-  .author-link {
-    margin-left: auto;
-    font-size: var(--text-sm);
-    color: var(--color-gold);
-    text-decoration: underline;
-  }
-
-  .blog-post-hero-image {
-    margin: var(--space-xl) calc(-1 * var(--space-md)) 0;
-    border-radius: 0;
-    overflow: hidden;
-  }
-
-  .blog-post-hero-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .blog-post-content {
-    font-size: var(--text-base);
-    line-height: 1.8;
-    color: var(--color-ink);
-  }
-
-  .blog-post-content h2 {
-    margin-top: var(--space-2xl);
-    margin-bottom: var(--space-md);
-    font-size: var(--text-2xl);
-    color: var(--color-ink);
-    scroll-margin-top: 100px;
-  }
-
-  .blog-post-content h3 {
-    margin-top: var(--space-xl);
-    margin-bottom: var(--space-sm);
-    font-size: var(--text-xl);
-    color: var(--color-ink);
-    scroll-margin-top: 100px;
-  }
-
-  .blog-post-content p {
-    margin-bottom: var(--space-md);
-  }
-
-  .blog-post-content blockquote {
-    border-left: 4px solid var(--color-gold);
-    padding-left: var(--space-lg);
-    margin: var(--space-xl) 0;
-    font-style: italic;
-    color: var(--color-ink-light);
-    background: var(--color-gold-light);
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    padding: var(--space-md) var(--space-lg);
-  }
-
-  .blog-post-content ul, .blog-post-content ol {
-    margin: var(--space-md) 0;
-    padding-left: var(--space-xl);
-  }
-
-  .blog-post-content li {
-    margin-bottom: var(--space-sm);
-  }
-
-  .blog-post-content code {
-    background: var(--color-gold-light);
-    padding: 0.125em 0.375em;
-    border-radius: var(--radius-sm);
-    font-size: 0.9em;
-  }
-
-  .blog-post-content pre {
-    background: var(--color-ink);
-    color: var(--color-paper);
-    padding: var(--space-lg);
-    border-radius: var(--radius-md);
-    overflow-x: auto;
-    margin: var(--space-lg) 0;
-  }
-
-  .blog-post-content pre code {
-    background: none;
-    padding: 0;
-    color: inherit;
-  }
-
-  .blog-post-content table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: var(--space-lg) 0;
-  }
-
-  .blog-post-content th, .blog-post-content td {
-    border: 1px solid var(--color-border);
-    padding: var(--space-sm) var(--space-md);
-    text-align: left;
-  }
-
-  .blog-post-content th {
-    background: var(--color-gold-light);
-    font-weight: 600;
-  }
-
-  .blog-post-footer {
-    margin-top: var(--space-2xl);
-    padding-top: var(--space-xl);
-    border-top: 1px solid var(--color-border);
-  }
-
-  .series-nav {
-    margin-bottom: var(--space-lg);
-    padding: var(--space-md);
-    background: var(--color-gold-light);
-    border-radius: var(--radius-md);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--space-sm);
-  }
-
-  .series-label {
-    font-weight: 600;
-    color: var(--color-ink);
-  }
-
-  .series-order {
-    color: var(--color-gold);
-    font-weight: 600;
-  }
-
-  .series-link {
-    margin-left: auto;
-    color: var(--color-gold);
-    text-decoration: underline;
-    font-weight: 500;
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-sm);
-    margin-bottom: var(--space-lg);
-  }
-
-  .tag {
-    background: var(--color-paper);
-    border: 1px solid var(--color-border);
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-full);
-    font-size: var(--text-sm);
-    color: var(--color-ink);
-    text-decoration: none;
-    transition: all var(--transition-fast);
-  }
-
-  .tag:hover {
-    background: var(--color-gold);
-    border-color: var(--color-gold);
-    color: var(--color-paper);
-  }
-
-  .lead-magnet-cta {
-    margin: var(--space-2xl) 0;
-    padding: var(--space-xl);
-    background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-paper) 100%);
-    border: 2px solid var(--color-gold);
-    border-radius: var(--radius-lg);
-    text-align: center;
-  }
-
-  .lead-magnet-title {
-    font-size: var(--text-2xl);
-    margin-bottom: var(--space-sm);
-    color: var(--color-ink);
-  }
-
-  .lead-magnet-description {
-    color: var(--color-ink-light);
-    margin-bottom: var(--space-lg);
-  }
-
-  .related-media {
-    margin: var(--space-2xl) 0;
-  }
-
-  .section-title {
-    font-size: var(--text-xl);
-    margin-bottom: var(--space-lg);
-    color: var(--color-ink);
-    text-align: center;
-  }
-
-  .media-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--space-md);
-  }
-
-  .media-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: var(--space-lg);
-    background: var(--color-paper);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    text-decoration: none;
-    transition: all var(--transition-fast);
-  }
-
-  .media-card:hover {
-    border-color: var(--color-gold);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .media-icon {
-    font-size: 2rem;
-    margin-bottom: var(--space-sm);
-  }
-
-  .media-label {
-    font-size: var(--text-sm);
-    color: var(--color-ink-light);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .media-title {
-    font-weight: 600;
-    color: var(--color-ink);
-    margin-top: var(--space-xs);
-  }
-
-  .newsletter-cta {
-    margin: var(--space-2xl) 0;
-    padding: var(--space-xl);
-    background: var(--color-ink);
-    color: var(--color-paper);
-    border-radius: var(--radius-lg);
-    text-align: center;
-  }
-
-  .newsletter-cta .section-title {
-    color: var(--color-paper);
-  }
-
-  /* Table of Contents Sidebar */
-  .table-of-contents-wrapper {
-    position: sticky;
-    top: 100px;
-    max-height: calc(100vh - 120px);
-    overflow-y: auto;
-  }
-
-  @media (max-width: 768px) {
-    .table-of-contents-wrapper {
-      display: none;
-    }
-  }
-
-  /* Sticky Social Share */
-  .sticky-share {
-    position: sticky;
-    top: 80px;
-    z-index: 10;
-    margin-bottom: var(--space-lg);
-    align-self: flex-start;
-  }
-
-  @media (max-width: 768px) {
-    .sticky-share {
-      position: static;
-      width: 100%;
-      justify-content: center;
-    }
-  }
-
-  /* Reading Progress */
-  .reading-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--color-border);
-    z-index: 1000;
-    pointer-events: none;
-    transition: opacity var(--transition-normal);
-  }
-
-  .reading-progress-bar {
-    height: 100%;
-    background: linear-gradient(90deg, var(--color-gold), var(--color-gold-dark));
-    width: 0%;
-    transition: width 0.1s linear;
-    transform-origin: left center;
-  }
-</style>

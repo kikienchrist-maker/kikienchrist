@@ -1,5 +1,5 @@
 ---
-// TableOfContents.astro - TOC auto-généré depuis h2/h3 avec IntersectionObserver
+// TableOfContents.astro - TOC auto-généré (design system lafoidieu .bq)
 interface Props {
   content: string | undefined;
   lang?: string;
@@ -7,7 +7,6 @@ interface Props {
 
 const { content, lang = 'fr' } = Astro.props;
 
-// Parser le contenu Markdown/HTML pour extraire h2/h3
 function extractHeadings(html: string): { level: number; text: string; id: string }[] {
   const headings: { level: number; text: string; id: string }[] = [];
   const regex = /<h([23])[^>]*id="([^"]+)"[^>]*>(.*?)<\/h[23]>/gi;
@@ -16,7 +15,7 @@ function extractHeadings(html: string): { level: number; text: string; id: strin
   while ((match = regex.exec(html)) !== null) {
     const level = parseInt(match[1], 10);
     const id = match[2];
-    const text = match[3].replace(/<[^>]+>/g, ''); // Strip inner HTML tags
+    const text = match[3].replace(/<[^>]+>/g, '');
     headings.push({ level, text, id });
   }
   
@@ -25,34 +24,25 @@ function extractHeadings(html: string): { level: number; text: string; id: strin
 
 const headings = content ? extractHeadings(content) : [];
 
-// Traductions UI
 const ui = {
   fr: { title: 'Sommaire', backToTop: 'Haut de page' },
-  en: { title: 'Table of Contents', backToTop: 'Back to top' },
-  es: { title: 'Tabla de contenidos', backToTop: 'Volver arriba' },
+  en: { title: 'Contents', backToTop: 'Back to top' },
+  es: { title: 'Contenido', backToTop: 'Volver arriba' },
   pt: { title: 'Sumário', backToTop: 'Voltar ao topo' },
   it: { title: 'Sommario', backToTop: 'Torna su' },
-  de: { title: 'Inhaltsverzeichnis', backToTop: 'Nach oben' },
-  nl: { title: 'Inhoudsopgave', backToTop: 'Terug naar boven' },
+  de: { title: 'Inhalt', backToTop: 'Nach oben' },
+  nl: { title: 'Inhoud', backToTop: 'Terug naar boven' },
   pl: { title: 'Spis treści', backToTop: 'Wróć na górę' },
-  ar: { title: 'جدول المحتويات', backToTop: 'العودة للأعلى' },
+  ar: { title: 'المحتويات', backToTop: 'العودة للأعلى' },
 };
 
 const t = ui[lang as keyof typeof ui] || ui.fr;
 ---
 
 {headings.length > 0 && (
-  <nav class="table-of-contents" aria-labelledby="toc-title">
-    <div class="toc-header">
-      <h3 id="toc-title" class="toc-title">{t.title}</h3>
-      <button class="toc-toggle" aria-expanded="true" aria-controls="toc-list">
-        <svg class="toc-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </button>
-    </div>
-    
-    <ul id="toc-list" class="toc-list" role="list">
+  <nav class="toc" aria-labelledby="toc-title">
+    <h3 id="toc-title" class="toc-title">{t.title}</h3>
+    <ul class="toc-list" role="list">
       {headings.map((heading, index) => (
         <li class={`toc-item toc-level-${heading.level}`} style={{ '--item-index': index }}>
           <a 
@@ -65,13 +55,11 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
         </li>
       ))}
     </ul>
-    
     <a href="#" class="toc-back-to-top">{t.backToTop}</a>
   </nav>
 )}
 
 <script>
-  // IntersectionObserver pour highlight actif
   class TableOfContents {
     toc: HTMLElement;
     list: HTMLElement;
@@ -85,7 +73,6 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
       this.list = toc.querySelector('.toc-list')!;
       this.links = toc.querySelectorAll('.toc-link');
       
-      // Récupérer les headings correspondants dans le contenu principal
       const article = document.querySelector('.blog-post-content') || document.querySelector('article');
       if (!article) return;
       
@@ -93,24 +80,21 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
       if (this.headings.length === 0) return;
       
       this.initObserver();
-      this.initToggle();
       this.initSmoothScroll();
     }
     
     initObserver() {
       const options = {
-        rootMargin: '-100px 0px -66% 0px', // Trigger quand heading entre dans zone visible (sous header sticky)
+        rootMargin: '-100px 0px -66% 0px',
         threshold: [0, 0.1, 0.5, 1],
       };
       
       this.observer = new IntersectionObserver((entries) => {
-        // Trouver le heading le plus proche du haut de la zone visible
         let bestEntry: IntersectionObserverEntry | null = null;
         let bestRatio = -1;
         
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            // Prioriser celui avec le ratio le plus haut (le plus visible)
             if (entry.intersectionRatio > bestRatio) {
               bestRatio = entry.intersectionRatio;
               bestEntry = entry;
@@ -121,7 +105,6 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
         if (bestEntry) {
           this.setActive(bestEntry.target.id);
         } else if (entries.some(e => e.boundingClientRect.top < 0 && !e.isIntersecting)) {
-          // Si on a scrollé au-dessus du premier heading
           const firstHeading = this.headings[0] as HTMLElement;
           if (firstHeading) this.setActive(firstHeading.id);
         }
@@ -145,27 +128,7 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
       link.setAttribute('aria-current', 'location');
       this.activeLink = link;
       
-      // Scroll TOC pour garder lien actif visible
       link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-    
-    initToggle() {
-      const toggle = this.toc.querySelector('.toc-toggle') as HTMLButtonElement;
-      const list = this.toc.querySelector('.toc-list') as HTMLElement;
-      
-      if (!toggle || !list) return;
-      
-      toggle.addEventListener('click', () => {
-        const expanded = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', String(!expanded));
-        list.style.display = expanded ? 'none' : '';
-        
-        // Animer icône
-        const icon = toggle.querySelector('.toc-toggle-icon') as SVGElement;
-        if (icon) {
-          icon.style.transform = expanded ? 'rotate(-90deg)' : 'rotate(0deg)';
-        }
-      });
     }
     
     initSmoothScroll() {
@@ -179,7 +142,6 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
           
           e.preventDefault();
           
-          // Offset pour header sticky (100px)
           const headerOffset = 100;
           const elementPosition = target.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -189,143 +151,15 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
             behavior: 'smooth',
           });
           
-          // Mettre à jour URL sans recharger
           history.pushState(null, '', href);
-          
-          // Focus pour accessibilité
           (target as HTMLElement).focus({ preventScroll: true });
         });
       }
     }
   }
   
-  // Initialiser quand DOM ready
   document.addEventListener('DOMContentLoaded', () => {
-    const toc = document.querySelector('.table-of-contents');
+    const toc = document.querySelector('.toc');
     if (toc) new TableOfContents(toc as HTMLElement);
   });
 </script>
-
-<style is:global>
-  .table-of-contents {
-    background: var(--color-paper);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-md);
-    position: sticky;
-    top: 100px;
-    max-height: calc(100vh - 120px);
-    overflow-y: auto;
-    font-size: var(--text-sm);
-  }
-
-  .toc-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--space-md);
-    padding-bottom: var(--space-sm);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .toc-title {
-    font-size: var(--text-base);
-    font-weight: 600;
-    margin: 0;
-    color: var(--color-ink);
-  }
-
-  .toc-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    border: none;
-    background: var(--color-gold-light);
-    border-radius: var(--radius-md);
-    color: var(--color-gold);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-  }
-
-  .toc-toggle:hover {
-    background: var(--color-gold);
-    color: var(--color-paper);
-  }
-
-  .toc-toggle-icon {
-    transition: transform var(--transition-fast);
-  }
-
-  .toc-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .toc-item {
-    margin-bottom: var(--space-xs);
-  }
-
-  .toc-level-2 {
-    padding-left: 0;
-  }
-
-  .toc-level-3 {
-    padding-left: var(--space-md);
-    font-size: var(--text-xs);
-  }
-
-  .toc-link {
-    display: block;
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-sm);
-    text-decoration: none;
-    color: var(--color-ink-light);
-    transition: all var(--transition-fast);
-  }
-
-  .toc-link:hover {
-    color: var(--color-gold);
-    background: var(--color-gold-light);
-  }
-
-  .toc-link.active {
-    color: var(--color-gold);
-    font-weight: 600;
-    background: var(--color-gold-light);
-  }
-
-  .toc-back-to-top {
-    display: block;
-    margin-top: var(--space-md);
-    padding-top: var(--space-md);
-    border-top: 1px solid var(--color-border);
-    text-align: center;
-    font-size: var(--text-xs);
-    color: var(--color-ink-light);
-    text-decoration: none;
-  }
-
-  .toc-back-to-top:hover {
-    color: var(--color-gold);
-  }
-
-  /* Mobile: TOC dans un dropdown */
-  @media (max-width: 900px) {
-    .table-of-contents {
-      position: static;
-      max-height: none;
-      margin-bottom: var(--space-lg);
-    }
-    
-    .toc-list {
-      display: none;
-    }
-    
-    .toc-list:not([hidden]) {
-      display: block;
-    }
-  }
-</style>
