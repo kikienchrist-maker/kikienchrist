@@ -18,6 +18,16 @@ const { entry } = Astro.props;
 const { data, body, slug } = entry;
 const siteUrl = Astro.site?.toString() || 'https://kikienchrist.vercel.app';
 
+// Slugifier pour URLs
+function slugify(str: string): string {
+  return str
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
 const parseDate = (dateStr: string) => {
   try {
     const d = new Date(dateStr);
@@ -77,7 +87,7 @@ const formatDate = (dateStr: string, lang: string) => {
       items={[
         { label: 'Accueil', href: `/${data.lang}/` },
         { label: 'Blog', href: `/${data.lang}/blog/` },
-        { label: catLabel, href: `/${data.lang}/blog/categorie/${data.category}/` },
+        { label: catLabel, href: `/${data.lang}/blog/categorie/${slugify(data.category)}/` },
         { label: data.title, href: canonical, current: true },
       ]}
     />

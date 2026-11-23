@@ -1,0 +1,78 @@
+{
+  "ci": {
+    "collect": {
+      "numberOfRuns": 1,
+      "settings": {
+        "headful": false,
+        "preset": "desktop",
+        "staticDistDir": "./dist",
+        "url": [
+          "./dist/fr/index.html",
+          "./dist/fr/blog/1/index.html",
+          "./dist/fr/blog/priere-quotidienne-7-cles/index.html",
+          "./dist/fr/mentions-legales/index.html"
+        ]
+      }
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["error", { "minScore": 0.9 }],
+        "categories:accessibility": ["error", { "minScore": 0.95 }],
+        "categories:best-practices": ["error", { "minScore": 0.9 }],
+        "categories:seo": ["error", { "minScore": 0.9 }],
+        "categories:pwa": ["off"],
+        
+        "first-contentful-paint": ["error", { "maxNumericValue": 2000, "aggregationMethod": "median" }],
+        "largest-contentful-paint": ["error", { "maxNumericValue": 2500, "aggregationMethod": "median" }],
+        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1, "aggregationMethod": "median" }],
+        "total-blocking-time": ["error", { "maxNumericValue": 200, "aggregationMethod": "median" }],
+        "interactive": ["error", { "maxNumericValue": 3500, "aggregationMethod": "median" }],
+        
+        "redirects": ["off"],
+        "server-response-time": ["warn", { "maxNumericValue": 500 }],
+        "bootup-time": ["warn", { "maxNumericValue": 1500 }],
+        "mainthread-work-breakdown": ["warn", { "maxNumericValue": 4000 }],
+        "dom-size": ["warn", { "maxNumericValue": 1500 }],
+        "render-blocking-resources": ["warn", { "maxNumericValue": 500 }],
+        "unused-css-rules": ["warn", { "maxNumericValue": 50 }],
+        "unused-javascript": ["warn", { "maxNumericValue": 100 }],
+        "efficient-encoding-images": ["warn", { "maxNumericValue": 0.9 }],
+        "modern-image-formats": ["warn", { "maxNumericValue": 0.9 }],
+        "offscreen-images": ["warn", { "maxNumericValue": 0.9 }],
+        "uses-rel-preconnect": ["warn"],
+        "uses-rel-preload": ["warn"],
+        "font-display": ["warn"],
+        "viewport": ["error"],
+        "document-title": ["error"],
+        "meta-description": ["error"],
+        "html-has-lang": ["error"],
+        "image-alt": ["error"],
+        "link-name": ["error"],
+        "button-name": ["error"],
+        "form-field-multiple-labels": ["error"],
+        "form-field-multiple-labels": ["error"],
+        "label": ["error"],
+        "heading-order": ["warn"],
+        "color-contrast": ["error"],
+        "tap-targets": ["warn"],
+        "managed-focus": ["warn"],
+        "focus-traps": ["warn"],
+        "aria-required-attr": ["error"],
+        "aria-valid-attr-value": ["error"],
+        "aria-valid-attr": ["error"],
+        "aria-roles": ["error"],
+        "aria-hidden-body": ["error"],
+        "aria-hidden-focus": ["error"],
+        "aria-input-field-name": ["error"],
+        "aria-meter-name": ["error"],
+        "aria-progressbar-name": ["error"],
+        "aria-required-children": ["error"],
+        "aria-required-parent": ["error"],
+        "aria-required-attr": ["error"]
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

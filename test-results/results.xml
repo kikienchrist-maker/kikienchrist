@@ -1,0 +1,108 @@
+<testsuites id="" name="" tests="15" failures="2" skipped="0" errors="0" time="12.627880000000001">
+<testsuite name="smoke.spec.ts" timestamp="2026-11-23T08:36:05.545Z" hostname="chromium" tests="15" failures="2" skipped="0" time="13.53" errors="0">
+<testcase name="Smoke Tests - Core Pages Load (HTTP 200) › Homepage FR loads successfully" classname="smoke.spec.ts" time="1.045">
+</testcase>
+<testcase name="Smoke Tests - Core Pages Load (HTTP 200) › Homepage EN loads successfully" classname="smoke.spec.ts" time="1.007">
+</testcase>
+<testcase name="Smoke Tests - Core Pages Load (HTTP 200) › Blog Index FR loads successfully" classname="smoke.spec.ts" time="0.707">
+</testcase>
+<testcase name="Smoke Tests - Core Pages Load (HTTP 200) › Blog Index EN loads successfully" classname="smoke.spec.ts" time="0.602">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|smoke-Smoke-Tests---Core-P-bd071-Index-EN-loads-successfully-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|smoke-Smoke-Tests---Core-P-bd071-Index-EN-loads-successfully-chromium\video.webm]]
+
+[[ATTACHMENT|smoke-Smoke-Tests---Core-P-bd071-Index-EN-loads-successfully-chromium\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(received).toBe(expected) // Object.is equality" type="expect.toBe">
+<![CDATA[  [chromium] › smoke.spec.ts:19:5 › Smoke Tests - Core Pages Load (HTTP 200) › Blog Index EN loads successfully 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 404
+
+      19 |     test(`${name} loads successfully`, async ({ page }) => {
+      20 |       const response = await page.goto(path, { waitUntil: 'domcontentloaded' });
+    > 21 |       expect(response?.status()).toBe(200);
+         |                                  ^
+      22 |       // Page has some content
+      23 |       await expect(page.locator('body')).toBeVisible();
+      24 |     });
+        at C:\Users\Admin\Desktop\site web livres\kikienchrist-vercel-sync\tests\e2e\smoke.spec.ts:21:34
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\smoke-Smoke-Tests---Core-P-bd071-Index-EN-loads-successfully-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\smoke-Smoke-Tests---Core-P-bd071-Index-EN-loads-successfully-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\smoke-Smoke-Tests---Core-P-bd071-Index-EN-loads-successfully-chromium\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="Smoke Tests - Core Pages Load (HTTP 200) › Blog Article FR loads successfully" classname="smoke.spec.ts" time="0.623">
+</testcase>
+<testcase name="Smoke Tests - Core Pages Load (HTTP 200) › Category Priere FR loads successfully" classname="smoke.spec.ts" time="0.68">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|smoke-Smoke-Tests---Core-P-74ce8-riere-FR-loads-successfully-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|smoke-Smoke-Tests---Core-P-74ce8-riere-FR-loads-successfully-chromium\video.webm]]
+
+[[ATTACHMENT|smoke-Smoke-Tests---Core-P-74ce8-riere-FR-loads-successfully-chromium\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(received).toBe(expected) // Object.is equality" type="expect.toBe">
+<![CDATA[  [chromium] › smoke.spec.ts:19:5 › Smoke Tests - Core Pages Load (HTTP 200) › Category Priere FR loads successfully 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 404
+
+      19 |     test(`${name} loads successfully`, async ({ page }) => {
+      20 |       const response = await page.goto(path, { waitUntil: 'domcontentloaded' });
+    > 21 |       expect(response?.status()).toBe(200);
+         |                                  ^
+      22 |       // Page has some content
+      23 |       await expect(page.locator('body')).toBeVisible();
+      24 |     });
+        at C:\Users\Admin\Desktop\site web livres\kikienchrist-vercel-sync\tests\e2e\smoke.spec.ts:21:34
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\smoke-Smoke-Tests---Core-P-74ce8-riere-FR-loads-successfully-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\smoke-Smoke-Tests---Core-P-74ce8-riere-FR-loads-successfully-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\smoke-Smoke-Tests---Core-P-74ce8-riere-FR-loads-successfully-chromium\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="Smoke Tests - Core Pages Load (HTTP 200) › Mentions Légales FR loads successfully" classname="smoke.spec.ts" time="0.636">
+</testcase>
+<testcase name="Smoke Tests - Core Pages Load (HTTP 200) › Confidentialité FR loads successfully" classname="smoke.spec.ts" time="0.732">
+</testcase>
+<testcase name="Smoke Tests - Core Pages Load (HTTP 200) › Cookies FR loads successfully" classname="smoke.spec.ts" time="0.684">
+</testcase>
+<testcase name="Smoke Tests - Core Pages Load (HTTP 200) › CGV FR loads successfully" classname="smoke.spec.ts" time="0.659">
+</testcase>
+<testcase name="Smoke Tests - Core Pages Load (HTTP 200) › Accessibilité FR loads successfully" classname="smoke.spec.ts" time="0.68">
+</testcase>
+<testcase name="Basic Accessibility Checks › Homepage has lang attribute" classname="smoke.spec.ts" time="1.754">
+</testcase>
+<testcase name="Basic Accessibility Checks › Blog article has single h1" classname="smoke.spec.ts" time="1.414">
+</testcase>
+<testcase name="Basic Accessibility Checks › Legal pages have main content area" classname="smoke.spec.ts" time="0.635">
+</testcase>
+<testcase name="Cookie Consent (GA4) › Cookie banner exists on first visit" classname="smoke.spec.ts" time="1.672">
+</testcase>
+</testsuite>
+</testsuites>

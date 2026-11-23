@@ -12,6 +12,16 @@ interface Props {
 
 const { lang, currentCategory, allCategories, posts } = Astro.props;
 
+// Slugifier pour URLs
+function slugify(str: string): string {
+  return str
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
 const categoryCounts: Record<string, number> = {};
 for (const post of posts) {
   if (!post.data.draft) {
@@ -47,9 +57,10 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
   {allCategories.map(cat => {
     const count = categoryCounts[cat] || 0;
     const label = getCategoryLabel(cat, lang);
+    const catSlug = slugify(cat);
     return (
       <a 
-        href={`/${lang}/blog/categorie/${cat}/`} 
+        href={`/${lang}/blog/categorie/${catSlug}/`} 
         class={`category-item ${currentCategory === cat ? 'active' : ''}`}
         aria-current={currentCategory === cat ? 'page' : undefined}
       >
