@@ -1,0 +1,28 @@
+---
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = () => {
+  const langs = ['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'pl', 'ru', 'zh', 'hi'];
+  return langs.map(lang => ({ params: { lang } }));
+};
+
+const { lang } = Astro.params;
+const targetUrl = `/${lang}/blog/1/`;
+const canonicalUrl = new URL(targetUrl, Astro.site).href;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content={`0; url=${targetUrl}`} />
+  <link rel="canonical" href={canonicalUrl} />
+  <title>Redirection vers le blog…</title>
+  <script is:inline>
+    window.location.replace('/' + (document.documentElement.lang || 'fr') + '/blog/1/');
+  </script>
+</head>
+<body>
+  <p>Redirection vers <a href={targetUrl}>la page du blog</a>…</p>
+</body>
+</html>

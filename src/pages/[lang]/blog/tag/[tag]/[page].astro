@@ -1,0 +1,73 @@
+---
+// [lang]/blog/tag/[tag]/[page].astro - Page tag avec pagination
+import { getCollection } from 'astro:content';
+import { paginate } from 'astro:paginate';
+import BlogIndex from '@components/blog/BlogIndex.astro';
+import type { CollectionEntry } from 'astro:content';
+
+const validLangs = ['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'pl', 'ar'];
+
+export async function getStaticPaths({ paginate }) {
+  const validLangsLocal = ['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'pl', 'ar'];
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  
+  // Collecter tous les tags uniques par langue
+  const tagsByLang: Record<string, Set<string>> = {};
+  
+  for (const post of posts) {
+    if (!validLangsLocal.includes(post.data.lang)) continue;
+    
+    if (!tagsByLang[post.data.lang]) {
+      tagsByLang[post.data.lang] = new Set();
+    }
+    
+    for (const tag of post.data.tags) {
+      tagsByLang[post.data.lang].add(tag);
+    }
+  }
+  
+  const paths = [];
+  
+  for (const [lang, tags] of Object.entries(tagsByLang)) {
+    for (const tag of tags) {
+      const tagPosts = posts.filter(p => 
+        p.data.lang === lang && p.data.tags.includes(tag)
+      );
+      
+      tagPosts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+      
+      const paginated = paginate(tagPosts, { 
+        pageSize: 10,
+        params: { lang, tag },
+      });
+      
+      for (const page of paginated) {
+        paths.push({
+          params: { lang, tag, ...page.params },
+          props: { 
+            posts: page.data,
+            pagination: page.pagination,
+            lang,
+            tag,
+          },
+        });
+      }
+    }
+  }
+  
+  return paths;
+}
+
+const { posts, pagination, lang, tag } = Astro.props;
+
+if (!validLangs.includes(lang)) {
+  return Astro.redirect('/fr/blog/');
+}
+---
+
+<BlogIndex 
+  lang={lang} 
+  tag={tag}
+  posts={posts as CollectionEntry<'blog'>[]} 
+  pagination={pagination}
+/>

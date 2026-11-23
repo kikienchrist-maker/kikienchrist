@@ -1,0 +1,67 @@
+---
+// CookieBanner.astro - Bannière de consentement RGPD / ePrivacy (simplifiée : 2 boutons)
+// HTML uniquement — logique JS dans MainLayout.astro
+
+interface Props {
+  locale: string;
+  translations: Record<string, unknown>;
+}
+
+const {
+  locale,
+  translations,
+} = Astro.props;
+
+const cookieBanner = (translations.cookieBanner as Record<string, string>) || {};
+const common = (translations.common as Record<string, string>) || {};
+
+const COOKIE_NAME = 'kikienchrist-consent';
+---
+
+<!-- ============================================
+     HTML: BANNIÈRE PRINCIPALE SIMPLIFIÉE (2 boutons)
+     ============================================ -->
+
+<!-- Overlay arrière-plan -->
+<div id="cookie-overlay" class="cookie-overlay" hidden aria-hidden="true"></div>
+
+<!-- Bannière principale (bottom) -->
+<aside
+  id="cookie-banner"
+  class="cookie-banner"
+  role="dialog"
+  aria-labelledby="cookie-title"
+  aria-describedby="cookie-desc"
+  hidden
+>
+  <div class="cookie-content">
+    <div class="cookie-text">
+      <h3 id="cookie-title" class="cookie-title">{cookieBanner.title || 'Nous respectons votre vie privée'}</h3>
+      <p id="cookie-desc" class="cookie-description">
+        {cookieBanner.description || 'Nous utilisons des cookies pour mesurer l\'audience et améliorer votre expérience. '}
+        <a href="/mentions-legales/" class="cookie-policy-link" target="_blank" rel="noopener noreferrer">
+          {cookieBanner.privacyPolicyText || 'Mentions légales & Politique de confidentialité'}
+        </a>
+      </p>
+    </div>
+
+    <div class="cookie-actions">
+      <button
+        type="button"
+        class="btn btn-secondary cookie-btn-reject"
+        data-action="reject-all"
+      >
+        {cookieBanner.rejectAll || 'Tout refuser'}
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary cookie-btn-accept"
+        data-action="accept-all"
+      >
+        {cookieBanner.acceptAll || 'Tout accepter'}
+      </button>
+    </div>
+  </div>
+
+  <p class="cookie-powered">{cookieBanner.poweredBy || 'Géré par Kiki en Christ · Conforme RGPD / ePrivacy'}</p>
+</aside>

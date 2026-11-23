@@ -1,0 +1,281 @@
+---
+// BlogPostCard.astro - Carte article réutilisable (index, related posts, featured)
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { getCategoryLabel } from '../../utils/blog';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  lang?: string;
+  readMoreText?: string;
+  featuredText?: string;
+}
+
+const { post, lang = 'fr', readMoreText = 'Lire la suite', featuredText = 'Mis en avant' } = Astro.props;
+const { data, slug } = post;
+const catLabel = getCategoryLabel(data.category, lang);
+
+// Image featured
+const heroImage = data.ogImage || `/images/blog/${data.category}-default.jpg`;
+
+const readingTime = data.readingTime || Math.ceil((post.body?.split(/\s+/).length || 0) / 200);
+---
+
+<article class="blog-post-card" itemscope itemtype="https://schema.org/BlogPosting" role="listitem">
+  <a href={`/${lang}/blog/${slug}/`} class="card-link" aria-label={`${data.title} - ${catLabel}`}>
+    
+    {/* Image */}
+    <div class="card-image">
+      {heroImage && (
+        <Image
+          src={heroImage}
+          alt=""
+          width={400}
+          height={225}
+          format="avif"
+          quality={75}
+          loading="lazy"
+          itemprop="image"
+        />
+      )}
+      {data.featured && (
+        <span class="card-featured-badge" itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+          <span itemprop="name">{featuredText}</span>
+        </span>
+      )}
+    </div>
+
+    {/* Contenu */}
+    <div class="card-content">
+      {/* Meta */}
+      <div class="card-meta">
+        <span class="card-category" itemprop="articleSection">{catLabel}</span>
+        <time 
+          class="card-date" 
+          itemprop="datePublished" 
+          dateTime={data.pubDate}
+        >
+          {new Date(data.pubDate).toLocaleDateString(lang, { 
+            day: 'numeric', month: 'short', year: 'numeric' 
+          })}
+        </time>
+      </div>
+
+      {/* Titre */}
+      <h2 class="card-title" itemprop="headline">{data.title}</h2>
+
+      {/* Extrait */}
+      <p class="card-excerpt" itemprop="description">{data.description}</p>
+
+      {/* Footer */}
+      <div class="card-footer">
+        <span class="card-reading-time" itemprop="timeRequired" content={`PT${readingTime}M`}>
+          🕐 {readingTime} min
+        </span>
+        {data.author && (
+          <span class="card-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <span itemprop="name">{data.author}</span>
+          </span>
+        )}
+      </div>
+
+      {/* Tags preview */}
+      {data.tags.length > 0 && (
+        <div class="card-tags" aria-label="Mots-clés">
+          {data.tags.slice(0, 3).map(tag => (
+            <span class="card-tag" key={tag}>#{tag}</span>
+          ))}
+          {data.tags.length > 3 && (
+            <span class="card-tag-more">+{data.tags.length - 3}</span>
+          )}
+        </div>
+      )}
+
+      {/* Lire la suite */}
+      <span class="card-read-more" itemprop="url">
+        {readMoreText} →
+      </span>
+    </div>
+  </a>
+</article>
+
+<style is:global>
+  .blog-post-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-paper);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    height: 100%;
+  }
+
+  .blog-post-card:hover {
+    border-color: var(--color-gold);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+
+  .card-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card-image {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--color-gold-light);
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .blog-post-card:hover .card-image img {
+    transform: scale(1.05);
+  }
+
+  .card-featured-badge {
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--color-gold);
+    color: var(--color-paper);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-md);
+    flex: 1;
+  }
+
+  .card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    font-size: var(--text-xs);
+  }
+
+  .card-category {
+    background: var(--color-gold-light);
+    color: var(--color-ink);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .card-date {
+    color: var(--color-ink-light);
+  }
+
+  .card-title {
+    font-size: var(--text-lg);
+    line-height: 1.3;
+    margin: 0 0 var(--space-sm);
+    color: var(--color-ink);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-excerpt {
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    color: var(--color-ink-light);
+    margin: 0 0 var(--space-md);
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--text-xs);
+    color: var(--color-ink-light);
+  }
+
+  .card-reading-time {
+    font-weight: 500;
+    color: var(--color-gold);
+  }
+
+  .card-author {
+    font-style: italic;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-md);
+  }
+
+  .card-tag {
+    font-size: var(--text-xs);
+    color: var(--color-gold);
+    background: var(--color-gold-light);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-full);
+  }
+
+  .card-tag-more {
+    font-size: var(--text-xs);
+    color: var(--color-ink-light);
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .card-read-more {
+    display: inline-block;
+    font-weight: 600;
+    color: var(--color-gold);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    margin-top: auto;
+  }
+
+  .card-read-more:hover {
+    color: var(--color-gold-dark);
+    text-decoration: underline;
+  }
+
+  /* Grid responsive pour index blog */
+  @media (min-width: 640px) {
+    .blog-posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .blog-posts-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

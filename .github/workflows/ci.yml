@@ -1,0 +1,432 @@
+# GitHub Actions - Main CI/CD Pipeline
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20.x'
+
+jobs:
+  # 1. Install & Lint
+  lint-typecheck:
+    name: Lint & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: ESLint
+        run: npm run lint
+
+      - name: TypeScript Check
+        run: npx tsc --noEmit --project tsconfig.json
+
+      - name: Format Check
+        run: npm run format:check
+
+  # 2. Content Validation (Astro Collections)
+  validate-content:
+    name: Validate Content
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Astro Check (Content Collections)
+        run: npm run check 2>&1 | head -100
+
+      - name: Validate Frontmatter Schema
+        run: |
+          node -e "
+            const fs = require('fs');
+            const path = require('path');
+            const matter = require('gray-matter');
+            
+            const blogDir = 'src/content/blog';
+            let errors = 0;
+            
+            function checkDir(dir) {
+              const files = fs.readdirSync(dir);
+              for (const file of files) {
+                const fullPath = path.join(dir, file);
+                const stat = fs.statSync(fullPath);
+                if (stat.isDirectory()) {
+                  checkDir(fullPath);
+                } else if (file.endsWith('.md') || file.endsWith('.mdx')) {
+                  const content = fs.readFileSync(fullPath, 'utf-8');
+                  const { data } = matter(content);
+                  const required = ['title', 'description', 'pubDate', 'lang', 'category'];
+                  for (const field of required) {
+                    if (!data[field]) {
+                      console.error(\`❌ \${fullPath}: missing '\${field}'\`);
+                      errors++;
+                    }
+                  }
+                  if (data.pubDate && !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2}$/.test(data.pubDate)) {
+                    console.error(\`❌ \${fullPath}: invalid pubDate format (expected ISO 8601 with timezone)\`);
+                    errors++;
+                  }
+                }
+              }
+            }
+            
+            checkDir(blogDir);
+            if (errors > 0) process.exit(1);
+            console.log('✅ All content valid');
+          "
+
+  # 3. Unit Tests
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Unit Tests
+        run: npm run test
+
+      - name: Upload Coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage/
+          retention-days: 7
+
+  # 4. Netlify Functions Tests
+  functions-tests:
+    name: Netlify Functions Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Function Tests
+        run: npm run test -- netlify/functions/newsletter.test.js
+
+  # 5. Build
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [lint-typecheck, validate-content, unit-tests, functions-tests]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Astro Site
+        run: npm run build
+        env:
+          PUBLIC_SITE_URL: https://kikienchrist.vercel.app
+
+      - name: Verify Build Output
+        run: |
+          echo "Build output:"
+          ls -la dist/
+          echo "HTML pages:"
+          find dist -name "*.html" | wc -l
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7
+
+  # 6. E2E Tests
+  e2e-tests:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Start Preview Server
+        run: npx astro preview --port 4321 &
+        
+      - name: Wait for Server
+        run: sleep 15 && curl -f http://localhost:4321/fr/blog/
+
+      - name: Run E2E Tests
+        run: npm run test:e2e
+        env:
+          PLAYWRIGHT_BASE_URL: http://localhost:4321
+
+      - name: Upload Playwright Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+  # 7. Accessibility Tests
+  a11y-tests:
+    name: Accessibility Tests
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Start Preview Server
+        run: npx astro preview --port 4321 &
+
+      - name: Wait for Server
+        run: sleep 15 && curl -f http://localhost:4321/fr/blog/
+
+      - name: Run A11y Tests
+        run: npm run test:a11y
+        env:
+          PLAYWRIGHT_BASE_URL: http://localhost:4321
+
+      - name: Upload A11y Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11y-report
+          path: test-results/
+          retention-days: 7
+
+  # 8. Lighthouse CI
+  lighthouse:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Start Preview Server
+        run: npx astro preview --port 4321 &
+
+      - name: Wait for Server
+        run: sleep 15
+
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          configPath: .github/lighthouse/ci-budget.json
+          urls: |
+            http://localhost:4321/fr/
+            http://localhost:4321/fr/blog/
+            http://localhost:4321/fr/blog/7-prieres-puissantes-matin/
+
+      - name: Upload Lighthouse Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: .lighthouseci/
+          retention-days: 7
+
+  # 9. Security Scan
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run npm audit
+        run: npm audit --audit-level=high || true
+
+      - name: Run Snyk (if configured)
+        uses: snyk/actions/node@master
+        if: env.SNYK_TOKEN != ''
+        with:
+          command: test
+          args: --severity-threshold=high
+
+  # 10. Deploy Preview
+  deploy-preview:
+    name: Deploy Preview
+    runs-on: ubuntu-latest
+    needs: [build, e2e-tests, a11y-tests, lighthouse]
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Site
+        run: npm run build
+        env:
+          PUBLIC_SITE_URL: https://kikienchrist.vercel.app
+
+      - name: Deploy to Vercel Preview
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod=false'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+      - name: Comment PR with Preview URL
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '🚀 **Preview déployé !**\n\nVoir les changements sur l\'environnement de preview Vercel.\n\n[🔗 Ouvrir le preview](${process.env.VERCEL_URL})'
+            })
+
+  # 11. Deploy Production
+  deploy-production:
+    name: Deploy Production
+    runs-on: ubuntu-latest
+    needs: [build, e2e-tests, a11y-tests, lighthouse, security-scan]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Site
+        run: npm run build
+        env:
+          PUBLIC_SITE_URL: https://kikienchrist.vercel.app
+
+      - name: Deploy to Vercel Production
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod=true'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+      - name: Post-deploy Smoke Tests
+        run: |
+          sleep 30
+          curl -f https://kikienchrist.vercel.app/fr/
+          curl -f https://kikienchrist.vercel.app/fr/blog/
+          curl -f https://kikienchrist.vercel.app/en/blog/
+          echo "✅ Smoke tests passed"
+
+      - name: Notify Success
+        run: |
+          echo "✅ Déployé en production sur https://kikienchrist.vercel.app"
+          echo "📝 Commit: ${{ github.sha }}"

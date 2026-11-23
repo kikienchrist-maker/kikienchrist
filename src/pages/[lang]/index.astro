@@ -13,6 +13,8 @@ import Footer from '../../components/Footer.astro';
 import translations from '../../data/translations.json';
 import { SUPPORTED_LANGS, DEFAULT_LANG } from '../../utils/i18n.ts';
 
+
+
 const books = [
   {
     id: 'visage',
@@ -35,7 +37,7 @@ const books = [
     isbn: "9781447566359",
     numberOfPages: 146,
     inLanguage: "fr",
-    image: "https://payhip.com/cdn-cgi/image/format=auto,width=1500/https://pe56d.s3.amazonaws.com/o_1jrcsv37b2fb46i1dte1rj08861f.jpg",
+    image: "https://i.ibb.co/WWj7kDZD/frontcover-jpg.jpg",
     offers: [
       { price: "9.99", priceCurrency: "EUR", url: "https://www.lulu.com/shop/kiki-en-christ/les-secrets-de-la-trinit%C3%A9-enfin-d%C3%A9voil%C3%A9s-une-critique-percutante/paperback/product-nk9wg4.html", seller: { name: "Lulu" }, availability: "https://schema.org/InStock" },
       { price: "3.99", priceCurrency: "USD", url: "https://payhip.com/b/OH3xG", seller: { name: "Payhip" }, availability: "https://schema.org/InStock" },
@@ -163,42 +165,42 @@ const jsonLdString = JSON.stringify(jsonLd);
       "https://i.ibb.co/1SF6t5p/frontcover-jpg.jpg",
       "https://i.ibb.co/WWj7kDZD/frontcover-jpg.jpg",
       "https://i.ibb.co/HptTVfN4/frontcover-jpg.jpg",
-      "https://i.ibb.co/rKLrXsBR/SALUT-sans-criture-2.png"
+      "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
     ] : locale === 'es' ? [
       "https://i.ibb.co/r2vkZgRP/frontcover-jpg.jpg",
       "https://i.ibb.co/pvSHYnGJ/frontcover-jpg.jpg",
       "https://i.ibb.co/C5ZrMV28/frontcover-jpg.jpg",
-      "https://i.ibb.co/rKLrXsBR/SALUT-sans-criture-2.png"
+      "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
     ] : locale === 'de' ? [
       "https://i.ibb.co/sJvYVTVT/frontcover-jpg.jpg",
       "https://i.ibb.co/Z79DFH9/frontcover-jpg.jpg",
       "https://i.ibb.co/NgSkgHWj/frontcover-jpg.jpg",
-      "https://i.ibb.co/rKLrXsBR/SALUT-sans-criture-2.png"
+      "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
     ] : locale === 'pt' ? [
       "https://i.ibb.co/HTfgqjPG/frontcover-jpg.jpg",
       "https://i.ibb.co/39WKXW2w/frontcover-jpg.jpg",
       "https://i.ibb.co/JWFyYQkn/frontcover-jpg.jpg",
-      "https://i.ibb.co/rKLrXsBR/SALUT-sans-criture-2.png"
+      "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
     ] : locale === 'it' ? [
-      "https://i.ibb.co/WvTcVRPM/Design-sans-titre-1-1.png",
+      "https://i.ibb.co/Psj6hfDC/frontcover-jpg.jpg",
       "https://i.ibb.co/yFyTD3fN/frontcover-jpg.jpg",
-      "https://i.ibb.co/qLL8vdJB/FOI-sans-criture.jpg",
-      "https://i.ibb.co/rKLrXsBR/SALUT-sans-criture-2.png"
+      "https://i.ibb.co/bj7fnR9c/frontcover-jpg.jpg",
+      "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
     ] : locale === 'ru' ? [
-      "https://i.ibb.co/WvTcVRPM/Design-sans-titre-1-1.png",
+      "https://i.ibb.co/Psj6hfDC/frontcover-jpg.jpg",
       "https://i.ibb.co/6cs1gWRJ/frontcover-jpg.jpg",
-      "https://i.ibb.co/qLL8vdJB/FOI-sans-criture.jpg",
-      "https://i.ibb.co/rKLrXsBR/SALUT-sans-criture-2.png"
+      "https://i.ibb.co/bj7fnR9c/frontcover-jpg.jpg",
+      "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
     ] : locale === 'zh' ? [
-      "https://i.ibb.co/C3QMY5g5/Design-sans-titre-1-1.png",
-      "https://i.ibb.co/G4mdTkrG/frontcover-jpg.jpg",
-      "https://i.ibb.co/TDzmmTB7/FOI-sans-criture.jpg",
-      "https://i.ibb.co/h1DFdmWB/SALUT-sans-criture-2.png"
+      "https://i.ibb.co/Psj6hfDC/frontcover-jpg.jpg",
+      "https://i.ibb.co/tTZhYf8x/frontcover-jpg.jpg",
+      "https://i.ibb.co/bj7fnR9c/frontcover-jpg.jpg",
+      "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
     ] : locale === 'hi' ? [
-      "https://i.ibb.co/ZzF77ZTp/Design-sans-titre-1-1.png",
+      "https://i.ibb.co/Psj6hfDC/frontcover-jpg.jpg",
       "https://i.ibb.co/HLtR2LdJ/frontcover-jpg.jpg",
       "https://i.ibb.co/ycsdvs7z/frontcover-jpg.jpg",
-      "https://i.ibb.co/jPd8wf5z/SALUT-sans-criture-2.png"
+      "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
     ] : undefined}
   />
 
@@ -214,7 +216,7 @@ const jsonLdString = JSON.stringify(jsonLd);
       />
     </div>
 
-    <div class="books-grid">
+    <div class="books-grid" id="books-grid">
       {books.map((book, index) => {
         const translated = bookData[book.id];
         const coverImage = translated?.coverImage || book.image;
@@ -243,7 +245,6 @@ const jsonLdString = JSON.stringify(jsonLd);
       })}
     </div>
   </section>
-
   <Newsletter
     title={newsletter.title}
     description={newsletter.description}
@@ -266,7 +267,11 @@ const jsonLdString = JSON.stringify(jsonLd);
   <Footer
     nav={footer?.nav?.map((label) => ({
       label,
-      href: label === 'Accueil' || label === 'Home' || label === 'Inicio' || label === 'Start' ? '/' : `/#${label.toLowerCase()}`
+      href: label === 'Accueil' || label === 'Home' || label === 'Inicio' || label === 'Start'
+        ? `/${locale}/`
+        : label === 'Blog' || label === 'Блог' || label === '博客' || label === 'ब्लॉग'
+          ? `/${locale}/blog/`
+          : `/#${label.toLowerCase()}`
     })) || []}
     social={footer?.social?.map((label, i) => ({
       label,

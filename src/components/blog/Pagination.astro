@@ -1,0 +1,224 @@
+---
+// Pagination.astro - Pagination accessible avec ellipsis
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  baseUrl: string; // ex: "/fr/blog/" ou "/fr/blog/categorie/priere/"
+  lang?: string;
+  previousText?: string;
+  nextText?: string;
+  pageOfText?: string;
+}
+
+const { 
+  currentPage, 
+  totalPages, 
+  baseUrl, 
+  lang = 'fr',
+  previousText = 'Précédent',
+  nextText = 'Suivant',
+  pageOfText = 'Page {current} sur {total}',
+} = Astro.props;
+
+// Générer pages à afficher (avec ellipsis)
+function getPageNumbers(current: number, total: number): (number | 'ellipsis')[] {
+  if (total <= 7) {
+    return Array.from({ length: total }, (_, i) => i + 1);
+  }
+  
+  const pages: (number | 'ellipsis')[] = [1];
+  
+  if (current > 3) {
+    pages.push('ellipsis');
+    pages.push(current - 1, current, current + 1);
+  } else {
+    pages.push(2, 3, 4);
+  }
+  
+  if (current < total - 2) {
+    if (current > 3) {
+      // already added current+1
+    } else {
+      pages.push(current + 1);
+    }
+    pages.push('ellipsis');
+    pages.push(total);
+  } else {
+    for (let i = Math.max(current + 2, pages[pages.length - 1] as number + 1); i <= total; i++) {
+      pages.push(i);
+    }
+  }
+  
+  return pages.filter((p, i, arr) => {
+    if (p === 'ellipsis') return arr[i - 1] !== 'ellipsis';
+    return true;
+  });
+}
+
+const pageNumbers = getPageNumbers(currentPage, totalPages);
+---
+
+<nav class="pagination" aria-label="Pagination des articles" role="navigation">
+  <span class="pagination-info" aria-live="polite">
+    {pageOfText.replace('{current}', String(currentPage)).replace('{total}', String(totalPages))}
+  </span>
+  
+  <ul class="pagination-list" role="list">
+    {/* Previous */}
+    <li>
+      <a 
+        href={currentPage > 1 ? `${baseUrl}page/${currentPage - 1}/` : '#'} 
+        class="pagination-link pagination-prev"
+        aria-label={previousText}
+        aria-disabled={currentPage === 1}
+        rel={currentPage === 1 ? 'nofollow' : undefined}
+        tabindex={currentPage === 1 ? -1 : undefined}
+        aria-hidden={currentPage === 1}
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        <span class="pagination-text">{previousText}</span>
+      </a>
+    </li>
+    
+    {/* Page numbers */}
+    {pageNumbers.map(item => (
+      item === 'ellipsis' ? (
+        <li key="ellipsis">
+          <span class="pagination-ellipsis" aria-hidden="true">…</span>
+        </li>
+      ) : (
+        <li key={item}>
+          <a 
+            href={item === 1 ? baseUrl : `${baseUrl}page/${item}/`}
+            class={`pagination-link ${item === currentPage ? 'active' : ''}`}
+            aria-label={`Page ${item}`}
+            aria-current={item === currentPage ? 'page' : undefined}
+          >
+            {item}
+          </a>
+        </li>
+      )
+    ))}
+    
+    {/* Next */}
+    <li>
+      <a 
+        href={currentPage < totalPages ? `${baseUrl}page/${currentPage + 1}/` : '#'} 
+        class="pagination-link pagination-next"
+        aria-label={nextText}
+        aria-disabled={currentPage === totalPages}
+        rel={currentPage === totalPages ? 'nofollow' : undefined}
+        tabindex={currentPage === totalPages ? -1 : undefined}
+        aria-hidden={currentPage === totalPages}
+      >
+        <span class="pagination-text">{nextText}</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<style is:global>
+  .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin: var(--space-xl) 0;
+    padding: var(--space-md) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .pagination-info {
+    font-size: var(--text-sm);
+    color: var(--color-ink-light);
+    order: -1;
+    width: 100%;
+    text-align: center;
+    margin-bottom: var(--space-sm);
+  }
+
+  .pagination-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-xs);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .pagination-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .pagination-link:hover:not(.active):not([aria-disabled="true"]) {
+    background: var(--color-gold-light);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+  }
+
+  .pagination-link.active {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-paper);
+    cursor: default;
+  }
+
+  .pagination-link[aria-disabled="true"],
+  .pagination-link[aria-hidden="true"] {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .pagination-prev .pagination-text,
+  .pagination-next .pagination-text {
+    display: none;
+  }
+
+  @media (min-width: 480px) {
+    .pagination-prev .pagination-text,
+    .pagination-next .pagination-text {
+      display: inline;
+      margin: 0 var(--space-xs);
+    }
+  }
+
+  .pagination-ellipsis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
+    color: var(--color-ink-light);
+    font-size: var(--text-lg);
+  }
+
+  /* RTL support */
+  [dir="rtl"] .pagination-prev svg {
+    transform: rotate(180deg);
+  }
+  
+  [dir="rtl"] .pagination-next svg {
+    transform: rotate(180deg);
+  }
+</style>

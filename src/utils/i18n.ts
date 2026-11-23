@@ -2,7 +2,7 @@
  * i18n utilities for language detection and URL handling
  */
 
-export const SUPPORTED_LANGS = ['fr', 'en', 'es', 'de', 'pt', 'it', 'ru', 'zh', 'hi'] as const;
+export const SUPPORTED_LANGS = ['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'pl', 'ar', 'ru', 'zh', 'hi'] as const;
 export type SupportedLang = typeof SUPPORTED_LANGS[number];
 export const DEFAULT_LANG: SupportedLang = 'fr';
 
@@ -10,9 +10,12 @@ export const LANG_NAMES: Record<SupportedLang, string> = {
   fr: 'Français',
   en: 'English',
   es: 'Español',
-  de: 'Deutsch',
   pt: 'Português',
   it: 'Italiano',
+  de: 'Deutsch',
+  nl: 'Nederlands',
+  pl: 'Polski',
+  ar: 'العربية',
   ru: 'Русский',
   zh: '中文',
   hi: 'हिन्दी',
@@ -22,9 +25,12 @@ export const LANG_FLAGS: Record<SupportedLang, string> = {
   fr: '🇫🇷',
   en: '🇬🇧',
   es: '🇪🇸',
-  de: '🇩🇪',
   pt: '🇵🇹',
   it: '🇮🇹',
+  de: '🇩🇪',
+  nl: '🇳🇱',
+  pl: '🇵🇱',
+  ar: '🇸🇦',
   ru: '🇷🇺',
   zh: '🇨🇳',
   hi: '🇮🇳',
@@ -34,9 +40,12 @@ export const LANG_DIRS: Record<SupportedLang, 'ltr' | 'rtl'> = {
   fr: 'ltr',
   en: 'ltr',
   es: 'ltr',
-  de: 'ltr',
   pt: 'ltr',
   it: 'ltr',
+  de: 'ltr',
+  nl: 'ltr',
+  pl: 'ltr',
+  ar: 'rtl',
   ru: 'ltr',
   zh: 'ltr',
   hi: 'ltr',

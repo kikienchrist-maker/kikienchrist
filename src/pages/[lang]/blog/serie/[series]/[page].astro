@@ -1,0 +1,75 @@
+---
+// [lang]/blog/serie/[series]/[page].astro - Page série (articles ordonnés par seriesOrder)
+import { getCollection } from 'astro:content';
+import { paginate } from 'astro:paginate';
+import BlogIndex from '@components/blog/BlogIndex.astro';
+import type { CollectionEntry } from 'astro:content';
+
+const validLangs = ['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'pl', 'ar'];
+
+export async function getStaticPaths({ paginate }) {
+  const validLangsLocal = ['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'pl', 'ar'];
+  const posts = await getCollection('blog', ({ data }) => !data.draft && data.series);
+  
+  // Grouper par langue + série
+  const seriesByLang: Record<string, Record<string, CollectionEntry<'blog'>[]>> = {};
+  
+  for (const post of posts) {
+    const lang = post.data.lang;
+    const series = post.data.series;
+    
+    if (!seriesByLang[lang]) seriesByLang[lang] = {};
+    if (!seriesByLang[lang][series]) seriesByLang[lang][series] = [];
+    
+    seriesByLang[lang][series].push(post);
+  }
+  
+  const paths = [];
+  
+  for (const [lang, seriesMap] of Object.entries(seriesByLang)) {
+    if (!validLangsLocal.includes(lang)) continue;
+    
+    for (const [series, seriesPosts] of Object.entries(seriesMap)) {
+      // Trier par seriesOrder, puis par date
+      seriesPosts.sort((a, b) => {
+        const orderA = a.data.seriesOrder || 999;
+        const orderB = b.data.seriesOrder || 999;
+        if (orderA !== orderB) return orderA - orderB;
+        return new Date(a.data.pubDate).getTime() - new Date(b.data.pubDate).getTime();
+      });
+      
+      const paginated = paginate(seriesPosts, { 
+        pageSize: 10,
+        params: { lang, series: series.toLowerCase().replace(/\s+/g, '-') },
+      });
+      
+      for (const page of paginated) {
+        paths.push({
+          params: { lang, series: series.toLowerCase().replace(/\s+/g, '-'), ...page.params },
+          props: { 
+            posts: page.data,
+            pagination: page.pagination,
+            lang,
+            series,
+          },
+        });
+      }
+    }
+  }
+  
+  return paths;
+}
+
+const { posts, pagination, lang, series } = Astro.props;
+
+if (!validLangs.includes(lang)) {
+  return Astro.redirect('/fr/blog/');
+}
+---
+
+<BlogIndex 
+  lang={lang} 
+  series={series}
+  posts={posts as CollectionEntry<'blog'>[]} 
+  pagination={pagination}
+/>

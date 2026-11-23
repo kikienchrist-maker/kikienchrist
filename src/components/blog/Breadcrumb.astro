@@ -1,0 +1,125 @@
+---
+// Breadcrumb.astro - Fil d'Ariane avec JSON-LD BreadcrumbList
+interface Props {
+  items: Array<{
+    label: string;
+    href?: string;
+    current?: boolean;
+  }>;
+}
+
+const { items } = Astro.props;
+
+// Générer JSON-LD BreadcrumbList
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.label,
+    item: item.href ? new URL(item.href, Astro.site).toString() : undefined,
+  })).filter(item => item.item),
+};
+---
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane" itemscope itemtype="https://schema.org/BreadcrumbList">
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  
+  <ol class="breadcrumb-list" role="list">
+    {items.map((item, index) => (
+      <li 
+        class="breadcrumb-item" 
+        itemprop="itemListElement" 
+        itemscope 
+        itemtype="https://schema.org/ListItem"
+        key={index}
+      >
+        <meta itemprop="position" content={index + 1} />
+        
+        {item.href ? (
+          <a 
+            href={item.href} 
+            itemprop="item"
+            class="breadcrumb-link"
+            aria-current={item.current ? 'page' : undefined}
+          >
+            <span itemprop="name">{item.label}</span>
+          </a>
+        ) : (
+          <span 
+            itemprop="name" 
+            class="breadcrumb-current"
+            aria-current="page"
+          >
+            {item.label}
+          </span>
+        )}
+        
+        {index < items.length - 1 && (
+          <span class="breadcrumb-separator" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style is:global>
+  .breadcrumb {
+    margin-bottom: var(--space-lg);
+    font-size: var(--text-sm);
+  }
+
+  .breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .breadcrumb-link {
+    color: var(--color-ink-light);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--color-gold);
+  }
+
+  .breadcrumb-current {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+
+  .breadcrumb-separator {
+    display: flex;
+    align-items: center;
+    color: var(--color-ink-light);
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  .breadcrumb-separator svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* RTL support */
+  [dir="rtl"] .breadcrumb-separator svg {
+    transform: rotate(180deg);
+  }
+</style>

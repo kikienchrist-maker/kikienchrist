@@ -1,0 +1,28 @@
+---
+// Mentions Légales - Route dynamique multilingue
+import { getCollection } from 'astro:content';
+import LegalLayout from '../../components/LegalLayout.astro';
+
+export async function getStaticPaths() {
+  const allPages = await getCollection('legalPages');
+  const pages = allPages.filter(p => p.data.pageSlug === 'mentions-legales');
+  return pages.map(page => ({
+    params: { lang: page.data.lang },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const { title, description, pageSlug, lang, lastUpdated, version } = page.data;
+const content = page.body;
+---
+
+<LegalLayout
+  title={title}
+  description={description}
+  slug={pageSlug}
+  lang={lang}
+  lastUpdated={lastUpdated}
+  version={version}
+  content={content}
+/>

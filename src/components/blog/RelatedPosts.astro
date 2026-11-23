@@ -1,0 +1,103 @@
+---
+// RelatedPosts.astro - Articles liés avec scoring (série > catégorie > tags > récence)
+import type { CollectionEntry } from 'astro:content';
+import BlogPostCard from './BlogPostCard.astro';
+import { getCollection } from 'astro:content';
+import { getRelatedPosts, type BlogPostData } from '../../utils/blog';
+
+interface Props {
+  currentSlug: string;
+  currentLang: string;
+  category?: string;
+  tags?: string[];
+  series?: string;
+  limit?: number;
+}
+
+const { currentSlug, currentLang, category, tags = [], series, limit = 3 } = Astro.props;
+
+// Récupérer tous les articles de la langue
+const allEntries = await getCollection('blog', ({ data }) => data.lang === currentLang && !data.draft);
+
+// Transformer CollectionEntry[] en BlogPostData[] pour getRelatedPosts
+const allPosts: BlogPostData[] = allEntries.map(entry => ({
+  ...entry.data,
+  slug: entry.slug,
+  body: '', // Non nécessaire pour scoring
+}));
+
+// Calculer articles liés (retourne BlogPostData[])
+const relatedPostsData = getRelatedPosts({
+  allPosts,
+  currentSlug,
+  category,
+  tags,
+  series,
+  limit,
+});
+
+// Remapper vers CollectionEntry pour BlogPostCard
+const relatedPosts = allEntries.filter(entry => 
+  relatedPostsData.some(r => r.slug === entry.slug)
+);
+
+const ui = {
+  fr: { title: 'Articles similaires', readMore: 'Lire la suite' },
+  en: { title: 'Related Articles', readMore: 'Read more' },
+  es: { title: 'Artículos relacionados', readMore: 'Leer más' },
+  pt: { title: 'Artigos relacionados', readMore: 'Ler mais' },
+  it: { title: 'Articoli correlati', readMore: 'Leggi tutto' },
+  de: { title: 'Ähnliche Artikel', readMore: 'Weiterlesen' },
+  nl: { title: 'Gerelateerde artikelen', readMore: 'Lees meer' },
+  pl: { title: 'Powiązane artykuły', readMore: 'Czytaj dalej' },
+  ar: { title: 'مقالات ذات صلة', readMore: 'اقرأ المزيد' },
+};
+
+const t = ui[currentLang as keyof typeof ui] || ui.fr;
+---
+
+{relatedPosts.length > 0 && (
+  <section class="related-posts" aria-labelledby="related-posts-title">
+    <h2 id="related-posts-title" class="section-title">{t.title}</h2>
+    <div class="related-posts-grid" role="list">
+      {relatedPosts.map(post => (
+        <BlogPostCard 
+          post={post} 
+          lang={currentLang}
+          readMoreText={t.readMore}
+        />
+      ))}
+    </div>
+  </section>
+)}
+
+<style is:global>
+  .related-posts {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .section-title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-lg);
+    color: var(--color-ink);
+  }
+
+  .related-posts-grid {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 640px) {
+    .related-posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .related-posts-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

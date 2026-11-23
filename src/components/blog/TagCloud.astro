@@ -1,0 +1,125 @@
+---
+// TagCloud.astro - Nuage de tags populaires avec taille proportionnelle
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  lang: string;
+  currentTag?: string;
+  posts: CollectionEntry<'blog'>[];
+  limit?: number;
+}
+
+const { lang, currentTag, posts, limit = 20 } = Astro.props;
+
+// Compter tags
+const tagCounts: Record<string, number> = {};
+for (const post of posts) {
+  if (!post.data.draft) {
+    for (const tag of post.data.tags) {
+      tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+    }
+  }
+}
+
+// Trier par compte décroissant, prendre top N
+const sortedTags = Object.entries(tagCounts)
+  .sort(([, a], [, b]) => b - a)
+  .slice(0, limit);
+
+// Calculer tailles (min/max font-size)
+const counts = sortedTags.map(([, count]) => count);
+const maxCount = Math.max(...counts, 1);
+const minCount = Math.min(...counts);
+
+const ui = {
+  fr: { title: 'Tags populaires' },
+  en: { title: 'Popular Tags' },
+  es: { title: 'Etiquetas populares' },
+  pt: { title: 'Tags populares' },
+  it: { title: 'Tag popolari' },
+  de: { title: 'Beliebte Tags' },
+  nl: { title: 'Populaire tags' },
+  pl: { title: 'Popularne tagi' },
+  ar: { title: 'الوسوم الشائعة' },
+};
+
+const t = ui[lang as keyof typeof ui] || ui.fr;
+
+// Calculer font-size proportionnelle (0.8rem à 1.5rem)
+function getTagSize(count: number): string {
+  if (maxCount === minCount) return '1rem';
+  const ratio = (count - minCount) / (maxCount - minCount);
+  const minSize = 0.8;
+  const maxSize = 1.5;
+  const size = minSize + ratio * (maxSize - minSize);
+  return `${size.toFixed(2)}rem`;
+}
+---
+
+{sortedTags.length > 0 && (
+  <nav class="tag-cloud" aria-labelledby="tag-cloud-title">
+    <h3 id="tag-cloud-title" class="filter-title">{t.title}</h3>
+    <div class="tag-cloud-list" role="list">
+      {sortedTags.map(([tag, count]) => (
+        <a
+          href={`/${lang}/blog/tag/${tag.toLowerCase().replace(/\s+/g, '-')}/`}
+          class="tag-cloud-item"
+          style={{ fontSize: getTagSize(count) }}
+          aria-label={`${tag} (${count} article${count > 1 ? 's' : ''})`}
+          aria-current={currentTag === tag ? 'page' : undefined}
+        >
+          {tag}
+        </a>
+      ))}
+    </div>
+  </nav>
+)}
+
+<style is:global>
+  .tag-cloud {
+    margin-bottom: var(--space-xl);
+  }
+
+  .filter-title {
+    font-size: var(--text-base);
+    font-weight: 600;
+    margin: 0 0 var(--space-md);
+    color: var(--color-ink);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .tag-cloud-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    line-height: 2;
+  }
+
+  .tag-cloud-item {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--color-paper);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+  }
+
+  .tag-cloud-item:hover {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-paper);
+    transform: scale(1.05);
+  }
+
+  .tag-cloud-item[aria-current="page"] {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-paper);
+    font-weight: 600;
+  }
+</style>

@@ -1,5 +1,7 @@
 ---
-// Footer.astro — Localized version with inline language switcher
+// Footer.astro — Localized version with inline language switcher + legal links
+
+import translations from '../data/translations.json';
 
 interface NavItem {
   label: string;
@@ -12,19 +14,27 @@ interface SocialItem {
   external: boolean;
 }
 
+interface LegalNavItem {
+  label: string;
+  href: string;
+  slug: string; // mentions-legales | confidentialite | cookies | cgv | accessibilite
+}
+
 interface Props {
   nav?: NavItem[];
   social?: SocialItem[];
+  legalNav?: LegalNavItem[];
   availability?: string;
   copyright?: string;
   locale?: string;
 }
 
 const nav = Astro.props.nav ?? [
-  { label: "Accueil", href: "/" },
-  { label: "Livres", href: "/#livres" },
-  { label: "Guides", href: "/guides/" },
-  { label: "Guide offert", href: "/7-prieres/" }
+  { label: t.common?.home || "Accueil", href: `/${currentLang}/` },
+  { label: t.common?.books || "Livres", href: `/${currentLang}/#livres` },
+  { label: t.common?.blog || "Blog", href: `/${currentLang}/blog/` },
+  { label: t.common?.guides || "Guides", href: `/${currentLang}/guides/` },
+  { label: t.common?.freeGuide || "Guide offert", href: `/${currentLang}/7-prieres/` }
 ];
 
 const social = Astro.props.social ?? [
@@ -32,36 +42,67 @@ const social = Astro.props.social ?? [
   { label: "Pinterest", href: "https://fr.pinterest.com/kikienchrist/", external: true }
 ];
 
-const availability = Astro.props.availability ?? "Livres disponibles en papier, ebook et audio.";
-const copyright = Astro.props.copyright ?? "Kiki en Christ. Tous droits réservés.";
+// Legal navigation - built from translations if not provided
+const currentLang = Astro.props.locale || Astro.params.lang || 'fr';
+const t = translations[currentLang] || translations.fr;
+
+// Les routes Astro utilisent les slugs FR (pageSlug) pour toutes les langues
+// Ex: /en/mentions-legales/, /hi/mentions-legales/
+const legalSlugs = ['mentions-legales', 'confidentialite', 'cookies', 'cgv', 'accessibilite'] as const;
+const defaultLegalNav: LegalNavItem[] = legalSlugs.map(slug => ({
+  label: t.legal?.nav?.[slug] || slug,
+  href: `/${currentLang}/${slug}/`,
+  slug
+}));
+const legalNav = Astro.props.legalNav ?? defaultLegalNav;
+
+const availability = Astro.props.availability ?? (t.footer?.availability ?? "Livres disponibles en papier, ebook et audio.");
+const copyright = Astro.props.copyright ?? (t.footer?.copyright ?? "Kiki en Christ. Tous droits réservés.");
 const currentYear = new Date().getFullYear();
 
 const SUPPORTED_LANGS = [
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
   { code: 'en', name: 'English', flag: '🇬🇧' },
   { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
   { code: 'pt', name: 'Português', flag: '🇵🇹' },
   { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  { code: 'nl', name: 'Nederlands', flag: '🇳🇱' },
+  { code: 'pl', name: 'Polski', flag: '🇵🇱' },
+  { code: 'ar', name: 'العربية', flag: '🇸🇦' },
   { code: 'ru', name: 'Русский', flag: '🇷🇺' },
   { code: 'zh', name: '中文', flag: '🇨🇳' },
   { code: 'hi', name: 'हिन्दी', flag: '🇮🇳' },
 ];
 
-const currentLang = Astro.props.locale || Astro.params.lang || 'fr';
 const currentPath = Astro.url.pathname;
 ---
 
 <footer class="site" role="contentinfo">
   <div class="wrap">
-    <p>
-      {nav.map((item, i) => (
-        <> {i > 0 && ' · '} <a href={item.href}>{item.label}</a> </>
-      ))}
-      {social.map((item, i) => (
-        <> · <a href={item.href} target="_blank" rel="noopener">{item.label}</a> </>
-      ))}
-    </p>
+    <div class="footer-grid">
+      <nav class="footer-nav" aria-label="Navigation principale">
+        <p>
+          {nav.map((item, i) => (
+            <> {i > 0 && ' · '} <a href={item.href}>{item.label}</a> </>
+          ))}
+        </p>
+      </nav>
+
+      <nav class="footer-legal" aria-label="Navigation légale">
+        <p>
+          {legalNav.map((item, i) => (
+            <> {i > 0 && ' · '} <a href={item.href}>{item.label}</a> </>
+          ))}
+        </p>
+      </nav>
+
+      <div class="footer-social">
+        {social.map((item, i) => (
+          <> {i > 0 && ' · '} <a href={item.href} target="_blank" rel="noopener">{item.label}</a> </>
+        ))}
+      </div>
+    </div>
 
     <div class="lang-switch">
       <div class="lang-switcher" id="langSwitcher">
@@ -69,7 +110,7 @@ const currentPath = Astro.url.pathname;
           class="lang-btn"
           aria-haspopup="listbox"
           aria-expanded="false"
-          aria-label="Changer de langue"
+          aria-label={t.common?.language || 'Changer de langue'}
           id="langBtn"
         >
           <span class="lang-flag">
@@ -83,7 +124,7 @@ const currentPath = Astro.url.pathname;
           </svg>
         </button>
 
-        <div class="lang-dropdown" role="listbox" aria-label="Langues disponibles" id="langDropdown">
+        <div class="lang-dropdown" role="listbox" aria-label={t.common?.language || 'Langues disponibles'} id="langDropdown">
           {SUPPORTED_LANGS.map(lang => {
             const isCurrent = lang.code === currentLang;
             const targetPath = currentPath.replace(/^\/[a-z]{2}(?=\/|$)/, `/${lang.code}`);
@@ -200,6 +241,36 @@ const currentPath = Astro.url.pathname;
   .lang-option.current .lang-check {
     display: inline;
     color: var(--color-primary, #0066cc);
+  }
+
+  /* Footer grid layout */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .footer-nav,
+  .footer-legal,
+  .footer-social {
+    text-align: center;
+  }
+  .footer-legal a {
+    color: var(--color-text-muted, #888);
+    font-size: 0.875rem;
+  }
+  .footer-legal a:hover {
+    color: var(--color-primary, #0066cc);
+  }
+
+  @media (min-width: 640px) {
+    .footer-grid {
+      grid-template-columns: 2fr 2fr 1fr;
+      text-align: left;
+    }
+    .footer-nav { text-align: left; }
+    .footer-legal { text-align: center; }
+    .footer-social { text-align: right; }
   }
 </style>
 

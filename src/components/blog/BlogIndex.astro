@@ -1,0 +1,550 @@
+---
+// BlogIndex.astro - Page d'index du blog avec filtres, pagination, SEO, i18n
+import type { CollectionEntry } from 'astro:content';
+import MainLayout from '../../layouts/MainLayout.astro';
+import BlogPostCard from './BlogPostCard.astro';
+import CategoryFilter from './CategoryFilter.astro';
+import TagCloud from './TagCloud.astro';
+import Pagination from '../Pagination.astro';
+import NewsletterForm from '../NewsletterForm.astro';
+import Breadcrumb from '../Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+import { generateBlogJsonLd } from '../../utils/blog';
+
+interface Props {
+  lang: string;
+  category?: string;
+  tag?: string;
+  series?: string;
+  page?: number;
+  perPage?: number;
+  posts?: CollectionEntry<'blog'>[];
+  pagination?: { currentPage: number; totalPages: number; pageSize: number };
+}
+
+const { lang, category, tag, series, page = 1, perPage = 10, posts: passedPosts, pagination: passedPagination } = Astro.props;
+
+// Si posts/pagination fournis via props (depuis page Astro avec paginate), les utiliser
+// Sinon, fallback pour getStaticPaths direct (compatibilité)
+let allPosts: CollectionEntry<'blog'>[];
+let filteredPosts: CollectionEntry<'blog'>[];
+let totalPosts: number;
+let totalPages: number;
+let currentPage: number;
+let posts: CollectionEntry<'blog'>[];
+
+if (passedPosts && passedPagination) {
+  // Mode pagination Astro natif
+  allPosts = passedPosts;
+  filteredPosts = passedPosts; // Déjà filtrés par la page
+  totalPosts = passedPagination.totalItems || passedPosts.length;
+  totalPages = passedPagination.totalPages;
+  currentPage = passedPagination.currentPage;
+  posts = passedPosts;
+} else {
+  // Mode standalone (fallback)
+  allPosts = (await getCollection('blog', ({ data }) => data.lang === lang && !data.draft))
+    .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+
+  filteredPosts = allPosts;
+  if (category) filteredPosts = filteredPosts.filter(p => p.data.category === category);
+  if (tag) filteredPosts = filteredPosts.filter(p => p.data.tags.includes(tag));
+  if (series) filteredPosts = filteredPosts.filter(p => p.data.series === series);
+
+  totalPosts = filteredPosts.length;
+  totalPages = Math.ceil(totalPosts / perPage);
+  currentPage = Math.max(1, Math.min(page, totalPages));
+  const start = (currentPage - 1) * perPage;
+  const end = start + perPage;
+  posts = filteredPosts.slice(start, end);
+}
+
+// Métadonnées SEO
+const pageTitle = category 
+  ? `Blog — ${getCategoryLabel(category, lang)} | Kiki en Christ`
+  : tag
+    ? `Blog — Tag « ${tag} » | Kiki en Christ`
+    : series
+      ? `Blog — Série « ${series} » | Kiki en Christ`
+      : `Blog — Articles & Ressources | Kiki en Christ`;
+
+const pageDescription = category
+  ? `Découvrez tous nos articles sur « ${getCategoryLabel(category, lang)} » : prière, formation, témoignage, vie chrétienne...`
+  : tag
+    ? `Articles étiquetés « ${tag} » sur Kiki en Christ.`
+    : series
+      ? `Tous les articles de la série « ${series} ».`
+      : 'Articles, enseignements, témoignages et ressources pour grandir dans votre foi. Blog chrétien multilingue.';
+
+// URL canonique
+const baseUrl = new URL(`/${lang}/blog/`, Astro.site);
+if (category) baseUrl.pathname += `categorie/${category}/`;
+else if (tag) baseUrl.pathname += `tag/${tag}/`;
+else if (series) baseUrl.pathname += `serie/${series.toLowerCase().replace(/\s+/g, '-')}/`;
+if (currentPage > 1) baseUrl.pathname += `page/${currentPage}/`;
+
+const canonical = baseUrl.toString();
+
+// JSON-LD Blog
+const jsonLd = generateBlogJsonLd(posts, Astro.site?.toString() || 'https://kikienchrist.vercel.app', lang, {
+  currentPage,
+  totalPages,
+  pageSize: perPage,
+});
+
+// Import getCategoryLabel
+function getCategoryLabel(category: string, lang: string): string {
+  const labels: Record<string, Record<string, string>> = {
+    fr: { prière: 'Prière', formation: 'Formation', témoignage: 'Témoignage', 'vie-chrétienne': 'Vie chrétienne', famille: 'Famille', mission: 'Mission', actualité: 'Actualité', ressource: 'Ressource' },
+    en: { prière: 'Prayer', formation: 'Teaching', témoignage: 'Testimony', 'vie-chrétienne': 'Christian Life', famille: 'Family', mission: 'Mission', actualité: 'News', ressource: 'Resource' },
+    es: { prière: 'Oración', formation: 'Enseñanza', témoignage: 'Testimonio', 'vie-chrétienne': 'Vida Cristiana', famille: 'Familia', mission: 'Misión', actualité: 'Noticias', ressource: 'Recurso' },
+    pt: { prière: 'Oração', formation: 'Ensino', témoignage: 'Testemunho', 'vie-chrétienne': 'Vida Cristã', famille: 'Família', mission: 'Missão', actualité: 'Notícias', ressource: 'Recurso' },
+    it: { prière: 'Preghiera', formation: 'Insegnamento', témoignage: 'Testimonanza', 'vie-chrétienne': 'Vita Cristiana', famille: 'Famiglia', mission: 'Missione', actualité: 'Notizie', ressource: 'Risorsa' },
+    de: { prière: 'Gebet', formation: 'Lehre', témoignage: 'Zeugnis', 'vie-chrétienne': 'Christliches Leben', famille: 'Familie', mission: 'Mission', actualité: 'Nachrichten', ressource: 'Ressource' },
+    nl: { prière: 'Gebed', formation: 'Onderwijs', témoignage: 'Getuigenis', 'vie-chrétienne': 'Christelijk Leven', famille: 'Gezin', mission: 'Missie', actualité: 'Nieuws', ressource: 'Hulpbron' },
+    pl: { prière: 'Modlitwa', formation: 'Nauczanie', témoignage: 'Świadectwo', 'vie-chrétienne': 'Życie Chrześcijańskie', famille: 'Rodzina', mission: 'Misja', actualité: 'Aktualności', ressource: 'Zasób' },
+    ar: { prière: 'صلاة', formation: 'تعليم', témoignage: 'شهادة', 'vie-chrétienne': 'الحياة المسيحية', famille: 'عائلة', mission: 'مهمة', actualité: 'أخبار', ressource: 'مورد' },
+  };
+  return labels[lang]?.[category] || category;
+}
+
+// Traductions UI
+const ui = {
+  fr: { 
+    readMore: 'Lire la suite', 
+    featured: 'Mis en avant', 
+    noPosts: 'Aucun article trouvé',
+    filterBy: 'Filtrer par',
+    allCategories: 'Toutes catégories',
+    allTags: 'Tous les tags',
+    seriesLabel: 'Série',
+    categoryLabel: 'Catégorie',
+    tagLabel: 'Tag',
+    previousPage: 'Page précédente',
+    nextPage: 'Page suivante',
+    pageOf: 'Page {current} sur {total}',
+    newsletterTitle: 'Ne manquez aucun article',
+    newsletterDesc: 'Recevez nos nouveaux articles, ressources gratuites et encouragements chaque semaine.',
+  },
+  en: { 
+    readMore: 'Read more', 
+    featured: 'Featured', 
+    noPosts: 'No posts found',
+    filterBy: 'Filter by',
+    allCategories: 'All categories',
+    allTags: 'All tags',
+    seriesLabel: 'Series',
+    categoryLabel: 'Category',
+    tagLabel: 'Tag',
+    previousPage: 'Previous page',
+    nextPage: 'Next page',
+    pageOf: 'Page {current} of {total}',
+    newsletterTitle: 'Don\'t miss any article',
+    newsletterDesc: 'Get new articles, free resources, and encouragement every week.',
+  },
+  es: { 
+    readMore: 'Leer más', 
+    featured: 'Destacado', 
+    noPosts: 'No se encontraron artículos',
+    filterBy: 'Filtrar por',
+    allCategories: 'Todas las categorías',
+    allTags: 'Todas las etiquetas',
+    seriesLabel: 'Serie',
+    categoryLabel: 'Categoría',
+    tagLabel: 'Etiqueta',
+    previousPage: 'Página anterior',
+    nextPage: 'Página siguiente',
+    pageOf: 'Página {current} de {total}',
+    newsletterTitle: 'No te pierdas ningún artículo',
+    newsletterDesc: 'Recibe nuevos artículos, recursos gratuitos y ánimo cada semana.',
+  },
+  pt: { 
+    readMore: 'Ler mais', 
+    featured: 'Em destaque', 
+    noPosts: 'Nenhum artigo encontrado',
+    filterBy: 'Filtrar por',
+    allCategories: 'Todas as categorias',
+    allTags: 'Todas as tags',
+    seriesLabel: 'Série',
+    categoryLabel: 'Categoria',
+    tagLabel: 'Tag',
+    previousPage: 'Página anterior',
+    nextPage: 'Próxima página',
+    pageOf: 'Página {current} de {total}',
+    newsletterTitle: 'Não perca nenhum artigo',
+    newsletterDesc: 'Receba novos artigos, recursos gratuitos e encorajamento toda semana.',
+  },
+  it: { 
+    readMore: 'Leggi tutto', 
+    featured: 'In evidenza', 
+    noPosts: 'Nessun articolo trovato',
+    filterBy: 'Filtra per',
+    allCategories: 'Tutte le categorie',
+    allTags: 'Tutti i tag',
+    seriesLabel: 'Serie',
+    categoryLabel: 'Categoria',
+    tagLabel: 'Tag',
+    previousPage: 'Pagina precedente',
+    nextPage: 'Pagina successiva',
+    pageOf: 'Pagina {current} di {total}',
+    newsletterTitle: 'Non perdere nessun articolo',
+    newsletterDesc: 'Ricevi nuovi articoli, risorse gratuite e incoraggiamento ogni settimana.',
+  },
+  de: { 
+    readMore: 'Weiterlesen', 
+    featured: 'Empfohlen', 
+    noPosts: 'Keine Beiträge gefunden',
+    filterBy: 'Filtern nach',
+    allCategories: 'Alle Kategorien',
+    allTags: 'Alle Tags',
+    seriesLabel: 'Serie',
+    categoryLabel: 'Kategorie',
+    tagLabel: 'Schlagwort',
+    previousPage: 'Vorherige Seite',
+    nextPage: 'Nächste Seite',
+    pageOf: 'Seite {current} von {total}',
+    newsletterTitle: 'Keinen Artikel verpassen',
+    newsletterDesc: 'Erhalten Sie jede Woche neue Artikel, kostenlose Ressourcen und Ermutigung.',
+  },
+  nl: { 
+    readMore: 'Lees meer', 
+    featured: 'Uitgelicht', 
+    noPosts: 'Geen artikelen gevonden',
+    filterBy: 'Filteren op',
+    allCategories: 'Alle categorieën',
+    allTags: 'Alle tags',
+    seriesLabel: 'Serie',
+    categoryLabel: 'Categorie',
+    tagLabel: 'Tag',
+    previousPage: 'Vorige pagina',
+    nextPage: 'Volgende pagina',
+    pageOf: 'Pagina {current} van {total}',
+    newsletterTitle: 'Mis geen enkel artikel',
+    newsletterDesc: 'Ontvang elke week nieuwe artikelen, gratis bronnen en aanmoediging.',
+  },
+  pl: { 
+    readMore: 'Czytaj dalej', 
+    featured: 'Polecane', 
+    noPosts: 'Nie znaleziono artykułów',
+    filterBy: 'Filtruj według',
+    allCategories: 'Wszystkie kategorie',
+    allTags: 'Wszystkie tagi',
+    seriesLabel: 'Seria',
+    categoryLabel: 'Kategoria',
+    tagLabel: 'Tag',
+    previousPage: 'Poprzednia strona',
+    nextPage: 'Następna strona',
+    pageOf: 'Strona {current} z {total}',
+    newsletterTitle: 'Nie przegap żadnego artykułu',
+    newsletterDesc: 'Otrzymuj nowe artykuły, darmowe zasoby i pocieszenie co tydzień.',
+  },
+  ar: { 
+    readMore: 'اقرأ المزيد', 
+    featured: 'مميز', 
+    noPosts: 'لم يتم العثور على مقالات',
+    filterBy: 'تصفية حسب',
+    allCategories: 'جميع الفئات',
+    allTags: '所有标签',
+    seriesLabel: 'سلسلة',
+    categoryLabel: '类别',
+    tagLabel: '标签',
+    previousPage: 'الصفحة السابقة',
+    nextPage: 'الصفحة التالية',
+    pageOf: 'صفحة {current} من {total}',
+    newsletterTitle: 'لا تفوت أي مقال',
+    newsletterDesc: 'احصل على مقالات جديدة، موارد مجانية، وتشجيع كل أسبوع.',
+  },
+};
+
+const t = ui[lang as keyof typeof ui] || ui.fr;
+---
+
+<MainLayout
+  title={pageTitle}
+  description={pageDescription}
+  lang={lang}
+  canonical={canonical}
+  jsonLd={jsonLd}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <!-- Breadcrumb -->
+  <Breadcrumb 
+    items={[
+      { label: 'Accueil', href: `/${lang}/` },
+      { label: 'Blog', href: `/${lang}/blog/`, current: !category && !tag && !series },
+      ...(category ? [{ label: t.categoryLabel, href: `/${lang}/blog/categorie/${category}/`, current: !tag && !series }] : []),
+      ...(tag ? [{ label: t.tagLabel, href: `/${lang}/blog/tag/${tag}/`, current: !series }] : []),
+      ...(series ? [{ label: t.seriesLabel, href: `/${lang}/blog/serie/${series.toLowerCase().replace(/\s+/g, '-')}/`, current: true }] : []),
+      ...(currentPage > 1 ? [{ label: `Page ${currentPage}`, current: true }] : []),
+    ]}
+  />
+
+  <div class="blog-index">
+    <!-- Sidebar Filtres -->
+    <aside class="blog-sidebar">
+      <CategoryFilter 
+        lang={lang} 
+        currentCategory={category}
+        allCategories={['prière', 'formation', 'témoignage', 'vie-chrétienne', 'famille', 'mission', 'actualité', 'ressource']}
+        posts={allPosts}
+      />
+      
+      <TagCloud 
+        lang={lang} 
+        currentTag={tag}
+        posts={allPosts}
+        limit={20}
+      />
+    </aside>
+
+    <!-- Contenu Principal -->
+    <main class="blog-main">
+      {/* Hero Section (première page seulement) */}
+      {currentPage === 1 && (
+        <header class="blog-hero">
+          <h1>Blog Kiki en Christ</h1>
+          <p class="blog-subtitle">
+            {lang === 'fr' ? 'Articles, enseignements et témoignages pour grandir dans votre foi' :
+             lang === 'en' ? 'Articles, teachings and testimonies to grow in your faith' :
+             lang === 'es' ? 'Artículos, enseñanzas y testimonios para crecer en su fe' :
+             lang === 'pt' ? 'Artigos, ensinamentos e testemunhos para crescer na sua fé' :
+             lang === 'it' ? 'Articoli, insegnamenti e testimonianze per crescere nella fede' :
+             lang === 'de' ? 'Artikel, Lehren und Zeugnisse, um im Glauben zu wachsen' :
+             lang === 'nl' ? 'Artikelen, leer en getuigenissen om in uw geloof te groeien' :
+             lang === 'pl' ? 'Artykuły, nauczania i świadectwa, by rosnąć w wierze' :
+             'مقالات وتعاليم وشهادات للنمو في إيمانك'}
+          </p>
+          
+          <NewsletterForm 
+            lang={lang} 
+            inline={true}
+            title={t.newsletterTitle}
+            description={t.newsletterDesc}
+          />
+        </header>
+      )}
+
+      {/* Résultats filtres actifs */}
+      {(category || tag || series) && (
+        <div class="active-filters">
+          <span class="filter-label">{t.filterBy}:</span>
+          {category && (
+            <span class="filter-tag">
+              {t.categoryLabel}: {getCategoryLabel(category, lang)}
+              <a href={`/${lang}/blog/`} class="filter-remove" aria-label="Retirer filtre catégorie">×</a>
+            </span>
+          )}
+          {tag && (
+            <span class="filter-tag">
+              {t.tagLabel}: {tag}
+              <a href={category ? `/${lang}/blog/categorie/${category}/` : `/${lang}/blog/`} class="filter-remove" aria-label="Retirer filtre tag">×</a>
+            </span>
+          )}
+          {series && (
+            <span class="filter-tag">
+              {t.seriesLabel}: {series}
+              <a href={category ? `/${lang}/blog/categorie/${category}/` : `/${lang}/blog/`} class="filter-remove" aria-label="Retirer filtre série">×</a>
+            </span>
+          )}
+          <a href={`/${lang}/blog/`} class="clear-filters">{t.allCategories}</a>
+        </div>
+      )}
+
+      {/* Liste Articles */}
+      {posts.length > 0 ? (
+        <div class="blog-posts-grid" role="list" aria-label="Articles du blog">
+          {posts.map(post => (
+            <BlogPostCard 
+              post={post} 
+              lang={lang}
+              readMoreText={t.readMore}
+              featuredText={t.featured}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="no-posts" role="status">
+          <p>{t.noPosts}</p>
+          <a href={`/${lang}/blog/`} class="btn btn-primary">
+            Voir tous les articles
+          </a>
+        </div>
+      )}
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          baseUrl={baseUrl.pathname.replace(/\/page\/\d+\/?$/, '')}
+          lang={lang}
+          previousText={t.previousPage}
+          nextText={t.nextText}
+          pageOfText={t.pageOf}
+        />
+      )}
+
+      {/* Newsletter CTA bas de page */}
+      <section class="newsletter-cta-bottom" aria-labelledby="newsletter-bottom-title">
+        <h2 id="newsletter-bottom-title" class="section-title">{t.newsletterTitle}</h2>
+        <p>{t.newsletterDesc}</p>
+        <NewsletterForm lang={lang} inline={false} />
+      </section>
+    </main>
+  </div>
+</MainLayout>
+
+<style is:global>
+  .blog-index {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--space-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .blog-sidebar {
+    position: sticky;
+    top: 100px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    padding-right: var(--space-lg);
+    border-right: 1px solid var(--color-border);
+  }
+
+  .blog-main {
+    min-width: 0;
+  }
+
+  .blog-hero {
+    text-align: center;
+    padding: var(--space-2xl) 0;
+    margin-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .blog-hero h1 {
+    font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+    margin-bottom: var(--space-md);
+    color: var(--color-ink);
+  }
+
+  .blog-subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-ink-light);
+    max-width: 600px;
+    margin: 0 auto var(--space-xl);
+  }
+
+  .active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md);
+    background: var(--color-gold-light);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+  }
+
+  .filter-label {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .filter-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background: var(--color-paper);
+    border: 1px solid var(--color-border);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-full);
+    color: var(--color-ink);
+  }
+
+  .filter-remove {
+    margin-left: var(--space-xs);
+    color: var(--color-ink-light);
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 1;
+  }
+
+  .filter-remove:hover {
+    color: var(--color-error);
+  }
+
+  .clear-filters {
+    margin-left: auto;
+    color: var(--color-gold);
+    text-decoration: underline;
+    font-weight: 500;
+  }
+
+  .blog-posts-grid {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .no-posts {
+    text-align: center;
+    padding: var(--space-2xl);
+    color: var(--color-ink-light);
+  }
+
+  .no-posts .btn {
+    margin-top: var(--space-md);
+  }
+
+  .newsletter-cta-bottom {
+    margin-top: var(--space-2xl);
+    padding: var(--space-xl);
+    background: var(--color-ink);
+    color: var(--color-paper);
+    border-radius: var(--radius-lg);
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-md);
+    color: inherit;
+  }
+
+  .newsletter-cta-bottom .section-title {
+    color: var(--color-paper);
+  }
+
+  /* Mobile: Sidebar en dessous */
+  @media (max-width: 900px) {
+    .blog-index {
+      grid-template-columns: 1fr;
+    }
+    
+    .blog-sidebar {
+      position: static;
+      max-height: none;
+      border-right: none;
+      border-bottom: 1px solid var(--color-border);
+      padding-right: 0;
+      padding-bottom: var(--space-xl);
+      margin-bottom: var(--space-xl);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .active-filters {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .clear-filters {
+      margin-left: 0;
+      margin-top: var(--space-sm);
+    }
+  }
+</style>

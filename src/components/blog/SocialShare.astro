@@ -1,0 +1,432 @@
+---
+// SocialShare.astro - Partage social (Web Share API + fallback dropdown)
+interface Props {
+  url: string;
+  title: string;
+  description: string;
+  image?: string;
+  lang?: string;
+  class?: string;
+}
+
+const { 
+  url, 
+  title, 
+  description, 
+  image,
+  lang = 'fr',
+  class: className = '',
+} = Astro.props;
+
+// Réseaux sociaux supportés
+const socialNetworks = [
+  { 
+    id: 'facebook', 
+    label: 'Facebook', 
+    icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>',
+    url: (u: string) => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(u)}`,
+  },
+  { 
+    id: 'twitter', 
+    label: 'X (Twitter)', 
+    icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>',
+    url: (u: string, t: string) => `https://twitter.com/intent/tweet?url=${encodeURIComponent(u)}&text=${encodeURIComponent(t)}`,
+  },
+  { 
+    id: 'linkedin', 
+    label: 'LinkedIn', 
+    icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>',
+    url: (u: string) => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(u)}`,
+  },
+  { 
+    id: 'whatsapp', 
+    label: 'WhatsApp', 
+    icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.77 11.77 0 0 0 12 0C5.37 0 0 5.37 0 12c0 1.78.39 3.5 1.08 5.06L0 24l6.13-1.61c1.56.69 3.28 1.08 5.06 1.08 6.63 0 12-5.37 12-12 0-1.77-.39-3.5-1.07-5.06zM12 18.88c-1.7 0-3.3-.5-4.66-1.38l-2.3.65.66-2.41c-.88-.88-1.34-2.16-1.38-3.96 0-3.63 2.97-6.6 6.6-6.6s6.6 2.97 6.6 6.6c0 1.8-.5 3.48-1.38 4.65l.66 2.4-2.3.65c-1.36-.88-2.96-1.38-4.66-1.38z"/></svg>',
+    url: (u: string, t: string) => `https://wa.me/?text=${encodeURIComponent(`${t} ${u}`)}`,
+  },
+  { 
+    id: 'telegram', 
+    label: 'Telegram', 
+    icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.91 3.79L10.08 18.12c-.42.34-1.04.25-1.29-.17l-1.67-2.91c-.15-.28-.02-.63.26-.7l2.14-1.58 5.76-6.53c.34-.36.9-.36 1.24 0l6.42 7.32c.35.38.33.96-.06 1.23z"/></svg>',
+    url: (u: string, t: string) => `https://t.me/share/url?url=${encodeURIComponent(u)}&text=${encodeURIComponent(t)}`,
+  },
+  { 
+    id: 'email', 
+    label: 'Email', 
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>',
+    url: (u: string, t: string) => `mailto:?subject=${encodeURIComponent(t)}&body=${encodeURIComponent(`${t}\n\n${u}`)}`,
+  },
+  { 
+    id: 'copy', 
+    label: 'Copier le lien', 
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
+    url: null, // Handled via JS
+  },
+];
+
+// Traductions UI
+const ui = {
+  fr: { share: 'Partager', copied: 'Copié !', copyLink: 'Copier le lien', shareNative: 'Partage natif' },
+  en: { share: 'Share', copied: 'Copied!', copyLink: 'Copy link', shareNative: 'Native share' },
+  es: { share: 'Compartir', copied: '¡Copiado!', copyLink: 'Copiar enlace', shareNative: 'Compartir nativo' },
+  pt: { share: 'Compartilhar', copied: 'Copiado!', copyLink: 'Copiar link', shareNative: 'Compartilhar nativo' },
+  it: { share: 'Condividi', copied: 'Copiato!', copyLink: 'Copia link', shareNative: 'Condivisione nativa' },
+  de: { share: 'Teilen', copied: 'Kopiert!', copyLink: 'Link kopieren', shareNative: 'Nativ teilen' },
+  nl: { share: 'Delen', copied: 'Gekopieerd!', copyLink: 'Kopieer link', shareNative: 'Natuurlijk delen' },
+  pl: { share: 'Udostępnij', copied: 'Skopiowano!', copyLink: 'Kopiuj link', shareNative: 'Udostępnij natywnie' },
+  ar: { share: 'مشاركة', copied: 'تم النسخ!', copyLink: 'نسخ الرابط', shareNative: 'مشاركة أصلية' },
+};
+
+const t = ui[lang as keyof typeof ui] || ui.fr;
+---
+
+<div class={`social-share ${className}`} role="group" aria-label={t.share}>
+  {/* Bouton principal - Web Share API si dispo */}
+  {navigator.share && (
+    <button 
+      class="social-share-trigger native"
+      type="button"
+      aria-label={t.shareNative}
+      data-share-url={url}
+      data-share-title={title}
+      data-share-text={description}
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="18" cy="5" r="3"/>
+        <circle cx="6" cy="19" r="3"/>
+        <path d="M8.59 13.51a6 6 0 0 0 8.82 0L16 9.5"/>
+      </svg>
+      <span class="share-text">{t.share}</span>
+    </button>
+  )}
+
+  {/* Dropdown réseaux sociaux */}
+  <div class="social-share-dropdown">
+    <button 
+      class="social-share-trigger"
+      type="button"
+      aria-label={t.share}
+      aria-expanded="false"
+      aria-haspopup="true"
+      aria-controls="social-share-menu"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="18" cy="5" r="3"/>
+        <circle cx="6" cy="19" r="3"/>
+        <path d="M8.59 13.51a6 6 0 0 0 8.82 0L16 9.5"/>
+      </svg>
+      <span class="share-text">{t.share}</span>
+    </button>
+
+    <div 
+      id="social-share-menu" 
+      class="social-share-menu" 
+      role="menu"
+      aria-label={t.share}
+    >
+      {socialNetworks.map(network => {
+        const shareUrl = network.url 
+          ? network.url === 'copy' 
+            ? null 
+            : network.url(url, title)
+          : null;
+        
+        return (
+          <button
+            type="button"
+            role="menuitem"
+            class="social-share-item"
+            data-network={network.id}
+            data-url={shareUrl}
+            aria-label={`Partager sur ${network.label}`}
+          >
+            <span class="social-icon" aria-hidden="true">{network.icon}</span>
+            <span class="social-label">{network.label}</span>
+          </button>
+        );
+      })}
+    </div>
+  </div>
+</div>
+
+<script>
+  // Gestion partage
+  class SocialShare {
+    container: HTMLElement;
+    triggers: NodeListOf<HTMLButtonElement>;
+    menu: HTMLElement;
+    isOpen: boolean = false;
+    
+    constructor(container: HTMLElement) {
+      this.container = container;
+      this.triggers = container.querySelectorAll('.social-share-trigger');
+      this.menu = container.querySelector('.social-share-menu')!;
+      
+      this.init();
+    }
+    
+    init() {
+      // Web Share API (bouton natif)
+      const nativeBtn = this.container.querySelector('.social-share-trigger.native');
+      if (nativeBtn) {
+        nativeBtn.addEventListener('click', (e) => this.handleNativeShare(e));
+      }
+      
+      // Dropdown triggers
+      const dropdownTrigger = this.container.query('.social-share-trigger:not(.native)');
+      if (dropdownTrigger) {
+        dropdownTrigger.addEventListener('click', (e) => this.toggleMenu(e));
+      }
+      
+      // Menu items
+      this.menu?.addEventListener('click', (e) => this.handleMenuClick(e));
+      
+      // Fermer au clic extérieur
+      document.addEventListener('click', (e) => this.handleOutsideClick(e));
+      
+      // Fermer à l'échap
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isOpen) this.closeMenu();
+      });
+    }
+    
+    async handleNativeShare(e: Event) {
+      const btn = e.currentTarget as HTMLButtonElement;
+      const url = btn.dataset.shareUrl!;
+      const title = btn.dataset.shareTitle!;
+      const text = btn.dataset.shareText!;
+      
+      try {
+        await navigator.share({ title, text, url });
+      } catch (err) {
+        if ((err as Error).name !== 'AbortError') {
+          console.warn('Web Share API failed:', err);
+        }
+      }
+    }
+    
+    toggleMenu(e: Event) {
+      e.stopPropagation();
+      this.isOpen ? this.closeMenu() : this.openMenu();
+    }
+    
+    openMenu() {
+      this.menu.style.display = 'block';
+      this.menu.setAttribute('aria-hidden', 'false');
+      const trigger = this.container.querySelector('.social-share-trigger:not(.native)') as HTMLButtonElement;
+      trigger?.setAttribute('aria-expanded', 'true');
+      this.isOpen = true;
+      
+      // Focus premier item
+      const firstItem = this.menu.querySelector('[role="menuitem"]') as HTMLElement;
+      firstItem?.focus();
+    }
+    
+    closeMenu() {
+      this.menu.style.display = 'none';
+      this.menu.setAttribute('aria-hidden', 'true');
+      const trigger = this.container.querySelector('.social-share-trigger:not(.native)') as HTMLButtonElement;
+      trigger?.setAttribute('aria-expanded', 'false');
+      this.isOpen = false;
+    }
+    
+    handleMenuClick(e: Event) {
+      const item = (e.target as HTMLElement).closest('[role="menuitem"]') as HTMLButtonElement;
+      if (!item) return;
+      
+      const network = item.dataset.network;
+      const url = item.dataset.url;
+      
+      if (network === 'copy') {
+        this.copyToClipboard();
+      } else if (url) {
+        window.open(url, '_blank', 'noopener,noreferrer,width=600,height=400');
+      }
+      
+      this.closeMenu();
+    }
+    
+    async copyToClipboard() {
+      const shareUrl = this.container.querySelector('[data-share-url]')?.dataset.shareUrl || window.location.href;
+      
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        this.showToast('Copié !');
+      } catch {
+        // Fallback
+        const textarea = document.createElement('textarea');
+        textarea.value = shareUrl;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        this.showToast('Copié !');
+      }
+    }
+    
+    showToast(message: string) {
+      // Simple toast notification
+      const toast = document.createElement('div');
+      toast.className = 'social-share-toast';
+      toast.textContent = message;
+      toast.setAttribute('role', 'status');
+      toast.setAttribute('aria-live', 'polite');
+      document.body.appendChild(toast);
+      
+      setTimeout(() => toast.classList.add('show'), 10);
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, 2000);
+    }
+    
+    handleOutsideClick(e: Event) {
+      if (this.isOpen && !this.container.contains(e.target as Node)) {
+        this.closeMenu();
+      }
+    }
+  }
+  
+  // Initialiser
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.social-share').forEach(el => new SocialShare(el as HTMLElement));
+  });
+</script>
+
+<style is:global>
+  .social-share {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .social-share-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+  }
+
+  .social-share-trigger:hover {
+    background: var(--color-gold-light);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+  }
+
+  .social-share-trigger.native {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-paper);
+  }
+
+  .social-share-trigger.native:hover {
+    background: var(--color-gold-dark);
+    border-color: var(--color-gold-dark);
+    color: var(--color-paper);
+  }
+
+  .share-text {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .share-text {
+      display: inline;
+    }
+  }
+
+  /* Dropdown */
+  .social-share-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .social-share-menu {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: var(--space-sm);
+    padding: var(--space-sm);
+    background: var(--color-paper);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    z-index: 100;
+    min-width: 180px;
+  }
+
+  .social-share-menu[aria-hidden="false"] {
+    display: block;
+    animation: fadeInUp 0.2s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .social-share-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border: none;
+    background: transparent;
+    color: var(--color-ink);
+    font-size: var(--text-sm);
+    text-align: left;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: background var(--transition-fast);
+  }
+
+  .social-share-item:hover {
+    background: var(--color-gold-light);
+  }
+
+  .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .social-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Toast */
+  .social-share-toast {
+    position: fixed;
+    bottom: var(--space-xl);
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    padding: var(--space-md) var(--space-lg);
+    background: var(--color-ink);
+    color: var(--color-paper);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    transition: all var(--transition-normal);
+    z-index: 1000;
+  }
+
+  .social-share-toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+</style>

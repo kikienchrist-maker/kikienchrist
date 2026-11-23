@@ -199,23 +199,31 @@ const showFan = fanImages.length === 4;
     .bq .hero .fan img { width: clamp(88px, 26vw, 150px); }
   }
 
-  /* Mobile: stack fan vertically on very small screens */
+  /* Mobile: keep fan horizontal with smaller images and reduced rotations */
   @media (max-width: 480px) {
     .bq .hero .fan {
-      flex-direction: column;
-      align-items: center;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      gap: 2px;
       max-width: 100%;
+      overflow-x: auto;
+      padding: 4px 8px;
     }
     .bq .hero .fan img {
-      width: clamp(120px, 35vw, 160px);
-      margin: 0 0 8px !important;
+      width: clamp(55px, 18vw, 80px);
+      height: auto;
+      margin: 0 !important;
+      flex-shrink: 0;
     }
-    .bq .hero .fan .fan-1,
-    .bq .hero .fan .fan-2,
-    .bq .hero .fan .fan-3,
-    .bq .hero .fan .fan-4 {
-      transform: none !important;
-    }
+    .bq .hero .fan .fan-1 { transform: rotate(-5deg) translateY(4px); z-index: 1; }
+    .bq .hero .fan .fan-2 { transform: rotate(-1.5deg); z-index: 2; }
+    .bq .hero .fan .fan-3 { transform: rotate(1.5deg); z-index: 3; }
+    .bq .hero .fan .fan-4 { transform: rotate(5deg) translateY(4px); z-index: 4; }
+    .bq .hero .fan:hover .fan-1 { transform: rotate(-7deg) translate(-3px, 2px); }
+    .bq .hero .fan:hover .fan-2 { transform: rotate(-2.5deg) translateY(-2px); }
+    .bq .hero .fan:hover .fan-3 { transform: rotate(2.5deg) translateY(-2px); }
+    .bq .hero .fan:hover .fan-4 { transform: rotate(7deg) translate(3px, 2px); }
   }
 
   /* Reduced motion */

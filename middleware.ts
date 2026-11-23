@@ -2,7 +2,7 @@
 // This runs at the edge before static files are served
 // Uses standard Web APIs only (no next/server)
 
-const SUPPORTED_LANGS = ['fr', 'en', 'es', 'de', 'pt', 'it', 'ru', 'zh', 'hi'];
+const SUPPORTED_LANGS = ['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'pl', 'ar', 'ru', 'zh', 'hi'];
 const DEFAULT_LANG = 'fr';
 const COOKIE_NAME = 'preferred-lang';
 

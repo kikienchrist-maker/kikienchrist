@@ -1,7 +1,9 @@
 ---
-// MainLayout.astro — Main layout with lafoidieu design system + i18n support
+// MainLayout.astro — Main layout with lafoidieu design system + i18n support + GA4 + Cookie Banner
 
 import { SUPPORTED_LANGS, DEFAULT_LANG, getLocalizedUrls, generateHreflangLinks } from '../utils/i18n.ts';
+import { getTranslations } from '../utils/translations.ts';
+import CookieBanner from '../components/CookieBanner.astro';
 
 interface Props {
   title: string;
@@ -10,6 +12,7 @@ interface Props {
   ogImage: string;
   lang?: string;
   currentPath?: string;
+  jsonLd?: Record<string, any>; // JSON-LD structured data (WebPage, BreadcrumbList, etc.)
 }
 
 const {
@@ -18,7 +21,8 @@ const {
   canonicalURL = "https://kikienchrist.vercel.app/",
   ogImage = "https://kikienchrist.vercel.app/og/accueil.png",
   lang = 'fr',
-  currentPath = '/'
+  currentPath = '/',
+  jsonLd = null
 } = Astro.props;
 
 const locale = SUPPORTED_LANGS.includes(lang as any) ? lang : DEFAULT_LANG;
@@ -27,6 +31,81 @@ const baseUrl = 'https://kikienchrist.vercel.app';
 
 // Generate hreflang alternate URLs
 const hreflangLinks = generateHreflangLinks(baseUrl, currentPath);
+
+// Get translations for cookie banner
+const translations = getTranslations(locale);
+
+// Récupération de l'ID GA4 au build time
+const GA4_ID = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID || 'G-XXXXXXXXXX';
+const GA4_CONFIGURED = GA4_ID && GA4_ID !== 'G-XXXXXXXXXX';
+
+// Construction du script GA4 en string (pour injection via set:html)
+const ga4Script = GA4_CONFIGURED ? `
+  (function() {
+    var GA4_ID = '${GA4_ID}';
+
+    // dataLayer & gtag
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function gtag() {
+      window.dataLayer.push(arguments);
+    };
+
+    // Consent Mode v2 par défaut (denied jusqu'à acceptation)
+    window.gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500,
+    });
+
+    // Script GA4
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+    document.head.appendChild(script);
+
+    // Config GA4 - FORCER cookie_domain sur le sous-domaine exact (évite .vercel.app invalide)
+    window.gtag('js', new Date());
+    window.gtag('config', GA4_ID, {
+      send_page_view: false,
+      anonymize_ip: true,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+      cookie_domain: 'kikienchrist.vercel.app',
+      cookie_flags: 'SameSite=Lax;Secure',
+    });
+
+    // Exposer updateConsentMode pour le Cookie Banner
+    window.updateConsentMode = function(analyticsAccepted) {
+      if (!window.gtag) return;
+      window.gtag('consent', 'update', {
+        analytics_storage: analyticsAccepted ? 'granted' : 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      });
+    };
+
+    // Écouter l'événement de mise à jour consentement
+    window.addEventListener('consent:updated', function(e) {
+      var prefs = e.detail;
+      if (window.updateConsentMode) {
+        window.updateConsentMode(prefs.analytics === true);
+      }
+    });
+
+    // Page view initiale
+    window.gtag('event', 'page_view', {
+      page_path: window.location.pathname,
+      page_title: document.title,
+      language: document.documentElement.lang || 'fr',
+    });
+
+    window.gtagInitialized = true;
+    if (window.console) console.log('[GA4] Initialisé avec Consent Mode v2');
+  })();
+` : '';
 ---
 
 <!DOCTYPE html>
@@ -45,7 +124,10 @@ const hreflangLinks = generateHreflangLinks(baseUrl, currentPath);
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kiki en Christ">
-  <meta property="og:locale" content={locale === 'fr' ? 'fr_FR' : locale === 'en' ? 'en_US' : locale === 'es' ? 'es_ES' : locale === 'de' ? 'de_DE' : locale === 'pt' ? 'pt_PT' : locale === 'it' ? 'it_IT' : locale === 'ru' ? 'ru_RU' : locale === 'zh' ? 'zh_CN' : 'hi_IN'}>
+  <meta property="og:locale" content={{
+    fr: 'fr_FR', en: 'en_US', es: 'es_ES', de: 'de_DE', pt: 'pt_PT', it: 'it_IT',
+    nl: 'nl_NL', pl: 'pl_PL', ar: 'ar_AR', ru: 'ru_RU', zh: 'zh_CN', hi: 'hi_IN'
+  }[locale] || 'fr_FR'}>
   <meta property="og:title" content={title}>
   <meta property="og:description" content={description}>
   <meta property="og:url" content={canonicalURL}>
@@ -70,15 +152,206 @@ const hreflangLinks = generateHreflangLinks(baseUrl, currentPath);
   <link rel="preconnect" href="https://payhip.com" crossorigin>
   <link rel="preconnect" href="https://play.google.com" crossorigin>
 
+  <!-- Preconnect GA4 (if configured) -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+
   <!-- Lafoidieu Design System CSS -->
   <link rel="stylesheet" href="/styles/lafoidieu-design.css">
 
-  <!-- JSON-LD Structured Data will be injected per-page -->
-  <slot name="json-ld" />
+  <!-- JSON-LD Structured Data (per-page) -->
+  {jsonLd && (
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  )}
 </head>
 <body class="bq">
   <slot />
 
-  <!-- Footer is included in each page or via a layout wrapper -->
+  <!-- Cookie Banner (RGPD / ePrivacy) - Version simplifiée 2 boutons -->
+  <CookieBanner locale={locale} translations={translations} />
+
+  <!-- GA4 Initialization (client-side only) - ID injecté au build -->
+  <script is:inline set:html={ga4Script} />
+
+  <!-- Cookie Banner Logic (JS pur inline, simplifié 2 boutons) -->
+  <script is:inline>
+    (function() {
+      // ------------------------------------------------------------------
+      // CONFIGURATION
+      // ------------------------------------------------------------------
+      var COOKIE_NAME = 'kikienchrist-consent';
+      var COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 an
+      var COOKIE_DOMAIN = ''; // vide = domaine actuel (évite "domaine invalide" sur vercel.app)
+
+      // Clés des cookies tiers à nettoyer si refus analytics
+      var THIRD_PARTY_COOKIES = {
+        analytics: ['_ga', '_ga_*', '_gid', '_gat'],
+        marketing: ['_fbp', '_fbc', 'fr', 'xs', 'datr'],
+        functional: ['__cf_bm', 'cf_clearance'],
+      };
+
+      // État (simplifié : analytics seulement, marketing/functional = false par défaut)
+      var preferences = {
+        necessary: true,
+        analytics: false,
+        marketing: false,
+        functional: false,
+      };
+
+      var banner = null;
+      var overlay = null;
+
+      // ------------------------------------------------------------------
+      // UTILITAIRES COOKIES
+      // ------------------------------------------------------------------
+      function setCookie(name, value, days) {
+        var expires = new Date(Date.now() + days * 864e5).toUTCString();
+        var domainPart = COOKIE_DOMAIN ? '; domain=' + COOKIE_DOMAIN : '';
+        document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/' + domainPart + '; SameSite=Lax; Secure';
+      }
+
+      function deleteCookie(name) {
+        var domainPart = COOKIE_DOMAIN ? '; domain=' + COOKIE_DOMAIN : '';
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + domainPart + '; SameSite=Lax; Secure';
+      }
+
+      function getConsentCookie(cookieName) {
+        var cookie = document.cookie.split('; ').find(function(row) { return row.startsWith(cookieName + '='); });
+        if (!cookie) return null;
+        try {
+          return JSON.parse(decodeURIComponent(cookie.split('=')[1]));
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function saveConsent(cookieName) {
+        var consentData = {
+          necessary: preferences.necessary,
+          analytics: preferences.analytics,
+          marketing: preferences.marketing,
+          functional: preferences.functional,
+          timestamp: new Date().toISOString(),
+          version: '1.0',
+        };
+        setCookie(cookieName, JSON.stringify(consentData), 365);
+        window.dispatchEvent(new CustomEvent('consent:updated', { detail: preferences }));
+      }
+
+      function loadConsent(cookieName) {
+        var saved = getConsentCookie(cookieName);
+        if (saved) {
+          preferences.analytics = saved.analytics ?? false;
+          preferences.marketing = saved.marketing ?? false;
+          preferences.functional = saved.functional ?? false;
+          return true;
+        }
+        return false;
+      }
+
+      function applyConsent() {
+        if (typeof window.updateConsentMode === 'function') {
+          window.updateConsentMode(preferences.analytics);
+        }
+        // Nettoyer cookies tiers si analytics refusé
+        if (!preferences.analytics) {
+          THIRD_PARTY_COOKIES.analytics.forEach(function(cookieName) {
+            deleteCookie(cookieName);
+            if (cookieName.endsWith('*')) {
+              var prefix = cookieName.slice(0, -1);
+              document.cookie.split('; ').forEach(function(cookie) {
+                var name = cookie.split('=')[0];
+                if (name.startsWith(prefix)) deleteCookie(name);
+              });
+            }
+          });
+        }
+      }
+
+      // ------------------------------------------------------------------
+      // ACTIONS UI (simplifiées : accept / reject seulement)
+      // ------------------------------------------------------------------
+      function acceptAll(cookieName) {
+        preferences.analytics = true;
+        preferences.marketing = true;
+        preferences.functional = true;
+        saveConsent(cookieName);
+        applyConsent();
+        closeBanner();
+      }
+
+      function rejectAll(cookieName) {
+        preferences.analytics = false;
+        preferences.marketing = false;
+        preferences.functional = false;
+        saveConsent(cookieName);
+        applyConsent();
+        closeBanner();
+      }
+
+      function closeBanner() {
+        if (!banner || !overlay) return;
+        banner.hidden = true;
+        overlay.hidden = true;
+        document.body.style.overflow = '';
+      }
+
+      // ------------------------------------------------------------------
+      // INITIALISATION (attendre hydratation Astro via MutationObserver)
+      // ------------------------------------------------------------------
+      function initCookieBanner() {
+        banner = document.getElementById('cookie-banner');
+        overlay = document.getElementById('cookie-overlay');
+        if (!banner || !overlay) {
+          console.warn('[CookieBanner] Éléments DOM non trouvés', { banner: !!banner, overlay: !!overlay });
+          return;
+        }
+        if (loadConsent(COOKIE_NAME)) {
+          applyConsent();
+          banner.hidden = true;
+          overlay.hidden = true;
+          return;
+        }
+        banner.querySelector('[data-action="accept-all"]')?.addEventListener('click', function() { acceptAll(COOKIE_NAME); });
+        banner.querySelector('[data-action="reject-all"]')?.addEventListener('click', function() { rejectAll(COOKIE_NAME); });
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && !banner?.hidden) {
+            closeBanner();
+          }
+        });
+        // Afficher bannière après court délai (pour LCP)
+        setTimeout(function() {
+          banner.hidden = false;
+          overlay.hidden = false;
+        }, 500);
+      }
+
+      // Attendre que le slot Astro soit hydraté (MutationObserver sur body)
+      function startInit() {
+        // Si éléments déjà présents, initialiser direct
+        if (document.getElementById('cookie-banner') && document.getElementById('cookie-overlay')) {
+          initCookieBanner();
+          return;
+        }
+        // Sinon observer l'injection du slot
+        var observer = new MutationObserver(function(mutations, obs) {
+          if (document.getElementById('cookie-banner') && document.getElementById('cookie-overlay')) {
+            obs.disconnect();
+            setTimeout(initCookieBanner, 50);
+          }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+        // Fallback sécurité : max 5s
+        setTimeout(function() { observer.disconnect(); }, 5000);
+      }
+
+      // Démarrer au DOMContentLoaded (ou direct si déjà prêt)
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', startInit);
+      } else {
+        startInit();
+      }
+    })();
+  </script>
 </body>
 </html>

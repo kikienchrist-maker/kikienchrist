@@ -1,0 +1,531 @@
+---
+// NewsletterForm.astro - Formulaire inscription newsletter (Netlify Forms + honeypot + lead magnet)
+interface Props {
+  lang?: string;
+  inline?: boolean;
+  title?: string;
+  description?: string;
+  leadMagnetUrl?: string;
+  leadMagnetTitle?: string;
+}
+
+const { 
+  lang = 'fr', 
+  inline = false, 
+  title, 
+  description,
+  leadMagnetUrl,
+  leadMagnetTitle,
+} = Astro.props;
+
+// Traductions UI
+const ui = {
+  fr: { 
+    defaultTitle: 'Recevez nos ressources gratuites',
+    defaultDesc: 'Inscrivez-vous pour recevoir nos nouveaux articles, guides de prière et encouragements chaque semaine.',
+    emailPlaceholder: 'Votre email',
+    submit: 'Je m\'inscris',
+    submitting: 'Inscription...',
+    success: 'Merci ! Vérifiez votre boîte mail.',
+    error: 'Erreur. Réessayez plus tard.',
+    privacy: 'Nous respectons votre vie privée. Désinscription en 1 clic.',
+    leadMagnetNote: 'En vous inscrivant, vous recevrez aussi :',
+  },
+  en: { 
+    defaultTitle: 'Get Free Resources',
+    defaultDesc: 'Subscribe for new articles, prayer guides, and weekly encouragement.',
+    emailPlaceholder: 'Your email',
+    submit: 'Subscribe',
+    submitting: 'Subscribing...',
+    success: 'Thanks! Check your inbox.',
+    error: 'Error. Please try again later.',
+    privacy: 'We respect your privacy. Unsubscribe in 1 click.',
+    leadMagnetNote: 'By subscribing, you\'ll also receive:',
+  },
+  es: { 
+    defaultTitle: 'Recibe recursos gratuitos',
+    defaultDesc: 'Suscríbete para recibir nuevos artículos, guías de oración y ánimo semanal.',
+    emailPlaceholder: 'Tu email',
+    submit: 'Suscribirme',
+    submitting: 'Suscribiendo...',
+    success: '¡Gracias! Revisa tu bandeja de entrada.',
+    error: 'Error. Inténtalo más tarde.',
+    privacy: 'Respetamos tu privacidad. Baja en 1 clic.',
+    leadMagnetNote: 'Al suscribirte, también recibirás:',
+  },
+  pt: { 
+    defaultTitle: 'Receba recursos gratuitos',
+    defaultDesc: 'Inscreva-se para receber novos artigos, guias de oração e encorajamento semanal.',
+    emailPlaceholder: 'Seu email',
+    submit: 'Inscrever',
+    submitting: 'Inscrevendo...',
+    success: 'Obrigado! Verifique sua caixa de entrada.',
+    error: 'Erro. Tente novamente mais tarde.',
+    privacy: 'Respeitamos sua privacidade. Cancelar em 1 clique.',
+    leadMagnetNote: 'Ao se inscrever, você também receberá:',
+  },
+  it: { 
+    defaultTitle: 'Ricevi risorse gratuite',
+    defaultDesc: 'Iscriviti per ricevere nuovi articoli, guide di preghiera e incoraggiamento settimanale.',
+    emailPlaceholder: 'La tua email',
+    submit: 'Iscrivimi',
+    submitting: 'Iscrizione...',
+    success: 'Grazie! Controlla la tua casella di posta.',
+    error: 'Errore. Riprova più tardi.',
+    privacy: 'Rispettiamo la tua privacy. Cancellazione in 1 clic.',
+    leadMagnetNote: 'Iscrivendoti, riceverai anche:',
+  },
+  de: { 
+    defaultTitle: 'Kostenlose Ressourcen erhalten',
+    defaultDesc: 'Abonnieren Sie für neue Artikel, Gebetsanleitungen und wöchentliche Ermutigung.',
+    emailPlaceholder: 'Ihre E-Mail',
+    submit: 'Abonnieren',
+    submitting: 'Abonnieren...',
+    success: 'Danke! Prüfen Sie Ihr Postfach.',
+    error: 'Fehler. Bitte später versuchen.',
+    privacy: 'Wir respektieren Ihre Privatsphäre. Abmeldung in 1 Klick.',
+    leadMagnetNote: 'Durch das Abonnieren erhalten Sie auch:',
+  },
+  nl: { 
+    defaultTitle: 'Ontvang gratis bronnen',
+    defaultDesc: 'Abonneer voor nieuwe artikelen, gebidsgidsen en wekelijkse aanmoediging.',
+    emailPlaceholder: 'Je e-mail',
+    submit: 'Abonneren',
+    submitting: 'Abonneren...',
+    success: 'Dank je! Check je inbox.',
+    error: 'Fout. Probeer later opnieuw.',
+    privacy: 'We respecteren je privacy. Uitschrijven in 1 klik.',
+    leadMagnetNote: 'Door in te schrijven ontvang je ook:',
+  },
+  pl: { 
+    defaultTitle: 'Otrzymaj darmowe zasoby',
+    defaultDesc: 'Zapisz się na nowe artykuły, poradniki modlitwy i tygodniowe pocieszenie.',
+    emailPlaceholder: 'Twój email',
+    submit: 'Zapisz mnie',
+    submitting: 'Zapisywanie...',
+    success: 'Dziękuję! Sprawdź swoją skrzynkę.',
+    error: 'Błąd. Spróbuj później.',
+    privacy: 'Szacujemy Twoją prywatność. Wypisanie w 1 klik.',
+    leadMagnetNote: 'Zapisując się, otrzymasz również:',
+  },
+  ar: { 
+    defaultTitle: 'احصل على موارد مجانية',
+    defaultDesc: 'اشترك لتلقي مقالات جديدة وأدلة الصلاة والتشجيع الأسبوعي.',
+    emailPlaceholder: 'بريدك الإلكتروني',
+    submit: 'اشترك',
+    submitting: 'جاري الاشتراك...',
+    success: 'شكراً! تحقق من صندوق الوارد.',
+    error: 'خطأ. حاول مرة أخرى لاحقاً.',
+    privacy: 'نحترم خصوصيتك. إلغاء الاشتراك بنقرة واحدة.',
+    leadMagnetNote: 'بالاشتراك، ستحصل أيضاً على:',
+  },
+};
+
+const t = ui[lang as keyof typeof ui] || ui.fr;
+const formTitle = title || t.defaultTitle;
+const formDesc = description || t.defaultDesc;
+
+// Générer ID unique pour formulaire
+const formId = `newsletter-${lang}-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<form 
+  id={formId}
+  class={`newsletter-form ${inline ? 'inline' : ''}`}
+  action="/.netlify/functions/newsletter"
+  method="POST"
+  data-netlify="true"
+  data-netlify-honeypot="bot-field"
+  novalidate
+>
+  <input type="hidden" name="form-name" value="newsletter" />
+  <input type="hidden" name="lang" value={lang} />
+  {leadMagnetUrl && <input type="hidden" name="lead-magnet-url" value={leadMagnetUrl} />}
+  {leadMagnetTitle && <input type="hidden" name="lead-magnet-title" value={leadMagnetTitle} />}
+  <input type="hidden" name="page" value={Astro.url.pathname} />
+  
+  {/* Honeypot field (hidden via CSS) */}
+  <div class="honeypot" aria-hidden="true">
+    <label for="bot-field">Ne remplissez pas ce champ si vous êtes humain</label>
+    <input type="text" id="bot-field" name="bot-field" tabIndex={-1} autoComplete="off" />
+  </div>
+
+  {!inline && (
+    <header class="form-header">
+      <h3 class="form-title">{formTitle}</h3>
+      <p class="form-description">{formDesc}</p>
+    </header>
+  )}
+
+  {leadMagnetUrl && leadMagnetTitle && (
+    <div class="lead-magnet-preview">
+      <span class="lead-magnet-icon">🎁</span>
+      <div class="lead-magnet-info">
+        <p class="lead-magnet-note">{t.leadMagnetNote}</p>
+        <p class="lead-magnet-title">{leadMagnetTitle}</p>
+      </div>
+    </div>
+  )}
+
+  <div class="form-fields">
+    <div class="form-group">
+      <label for={`email-${formId}`} class="visually-hidden">{t.emailPlaceholder}</label>
+      <input
+        type="email"
+        id={`email-${formId}`}
+        name="email"
+        placeholder={t.emailPlaceholder}
+        required
+        autoComplete="email"
+        class="form-input"
+        aria-describedby={`email-hint-${formId}`}
+      />
+      <span id={`email-hint-${formId}`} class="form-hint">{t.privacy}</span>
+    </div>
+    
+    <button 
+      type="submit" 
+      class="btn btn-primary form-submit"
+      disabled={false}
+    >
+      <span class="submit-text">{t.submit}</span>
+      <span class="submit-loading" hidden>{t.submitting}</span>
+    </button>
+  </div>
+
+  <div class="form-status" aria-live="polite" hidden></div>
+</form>
+
+<script>
+  // Gestion formulaire newsletter (AJAX pour UX sans rechargement)
+  class NewsletterForm {
+    form: HTMLFormElement;
+    submitBtn: HTMLButtonElement;
+    statusEl: HTMLElement;
+    isSubmitting: boolean = false;
+    
+    constructor(form: HTMLFormElement) {
+      this.form = form;
+      this.submitBtn = form.querySelector('.form-submit')!;
+      this.statusEl = form.querySelector('.form-status')!;
+      
+      this.init();
+    }
+    
+    init() {
+      this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+    }
+    
+    async handleSubmit(e: SubmitEvent) {
+      e.preventDefault();
+      
+      if (this.isSubmitting) return;
+      
+      const emailInput = this.form.querySelector('input[name="email"]') as HTMLInputElement;
+      const email = emailInput?.value?.trim();
+      
+      // Validation basique
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        this.showError('Email invalide');
+        emailInput?.focus();
+        return;
+      }
+      
+      this.setSubmitting(true);
+      
+      try {
+        const formData = new FormData(this.form);
+        
+        // Ajouter honeypot vide (déjà dans le form)
+        const response = await fetch(this.form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json',
+          },
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok && data.success) {
+          this.showSuccess();
+          this.trackConversion(email);
+          
+          // Si lead magnet, déclencher téléchargement
+          const leadMagnetUrl = this.form.querySelector('input[name="lead-magnet-url"]')?.value;
+          if (leadMagnetUrl) {
+            setTimeout(() => {
+              window.open(leadMagnetUrl, '_blank');
+            }, 1000);
+          }
+          
+          // Reset form
+          this.form.reset();
+        } else {
+          this.showError(data.error || 'Erreur inconnue');
+        }
+      } catch (err) {
+        console.error('Newsletter submit error:', err);
+        this.showError('Erreur de connexion. Réessayez plus tard.');
+      } finally {
+        this.setSubmitting(false);
+      }
+    }
+    
+    setSubmitting(submitting: boolean) {
+      this.isSubmitting = submitting;
+      this.submitBtn.disabled = submitting;
+      
+      const submitText = this.submitBtn.querySelector('.submit-text') as HTMLElement;
+      const submitLoading = this.submitBtn.querySelector('.submit-loading') as HTMLElement;
+      
+      if (submitting) {
+        submitText.hidden = true;
+        submitLoading.hidden = false;
+      } else {
+        submitText.hidden = false;
+        submitLoading.hidden = true;
+      }
+    }
+    
+    showSuccess() {
+      this.statusEl.hidden = false;
+      this.statusEl.textContent = this.submitBtn.querySelector('.submit-text')?.textContent?.includes('Merci') ? 'Merci !' : 'Thanks!';
+      this.statusEl.className = 'form-status success';
+      
+      // GA4 Event
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'newsletter_signup', {
+          event_category: 'engagement',
+          event_label: this.form.querySelector('input[name="lang"]')?.value || 'unknown',
+        });
+      }
+    }
+    
+    showError(message: string) {
+      this.statusEl.hidden = false;
+      this.statusEl.textContent = message;
+      this.statusEl.className = 'form-status error';
+    }
+    
+    trackConversion(email: string) {
+      // Meta Pixel / Google Ads conversion tracking
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Lead', { content_name: 'newsletter_signup' });
+      }
+      
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'conversion', {
+          send_to: 'AW-CONVERSION_ID/CONVERSION_LABEL', // À configurer
+          event_category: 'newsletter',
+        });
+      }
+    }
+  }
+  
+  // Initialiser
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.newsletter-form').forEach(form => new NewsletterForm(form as HTMLFormElement));
+  });
+</script>
+
+<style is:global>
+  .newsletter-form {
+    background: var(--color-paper);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .newsletter-form.inline {
+    padding: var(--space-md);
+    border-color: transparent;
+    background: transparent;
+    max-width: none;
+  }
+
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  .form-title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-sm);
+    color: var(--color-ink);
+  }
+
+  .form-description {
+    color: var(--color-ink-light);
+    font-size: var(--text-sm);
+  }
+
+  .lead-magnet-preview {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: var(--color-gold-light);
+    border: 1px solid var(--color-gold);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .lead-magnet-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .lead-magnet-note {
+    font-size: var(--text-xs);
+    color: var(--color-ink-light);
+    margin: 0 0 var(--space-xs);
+  }
+
+  .lead-magnet-title {
+    font-weight: 600;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  .form-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    align-items: flex-end;
+  }
+
+  .form-group {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    color: var(--color-ink);
+    background: var(--color-paper);
+    transition: all var(--transition-fast);
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px var(--color-gold-light);
+  }
+
+  .form-input::placeholder {
+    color: var(--color-ink-light);
+    opacity: 0.6;
+  }
+
+  .form-hint {
+    display: block;
+    margin-top: var(--space-xs);
+    font-size: var(--text-xs);
+    color: var(--color-ink-light);
+  }
+
+  .form-submit {
+    padding: var(--space-sm) var(--space-xl);
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--color-gold);
+    color: var(--color-paper);
+    font-size: var(--text-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+    height: 44px; /* Touch target */
+  }
+
+  .form-submit:hover:not(:disabled) {
+    background: var(--color-gold-dark);
+  }
+
+  .form-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .submit-loading {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .submit-loading::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .form-status {
+    margin-top: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    text-align: center;
+  }
+
+  .form-status.success {
+    background: var(--color-success-light);
+    color: var(--color-success);
+    border: 1px solid var(--color-success);
+  }
+
+  .form-status.error {
+    background: var(--color-error-light);
+    color: var(--color-error);
+    border: 1px solid var(--color-error);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Mobile: stack fields */
+  @media (max-width: 480px) {
+    .form-fields {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .form-group {
+      min-width: 0;
+    }
+    
+    .form-submit {
+      width: 100%;
+    }
+  }
+</style>
