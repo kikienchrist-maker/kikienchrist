@@ -1,6 +1,5 @@
 ---
-// CookieBanner.astro - Bannière de consentement RGPD / ePrivacy (simplifiée : 2 boutons)
-// HTML uniquement — logique JS dans MainLayout.astro
+// CookieBanner.astro - Bannière de consentement RGPD / ePrivacy (lafoidieu .bq classes)
 
 interface Props {
   locale: string;
@@ -23,39 +22,39 @@ const COOKIE_NAME = 'kikienchrist-consent';
      ============================================ -->
 
 <!-- Overlay arrière-plan -->
-<div id="cookie-overlay" class="cookie-overlay" hidden aria-hidden="true"></div>
+<div id="cookie-overlay" class="bq-cookie-overlay" hidden aria-hidden="true"></div>
 
 <!-- Bannière principale (bottom) -->
 <aside
   id="cookie-banner"
-  class="cookie-banner"
+  class="bq-cookie-banner"
   role="dialog"
   aria-labelledby="cookie-title"
   aria-describedby="cookie-desc"
   hidden
 >
-  <div class="cookie-content">
-    <div class="cookie-text">
-      <h3 id="cookie-title" class="cookie-title">{cookieBanner.title || 'Nous respectons votre vie privée'}</h3>
-      <p id="cookie-desc" class="cookie-description">
+  <div class="bq-cookie-content">
+    <div class="bq-cookie-text">
+      <h3 id="cookie-title" class="bq-cookie-title">{cookieBanner.title || 'Nous respectons votre vie privée'}</h3>
+      <p id="cookie-desc" class="bq-cookie-description">
         {cookieBanner.description || 'Nous utilisons des cookies pour mesurer l\'audience et améliorer votre expérience. '}
-        <a href="/mentions-legales/" class="cookie-policy-link" target="_blank" rel="noopener noreferrer">
+        <a href="/mentions-legales/" class="bq-cookie-policy-link" target="_blank" rel="noopener noreferrer">
           {cookieBanner.privacyPolicyText || 'Mentions légales & Politique de confidentialité'}
         </a>
       </p>
     </div>
 
-    <div class="cookie-actions">
+    <div class="bq-cookie-actions">
       <button
         type="button"
-        class="btn btn-secondary cookie-btn-reject"
+        class="bq-btn bq-btn-secondary bq-cookie-btn-reject"
         data-action="reject-all"
       >
         {cookieBanner.rejectAll || 'Tout refuser'}
       </button>
       <button
         type="button"
-        class="btn btn-primary cookie-btn-accept"
+        class="bq-btn bq-btn-primary bq-cookie-btn-accept"
         data-action="accept-all"
       >
         {cookieBanner.acceptAll || 'Tout accepter'}
@@ -63,5 +62,49 @@ const COOKIE_NAME = 'kikienchrist-consent';
     </div>
   </div>
 
-  <p class="cookie-powered">{cookieBanner.poweredBy || 'Géré par Kiki en Christ · Conforme RGPD / ePrivacy'}</p>
+  <p class="bq-cookie-powered">{cookieBanner.poweredBy || 'Géré par Kiki en Christ · Conforme RGPD / ePrivacy'}</p>
 </aside>
+
+<style is:global>
+  .bq-cookie-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(28, 26, 23, 0.6);
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    pointer-events: none;
+  }
+  .bq-cookie-overlay:not([hidden]) {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .bq-cookie-banner {
+    position: fixed;
+    bottom: var(--space-lg);
+    left: var(--space-lg);
+    right: var(--space-lg);
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-lg);
+    z-index: 9999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform var(--transition-normal), opacity var(--transition-normal);
+  }
+  .bq-cookie-banner:not([hidden]) {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .bq-cookie-content { display: flex; flex-direction: column; gap: var(--space-md); }
+  .bq-cookie-title { font-family: Georgia, serif; font-size: var(--text-lg); font-weight: 400; color: var(--ink); margin: 0 0 var(--space-xs); }
+  .bq-cookie-description { font-size: var(--text-sm); color: var(--muted); margin: 0; line-height: 1.6; }
+  .bq-cookie-policy-link { color: var(--gold-ink); text-decoration: underline; text-underline-offset: 2px; }
+  .bq-cookie-policy-link:hover { color: var(--ink); }
+  .bq-cookie-actions { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
+  .bq-cookie-powered { font-size: var(--text-xs); color: var(--muted); text-align: center; margin: var(--space-md) 0 0; }
+</style>

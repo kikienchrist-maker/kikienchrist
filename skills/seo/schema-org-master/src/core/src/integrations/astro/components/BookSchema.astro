@@ -1,0 +1,91 @@
+---
+// BookSchema.astro — Composant Schema.org Book pour pages livre (schema-org-master)
+// Utilisation: <BookSchema bookNumber={1} lang="fr" format="Paperback" price={9.99} currency="EUR" />
+
+import { createKikiBook, type KikiLangCode } from '../../builder/book';
+
+interface Props {
+  /** Numéro du livre (1-4) */
+  bookNumber: 1 | 2 | 3 | 4;
+  /** Code langue */
+  lang?: KikiLangCode;
+  /** Format pour l'offre principale */
+  format?: 'Paperback' | 'EBook' | 'Audiobook';
+  /** Prix pour l'offre principale */
+  price?: number;
+  /** Devise pour l'offre principale */
+  currency?: string;
+  /** URL canonique de la page */
+  canonicalUrl?: string;
+  /** Image de couverture */
+  image?: string;
+  /** Description personnalisée */
+  description?: string;
+  /** ISBN override */
+  isbn?: string;
+  /** Auteurs additionnels */
+  authors?: Array<{ name: string; url?: string }>;
+  /** AggregateRating */
+  aggregateRating?: {
+    ratingValue: number;
+    reviewCount: number;
+    bestRating?: number;
+    worstRating?: number;
+  };
+  /** Offres additionnelles */
+  offers?: Array<{
+    format: 'Paperback' | 'EBook' | 'Audiobook';
+    price: number;
+    currency: string;
+    availability?: string;
+    seller?: string;
+    url?: string;
+  }>;
+  /** Injecter dans head */
+  injectInHead?: boolean;
+  /** Pretty print */
+  pretty?: boolean;
+}
+
+const {
+  bookNumber,
+  lang = 'fr',
+  format = 'Paperback',
+  price = 9.99,
+  currency = 'EUR',
+  canonicalUrl,
+  image,
+  description,
+  isbn,
+  authors,
+  aggregateRating,
+  offers,
+  injectInHead = true,
+  pretty = true,
+} = Astro.props;
+
+// Générer Book JSON-LD via factory
+const book = createKikiBook(bookNumber, lang, {
+  format,
+  price,
+  currency,
+  canonicalUrl,
+  image,
+  description,
+  isbn,
+  authors,
+  aggregateRating,
+  offers,
+});
+
+const script = `<script type="application/ld+json">${pretty ? JSON.stringify(book, null, 2) : JSON.stringify(book)}</script>`;
+
+---
+
+{injectInHead ? (
+  <head>
+    <slot name="book-schema" set:html={script} />
+  </head>
+) : (
+  <script type="application/ld+json" set:html={JSON.stringify(book, null, pretty ? 2 : 0)} />
+)}

@@ -1,179 +1,258 @@
 ---
-// src/components/LanguageSwitcher.astro
-// Sélecteur de langue accessible : role="combobox", aria-expanded, focus management
-
-import { SUPPORTED_LANGS, LANG_NAMES } from '../utils/i18n';
-import { getTranslations } from '../utils/translations';
+// LanguageSwitcher.astro — Dropdown langue avec drapeaux emoji (lafoidieu design system .bq classes)
 
 interface Props {
   currentLang: string;
-  currentPath: string; // ex: "/fr/blog/"
+  currentPath: string; // ex: "/fr/", "/fr/livres", "/en/blog/..."
 }
 
 const { currentLang, currentPath } = Astro.props;
-const t = getTranslations(currentLang);
 
-// Générer URLs pour chaque langue
-const langOptions = SUPPORTED_LANGS.map(lang => {
-  const base = currentPath.replace(/^\/[a-z]{2}(-[A-Z]{2})?\//, '/');
-  return {
-    code: lang,
-    name: LANG_NAMES[lang as keyof typeof LANG_NAMES] || lang,
-    nativeName: LANG_NAMES[lang as keyof typeof LANG_NAMES] || lang,
-    url: `/${lang}${base}`,
-    current: lang === currentLang,
-  };
-});
+// 11 langues supportées avec drapeaux (emoji) et noms natifs
+const LANGUAGES: Record<string, { label: string; flag: string; native: string }> = {
+  fr: { label: 'Français', flag: '🇫🇷', native: 'Français' },
+  en: { label: 'English', flag: '🇺🇸', native: 'English' },
+  es: { label: 'Español', flag: '🇪🇸', native: 'Español' },
+  pt: { label: 'Português', flag: '🇵🇹', native: 'Português' },
+  it: { label: 'Italiano', flag: '🇮🇹', native: 'Italiano' },
+  de: { label: 'Deutsch', flag: '🇩🇪', native: 'Deutsch' },
+  nl: { label: 'Nederlands', flag: '🇳🇱', native: 'Nederlands' },
+  pl: { label: 'Polski', flag: '🇵🇱', native: 'Polski' },
+  ar: { label: 'العربية', flag: '🇸🇦', native: 'العربية' },
+  ru: { label: 'Русский', flag: '🇷🇺', native: 'Русский' },
+  zh: { label: '中文', flag: '🇨🇳', native: '中文' },
+  hi: { label: 'हिन्दी', flag: '🇮🇳', native: 'हिन्दी' },
+};
+
+const current = LANGUAGES[currentLang] || LANGUAGES.fr;
+const otherLangs = Object.entries(LANGUAGES).filter(([code]) => code !== currentLang);
+
+// Construire le chemin vers l'autre langue : remplacer /{lang}/ au début
+function switchLangPath(path: string, targetLang: string): string {
+  const segments = path.split('/').filter(Boolean);
+  if (segments[0] in LANGUAGES) {
+    segments[0] = targetLang;
+  } else {
+    segments.unshift(targetLang);
+  }
+  return '/' + segments.join('/') + '/';
+}
 ---
 
-<div class="bq-language-switcher" data-lang={currentLang}>
-  <label for="lang-select" class="bq-sr-only">{t.nav?.language || 'Langue'}</label>
-  
-  <!-- Bouton déclencheur (combobox) -->
+<div class="bq-lang-switcher" data-current-lang={currentLang}>
   <button
-    type="button"
-    id="lang-select"
     class="bq-lang-trigger"
-    role="combobox"
     aria-haspopup="listbox"
     aria-expanded="false"
-    aria-controls="lang-listbox"
-    aria-label={t.nav?.language || 'Changer de langue'}
-    aria-activedescendant=""
+    aria-label="Changer de langue"
+    type="button"
   >
-    <span class="bq-lang-current" aria-hidden="true">
-      <span class="bq-lang-flag" data-flag={currentLang}></span>
-      <span class="bq-lang-code">{currentLang.toUpperCase()}</span>
-    </span>
-    <svg class="bq-lang-chevron" viewBox="0 0 24 24" aria-hidden="true" width="16" height="16">
-      <path fill="none" stroke="currentColor" stroke-width="2" d="M6 9l6 6 6-6"/>
+    <span class="bq-lang-flag" aria-hidden="true">{current.flag}</span>
+    <span class="bq-lang-code">{currentLang.toUpperCase()}</span>
+    <svg class="bq-lang-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M6 9l6 6 6-6" />
     </svg>
   </button>
 
-  <!-- Liste des options (listbox) -->
-  <div
-    id="lang-listbox"
-    class="bq-lang-dropdown"
-    role="listbox"
-    aria-label={t.nav?.language || 'Choisir une langue'}
-    hidden
-  >
-    <ul class="bq-lang-list" role="presentation">
-      {langOptions.map(opt => (
-        <li role="presentation">
-          <button
-            type="button"
-            role="option"
-            aria-selected={opt.current}
-            class={`bq-lang-option ${opt.current ? 'bq-active' : ''}`}
-            data-lang={opt.code}
-            data-url={opt.url}
-            onclick="window.location.href=this.dataset.url"
-          >
-            <span class="bq-lang-flag" data-flag={opt.code}></span>
-            <span class="bq-lang-native">{opt.nativeName}</span>
-            <span class="bq-lang-english">({opt.name})</span>
-            {opt.current && <svg class="bq-check" viewBox="0 0 24 24" aria-hidden="true" width="16" height="16"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>}
-          </button>
-        </li>
-      ))}
-    </ul>
+  <div class="bq-lang-dropdown" role="listbox" aria-label="Langues disponibles" hidden>
+    {otherLangs.map(([code, lang]) => (
+      <a
+        class="bq-lang-option"
+        href={switchLangPath(currentPath, code)}
+        role="option"
+        aria-selected={code === currentLang}
+        hreflang={code}
+        lang={code}
+      >
+        <span class="bq-lang-option-flag" aria-hidden="true">{lang.flag}</span>
+        <span class="bq-lang-option-native">{lang.native}</span>
+        <span class="bq-lang-option-label">{lang.label}</span>
+      </a>
+    ))}
   </div>
 </div>
 
 <script>
-  (function() {
-    const trigger = document.getElementById('lang-select');
-    const dropdown = document.getElementById('lang-listbox');
-    const options = dropdown?.querySelectorAll('[role="option"]');
-    if (!trigger || !dropdown || !options.length) return;
-    
-    let isOpen = false;
-    let activeIndex = -1;
-    
-    function open() {
-      dropdown.hidden = false;
-      trigger.setAttribute('aria-expanded', 'true');
-      isOpen = true;
-      // Focus sur l'option active
-      const active = dropdown.querySelector('[aria-selected="true"]');
-      if (active) active.focus();
-      document.addEventListener('click', outsideClick);
-      document.addEventListener('keydown', onKeydown);
-    }
-    
-    function close() {
-      dropdown.hidden = true;
-      trigger.setAttribute('aria-expanded', 'false');
-      isOpen = false;
-      document.removeEventListener('click', outsideClick);
-      document.removeEventListener('keydown', onKeydown);
-    }
-    
-    function outsideClick(e) {
-      if (!trigger.contains(e.target) && !dropdown.contains(e.target)) close();
-    }
-    
-    function onKeydown(e) {
-      if (!isOpen) return;
-      const opts = Array.from(options);
-      switch (e.key) {
-        case 'Escape': close(); trigger.focus(); break;
-        case 'ArrowDown': e.preventDefault(); activeIndex = Math.min(activeIndex + 1, opts.length - 1); opts[activeIndex].focus(); break;
-        case 'ArrowUp': e.preventDefault(); activeIndex = Math.max(activeIndex - 1, 0); opts[activeIndex].focus(); break;
-        case 'Home': e.preventDefault(); activeIndex = 0; opts[0].focus(); break;
-        case 'End': e.preventDefault(); activeIndex = opts.length - 1; opts[activeIndex].focus(); break;
-        case 'Enter': case ' ': e.preventDefault(); opts[activeIndex].click(); break;
-        case 'Tab': close(); break;
-      }
-    }
-    
-    trigger.addEventListener('click', () => isOpen ? close() : open());
-    options.forEach((opt, i) => {
-      opt.addEventListener('focus', () => activeIndex = i);
-      opt.addEventListener('click', close);
+  // Toggle dropdown + close on outside click + keyboard navigation
+  document.addEventListener('DOMContentLoaded', () => {
+    const switchers = document.querySelectorAll('.bq-lang-switcher');
+    switchers.forEach(switcher => {
+      const trigger = switcher.querySelector('.bq-lang-trigger');
+      const dropdown = switcher.querySelector('.bq-lang-dropdown');
+      const options = dropdown?.querySelectorAll('.bq-lang-option');
+
+      if (!trigger || !dropdown) return;
+
+      // Toggle
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !dropdown.hidden;
+        dropdown.hidden = isOpen;
+        trigger.setAttribute('aria-expanded', String(!isOpen));
+      });
+
+      // Close on outside click
+      document.addEventListener('click', (e) => {
+        if (!switcher.contains(e.target as Node)) {
+          dropdown.hidden = true;
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Keyboard navigation
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          dropdown.hidden = true;
+          trigger.setAttribute('aria-expanded', 'false');
+          trigger.focus();
+        } else if (e.key === 'ArrowDown' && dropdown.hidden) {
+          e.preventDefault();
+          dropdown.hidden = false;
+          trigger.setAttribute('aria-expanded', 'true');
+          options?.[0]?.focus();
+        }
+      });
+
+      options?.forEach((opt, i) => {
+        opt.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            options?.[(i + 1) % options.length]?.focus();
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            options?.[(i - 1 + options.length) % options.length]?.focus();
+          } else if (e.key === 'Escape') {
+            dropdown.hidden = true;
+            trigger.setAttribute('aria-expanded', 'false');
+            trigger.focus();
+          }
+        });
+      });
     });
-  })();
+  });
 </script>
 
 <style is:global>
-  .bq-language-switcher { position: relative; display: inline-block; }
+  /* Language Switcher - standalone .bq-* classes */
+  .bq-lang-switcher {
+    position: relative;
+    display: inline-flex;
+    z-index: 100;
+  }
+
   .bq-lang-trigger {
-    display: inline-flex; align-items: center; gap: var(--bq-space-2);
-    padding: var(--bq-space-2) var(--bq-space-3);
-    background: var(--bq-color-surface); border: 2px solid var(--bq-color-border);
-    border-radius: var(--bq-radius-md); font-size: var(--bq-text-sm); font-weight: 500;
-    color: var(--bq-color-text); cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;
-    min-width: 120px; justify-content: space-between;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    min-width: 72px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    font: 500 var(--text-sm) system-ui, sans-serif;
+    color: var(--ink);
+    cursor: pointer;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
   }
-  .bq-lang-trigger:hover { border-color: var(--bq-color-primary); }
-  .bq-lang-trigger:focus { outline: none; border-color: var(--bq-color-primary); box-shadow: 0 0 0 3px var(--bq-color-focus); }
-  .bq-lang-current { display: flex; align-items: center; gap: var(--bq-space-2); }
-  .bq-lang-flag { width: 20px; height: 14px; border-radius: 2px; background-size: cover; background-position: center; }
-  /* Flags via CSS - ajouter vos data-flag backgrounds */
-  .bq-lang-flag[data-flag="fr"] { background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'><rect width='1' height='2' fill='%230055A4'/><rect x='1' width='1' height='2' fill='white'/><rect x='2' width='1' height='2' fill='%23EF4135'/></svg>"); }
-  .bq-lang-flag[data-flag="en"] { background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'><rect width='3' height='2' fill='%2300247D'/><path d='M0 0L3 2M3 0L0 2' stroke='white' stroke-width='0.2'/><path d='M1.5 0V2M0 1H3' stroke='%23CF142B' stroke-width='0.2'/></svg>"); }
-  .bq-lang-flag[data-flag="es"] { background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'><rect width='3' height='2' fill='%23AA151B'/><rect y='0.4' height='1.2' fill='%23F1BF00'/></svg>"); }
-  /* ... autres drapeaux */
-  .bq-lang-chevron { flex-shrink: 0; transition: transform 0.2s; }
-  .bq-lang-trigger[aria-expanded="true"] .bq-lang-chevron { transform: rotate(180deg); }
-  
+  .bq-lang-trigger:hover {
+    border-color: var(--gold);
+    box-shadow: var(--shadow-sm);
+  }
+  .bq-lang-trigger:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  .bq-lang-flag {
+    font-size: 1.1em;
+    line-height: 1;
+  }
+  .bq-lang-code {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .bq-lang-chevron {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    color: var(--muted);
+    transition: transform var(--transition-fast);
+  }
+  .bq-lang-trigger[aria-expanded="true"] .bq-lang-chevron {
+    transform: rotate(180deg);
+  }
+
   .bq-lang-dropdown {
-    position: absolute; top: calc(100% + 4px); right: 0; z-index: 100;
-    background: var(--bq-color-surface); border: 1px solid var(--bq-color-border);
-    border-radius: var(--bq-radius-md); box-shadow: var(--bq-shadow-lg);
-    min-width: 200px; max-height: 300px; overflow-y: auto;
+    position: absolute;
+    top: calc(100% + var(--space-xs));
+    right: 0;
+    min-width: 220px;
+    max-height: 380px;
+    overflow-y: auto;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-xs);
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+    z-index: 50;
   }
-  .bq-lang-list { list-style: none; padding: var(--bq-space-1); margin: 0; }
+  .bq-lang-dropdown:not([hidden]) {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
   .bq-lang-option {
-    display: flex; align-items: center; gap: var(--bq-space-2); width: 100%;
-    padding: var(--bq-space-2) var(--bq-space-3); border: none; background: transparent;
-    border-radius: var(--bq-radius-sm); text-align: left; cursor: pointer;
-    font-size: var(--bq-text-sm); color: var(--bq-color-text); transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--ink);
+    font: var(--text-sm) system-ui, sans-serif;
+    transition: background var(--transition-fast);
   }
-  .bq-lang-option:hover, .bq-lang-option:focus { background: var(--bq-color-hover); outline: none; }
-  .bq-lang-option.bq-active { background: var(--bq-color-primary-bg); color: var(--bq-color-primary); }
-  .bq-lang-native { font-weight: 500; }
-  .bq-lang-english { font-size: var(--bq-text-xs); color: var(--bq-color-text-muted); margin-left: auto; }
-  .bq-check { flex-shrink: 0; color: var(--bq-color-primary); }
+  .bq-lang-option:hover,
+  .bq-lang-option:focus {
+    background: var(--gold-soft);
+    outline: none;
+  }
+  .bq-lang-option:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: -2px;
+  }
+  .bq-lang-option[aria-selected="true"] {
+    background: var(--gold-soft);
+    font-weight: 600;
+  }
+
+  .bq-lang-option-flag {
+    font-size: 1.1em;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 28px;
+    text-align: center;
+  }
+  .bq-lang-option-native {
+    flex: 1;
+    text-align: left;
+    font-family: inherit;
+  }
+  .bq-lang-option-label {
+    color: var(--muted);
+    font-size: 0.85em;
+    white-space: nowrap;
+  }
+
+  /* RTL support for Arabic */
+  .bq-lang-option[lang="ar"],
+  .bq-lang-option[lang="ar"] .bq-lang-option-native {
+    direction: rtl;
+    text-align: right;
+  }
 </style>

@@ -1,5 +1,5 @@
 ---
-// Footer.astro — Localized version with inline language switcher + legal links
+// Footer.astro — Localized version with inline language switcher + legal links (lafoidieu .bq classes)
 
 import fs from 'fs';
 import path from 'path';
@@ -21,7 +21,7 @@ interface SocialItem {
 interface LegalNavItem {
   label: string;
   href: string;
-  slug: string; // mentions-legales | confidentialite | cookies | cgv | accessibilite
+  slug: string;
 }
 
 interface Props {
@@ -52,7 +52,6 @@ const social = Astro.props.social ?? [
   { label: "Pinterest", href: "https://fr.pinterest.com/kikienchrist/", external: true }
 ];
 
-// Legal navigation - built from translations if not provided
 const legalSlugs = ['mentions-legales', 'confidentialite', 'cookies', 'cgv', 'accessibilite'] as const;
 const defaultLegalNav: LegalNavItem[] = legalSlugs.map(slug => ({
   label: t.legal?.nav?.[slug] || slug,
@@ -64,268 +63,69 @@ const legalNav = Astro.props.legalNav ?? defaultLegalNav;
 const availability = Astro.props.availability ?? (t.footer?.availability ?? "Livres disponibles en papier, ebook et audio.");
 const copyright = Astro.props.copyright ?? (t.footer?.copyright ?? "Kiki en Christ. Tous droits réservés.");
 const currentYear = new Date().getFullYear();
-
-const SUPPORTED_LANGS = [
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'pt', name: 'Português', flag: '🇵🇹' },
-  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-  { code: 'nl', name: 'Nederlands', flag: '🇳🇱' },
-  { code: 'pl', name: 'Polski', flag: '🇵🇱' },
-  { code: 'ar', name: 'العربية', flag: '🇸🇦' },
-  { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-  { code: 'zh', name: '中文', flag: '🇨🇳' },
-  { code: 'hi', name: 'हिन्दी', flag: '🇮🇳' },
-];
 ---
 
-<footer class="site" role="contentinfo">
-  <div class="wrap">
-    <div class="footer-grid">
-      <nav class="footer-nav" aria-label="Navigation principale">
-        <p>
-          {nav.map((item, i) => (
-            <> {i > 0 && ' · '} <a href={item.href}>{item.label}</a> </>
+<footer class="bq-footer" role="contentinfo">
+  <div class="bq-container">
+    <div class="bq-footer-grid">
+      <nav class="bq-footer-nav" aria-label={t.footer?.mainNav || 'Navigation principale'}>
+        <h3 class="bq-footer-title">{t.footer?.site || 'Le site'}</h3>
+        <ul class="bq-footer-list">
+          {nav.map((item) => (
+            <li><a href={item.href} class="bq-footer-link">{item.label}</a></li>
           ))}
-        </p>
+        </ul>
       </nav>
 
-      <nav class="footer-legal" aria-label="Navigation légale">
-        <p>
-          {legalNav.map((item, i) => (
-            <> {i > 0 && ' · '} <a href={item.href}>{item.label}</a> </>
+      <nav class="bq-footer-nav" aria-label={t.footer?.legalNav || 'Mentions légales'}>
+        <h3 class="bq-footer-title">{t.footer?.legal || 'Mentions légales'}</h3>
+        <ul class="bq-footer-list">
+          {legalNav.map((item) => (
+            <li><a href={item.href} class="bq-footer-link">{item.label}</a></li>
           ))}
-        </p>
+        </ul>
       </nav>
 
-      <div class="footer-social">
-        {social.map((item, i) => (
-          <> {i > 0 && ' · '} <a href={item.href} target="_blank" rel="noopener">{item.label}</a> </>
-        ))}
-      </div>
-    </div>
-
-    <div class="lang-switch">
-      <div class="lang-switcher" id="langSwitcher">
-        <button
-          class="lang-btn"
-          aria-haspopup="listbox"
-          aria-expanded="false"
-          aria-label={t.common?.language || 'Changer de langue'}
-          id="langBtn"
-        >
-          <span class="lang-flag">
-            {SUPPORTED_LANGS.find(l => l.code === currentLang)?.flag || '🌐'}
-          </span>
-          <span class="lang-name">
-            {SUPPORTED_LANGS.find(l => l.code === currentLang)?.name || 'Français'}
-          </span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M6 9l6 6 6-6"/>
+      <div class="bq-footer-brand">
+        <a href={`/${currentLang}/`} class="bq-footer-logo">
+          <svg class="bq-logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 16l4 4 8-8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </button>
+          <span>Kiki en Christ</span>
+        </a>
+        <p class="bq-footer-tagline">{t.footer?.tagline || 'Priez, méditez, grandissez dans la foi'}</p>
+      </div>
 
-        <div class="lang-dropdown" role="listbox" aria-label={t.common?.language || 'Langues disponibles'} id="langDropdown">
-          {SUPPORTED_LANGS.map(lang => {
-            const isCurrent = lang.code === currentLang;
-            const targetPath = currentPath.replace(/^\/[a-z]{2}(?=\/|$)/, `/${lang.code}`);
-            return (
-              <a
-                class={`lang-option ${isCurrent ? 'current' : ''}`}
-                href={targetPath}
-                role="option"
-                aria-selected={isCurrent}
-                data-lang={lang.code}
-              >
-                <span class="lang-flag">{lang.flag}</span>
-                <span class="lang-name">{lang.name}</span>
-                <svg class="lang-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-              </a>
-            )
-          })}
-        </div>
+      <div class="bq-footer-newsletter">
+        <h3 class="bq-footer-title">{t.footer?.newsletter || 'Newsletter'}</h3>
+        <p class="bq-footer-text">{t.footer?.newsletterDesc || 'Recevez nos prières et méditations hebdomadaires'}</p>
+        <form class="bq-form-row" action="https://formspree.io/f/your-form-id" method="POST">
+          <div class="bq-form-group">
+            <label for="footer-email">{t.footer?.emailLabel || 'Email'}</label>
+            <input type="email" id="footer-email" name="email" class="bq-input" placeholder={t.footer?.emailPlaceholder || 'votre@email.com'} required />
+          </div>
+          <button type="submit" class="bq-btn bq-btn-primary bq-btn-sm bq-btn-full">{t.footer?.subscribe || 'S\'abonner'}</button>
+        </form>
       </div>
     </div>
 
-    <p>{availability}</p>
-    <p>&copy; {currentYear} {copyright}</p>
+    <div class="bq-footer-bottom">
+      <p class="bq-copyright">© {currentYear} Kiki en Christ. {t.footer?.allRights || 'Tous droits réservés.'}</p>
+      <div class="bq-social-links">
+        <a href="https://www.facebook.com/kikienchrist" class="bq-social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/kikienchrist" class="bq-social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://twitter.com/kikienchrist" class="bq-social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@kikienchrist" class="bq-social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
   </div>
 </footer>
-
-<style is:global>
-  .site {
-    padding: 36px 0 64px;
-    text-align: center;
-    border-top: 1px solid var(--line);
-    font: 400 12.5px/1.85 system-ui, sans-serif;
-    color: #6d665a;
-  }
-  .site a { color: inherit; }
-  .site .lang-switch { display: block; margin: 8px 0 10px; font-size: 12px; letter-spacing: .01em; }
-
-  /* Language switcher styles */
-  .lang-switcher {
-    position: relative;
-    display: inline-block;
-  }
-  .lang-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: var(--color-surface, #fff);
-    border: 1px solid var(--color-border, #ddd);
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-size: 0.875rem;
-    color: var(--color-text, #333);
-    transition: all 0.2s ease;
-  }
-  .lang-btn:hover {
-    background: var(--color-surface-hover, #f5f5f5);
-  }
-  .lang-btn:focus {
-    outline: 2px solid var(--color-primary, #0066cc);
-    outline-offset: 2px;
-  }
-  .lang-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    margin-top: 0.5rem;
-    min-width: 180px;
-    background: var(--color-surface, #fff);
-    border: 1px solid var(--color-border, #ddd);
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-8px);
-    transition: all 0.2s ease;
-    z-index: 100;
-    overflow: hidden;
-  }
-  .lang-switcher.open .lang-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-  .lang-option {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
-    text-decoration: none;
-    color: var(--color-text, #333);
-    font-size: 0.875rem;
-    transition: background 0.15s ease;
-  }
-  .lang-option:hover {
-    background: var(--color-surface-hover, #f5f5f5);
-  }
-  .lang-option.current {
-    background: var(--color-primary-light, #e8f0fe);
-    color: var(--color-primary, #0066cc);
-    font-weight: 500;
-  }
-  .lang-flag {
-    font-size: 1rem;
-  }
-  .lang-name {
-    flex: 1;
-  }
-  .lang-check {
-    display: none;
-  }
-  .lang-option.current .lang-check {
-    display: inline;
-    color: var(--color-primary, #0066cc);
-  }
-
-  /* Footer grid layout */
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
-  .footer-nav,
-  .footer-legal,
-  .footer-social {
-    text-align: center;
-  }
-  .footer-legal a {
-    color: var(--color-text-muted, #888);
-    font-size: 0.875rem;
-  }
-  .footer-legal a:hover {
-    color: var(--color-primary, #0066cc);
-  }
-
-  @media (min-width: 640px) {
-    .footer-grid {
-      grid-template-columns: 2fr 2fr 1fr;
-      text-align: left;
-    }
-    .footer-nav { text-align: left; }
-    .footer-legal { text-align: center; }
-    .footer-social { text-align: right; }
-  }
-</style>
-
-<script>
-  (() => {
-    const switcher = document.getElementById('langSwitcher');
-    const btn = document.getElementById('langBtn');
-    const dropdown = document.getElementById('langDropdown');
-
-    if (!switcher || !btn || !dropdown) return;
-
-    let isOpen = false;
-
-    function toggle() {
-      isOpen = !isOpen;
-      switcher.classList.toggle('open', isOpen);
-      btn.setAttribute('aria-expanded', isOpen.toString());
-    }
-
-    function close() {
-      isOpen = false;
-      switcher.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-    }
-
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggle();
-    });
-
-    document.addEventListener('click', (e) => {
-      if (isOpen && !switcher.contains(e.target)) {
-        close();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && isOpen) {
-        close();
-        btn.focus();
-      }
-    });
-
-    dropdown.addEventListener('click', (e) => {
-      const link = e.target.closest('.lang-option');
-      if (link) {
-        const lang = link.getAttribute('data-lang');
-        if (lang) {
-          document.cookie = `preferred-lang=${lang}; path=/; max-age=31536000; SameSite=Lax`;
-        }
-        close();
-      }
-    });
-  })();
-</script>

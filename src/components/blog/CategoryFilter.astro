@@ -1,5 +1,5 @@
 ---
-// CategoryFilter.astro - Sidebar filtre catégories (design system lafoidieu .bq)
+// CategoryFilter.astro - Sidebar filtre catégories (design system lafoidieu .bq classes)
 import type { CollectionEntry } from 'astro:content';
 import { getCategoryLabel } from '../../utils/blog';
 
@@ -12,7 +12,6 @@ interface Props {
 
 const { lang, currentCategory, allCategories, posts } = Astro.props;
 
-// Slugifier pour URLs
 function slugify(str: string): string {
   return str
     .normalize('NFD')
@@ -42,31 +41,46 @@ const ui = {
 };
 
 const t = ui[lang as keyof typeof ui] || ui.fr;
+const totalPosts = posts.filter(p => !p.data.draft).length;
 ---
 
-<nav class="category-list" aria-label={t.title} role="list">
+<nav class="bq-category-filter" aria-label={t.title} role="list">
+  <h3 class="bq-category-filter-title">{t.title}</h3>
+  
   <a 
-    href={`/${lang}/blog/`} 
-    class={`category-item ${!currentCategory ? 'active' : ''}`}
+    href={`/${lang}/blog/1`} 
+    class="bq-category-item ${!currentCategory ? 'bq-active' : ''}"
     aria-current={!currentCategory ? 'page' : undefined}
   >
-    <span class="category-name">{t.all}</span>
-    <span class="category-count">{posts.filter(p => !p.data.draft).length}</span>
+    <span class="bq-category-name">{t.all}</span>
+    <span class="bq-category-count">{totalPosts}</span>
   </a>
   
   {allCategories.map(cat => {
     const count = categoryCounts[cat] || 0;
+    if (count === 0) return null;
     const label = getCategoryLabel(cat, lang);
     const catSlug = slugify(cat);
     return (
       <a 
         href={`/${lang}/blog/categorie/${catSlug}/1/`} 
-        class={`category-item ${currentCategory === cat ? 'active' : ''}`}
+        class="bq-category-item ${currentCategory === cat ? 'bq-active' : ''}"
         aria-current={currentCategory === cat ? 'page' : undefined}
       >
-        <span class="category-name">{label}</span>
-        <span class="category-count">{count}</span>
+        <span class="bq-category-name">{label}</span>
+        <span class="bq-category-count">{count}</span>
       </a>
     );
   })}
 </nav>
+
+<style is:global>
+  .bq-category-filter { padding: var(--space-md); background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); margin-bottom: var(--space-xl); }
+  .bq-category-filter-title { font-size: var(--text-sm); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 0 0 var(--space-md); padding-bottom: var(--space-sm); border-bottom: 1px solid var(--line); }
+  .bq-category-item { display: flex; justify-content: space-between; align-items: center; padding: var(--space-sm) var(--space-md); color: var(--ink); text-decoration: none; border-radius: var(--radius-md); transition: all var(--transition-fast); margin-bottom: var(--space-xs); }
+  .bq-category-item:hover { background: var(--gold-soft); color: var(--gold-ink); }
+  .bq-category-item.bq-active { background: var(--gold); color: var(--ink); font-weight: 500; }
+  .bq-category-count { font-size: var(--text-xs); color: var(--muted); background: var(--line); padding: var(--space-xs) var(--space-sm); border-radius: var(--radius-full); min-width: 24px; text-align: center; }
+  .bq-category-item.bq-active .bq-category-count { background: var(--ink); color: var(--cream); }
+  .bq-category-item:hover .bq-category-count { background: var(--gold); color: var(--ink); }
+</style>

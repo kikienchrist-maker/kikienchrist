@@ -1,103 +1,148 @@
 {
   "lang": "en",
-  "nativeName": "English",
-  "englishName": "English",
   "dir": "ltr",
-  "dateFormat": "MM/DD/YYYY",
-  "translations": {
-    "nav": {
-      "home": "Home",
-      "blog": "Blog",
-      "books": "Books",
-      "contact": "Contact",
-      "search": "Search",
-      "language": "Language"
-    },
-    "hero": {
-      "title": "Books for those seeking God beyond dogma",
-      "subtitle": "Discover an authentic spirituality, rooted in Scripture and alive in daily life.",
-      "ctaPrimary": "Discover Books",
-      "ctaSecondary": "Read Blog"
-    },
-    "footer": {
-      "copyright": "© 2025 Kiki en Christ. All rights reserved.",
-      "mentionsLegales": "Legal Notice",
-      "confidentialite": "Privacy Policy",
-      "cookies": "Cookies",
-      "cgv": "Terms of Sale",
-      "accessibilite": "Accessibility"
-    },
-    "blog": {
-      "filterTitle": "Filter",
-      "categories": "Categories",
-      "tags": "Tags",
-      "series": "Series",
-      "clearFilters": "Clear filters",
-      "noPosts": "No articles found.",
-      "readingTime": "min read",
-      "relatedPosts": "Related posts",
-      "newsletterTitle": "Get new articles",
-      "newsletterDesc": "Subscribe to never miss our teachings and testimonies.",
-      "subscribe": "Subscribe"
-    },
-    "legal": {
-      "mentionsLegalesTitle": "Legal Notice",
-      "confidentialiteTitle": "Privacy Policy",
-      "cookiesTitle": "Cookie Policy",
-      "cgvTitle": "Terms of Sale",
-      "accessibiliteTitle": "Accessibility"
-    },
-    "forms": {
-      "emailPlaceholder": "Your email",
-      "submit": "Subscribe",
-      "submitting": "Subscribing...",
-      "success": "Thanks! Check your inbox.",
-      "error": "Error. Please try again later.",
-      "privacy": "We respect your privacy. Unsubscribe in 1 click.",
-      "firstName": "First Name",
-      "lastName": "Last Name"
-    },
-    "partners": {
-      "title": "Become a Partner — Kiki en Christ",
-      "description": "Join our affiliate program and earn 30% commission on every sale.",
-      "subtitle": "Share the faith, earn income",
-      "benefit1_title": "30% Commission",
-      "benefit1_desc": "On every sale generated through your unique link.",
-      "benefit2_title": "30-Day Cookie",
-      "benefit2_desc": "Attribution for 30 days even if purchase is delayed.",
-      "benefit3_title": "Monthly Payout",
-      "benefit3_desc": "Automatic transfer from $50 earned.",
-      "benefit4_title": "Dashboard",
-      "benefit4_desc": "Real-time tracking: clicks, conversions, revenue.",
-      "signup_title": "Join the Program",
-      "signup_desc": "Sign up in 2 minutes, get your unique link instantly.",
-      "submit_btn": "Become a Partner",
-      "website_label": "Website / Social Media (optional)",
-      "terms_text": "I accept the <a href=\"/conditions-generales/\">Terms & Conditions</a> and <a href=\"/politique-confidentialite/\">Privacy Policy</a>",
-      "assets_title": "Media Kit & Resources",
-      "assets_desc": "Everything you need to promote effectively.",
-      "asset_banners": "Banners",
-      "asset_banners_desc": "Formats 728x90, 300x250, 320x50, 1200x628",
-      "asset_social": "Social Media Assets",
-      "asset_social_desc": "Instagram, Facebook, Twitter/X, LinkedIn posts",
-      "asset_email": "Email Templates",
-      "asset_email_desc": "Ready-to-send 3-email sequence",
-      "asset_logos": "Logos & Guidelines",
-      "asset_logos_desc": "Primary logo, monochrome, favicon, color palette",
-      "asset_covers": "Book Covers HD",
-      "asset_covers_desc": "4 covers in 300 DPI for print/web",
-      "asset_video": "Promo Videos",
-      "asset_video_desc": "Reels/TikTok 15s, YouTube 30s, 60s",
-      "download": "Download",
-      "faq_title": "Frequently Asked Questions",
-      "faq1_q": "How do I get paid?",
-      "faq1_a": "Monthly bank transfer (threshold $50). IBAN required in your dashboard.",
-      "faq2_q": "Can I join from any country?",
-      "faq2_a": "Yes, as long as you have a bank account receiving SEPA/international transfers.",
-      "faq3_q": "Is there a minimum sales requirement?",
-      "faq3_a": "No, you're paid from the first validated sale.",
-      "faq4_q": "How do I track my performance?",
-      "faq4_a": "FirstPromoter real-time dashboard: clicks, conversions, revenue, rates."
+  "name": "English",
+  "meta": {
+    "title": "Christian Books to Strengthen Your Faith — Kiki en Christ",
+    "description": "Four books for those seeking God beyond dogmas. Paper, ebook and audio, in English and up to 9 languages. Delivery in 3-5 days.",
+    "ogTitle": "Christian Books to Strengthen Your Faith — Kiki en Christ",
+    "ogDescription": "Four books for those seeking God beyond dogmas. Paper, ebook and audio, in English and up to 9 languages. Delivery in 3-5 days."
+  },
+  "hero": {
+    "eyebrow": "New Release",
+    "title": "Books for Those Seeking God Beyond Dogmas",
+    "subtitle": "Four independent works. Paper, ebook and audio. Available in 9 languages. Sign up to receive the free « 7 Prayers » guide.",
+    "ctaText": "Get « 7 Prayers » Free",
+    "ctaHref": "#newsletter",
+    "secondaryCtaText": "Discover the Books",
+    "secondaryCtaHref": "#books"
+  },
+  "books": {
+    "title": "Our Books",
+    "subtitle": "Books to Nourish Your Faith and Deepen Your Relationship with God",
+    "badge": "Bestseller",
+    "pages": "Pages",
+    "isbn": "ISBN",
+    "published": "Published",
+    "benefitsLabel": "Key Benefits",
+    "ebookBtn": "E-book (PDF/EPUB)",
+    "paperBtn": "Paperback",
+    "instant": "Instant Download",
+    "delivery": "Delivery 5-10 Days",
+    "guarantee": "14-Day Guarantee",
+    "whyTitle": "Why Choose Our Books?",
+    "why1Title": "Biblical Foundation",
+    "why1Text": "Each book is deeply rooted in Scripture for solid, accessible theology.",
+    "why2Title": "Practical Living",
+    "why2Text": "Teachings applicable to daily life to transform your walk with Christ.",
+    "why3Title": "Community",
+    "why3Text": "Join thousands of readers growing together in faith.",
+    "faqTitle": "Frequently Asked Questions About Our Books",
+    "testimonialsTitle": "What Our Readers Say"
+  },
+  "newsletter": {
+    "title": "Get « 7 Prayers » Free",
+    "description": "A PDF guide to embrace prayer, especially when you don't know where to start.",
+    "placeholder": "Your email",
+    "buttonText": "I Want the Guide",
+    "tinyText": "No spam. Unsubscribe in 1 click. Your data stays private."
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "Are these books tied to a specific denomination?",
+        "answer": "No. They address anyone seeking God beyond denominational labels."
+      },
+      {
+        "question": "Can they be read in any order?",
+        "answer": "Yes. Each work is standalone. Start with the one that resonates with your current question."
+      },
+      {
+        "question": "Are they available in paperback?",
+        "answer": "Yes, paperbacks on Lulu. Ebooks on Payhip. Audio on Google Play. Links on each product page."
+      },
+      {
+        "question": "Are translations faithful?",
+        "answer": "Each version is reviewed by a native speaker. Theological meaning is preserved."
+      }
+    ]
+  },
+  "cta": {
+    "text": "Ready to start your journey? Choose the book that resonates — the first step changes everything.",
+    "buttonText": "View All 4 Books",
+    "buttonHref": "#books"
+  },
+  "footer": {
+    "nav": ["Home", "Books", "Blog", "Newsletter", "FAQ", "Contact"],
+    "social": ["Instagram", "Pinterest"],
+    "availability": "Books available in paperback, ebook and audio.",
+    "copyright": "Kiki en Christ. All rights reserved."
+  },
+  "formats": {
+    "paper": "Paperback",
+    "ebook": "Ebook",
+    "audio": "Audio",
+    "paperPrice": "9.99 €",
+    "ebookPrice": "3.99 €",
+    "audioPrice": "5.49 €"
+  },
+  "legal": {
+    "mentionsLegales": "Legal Notice",
+    "confidentialite": "Privacy Policy",
+    "cookies": "Cookies",
+    "cgv": "Terms of Sale",
+    "accessibilite": "Accessibility"
+  },
+  "blog": {
+    "title": "Blog",
+    "readMore": "Read More",
+    "readingTime": "min read",
+    "categories": {
+      "priere": "Prayer",
+      "etude-biblique": "Bible Study",
+      "temoignage": "Testimony",
+      "vie-chretienne": "Christian Living",
+      "theologie": "Theology",
+      "jeunes": "Youth",
+      "famille": "Family",
+      "guerre-spirituelle": "Spiritual Warfare",
+      "guérison": "Healing",
+      "impossible": "Impossible",
+      "enfants": "Children",
+      "couple": "Couple",
+      "matin-soir": "Morning & Evening",
+      "generation-z": "Gen Z",
+      "routine": "Routine",
+      "autorite": "Authority",
+      "desert-spirituel": "Spiritual Desert"
     }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "next": "Next",
+    "previous": "Previous",
+    "page": "Page",
+    "of": "of",
+    "results": "results",
+    "noResults": "No results",
+    "backToHome": "Back to Home",
+    "readMore": "Read More",
+    "share": "Share",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "language": "Language",
+    "selectLanguage": "Select Language"
   }
 }

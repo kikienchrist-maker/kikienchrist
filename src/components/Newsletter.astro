@@ -1,5 +1,5 @@
 ---
-// Newsletter.astro — Localized version
+// Newsletter.astro — Localized version (lafoidieu .bq classes)
 
 interface Props {
   title?: string;
@@ -18,45 +18,23 @@ const nlAction = Astro.props.action ?? "#";
 const nlTinyText = Astro.props.tinyText ?? "Pas de spam. Désabonnement en un clic. Vos données sont respectées.";
 ---
 
-<div class="leadbox" id="newsletter">
-  <h2>{nlTitle}</h2>
-  <p>{nlDescription}</p>
+<div class="bq-newsletter" id="newsletter">
+  <h2 class="bq-section-title">{nlTitle}</h2>
+  <p class="bq-newsletter-description">{nlDescription}</p>
 
-  <form class="capture" action={nlAction} method="POST" data-netlify="true">
-    <input type="email" name="email" placeholder={nlPlaceholder} required />
-    <button class="btn btn-primary" type="submit">{nlButtonText}</button>
+  <form class="bq-newsletter-form" action={nlAction} method="POST" data-netlify="true">
+    <input type="email" name="email" placeholder={nlPlaceholder} required class="bq-form-input" />
+    <button class="bq-btn bq-btn-primary" type="submit">{nlButtonText}</button>
   </form>
 
-  <p class="tiny">{nlTinyText}</p>
+  <p class="bq-newsletter-tiny">{nlTinyText}</p>
 </div>
 
 <style is:global>
-  .leadbox form.capture {
-    display: flex;
-    gap: 9px;
-    max-width: 460px;
-    margin: 0 auto;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .leadbox form.capture input {
-    flex: 1 1 220px;
-    min-width: 0;
-    padding: 15px 17px;
-    border: 1px solid #cfc5b3;
-    border-radius: 6px;
-    font: 400 15px system-ui, sans-serif;
-    background: #fff;
-  }
-  .leadbox form.capture input:focus {
-    outline: 2px solid var(--gold);
-    outline-offset: 1px;
-    border-color: var(--gold);
-  }
-  .leadbox form.capture button { flex: 0 0 auto; }
-  .leadbox .tiny {
-    font: 400 12px/1.6 system-ui, sans-serif;
-    color: #6d665a;
-    margin-top: 16px;
-  }
+  .bq-newsletter { text-align: center; margin: var(--space-2xl) 0; }
+  .bq-newsletter-form { display: flex; gap: var(--space-sm); max-width: 460px; margin: var(--space-lg) auto 0; flex-wrap: wrap; justify-content: center; }
+  .bq-newsletter-form .bq-form-input { flex: 1 1 220px; min-width: 0; padding: 15px 17px; border: 1px solid var(--line); border-radius: var(--radius-md); font: 400 15px system-ui, sans-serif; background: var(--paper); color: var(--ink); }
+  .bq-newsletter-form .bq-form-input:focus { outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--gold); }
+  .bq-newsletter-form .bq-btn { flex: 0 0 auto; }
+  .bq-newsletter-tiny { font: 400 12px/1.6 system-ui, sans-serif; color: var(--muted); margin-top: 16px; }
 </style>

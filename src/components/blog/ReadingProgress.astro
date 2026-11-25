@@ -1,9 +1,9 @@
 ---
-// ReadingProgress.astro - Barre de progression de lecture en haut de page
+// ReadingProgress.astro - Barre de progression de lecture en haut de page (lafoidieu .bq classes)
 ---
 
-<div class="reading-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progression de lecture">
-  <div class="reading-progress-bar"></div>
+<div class="bq-reading-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progression de lecture">
+  <div class="bq-reading-progress-bar"></div>
 </div>
 
 <script>
@@ -17,8 +17,8 @@
     
     constructor(container: HTMLElement) {
       this.progressContainer = container;
-      this.progressBar = container.querySelector('.reading-progress-bar')!;
-      this.article = document.querySelector('.blog-post-content') || document.querySelector('article');
+      this.progressBar = container.querySelector('.bq-reading-progress-bar')!;
+      this.article = document.querySelector('.bq-blog-post-content') || document.querySelector('article');
       
       if (!this.article) return;
       
@@ -75,36 +75,27 @@
   
   // Initialiser
   document.addEventListener('DOMContentLoaded', () => {
-    const container = document.querySelector('.reading-progress');
+    const container = document.query('.bq-reading-progress');
     if (container) new ReadingProgress(container as HTMLElement);
   });
 </script>
 
 <style is:global>
-  .reading-progress {
+  .bq-reading-progress {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0;
     height: 3px;
-    background: var(--color-border);
+    background: var(--line);
     z-index: 1000;
     pointer-events: none;
-    transition: opacity var(--transition-normal);
   }
-
-  .reading-progress-bar {
+  .bq-reading-progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, var(--color-gold), var(--color-gold-dark));
+    background: linear-gradient(90deg, var(--gold), var(--gold-soft));
     width: 0%;
     transition: width 0.1s linear;
     transform-origin: left center;
-  }
-
-  /* Cacher sur mobile si nécessaire */
-  @media (max-width: 480px) {
-    .reading-progress {
-      height: 2px;
-    }
   }
 </style>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Kiki en Christ - Administration</title>
+    <link href="https://unpkg.com/decap-cms@^3.0.0/dist/cms.css" rel="stylesheet" />
+  </head>
+  <body>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/cms.js"></script>
+    <script>
+      // Configuration Netlify Identity
+      window.CMS_MANUAL_INIT = true;
+    </script>
+    <script>
+      // Initialisation CMS
+      const config = {
+        load_config_file: true,
+        config: {
+          backend: {
+            name: 'git-gateway',
+            branch: 'main',
+          },
+        },
+      };
+
+      // Charger config.yml
+      fetch('/admin/config.yml')
+        .then(res => res.text())
+        .then(yaml => {
+          const parser = new window.DOMParser();
+          // Note: besoin d'un parser YAML en production
+          console.log('Config loaded');
+        })
+        .catch(err => console.error('Failed to load config:', err));
+
+      // Netlify Identity
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.init({
+          url: 'https://kikienchrist.vercel.app/.netlify/identity',
+          audience: 'https://kikienchrist.vercel.app',
+        });
+
+        window.netlifyIdentity.on('login', () => {
+          document.location.href = '/admin/';
+        });
+      }
+
+      // Initialiser CMS
+      if (window.CMS) {
+        window.CMS.init(config);
+      }
+    </script>
+  </body>
+</html>

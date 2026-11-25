@@ -1,0 +1,107 @@
+---
+// SchemaOrgAuto.astro — Composant auto-injection Schema.org (schema-org-master)
+// Utilisation: <SchemaOrgAuto /> dans MainLayout.astro
+// Détecte automatiquement page-type et injecte JSON-LD approprié
+
+import { injectSchemaOrg, generateSchemaOrgScript, type InjectorConfig } from '../../injector';
+import { detectPageType, definePageSchemaOrg } from '../middleware';
+
+interface Props {
+  /** Config optionnelle pour override */
+  config?: Partial<InjectorConfig>;
+  /** Données page explicites (override détection auto) */
+  pageData?: {
+    pageType?: 'home' | 'book' | 'article' | 'category' | 'legal' | 'search' | '404' | 'livres' | 'blog' | 'contact' | 'a-propos';
+    lang?: string;
+    canonicalUrl?: string;
+    title?: string;
+    description?: string;
+    ogImage?: string;
+    breadcrumbs?: Array<{ name: string; url: string }>;
+    faq?: Array<{ question: string; answer: string }>;
+    book?: Record<string, unknown>;
+    article?: Record<string, unknown>;
+  };
+  /** Forcer injection dans <head> (défaut: true) */
+  injectInHead?: boolean;
+  /** Pretty print JSON-LD */
+  pretty?: boolean;
+}
+
+// Récupérer contexte Astro
+const { Astro } = globalThis as any;
+const { url, params, locals, props: astroProps } = Astro;
+
+// Config par défaut
+const defaultConfig: InjectorConfig = {
+  autoTypes: ['WebSite', 'Organization', 'BreadcrumbList', 'FAQPage'],
+  globalData: {
+    website: {
+      name: 'Kiki en Christ',
+      url: 'https://kikienchrist.vercel.app',
+      searchUrlTemplate: 'https://kikienchrist.vercel.app/{lang}/recherche?q={search_term_string}',
+    },
+    organization: {
+      name: 'Kiki en Christ',
+      url: 'https://kikienchrist.vercel.app',
+      logo: 'https://kikienchrist.vercel.app/images/logo.png',
+      sameAs: [
+        'https://www.facebook.com/kikienchrist',
+        'https://twitter.com/kikienchrist',
+        'https://www.instagram.com/kikienchrist',
+        'https://www.youtube.com/@kikienchrist',
+      ],
+      email: 'kikienchrist@gmail.com',
+    },
+  },
+  defaultLang: 'fr',
+  injectInHead: true,
+  pretty: true,
+};
+
+// Fusionner configs
+const config: InjectorConfig = {
+  ...defaultConfig,
+  ...Astro.props.config,
+  defaultLang: Astro.props.pageData?.lang || defaultConfig.defaultLang,
+  injectInHead: Astro.props.injectInHead ?? defaultConfig.injectInHead,
+  pretty: Astro.props.pretty ?? defaultConfig.pretty,
+};
+
+// Détecter page-type automatiquement SI pas de pageData explicite
+let pageData = Astro.props.pageData;
+
+if (!pageData) {
+  // Utiliser la détection via middleware
+  const pageInfo = detectPageType(Astro);
+  
+  // Fusionner avec overrides éventuels
+  pageData = {
+    pageType: pageInfo.pageType,
+    lang: pageInfo.lang,
+    canonicalUrl: pageInfo.canonicalUrl,
+    title: pageInfo.title,
+    description: pageInfo.description,
+    ogImage: pageInfo.ogImage,
+    breadcrumbs: pageInfo.breadcrumbs,
+    faq: pageInfo.faq,
+    book: pageInfo.bookData,
+    article: pageInfo.articleData,
+  };
+}
+
+// Générer script JSON-LD
+const script = generateSchemaOrgScript(pageData, config);
+
+// Injecter dans le HTML (slot dans head ou body)
+const scriptHtml = `<script type="application/ld+json">${config.pretty ? JSON.stringify(JSON.parse(script), null, 2) : script}</script>`;
+
+---
+
+{config.injectInHead ? (
+  <head>
+    <slot name="head-schema" set:html={scriptHtml} />
+  </head>
+) : (
+  <script type="application/ld+json" set:html={script} />
+)}

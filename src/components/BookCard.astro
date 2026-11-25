@@ -1,5 +1,5 @@
 ---
-// BookCard.astro — Localized version with translation props
+// BookCard.astro — Boutons formats design + drapeaux + prix EUR pays UE (lafoidieu .bq classes)
 
 interface Book {
   id: string;
@@ -35,6 +35,7 @@ interface Props {
   metaSuffix?: string;
   languagesLabel?: string;
   languages?: LanguageItem[];
+  currentPageLang?: string;
 }
 
 const book = Astro.props.book;
@@ -47,115 +48,447 @@ const benefits = Astro.props.benefits ?? [
   "Garantie satisfait ou remboursé 30 jours"
 ];
 const metaSuffix = Astro.props.metaSuffix ?? "pages";
-const languagesLabel = Astro.props.languagesLabel ?? "9 langues disponibles";
+const languagesLabel = Astro.props.languagesLabel ?? "Langues disponibles";
 const languages = Astro.props.languages ?? [];
+const currentPageLang = Astro.props.currentPageLang ?? 'fr';
 
+// Drapeaux par code langue
+const LANG_FLAGS: Record<string, string> = {
+  fr: '🇫🇷', en: '🇺🇸', es: '🇪🇸', pt: '🇵🇹', it: '🇮🇹', de: '🇩🇪',
+  nl: '🇳🇱', pl: '🇵🇱', ar: '🇸🇦', ru: '🇷🇺', zh: '🇨🇳', hi: '🇮🇳',
+};
+
+// Récupérer les offres par vendeur
 function getPaperOffer() { return book.offers.find(o => o.seller.name === 'Lulu'); }
 function getEbookOffer() { return book.offers.find(o => o.seller.name === 'Payhip'); }
 function getAudioOffer() { return book.offers.find(o => o.seller.name === 'Google Play'); }
 
-function formatPrice(offer: Offer | undefined) {
-  return offer ? `${offer.price} ${offer.priceCurrency}` : null;
+function parsePrice(priceStr: string): number {
+  return parseFloat(priceStr.replace(',', '.'));
 }
-
-// Get the localized "Paper" term from the current language's fmt
-const currentLangCode = book.inLanguage?.toLowerCase();
-const currentLang = languages.find(l => l.code === currentLangCode);
-const paperLabel = currentLang?.fmt?.split(' · ')[0] ?? 'Paper';
 
 const paperOffer = getPaperOffer();
 const ebookOffer = getEbookOffer();
 const audioOffer = getAudioOffer();
 
-const paperPrice = formatPrice(paperOffer);
-const ebookPrice = formatPrice(ebookOffer);
-const audioPrice = formatPrice(audioOffer);
+// Prix bruts (depuis les offres)
+const paperPriceRaw = paperOffer ? parsePrice(paperOffer.price) : null;
+const ebookPriceRaw = ebookOffer ? parsePrice(ebookOffer.price) : null;
+const audioPriceRaw = audioOffer ? parsePrice(audioOffer.price) : null;
+
+const paperPriceCurrency = paperOffer?.priceCurrency ?? 'EUR';
+const ebookPriceCurrency = ebookOffer?.priceCurrency ?? 'USD';
+const audioPriceCurrency = audioOffer?.priceCurrency ?? 'USD';
+
+// Label papier selon la langue courante
+const currentLangCode = book.inLanguage?.toLowerCase();
+const currentLang = languages.find(l => l.code === currentLangCode);
+const paperLabel = currentLang?.fmt?.split(' · ')[0] ?? 'Papier';
+
+// Config formats pour affichage design
+const formats = [
+  {
+    key: 'paper',
+    label: paperLabel,
+    priceRaw: paperPriceRaw,
+    priceCurrency: paperPriceCurrency,
+    url: paperOffer?.url,
+    icon: '📖',
+    platform: 'Lulu',
+    desc: 'Livre broché',
+    primary: true,
+  },
+  {
+    key: 'ebook',
+    label: 'Ebook',
+    priceRaw: ebookPriceRaw,
+    priceCurrency: ebookPriceCurrency,
+    url: ebookOffer?.url,
+    icon: '📱',
+    platform: 'Payhip',
+    desc: 'PDF / EPUB',
+    primary: false,
+  },
+  {
+    key: 'audio',
+    label: 'Audio',
+    priceRaw: audioPriceRaw,
+    priceCurrency: audioPriceCurrency,
+    url: audioOffer?.url,
+    icon: '🎧',
+    platform: 'Google Play',
+    desc: 'MP3 / Streaming',
+    primary: false,
+  },
+] as const;
+
+const availableFormats = formats.filter(f => f.priceRaw !== null && f.url);
+const availableLangs = languages.filter(l => LANG_FLAGS[l.code]);
 ---
 
-<article class="book" data-book-id={book.id}>
-  <div class="book-cover-col">
-    <img
-      class="cover"
-      src={book.image}
-      alt={`Couverture : ${book.name}`}
-      loading={book.position === 1 ? "eager" : "lazy"}
-      width="320"
-      height="480"
-    />
-  </div>
+<article class="bq-card" data-book-id={book.id} id={book.id}>
+  <img
+    class="bq-card-image"
+    src={book.image}
+    alt={`Couverture : ${book.name}`}
+    loading={book.position === 1 ? "eager" : "lazy"}
+    width="320"
+    height="480"
+  />
 
-  <div class="book-content-col">
-    <span class="series">{seriesPrefix} {book.position}</span>
-    <h3>{book.name}</h3>
+  <div class="bq-card-content">
+    <span class="bq-badge">{seriesPrefix} {book.position}</span>
+    <h3 class="bq-card-title">{book.name}</h3>
 
-    <p class="hook">{hook}</p>
+    <p class="bq-card-text">{hook}</p>
 
-    <ul>
-      {benefits.map((benefit, i) => (
-        <li>{benefit}</li>
+    <ul class="bq-benefits">
+      {benefits.map((benefit) => (
+        <li class="bq-benefit">
+          <svg class="bq-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M5 10l3 3 7-7"/>
+          </svg>
+          {benefit}
+        </li>
       ))}
     </ul>
 
-    <p class="meta">
+    <p class="bq-card-meta">
       <strong>{book.numberOfPages} {metaSuffix}</strong> · ISBN {book.isbn}
     </p>
 
-    <div class="prices">
-      {paperPrice && (
-        <span>
-          <b>{paperPrice.split(' ')[0]}</b> <span>{paperPrice.split(' ')[1]}</span>
-        </span>
-      )}
-      {ebookPrice && (
-        <span>
-          <b>{ebookPrice.split(' ')[0]}</b> <span>{ebookPrice.split(' ')[1]}</span>
-        </span>
-      )}
-      {audioPrice && (
-        <span>
-          <b>{audioPrice.split(' ')[0]}</b> <span>{audioPrice.split(' ')[1]}</span>
-        </span>
-      )}
-    </div>
-
-    <div class="actions">
-      {paperOffer && (
-        <a class="btn btn-small btn-primary" href={paperOffer.url} target="_blank" rel="noopener">
-          {paperLabel}
-        </a>
-      )}
-      {ebookOffer && (
-        <a class="btn btn-small btn-ghost" href={ebookOffer.url} target="_blank" rel="noopener">
-          Ebook
-        </a>
-      )}
-      {audioOffer && (
-        <a class="btn btn-small btn-ghost" href={audioOffer.url} target="_blank" rel="noopener">
-          Audio
-        </a>
-      )}
-    </div>
-
-    <details>
-      <summary>{languagesLabel}</summary>
-      <div class="langs">
-        {languages.map(lang => (
-          <a href={`/${lang.code}/`}>
-            {lang.name} <span class="fmt">{lang.fmt}</span>
+    {/* ===== BOUTONS FORMATS DESIGN (Cartes visuelles) ===== */}
+    {availableFormats.length > 0 && (
+      <div class="bq-card-formats" role="list" aria-label="Formats disponibles">
+        {availableFormats.map((fmt, i) => (
+          <a
+            class={`bq-format-card ${fmt.primary ? 'bq-format-card--primary' : ''}`}
+            href={fmt.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            role="listitem"
+            aria-label={`${fmt.label} — ${fmt.priceRaw} ${fmt.priceCurrency} — ${fmt.platform}`}
+            data-price-raw={String(fmt.priceRaw)}
+            data-price-currency={fmt.priceCurrency}
+          >
+            <span class="bq-format-icon" aria-hidden="true">{fmt.icon}</span>
+            <div class="bq-format-content">
+              <span class="bq-format-label">{fmt.label}</span>
+              <span class="bq-format-desc">{fmt.desc}</span>
+              <span class="bq-format-platform">{fmt.platform}</span>
+            </div>
+            <span class="bq-format-price" data-price-raw={String(fmt.priceRaw)} data-price-currency={fmt.priceCurrency}>
+              {fmt.priceRaw.toFixed(fmt.priceCurrency === 'EUR' ? 2 : 2)} {fmt.priceCurrency}
+            </span>
+            <svg class="bq-format-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
           </a>
         ))}
       </div>
-    </details>
+    )}
+
+    {/* ===== DRAPEAUX LANGUES → Homepages par langue ===== */}
+    <div class="bq-card-languages">
+      <span class="bq-languages-label">{languagesLabel}</span>
+      <div class="bq-lang-flags" role="list" aria-label="Versions linguistiques du site">
+        {availableLangs.map(lang => (
+          <a
+            class="bq-lang-flag-link"
+            href={`https://kikienchrist.vercel.app/${lang.code}/`}
+            hreflang={lang.code}
+            lang={lang.code}
+            role="listitem"
+            aria-label={`${lang.name} — Site en ${lang.name}`}
+            title={lang.name}
+          >
+            <span class="bq-lang-flag" aria-hidden="true">{LANG_FLAGS[lang.code]}</span>
+            <span class="bq-lang-tooltip">{lang.name}</span>
+          </a>
+        ))}
+      </div>
+    </div>
   </div>
 </article>
 
-<style is:global>
-  .book:nth-of-type(2n) > div:first-child { order: 2; }
-  .book:nth-of-type(2n) > div:last-child { order: 1; }
-  @media (min-width: 981px) {
-    .book:nth-of-type(2n) { grid-template-columns: 1fr 320px; }
+<script>
+  // Conversion USD → EUR pour pays européens
+  // Taux de change fixe (à mettre à jour périodiquement ou via API)
+  const USD_TO_EUR = 0.92;
+
+  // Pays européens (codes ISO 3166-1 alpha-2)
+  const EU_COUNTRIES = new Set([
+    'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE'
+  ]);
+
+  // Lire le cookie user-country (mis par middleware Vercel)
+  function getUserCountry(): string | null {
+    const match = document.cookie.match(/(?:^|; )user-country=([^;]+)/);
+    return match ? decodeURIComponent(match[1]) : null;
   }
-  @media (min-width: 761px) and (max-width: 980px) {
-    .book:nth-of-type(2n) { grid-template-columns: 1fr 250px; }
+
+  // Déterminer si on doit afficher en EUR
+  function shouldShowEUR(): boolean {
+    const country = getUserCountry();
+    if (country && EU_COUNTRIES.has(country.toUpperCase())) return true;
+    // Fallback: si langue de la page est une langue UE
+    const htmlLang = document.documentElement.lang?.toLowerCase();
+    const EU_LANGS = new Set(['fr','de','es','it','pt','nl','pl','el','cs','hu','ro','sk','sl','et','lv','lt','ga','mt','sv','da','fi']);
+    return EU_LANGS.has(htmlLang);
+  }
+
+  // Formater le prix selon la devise cible
+  function formatPrice(raw: number, currency: string, targetEUR: boolean): string {
+    if (targetEUR && currency === 'USD') {
+      return (raw * USD_TO_EUR).toFixed(2) + ' €';
+    }
+    if (targetEUR && currency === 'EUR') {
+      return raw.toFixed(2) + ' €';
+    }
+    // Devise originale
+    const symbol = currency === 'EUR' ? '€' : currency === 'USD' ? '$' : currency;
+    return raw.toFixed(2) + ' ' + symbol;
+  }
+
+  // Appliquer la conversion au chargement
+  function updatePrices() {
+    const targetEUR = shouldShowEUR();
+    document.querySelectorAll('.bq-format-card').forEach(card => {
+      const priceEl = card.querySelector('.bq-format-price');
+      if (!priceEl) return;
+      const raw = parseFloat(priceEl.dataset.priceRaw || '0');
+      const currency = priceEl.dataset.priceCurrency || 'USD';
+      priceEl.textContent = formatPrice(raw, currency, targetEUR);
+    });
+  }
+
+  // Exécuter au DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updatePrices);
+  } else {
+    updatePrices();
+  }
+
+  // Écouter changement de cookie (si middleware le met à jour)
+  window.addEventListener('storage', e => {
+    if (e.key === 'user-country') updatePrices();
+  });
+</script>
+
+<style is:global>
+  .bq-benefits { list-style: none; margin: var(--space-md) 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-xs); }
+  .bq-benefit { display: flex; align-items: flex-start; gap: var(--space-sm); font-size: var(--text-sm); color: var(--muted); }
+  .bq-check { width: 16px; height: 16px; flex-shrink: 0; color: var(--gold); margin-top: 2px; }
+  .bq-card-meta { font-size: var(--text-sm); color: var(--muted); margin: var(--space-md) 0; }
+
+  /* ===== BOUTONS FORMATS DESIGN (Cartes) ===== */
+  .bq-card-formats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin: var(--space-lg) 0;
+  }
+
+  .bq-format-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex: 1;
+    min-width: 140px;
+    max-width: 180px;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--surface);
+    border: 2px solid var(--line);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    color: var(--ink);
+    transition:
+      border-color var(--transition-normal),
+      box-shadow var(--transition-normal),
+      transform var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .bq-format-card:hover,
+  .bq-format-card:focus {
+    border-color: var(--gold);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+    color: var(--ink);
+  }
+
+  .bq-format-card:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .bq-format-card--primary {
+    border-color: var(--gold);
+    background: linear-gradient(180deg, var(--gold-soft) 0%, var(--surface) 100%);
+    box-shadow: var(--shadow-md), 0 0 0 1px var(--gold-soft);
+  }
+  .bq-format-card--primary:hover {
+    box-shadow: var(--shadow-xl), 0 0 0 2px var(--gold);
+  }
+
+  .bq-format-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .bq-format-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .bq-format-label {
+    font: 600 var(--text-sm) system-ui, sans-serif;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .bq-format-desc {
+    font: var(--text-xs) system-ui, sans-serif;
+    color: var(--muted);
+    text-transform: capitalize;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .bq-format-platform {
+    font: 500 10px system-ui, sans-serif;
+    color: var(--gold-ink);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .bq-format-price {
+    font: 700 var(--text-base) Georgia, serif;
+    color: var(--ink);
+    background: var(--gold-soft);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    flex-shrink: 0;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,.3);
+  }
+
+  .bq-format-arrow {
+    width: 18px;
+    height: 18px;
+    color: var(--muted);
+    transition: transform var(--transition-fast), color var(--transition-fast);
+    flex-shrink: 0;
+  }
+
+  .bq-format-card:hover .bq-format-arrow,
+  .bq-format-card:focus .bq-format-arrow {
+    transform: translateX(3px);
+    color: var(--gold);
+  }
+
+  /* ===== DRAPEAUX LANGUES ===== */
+  .bq-card-languages {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--line);
+  }
+  .bq-languages-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+  .bq-lang-flags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    align-items: center;
+  }
+  .bq-lang-flag-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--line);
+    text-decoration: none;
+    transition:
+      border-color var(--transition-fast),
+      box-shadow var(--transition-fast),
+      transform var(--transition-fast);
+  }
+  .bq-lang-flag-link:hover,
+  .bq-lang-flag-link:focus {
+    border-color: var(--gold);
+    box-shadow: var(--shadow-md);
+    transform: scale(1.1);
+    z-index: 10;
+  }
+  .bq-lang-flag-link:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+  }
+  .bq-lang-flag {
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+  .bq-lang-tooltip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--ink);
+    color: var(--paper);
+    font-size: var(--text-xs);
+    border-radius: var(--radius-sm);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-fast);
+    z-index: 20;
+  }
+  .bq-lang-flag-link:hover .bq-lang-tooltip,
+  .bq-lang-flag-link:focus .bq-lang-tooltip {
+    opacity: 1;
+  }
+
+  /* Langue courante = highlightée */
+  .bq-lang-flag-link[hreflang="{currentPageLang}"] {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px var(--gold-soft);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .bq-card-formats {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .bq-format-card {
+      max-width: none;
+      min-width: auto;
+      flex: none;
+    }
+    .bq-format-content { align-items: center; text-align: center; }
+    .bq-format-desc, .bq-format-platform { display: none; }
   }
 </style>

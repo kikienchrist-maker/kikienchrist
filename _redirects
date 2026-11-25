@@ -1,0 +1,5 @@
+# Decap CMS Admin
+/admin/* /admin/index.html 200
+
+# Netlify Identity
+/.netlify/identity/* /.netlify/identity/:splat 200

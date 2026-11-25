@@ -1,0 +1,51 @@
+---
+// FAQSchema.astro — Composant Schema.org FAQPage (schema-org-master)
+// Utilisation: <FAQSchema faqs={[{question: 'Q?', answer: 'R.'}]} lang="fr" />
+
+import { FAQPageBuilder } from '../../builder/base';
+
+interface Props {
+  /** Paires Question/Réponse */
+  faqs: Array<{ question: string; answer: string }>;
+  /** Code langue */
+  lang?: string;
+  /** Source Kiki: legal, blog, manual */
+  kikiSource?: 'legal' | 'blog' | 'manual';
+  /** Injecter dans head */
+  injectInHead?: boolean;
+  /** Pretty print */
+  pretty?: boolean;
+}
+
+const { faqs, lang = 'fr', kikiSource = 'manual', injectInHead = true, pretty = true } = Astro.props;
+
+// Construire FAQPage
+const faqBuilder = FAQPageBuilder.create();
+
+const mainEntities = faqs.map(faq => ({
+  '@type': 'Question' as const,
+  name: faq.question,
+  acceptedAnswer: {
+    '@type': 'Answer' as const,
+    text: faq.answer,
+  },
+}));
+
+faqBuilder.mainEntity(mainEntities);
+faqBuilder.inLanguage(lang);
+faqBuilder.kikiSource(kikiSource);
+faqBuilder.kikiDetectedQuestions(faqs.length);
+
+const faq = faqBuilder.build();
+
+const script = `<script type="application/ld+json">${pretty ? JSON.stringify(faq, null, 2) : JSON.stringify(faq)}</script>`;
+
+---
+
+{injectInHead ? (
+  <head>
+    <slot name="faq-schema" set:html={script} />
+  </head>
+) : (
+  <script type="application/ld+json" set:html={JSON.stringify(faq, null, pretty ? 2 : 0)} />
+)}

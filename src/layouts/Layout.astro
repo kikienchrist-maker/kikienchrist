@@ -1,5 +1,5 @@
 ---
-// Layout.astro — Minimal test layout
+// Layout.astro — Minimal test layout (lafoidieu .bq classes)
 
 interface Props {
   title: string;
@@ -26,6 +26,7 @@ const {
   <title>{title}</title>
   <meta name="description" content={description}>
   <link rel="canonical" href={canonicalURL}>
+  <link rel="stylesheet" href="/styles/lafoidieu-design.css" />
 </head>
 <body class="bq">
   <slot />

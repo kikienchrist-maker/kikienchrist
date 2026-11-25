@@ -1,0 +1,126 @@
+---
+// ArticleSchema.astro — Composant Schema.org Article/BlogPosting (schema-org-master)
+// Utilisation: <ArticleSchema articleData={frontmatter} lang="fr" />
+
+import { ArticleBuilder, type ArticleBuilder as ArticleBuilderType } from '../../builder/base';
+
+interface Props {
+  /** Données article (depuis frontmatter) */
+  articleData: {
+    /** Titre de l'article */
+    headline: string;
+    /** Slug de l'article */
+    slug: string;
+    /** Auteur(s) */
+    author?: string | Array<string>;
+    /** Date publication */
+    datePublished: string;
+    /** Date modification */
+    dateModified?: string;
+    /** Image(s) */
+    image?: string | Array<string>;
+    /** Description/Excerpt */
+    description?: string;
+    /** Catégorie */
+    category?: string;
+    /** Tags */
+    tags?: Array<string>;
+    /** Temps de lecture (minutes) */
+    readingTimeMinutes?: number;
+    /** Série */
+    series?: string;
+    /** Numéro partie */
+    partNumber?: number;
+  };
+  /** Code langue */
+  lang?: string;
+  /** URL canonique */
+  canonicalUrl?: string;
+  /** Publisher override */
+  publisher?: {
+    name: string;
+    logo?: string;
+    url?: string;
+  };
+  /** Type: Article ou BlogPosting */
+  type?: 'Article' | 'BlogPosting';
+  /** Injecter dans head */
+  injectInHead?: boolean;
+  /** Pretty print */
+  pretty?: boolean;
+}
+
+const {
+  articleData,
+  lang = 'fr',
+  canonicalUrl,
+  publisher,
+  type = 'BlogPosting',
+  injectInHead = true,
+  pretty = true,
+} = Astro.props;
+
+// Construire auteur(s)
+const author = typeof articleData.author === 'string'
+  ? { '@type': 'Person' as const, name: articleData.author }
+  : (articleData.author?.map(name => ({ '@type': 'Person' as const, name })) || [{ '@type': 'Person' as const, name: 'Kiki en Christ' }]);
+
+// Construire image(s)
+const image = articleData.image || (publisher?.logo ? [publisher.logo] : []);
+
+// Construire publisher
+const publisherData = publisher || {
+  '@type': 'Organization' as const,
+  name: 'Kiki en Christ',
+  logo: {
+    '@type': 'ImageObject' as const,
+    url: 'https://kikienchrist.vercel.app/images/logo.png',
+  },
+  url: 'https://kikienchrist.vercel.app',
+};
+
+// Construire Article via builder
+const articleBuilder = ArticleBuilder.create()
+  .headline(articleData.headline)
+  .author(author)
+  .datePublished(articleData.datePublished)
+  .dateModified(articleData.dateModified || articleData.datePublished)
+  .inLanguage(lang)
+  .publisher(publisherData)
+  .articleSection(articleData.category)
+  .keywords(articleData.tags);
+
+if (articleData.description) {
+  articleBuilder.description(articleData.description);
+}
+if (image.length > 0) {
+  articleBuilder.image(image);
+}
+if (canonicalUrl) {
+  articleBuilder.mainEntityOfPage(canonicalUrl);
+}
+if (articleData.readingTimeMinutes) {
+  articleBuilder.kikiReadingTimeMinutes(articleData.readingTimeMinutes);
+}
+if (articleData.series) {
+  articleBuilder.kikiSeries(articleData.series);
+}
+if (articleData.partNumber) {
+  articleBuilder.kikiPartNumber(articleData.partNumber);
+}
+
+articleBuilder['@type'] = type;
+
+const article = articleBuilder.build();
+
+const script = `<script type="application/ld+json">${pretty ? JSON.stringify(article, null, 2) : JSON.stringify(article)}</script>`;
+
+---
+
+{injectInHead ? (
+  <head>
+    <slot name="article-schema" set:html={script} />
+  </head>
+) : (
+  <script type="application/ld+json" set:html={JSON.stringify(article, null, pretty ? 2 : 0)} />
+)}

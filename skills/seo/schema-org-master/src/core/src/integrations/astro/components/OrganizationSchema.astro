@@ -1,0 +1,98 @@
+---
+// OrganizationSchema.astro — Composant Schema.org Organization (schema-org-master)
+// Utilisation: <OrganizationSchema lang="fr" />
+
+import { OrganizationBuilder } from '../../builder/base';
+
+interface Props {
+  /** Nom de l'organisation */
+  name?: string;
+  /** URL du site */
+  url?: string;
+  /** Logo */
+  logo?: string;
+  /** Réseaux sociaux (sameAs) */
+  sameAs?: Array<string>;
+  /** Email de contact */
+  email?: string;
+  /** Téléphone */
+  telephone?: string;
+  /** Adresse */
+  address?: {
+    streetAddress?: string;
+    addressLocality?: string;
+    addressRegion?: string;
+    postalCode?: string;
+    addressCountry?: string;
+  };
+  /** Fondateur(s) */
+  founder?: Array<string>;
+  /** Point de contact */
+  contactPoint?: Array<{
+    telephone: string;
+    contactType: string;
+    availableLanguage?: string;
+    hoursAvailable?: string;
+  }>;
+  /** Code langue */
+  lang?: string;
+  /** Injecter dans head */
+  injectInHead?: boolean;
+  /** Pretty print */
+  pretty?: boolean;
+}
+
+const {
+  name = 'Kiki en Christ',
+  url = 'https://kikienchrist.vercel.app',
+  logo = 'https://kikienchrist.vercel.app/images/logo.png',
+  sameAs = [
+    'https://www.facebook.com/kikienchrist',
+    'https://twitter.com/kikienchrist',
+    'https://www.instagram.com/kikienchrist',
+    'https://www.youtube.com/@kikienchrist',
+  ],
+  email = 'kikienchrist@gmail.com',
+  telephone,
+  address,
+  founder,
+  contactPoint,
+  lang = 'fr',
+  injectInHead = true,
+  pretty = true,
+} = Astro.props;
+
+// Construire Organization
+const orgBuilder = OrganizationBuilder.create()
+  .name(name)
+  .url(url)
+  .logo(logo)
+  .sameAs(sameAs)
+  .email(email);
+
+if (telephone) orgBuilder.telephone(telephone);
+if (address) orgBuilder.address(address);
+if (founder) orgBuilder.founder(founder.map(f => ({ '@type': 'Person', name: f })));
+if (contactPoint) {
+  orgBuilder.contactPoint(contactPoint.map(cp => ({
+    '@type': 'ContactPoint',
+    telephone: cp.telephone,
+    contactType: cp.contactType,
+    availableLanguage: cp.availableLanguage || lang,
+    hoursAvailable: cp.hoursAvailable,
+  })));
+}
+
+const organization = orgBuilder.build();
+
+const script = `<script type="application/ld+json">${pretty ? JSON.stringify(organization, null, 2) : JSON.stringify(organization)}</script>`;
+
+---
+
+{injectInHead ? (
+  <head>
+    <slot name="organization-schema" set:html={script} />
+  </head>
+) : (
+  <script type="application/ld+json" set:html={JSON.stringify(organization, null, pretty ? 2 : 0)} />
+)}

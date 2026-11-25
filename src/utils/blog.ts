@@ -46,10 +46,10 @@ export interface SiteConfig {
  */
 export function generateBlogPostingJsonLd(post: BlogPostData, siteUrl: string): object {
   const url = post.canonicalURL || `${siteUrl}/${post.lang}/blog/${post.slug}/`;
-  
+
   const publishDate = safeToISOString(post.pubDate);
   const modifiedDate = post.updatedDate ? safeToISOString(post.updatedDate) : publishDate;
-  
+
   const jsonLd: Record<string, any> = {
     '@context': 'https://schema.org',
     '@type': post.structuredData?.type || 'BlogPosting',
@@ -121,36 +121,85 @@ export function generateBlogPostingJsonLd(post: BlogPostData, siteUrl: string): 
 
 /**
  * Génère JSON-LD Blog (ItemList) pour page d'index
+ * Supporte deux signatures :
+ * 1. (posts, siteUrl, lang, pagination) - signature originale
+ * 2. (options: { posts?, siteUrl?, lang?, category?, tag?, series?, page?, totalPages?, totalPosts? }) - signature depuis BlogIndex.astro
  */
 export function generateBlogJsonLd(
-  posts: BlogPostData[], 
-  siteUrl: string, 
-  lang: string,
+  arg1:
+    | BlogPostData[]
+    | {
+        posts?: BlogPostData[];
+        siteUrl?: string;
+        lang?: string;
+        category?: string;
+        tag?: string;
+        series?: string;
+        page?: number;
+        totalPages?: number;
+        totalPosts?: number;
+        pagination?: { currentPage: number; totalPages: number; pageSize: number };
+      },
+  siteUrl?: string,
+  lang?: string,
   pagination?: { currentPage: number; totalPages: number; pageSize: number }
 ): object {
+  // Détecter la signature utilisée
+  const isOptions = !Array.isArray(arg1);
+
+  let posts: BlogPostData[] = [];
+  let finalSiteUrl = siteUrl || 'https://kikienchrist.vercel.app';
+  let finalLang = lang || 'fr';
+  let finalPagination = pagination;
+
+  if (isOptions) {
+    const opts = arg1 as {
+      posts?: BlogPostData[];
+      siteUrl?: string;
+      lang?: string;
+      category?: string;
+      tag?: string;
+      series?: string;
+      page?: number;
+      totalPages?: number;
+      totalPosts?: number;
+      pagination?: { currentPage: number; totalPages: number; pageSize: number };
+    };
+    posts = opts.posts || [];
+    finalSiteUrl = opts.siteUrl || finalSiteUrl;
+    finalLang = opts.lang || finalLang;
+    finalPagination = opts.pagination || {
+      currentPage: opts.page || 1,
+      totalPages: opts.totalPages || 1,
+      pageSize: 10,
+    };
+  } else {
+    posts = arg1;
+  }
+
   const jsonLd: Record<string, any> = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
     name: 'Blog Kiki en Christ',
     description: 'Articles, enseignements et témoignages pour grandir dans votre foi',
-    url: `${siteUrl}/${lang}/blog/`,
-    inLanguage: lang,
+    url: `${finalSiteUrl}/${finalLang}/blog/`,
+    inLanguage: finalLang,
     blogPosts: posts.map(post => ({
       '@type': 'BlogPosting',
       headline: post.title,
-      url: `${siteUrl}/${post.lang}/blog/${post.slug}/`,
+      url: `${finalSiteUrl}/${post.lang}/blog/${post.slug}/`,
       datePublished: safeToISOString(post.pubDate),
       author: { '@type': 'Person', name: post.author },
       articleSection: post.category,
     })),
   };
 
-  if (pagination) {
+  if (finalPagination) {
     jsonLd.pagination = {
       '@type': 'Pagination',
-      currentPage: pagination.currentPage,
-      totalPages: pagination.totalPages,
-      pageSize: pagination.pageSize,
+      currentPage: finalPagination.currentPage,
+      totalPages: finalPagination.totalPages,
+      pageSize: finalPagination.pageSize,
     };
   }
 
@@ -160,10 +209,13 @@ export function generateBlogJsonLd(
 /**
  * Génère meta tags pour article (Open Graph, Twitter, etc.)
  */
-export function generateArticleMetaTags(post: BlogPostData, siteUrl: string): Record<string, string> {
+export function generateArticleMetaTags(
+  post: BlogPostData,
+  siteUrl: string
+): Record<string, string> {
   const url = post.canonicalURL || `${siteUrl}/${post.lang}/blog/${post.slug}/`;
   const image = post.ogImage || `${siteUrl}/og-default.jpg`;
-  
+
   return {
     canonical: url,
     'og:type': 'article',
@@ -176,7 +228,9 @@ export function generateArticleMetaTags(post: BlogPostData, siteUrl: string): Re
     'og:locale': getOgLocale(post.lang),
     'og:site_name': 'Kiki en Christ',
     'article:published_time': safeToISOString(post.pubDate),
-    'article:modified_time': post.updatedDate ? safeToISOString(post.updatedDate) : safeToISOString(post.pubDate),
+    'article:modified_time': post.updatedDate
+      ? safeToISOString(post.updatedDate)
+      : safeToISOString(post.pubDate),
     'article:author': `${siteUrl}/auteur/${(post.author || 'kiki-en-christ').toLowerCase().replace(/\s+/g, '-')}/`,
     'article:section': post.category,
     'article:tag': post.tags?.join(',') || '',
@@ -227,7 +281,7 @@ export function getRelatedPosts({
     .filter(p => p.slug !== currentSlug && !p.draft)
     .map(post => {
       let score = 0;
-      
+
       // Série (priorité max)
       if (series && post.series === series) {
         score += 1000;
@@ -236,23 +290,23 @@ export function getRelatedPosts({
           score += 100 - Math.abs(post.seriesOrder - (post.seriesOrder || 0)) * 10;
         }
       }
-      
+
       // Catégorie
       if (category && post.category === category) {
         score += 500;
       }
-      
+
       // Tags partagés
       const sharedTags = post.tags.filter(t => tags.includes(t));
       score += sharedTags.length * 100;
-      
+
       // Récence (articles plus récents = score plus haut)
       const daysSincePub = (Date.now() - new Date(post.pubDate).getTime()) / (1000 * 60 * 60 * 24);
       score += Math.max(0, 100 - daysSincePub);
-      
+
       // Article en vedette
       if (post.featured) score += 50;
-      
+
       return { post, score };
     })
     .sort((a, b) => b.score - a.score)
@@ -288,7 +342,11 @@ export function slugify(str: string): string {
 /**
  * Formate date selon langue
  */
-export function formatDate(date: string | Date, lang: string, options?: Intl.DateTimeFormatOptions): string {
+export function formatDate(
+  date: string | Date,
+  lang: string,
+  options?: Intl.DateTimeFormatOptions
+): string {
   const d = typeof date === 'string' ? new Date(date) : date;
   const defaultOptions: Intl.DateTimeFormatOptions = {
     day: 'numeric',
@@ -324,15 +382,96 @@ export function safeToISOString(dateStr: string): string {
  */
 export function getCategoryLabel(category: string, lang: string): string {
   const labels: Record<string, Record<string, string>> = {
-    fr: { prière: 'Prière', formation: 'Formation', témoignage: 'Témoignage', 'vie-chrétienne': 'Vie chrétienne', famille: 'Famille', mission: 'Mission', actualité: 'Actualité', ressource: 'Ressource' },
-    en: { prière: 'Prayer', formation: 'Teaching', témoignage: 'Testimony', 'vie-chrétienne': 'Christian Life', famille: 'Family', mission: 'Mission', actualité: 'News', ressource: 'Resource' },
-    es: { prière: 'Oración', formation: 'Enseñanza', témoignage: 'Testimonio', 'vie-chrétienne': 'Vida Cristiana', famille: 'Familia', mission: 'Misión', actualité: 'Noticias', ressource: 'Recurso' },
-    pt: { prière: 'Oração', formation: 'Ensino', témoignage: 'Testemunho', 'vie-chrétienne': 'Vida Cristã', famille: 'Família', mission: 'Missão', actualité: 'Notícias', ressource: 'Recurso' },
-    it: { prière: 'Preghiera', formation: 'Insegnamento', témoignage: 'Testimonanza', 'vie-chrétienne': 'Vita Cristiana', famille: 'Famiglia', mission: 'Missione', actualité: 'Notizie', ressource: 'Risorsa' },
-    de: { prière: 'Gebet', formation: 'Lehre', témoignage: 'Zeugnis', 'vie-chrétienne': 'Christliches Leben', famille: 'Familie', mission: 'Mission', actualité: 'Nachrichten', ressource: 'Ressource' },
-    nl: { prière: 'Gebed', formation: 'Onderwijs', témoignage: 'Getuigenis', 'vie-chrétienne': 'Christelijk Leven', famille: 'Gezin', mission: 'Missie', actualité: 'Nieuws', ressource: 'Hulpbron' },
-    pl: { prière: 'Modlitwa', formation: 'Nauczanie', témoignage: 'Świadectwo', 'vie-chrétienne': 'Życie Chrześcijańskie', famille: 'Rodzina', mission: 'Misja', actualité: 'Aktualności', ressource: 'Zasób' },
-    ar: { prière: 'صلاة', formation: 'تعليم', témoignage: 'شهادة', 'vie-chrétienne': 'الحياة المسيحية', famille: 'عائلة', mission: 'مهمة', actualité: 'أخبار', ressource: 'مورد' },
+    fr: {
+      prière: 'Prière',
+      formation: 'Formation',
+      témoignage: 'Témoignage',
+      'vie-chrétienne': 'Vie chrétienne',
+      famille: 'Famille',
+      mission: 'Mission',
+      actualité: 'Actualité',
+      ressource: 'Ressource',
+    },
+    en: {
+      prière: 'Prayer',
+      formation: 'Teaching',
+      témoignage: 'Testimony',
+      'vie-chrétienne': 'Christian Life',
+      famille: 'Family',
+      mission: 'Mission',
+      actualité: 'News',
+      ressource: 'Resource',
+    },
+    es: {
+      prière: 'Oración',
+      formation: 'Enseñanza',
+      témoignage: 'Testimonio',
+      'vie-chrétienne': 'Vida Cristiana',
+      famille: 'Familia',
+      mission: 'Misión',
+      actualité: 'Noticias',
+      ressource: 'Recurso',
+    },
+    pt: {
+      prière: 'Oração',
+      formation: 'Ensino',
+      témoignage: 'Testemunho',
+      'vie-chrétienne': 'Vida Cristã',
+      famille: 'Família',
+      mission: 'Missão',
+      actualité: 'Notícias',
+      ressource: 'Recurso',
+    },
+    it: {
+      prière: 'Preghiera',
+      formation: 'Insegnamento',
+      témoignage: 'Testimonanza',
+      'vie-chrétienne': 'Vita Cristiana',
+      famille: 'Famiglia',
+      mission: 'Missione',
+      actualité: 'Notizie',
+      ressource: 'Risorsa',
+    },
+    de: {
+      prière: 'Gebet',
+      formation: 'Lehre',
+      témoignage: 'Zeugnis',
+      'vie-chrétienne': 'Christliches Leben',
+      famille: 'Familie',
+      mission: 'Mission',
+      actualité: 'Nachrichten',
+      ressource: 'Ressource',
+    },
+    nl: {
+      prière: 'Gebed',
+      formation: 'Onderwijs',
+      témoignage: 'Getuigenis',
+      'vie-chrétienne': 'Christelijk Leven',
+      famille: 'Gezin',
+      mission: 'Missie',
+      actualité: 'Nieuws',
+      ressource: 'Hulpbron',
+    },
+    pl: {
+      prière: 'Modlitwa',
+      formation: 'Nauczanie',
+      témoignage: 'Świadectwo',
+      'vie-chrétienne': 'Życie Chrześcijańskie',
+      famille: 'Rodzina',
+      mission: 'Misja',
+      actualité: 'Aktualności',
+      ressource: 'Zasób',
+    },
+    ar: {
+      prière: 'صلاة',
+      formation: 'تعليم',
+      témoignage: 'شهادة',
+      'vie-chrétienne': 'الحياة المسيحية',
+      famille: 'عائلة',
+      mission: 'مهمة',
+      actualité: 'أخبار',
+      ressource: 'مورد',
+    },
   };
   return labels[lang]?.[category] || category;
 }
@@ -344,14 +483,14 @@ export function extractHeadings(html: string): Array<{ level: number; text: stri
   const headings: Array<{ level: number; text: string; id: string }> = [];
   const regex = /<h([23])[^>]*id="([^"]+)"[^>]*>(.*?)<\/h[23]>/gi;
   let match;
-  
+
   while ((match = regex.exec(html)) !== null) {
     const level = parseInt(match[1], 10);
     const id = match[2];
     const text = match[3].replace(/<[^>]+>/g, '');
     headings.push({ level, text, id });
   }
-  
+
   return headings;
 }
 

@@ -1,103 +1,148 @@
 {
   "lang": "fr",
-  "nativeName": "Français",
-  "englishName": "French",
   "dir": "ltr",
-  "dateFormat": "DD/MM/YYYY",
-  "translations": {
-    "nav": {
-      "home": "Accueil",
-      "blog": "Blog",
-      "books": "Livres",
-      "contact": "Contact",
-      "search": "Recherche",
-      "language": "Langue"
-    },
-    "hero": {
-      "title": "Des livres pour ceux qui cherchent Dieu au-delà des dogmes",
-      "subtitle": "Découvrez une spiritualité authentique, ancrée dans l'Écriture et vivante au quotidien.",
-      "ctaPrimary": "Découvrir les livres",
-      "ctaSecondary": "Lire le blog"
-    },
-    "footer": {
-      "copyright": "© 2025 Kiki en Christ. Tous droits réservés.",
-      "mentionsLegales": "Mentions légales",
-      "confidentialite": "Confidentialité",
-      "cookies": "Cookies",
-      "cgv": "CGV",
-      "accessibilite": "Accessibilité"
-    },
-    "blog": {
-      "filterTitle": "Filtrer",
-      "categories": "Catégories",
-      "tags": "Mots-clés",
-      "series": "Séries",
-      "clearFilters": "Effacer les filtres",
-      "noPosts": "Aucun article trouvé.",
-      "readingTime": "min de lecture",
-      "relatedPosts": "Articles similaires",
-      "newsletterTitle": "Recevez nos nouveaux articles",
-      "newsletterDesc": "Inscrivez-vous pour ne rien manquer de nos enseignements et témoignages.",
-      "subscribe": "S'abonner"
-    },
-    "legal": {
-      "mentionsLegalesTitle": "Mentions Légales",
-      "confidentialiteTitle": "Politique de Confidentialité",
-      "cookiesTitle": "Politique Cookies",
-      "cgvTitle": "Conditions Générales de Vente",
-      "accessibiliteTitle": "Accessibilité"
-    },
-    "forms": {
-      "emailPlaceholder": "Votre email",
-      "submit": "Je m'inscris",
-      "submitting": "Inscription...",
-      "success": "Merci ! Vérifiez votre boîte mail.",
-      "error": "Erreur. Réessayez plus tard.",
-      "privacy": "Nous respectons votre vie privée. Désinscription en 1 clic.",
-      "firstName": "Prénom",
-      "lastName": "Nom"
-    },
-    "partners": {
-      "title": "Devenir Partenaire — Kiki en Christ",
-      "description": "Rejoignez notre programme d'affiliation et gagnez 30% de commission sur chaque vente.",
-      "subtitle": "Partagez la foi, gagnez des revenus",
-      "benefit1_title": "30% Commission",
-      "benefit1_desc": "Sur chaque vente générée via votre lien unique.",
-      "benefit2_title": "Cookie 30 jours",
-      "benefit2_desc": "Attribution sur 30 jours même si achat différé.",
-      "benefit3_title": "Paiement mensuel",
-      "benefit3_desc": "Virement automatique dès 50€ cumulés.",
-      "benefit4_title": "Tableau de bord",
-      "benefit4_desc": "Suivi temps réel : clics, conversions, revenus.",
-      "signup_title": "Rejoindre le programme",
-      "signup_desc": "Inscrivez-vous en 2 minutes, recevez votre lien unique immédiatement.",
-      "submit_btn": "Devenir Partenaire",
-      "website_label": "Site web / Réseaux sociaux (optionnel)",
-      "terms_text": "J'accepte les <a href=\"/conditions-generales/\">Conditions Générales</a> et la <a href=\"/politique-confidentialite/\">Politique de Confidentialité</a>",
-      "assets_title": "Kit Médias & Ressources",
-      "assets_desc": "Tout ce qu'il vous faut pour promouvoir efficacement.",
-      "asset_banners": "Bannières",
-      "asset_banners_desc": "Formats 728x90, 300x250, 320x50, 1200x628",
-      "asset_social": "Visuels Réseaux Sociaux",
-      "asset_social_desc": "Posts Instagram, Facebook, Twitter/X, LinkedIn",
-      "asset_email": "Templates Email",
-      "asset_email_desc": "Séquence 3 emails prête à envoyer",
-      "asset_logos": "Logos & Guidelines",
-      "asset_logos_desc": "Logo principal, monochrome, favicon, charte couleurs",
-      "asset_covers": "Couvertures Livres HD",
-      "asset_covers_desc": "4 couvertures en 300 DPI pour print/web",
-      "asset_video": "Vidéos Promo",
-      "asset_video_desc": "Reels/TikTok 15s, YouTube 30s, 60s",
-      "download": "Télécharger",
-      "faq_title": "Questions Fréquentes",
-      "faq1_q": "Comment suis-je payé ?",
-      "faq1_a": "Virement bancaire mensuel (seuil 50€). IBAN requis dans votre espace.",
-      "faq2_q": "Puis-je m'inscrire depuis n'importe quel pays ?",
-      "faq2_a": "Oui, tant que vous avez un compte bancaire recevant des virements SEPA/internationaux.",
-      "faq3_q": "Y a-t-il un minimum de ventes ?",
-      "faq3_a": "Non, vous êtes payé dès la première vente validée.",
-      "faq4_q": "Comment suivre mes performances ?",
-      "faq4_a": "Tableau de bord FirstPromoter temps réel : clics, conversions, revenus, taux."
+  "name": "Français",
+  "meta": {
+    "title": "Livres chrétiens pour fortifier votre foi — Kiki en Christ",
+    "description": "Quatre livres pour ceux qui cherchent Dieu au-delà des dogmes. Papier, ebook et audio, en français et jusqu'à 9 langues. Livraison en 3-5 jours.",
+    "ogTitle": "Livres chrétiens pour fortifier votre foi — Kiki en Christ",
+    "ogDescription": "Quatre livres pour ceux qui cherchent Dieu au-delà des dogmes. Papier, ebook et audio, en français et jusqu'à 9 langues. Livraison en 3-5 jours."
+  },
+  "hero": {
+    "eyebrow": "Nouveauté",
+    "title": "Des livres pour ceux qui cherchent Dieu au-delà des dogmes",
+    "subtitle": "Quatre ouvrages indépendants. Papier, ebook et audio. Disponibles en 9 langues. Inscrivez-vous pour recevoir le guide « 7 prières » offert.",
+    "ctaText": "Recevez « 7 prières » gratuitement",
+    "ctaHref": "#newsletter",
+    "secondaryCtaText": "Découvrir les livres",
+    "secondaryCtaHref": "#livres"
+  },
+  "books": {
+    "title": "Nos Livres",
+    "subtitle": "Des livres pour nourrir votre foi et approfondir votre relation avec Dieu",
+    "badge": "Bestseller",
+    "pages": "Pages",
+    "isbn": "ISBN",
+    "published": "Paru le",
+    "benefitsLabel": "Points forts",
+    "ebookBtn": "E-book (PDF/EPUB)",
+    "paperBtn": "Version papier",
+    "instant": "Téléchargement instantané",
+    "delivery": "Livraison 5-10 jours",
+    "guarantee": "Garantie 14 jours",
+    "whyTitle": "Pourquoi choisir nos livres ?",
+    "why1Title": "Ancrage biblique",
+    "why1Text": "Chaque livre est profondément enraciné dans les Écritures, pour une théologie solide et accessible.",
+    "why2Title": "Vie pratique",
+    "why2Text": "Des enseignements applicables au quotidien pour transformer votre marche avec Christ.",
+    "why3Title": "Communauté",
+    "why3Text": "Rejoignez des milliers de lecteurs qui grandissent ensemble dans la foi.",
+    "faqTitle": "Questions fréquentes sur nos livres",
+    "testimonialsTitle": "Ce qu'en disent nos lecteurs"
+  },
+  "newsletter": {
+    "title": "Recevez « 7 prières » gratuitement",
+    "description": "Un guide PDF pour apprivoiser la prière, même (surtout) quand on ne sait pas par où commencer.",
+    "placeholder": "Votre email",
+    "buttonText": "Je veux le guide",
+    "tinyText": "Pas de spam. Désinscription en 1 clic. Vos données restent privées."
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "items": [
+      {
+        "question": "Ces livres sont-ils liés à une confession particulière ?",
+        "answer": "Non. Ils s'adressent à toute personne en quête de Dieu, au-delà des étiquettes confessionnelles."
+      },
+      {
+        "question": "Peut-on les lire dans n'importe quel ordre ?",
+        "answer": "Oui. Chaque ouvrage est autonome. Commencez par celui qui résonne avec votre question du moment."
+      },
+      {
+        "question": "Existe-t-il en version papier ?",
+        "answer": "Oui, brochés sur Lulu. Ebooks sur Payhip. Audio sur Google Play. Les liens sont sur chaque fiche."
+      },
+      {
+        "question": "Les traductions sont-elles fidèles ?",
+        "answer": "Chaque version est relue par un locuteur natif. Le sens théologique est préservé."
+      }
+    ]
+  },
+  "cta": {
+    "text": "Prêt à commencer votre chemin ? Choisissez le livre qui résonne — le premier pas change tout.",
+    "buttonText": "Voir les 4 livres",
+    "buttonHref": "#livres"
+  },
+  "footer": {
+    "nav": ["Accueil", "Livres", "Blog", "Newsletter", "FAQ", "Contact"],
+    "social": ["Instagram", "Pinterest"],
+    "availability": "Livres disponibles en papier, ebook et audio.",
+    "copyright": "Kiki en Christ. Tous droits réservés."
+  },
+  "formats": {
+    "paper": "Papier",
+    "ebook": "Ebook",
+    "audio": "Audio",
+    "paperPrice": "9,99 €",
+    "ebookPrice": "3,99 €",
+    "audioPrice": "5,49 €"
+  },
+  "legal": {
+    "mentionsLegales": "Mentions légales",
+    "confidentialite": "Confidentialité",
+    "cookies": "Cookies",
+    "cgv": "CGV",
+    "accessibilite": "Accessibilité"
+  },
+  "blog": {
+    "title": "Blog",
+    "readMore": "Lire la suite",
+    "readingTime": "min de lecture",
+    "categories": {
+      "priere": "Prière",
+      "etude-biblique": "Étude biblique",
+      "temoignage": "Témoignage",
+      "vie-chretienne": "Vie chrétienne",
+      "theologie": "Théologie",
+      "jeunes": "Jeunes",
+      "famille": "Famille",
+      "guerre-spirituelle": "Guerre spirituelle",
+      "guérison": "Guérison",
+      "impossible": "Impossible",
+      "enfants": "Enfants",
+      "couple": "Couple",
+      "matin-soir": "Matin & Soir",
+      "generation-z": "Génération Z",
+      "routine": "Routine",
+      "autorite": "Autorité",
+      "desert-spirituel": "Désert spirituel"
     }
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "retry": "Réessayer",
+    "close": "Fermer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "sort": "Trier",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "page": "Page",
+    "of": "sur",
+    "results": "résultats",
+    "noResults": "Aucun résultat",
+    "backToHome": "Retour à l'accueil",
+    "readMore": "Lire la suite",
+    "share": "Partager",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "language": "Langue",
+    "selectLanguage": "Sélectionner une langue"
   }
 }

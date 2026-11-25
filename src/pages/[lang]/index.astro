@@ -1,18 +1,13 @@
 ---
-// [lang]/index.astro — Localized homepage using translations.json
-// Dynamic route: / (fr), /en/, /es/, /de/, /pt/, /it/, /ru/, /zh/, /hi/
-
+// [lang]/index.astro — Localized homepage using translations.json (lafoidieu .bq classes)
 import MainLayout from '../../layouts/MainLayout.astro';
 import Hero from '../../components/Hero.astro';
 import BookCard from '../../components/BookCard.astro';
-import BandeauFormats from '../../components/BandeauFormats.astro';
 import Newsletter from '../../components/Newsletter.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTAStrip from '../../components/CTAStrip.astro';
-import Footer from '../../components/Footer.astro';
 import translations from '../../data/translations.json';
 import { SUPPORTED_LANGS, DEFAULT_LANG } from '../../utils/i18n.ts';
-
 
 
 const books = [
@@ -23,7 +18,7 @@ const books = [
     isbn: "9791035977887",
     numberOfPages: 331,
     inLanguage: "fr",
-    image: "https://payhip.com/cdn-cgi/image/format=auto,width=1500/https://pe56d.s3.amazonaws.com/o_1jr6cuoqbdjve1nhsh1jab2lb1m.jpg",
+    image: "/images/books/visage-fr.jpg",
     offers: [
       { price: "13.90", priceCurrency: "EUR", url: "https://www.lulu.com/fr/shop/kiki-en-christ/le-visage-de-dieu-la-qu%C3%AAte-de-la-spiritualit%C3%A9-et-de-la-transcendance/paperback/product-z6gg2r.html", seller: { name: "Lulu" }, availability: "https://schema.org/InStock" },
       { price: "3.99", priceCurrency: "USD", url: "https://payhip.com/b/XnmIq", seller: { name: "Payhip" }, availability: "https://schema.org/InStock" },
@@ -37,7 +32,7 @@ const books = [
     isbn: "9781447566359",
     numberOfPages: 146,
     inLanguage: "fr",
-    image: "https://i.ibb.co/WWj7kDZD/frontcover-jpg.jpg",
+    image: "/images/books/trinite-fr.png",
     offers: [
       { price: "9.99", priceCurrency: "EUR", url: "https://www.lulu.com/shop/kiki-en-christ/les-secrets-de-la-trinit%C3%A9-enfin-d%C3%A9voil%C3%A9s-une-critique-percutante/paperback/product-nk9wg4.html", seller: { name: "Lulu" }, availability: "https://schema.org/InStock" },
       { price: "3.99", priceCurrency: "USD", url: "https://payhip.com/b/OH3xG", seller: { name: "Payhip" }, availability: "https://schema.org/InStock" },
@@ -51,7 +46,7 @@ const books = [
     isbn: "9781445771212",
     numberOfPages: 85,
     inLanguage: "fr",
-    image: "https://payhip.com/cdn-cgi/image/format=auto,width=1500/https://pe56d.s3.amazonaws.com/o_1jrfbrjdb17lq1329mbfk4hmnb1f.jpg",
+    image: "/images/books/combat-fr.jpg",
     offers: [
       { price: "9.99", priceCurrency: "EUR", url: "https://www.lulu.com/shop/kiki-en-christ/le-dernier-combat-garder-la-foi/paperback/product-7kgm227.html", seller: { name: "Lulu" }, availability: "https://schema.org/InStock" },
       { price: "3.99", priceCurrency: "USD", url: "https://payhip.com/b/cxuzQ", seller: { name: "Payhip" }, availability: "https://schema.org/InStock" },
@@ -65,7 +60,7 @@ const books = [
     isbn: "9781326838447",
     numberOfPages: 214,
     inLanguage: "fr",
-    image: "https://payhip.com/cdn-cgi/image/format=auto,width=1500/https://pe56d.s3.amazonaws.com/o_1jrfa7u058qtnq2t961lbv16pp1f.jpg",
+    image: "/images/books/salut-fr.jpg",
     offers: [
       { price: "7.99", priceCurrency: "EUR", url: "https://www.lulu.com/shop/kiki-en-christ/le-myst%C3%A8re-du-salut/paperback/product-nvg4d9k.html", seller: { name: "Lulu" }, availability: "https://schema.org/InStock" },
       { price: "3.99", priceCurrency: "USD", url: "https://payhip.com/b/jXRqE", seller: { name: "Payhip" }, availability: "https://schema.org/InStock" },
@@ -98,188 +93,121 @@ const footer = t.footer || translations.fr.footer;
 const bookData = t.bookData || translations.fr.bookData || {};
 
 const canonicalURL = `https://kikienchrist.vercel.app/${locale === 'fr' ? '' : locale + '/'}`;
-const pageTitle = t.meta?.title || translations.fr.meta.title;
-const pageDescription = t.meta?.description || translations.fr.meta.description;
-const ogImage = "https://kikienchrist.vercel.app/og/accueil.png";
-const currentPath = locale === 'fr' ? '/' : `/${locale}/`;
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": t.books.sectionTitle,
-  "itemListElement": books.map((book, index) => {
-    const translated = bookData[book.id];
-    const coverImage = translated?.coverImage || book.image;
-    const offers = translated?.offers || book.offers;
-    return {
-      "@type": "ListItem",
-      "position": index + 1,
-      "item": {
-        "@type": "Book",
-        "name": translated?.name || book.name,
-        "isbn": book.isbn,
-        "numberOfPages": book.numberOfPages,
-        "inLanguage": locale,
-        "bookFormat": "https://schema.org/Paperback",
-        "image": coverImage,
-        "author": { "@type": "Person", "name": "Kiki en Christ" },
-        "description": translated?.description,
-        "offers": offers.map(offer => ({
-          "@type": "Offer",
-          "availability": offer.availability,
-          "price": offer.price,
-          "priceCurrency": offer.priceCurrency,
-          "url": offer.url,
-          "itemCondition": "https://schema.org/NewCondition",
-          "seller": { "@type": "Organization", "name": offer.seller.name }
-        }))
-      }
-    };
-  })
-};
+const heroEyebrow = hero?.eyebrow || "Nouveauté";
+const heroTitle = hero?.title || "Kiki en Christ";
+const heroSubtitle = hero?.subtitle || "Priez, méditez, grandissez dans la foi";
+const heroCtaText = hero?.ctaText || "Découvrir les livres";
+const heroCtaHref = `/${locale}/livres`;
+const heroSecondaryCtaText = hero?.secondaryCtaText || "Rejoindre la newsletter";
+const heroSecondaryCtaHref = `/${locale}/contact`;
 
-const jsonLdString = JSON.stringify(jsonLd);
+const bandeauPaper = bandeau?.paper || "Papier — Lulu";
+const bandeauEbook = bandeau?.ebook || "Ebook — Payhip";
+const bandeauAudio = bandeau?.audio || "Audio — Google Play";
+
+const faqItems = faq?.items || [
+  { question: "Pourquoi ces livres ?", answer: "Pour aider chacun à prier et méditer, où qu'il soit." },
+  { question: "Quels formats ?", answer: "Papier (Lulu), Ebook (Payhip), Audio (Google Play)." },
+  { question: "Garantie ?", answer: "Satisfait ou remboursé 30 jours." },
+];
+
+const ctaText = cta?.text || "Prêt à commencer votre chemin ? Choisissez le livre qui résonne — le premier pas change tout.";
+const ctaButtonText = cta?.buttonText || "Voir les 4 livres";
+const ctaButtonHref = `/${locale}/livres`;
+
+// Images et alt texts pour l'éventail Hero (ordre = visage, trinite, combat, salut)
+const heroFanImages = [
+  "/images/books/visage-fr.jpg",
+  "/images/books/trinite-fr.png",
+  "/images/books/combat-fr.jpg",
+  "/images/books/salut-fr.jpg"
+];
+
+const heroFanAlts = [
+  "Le visage de Dieu : la quête de la spiritualité et de la transcendance",
+  "Les secrets de la Trinité enfin dévoilés",
+  "Le dernier Combat : garder la Foi",
+  "Le mystère du Salut"
+];
 ---
 
-<MainLayout
-  title={pageTitle}
-  description={pageDescription}
-  canonicalURL={canonicalURL}
-  ogImage={ogImage}
-  lang={locale}
-  currentPath={currentPath}
->
-  <slot name="json-ld">
-    <script type="application/ld+json" set:html={jsonLdString} />
-  </slot>
-
+<MainLayout lang={locale} title={t.home?.title || 'Kiki en Christ'} description={t.home?.description || 'Livres de prière et méditation chrétienne'} canonicalURL={canonicalURL} currentPath={`/${locale}/`}>
   <Hero
-    eyebrow={hero.eyebrow}
-    title={hero.title}
-    subtitle={hero.subtitle}
-    ctaText={hero.ctaText}
-    ctaHref={hero.ctaHref}
-    secondaryCtaText={hero.secondaryCtaText}
-    secondaryCtaHref={hero.secondaryCtaHref}
-    fanImages={locale === 'en' ? [
-      "https://i.ibb.co/1SF6t5p/frontcover-jpg.jpg",
-      "https://i.ibb.co/WWj7kDZD/frontcover-jpg.jpg",
-      "https://i.ibb.co/HptTVfN4/frontcover-jpg.jpg",
-      "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
-    ] : locale === 'es' ? [
-      "https://i.ibb.co/r2vkZgRP/frontcover-jpg.jpg",
-      "https://i.ibb.co/pvSHYnGJ/frontcover-jpg.jpg",
-      "https://i.ibb.co/C5ZrMV28/frontcover-jpg.jpg",
-      "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
-    ] : locale === 'de' ? [
-      "https://i.ibb.co/sJvYVTVT/frontcover-jpg.jpg",
-      "https://i.ibb.co/Z79DFH9/frontcover-jpg.jpg",
-      "https://i.ibb.co/NgSkgHWj/frontcover-jpg.jpg",
-      "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
-    ] : locale === 'pt' ? [
-      "https://i.ibb.co/HTfgqjPG/frontcover-jpg.jpg",
-      "https://i.ibb.co/39WKXW2w/frontcover-jpg.jpg",
-      "https://i.ibb.co/JWFyYQkn/frontcover-jpg.jpg",
-      "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
-    ] : locale === 'it' ? [
-      "https://i.ibb.co/Psj6hfDC/frontcover-jpg.jpg",
-      "https://i.ibb.co/yFyTD3fN/frontcover-jpg.jpg",
-      "https://i.ibb.co/bj7fnR9c/frontcover-jpg.jpg",
-      "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
-    ] : locale === 'ru' ? [
-      "https://i.ibb.co/Psj6hfDC/frontcover-jpg.jpg",
-      "https://i.ibb.co/6cs1gWRJ/frontcover-jpg.jpg",
-      "https://i.ibb.co/bj7fnR9c/frontcover-jpg.jpg",
-      "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
-    ] : locale === 'zh' ? [
-      "https://i.ibb.co/Psj6hfDC/frontcover-jpg.jpg",
-      "https://i.ibb.co/tTZhYf8x/frontcover-jpg.jpg",
-      "https://i.ibb.co/bj7fnR9c/frontcover-jpg.jpg",
-      "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
-    ] : locale === 'hi' ? [
-      "https://i.ibb.co/Psj6hfDC/frontcover-jpg.jpg",
-      "https://i.ibb.co/HLtR2LdJ/frontcover-jpg.jpg",
-      "https://i.ibb.co/ycsdvs7z/frontcover-jpg.jpg",
-      "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
-    ] : undefined}
+    eyebrow={heroEyebrow}
+    title={heroTitle}
+    subtitle={heroSubtitle}
+    ctaText={heroCtaText}
+    ctaHref={heroCtaHref}
+    fanImages={heroFanImages}
+    fanAltTexts={heroFanAlts}
   />
 
-  <section id="livres" aria-labelledby="books-heading">
-    <h2 id="books-heading" class="section-title">{booksTrans.sectionTitle}</h2>
-    <p class="section-intro">{booksTrans.sectionIntro}</p>
+  <section class="bq-books-section" aria-labelledby="books-title">
+    <div class="bq-container">
+      <h2 id="books-title" class="bq-section-title">{booksTrans?.title || 'Nos livres'}</h2>
+      <p class="bq-section-intro">{booksTrans?.subtitle || 'Quatre livres pour approfondir votre vie de prière'}</p>
 
-    <div class="books-formats-bandeau">
-      <BandeauFormats
-        paper={bandeau.paper}
-        ebook={bandeau.ebook}
-        audio={bandeau.audio}
+      <div class="bq-books-grid">
+        {books.map((book, i) => {
+          const langBook = bookData[book.id] || bookData[Object.keys(bookData)[0]] || {};
+          return (
+            <BookCard
+              book={book}
+              isEven={i % 2 === 1}
+              seriesPrefix={booksTrans?.seriesPrefix || 'Livre'}
+              hook={langBook.hook || bookData.visage?.hook || "Un livre pour ceux qui cherchent Dieu au-delà des dogmes."}
+              benefits={langBook.benefits || booksTrans?.benefits || [
+                "Une foi personnelle, sans intermédiaire",
+                "Accessible à tous, où que vous soyez",
+                "Garantie satisfait ou remboursé 30 jours"
+              ]}
+              metaSuffix={langBook.metaSuffix || 'pages'}
+              languagesLabel={langBook.languagesLabel || 'Langues disponibles'}
+              languages={langBook.languages || [
+                { code: 'fr', name: 'Français', fmt: '' },
+                { code: 'en', name: 'English', fmt: '' },
+                { code: 'es', name: 'Español', fmt: '' },
+                { code: 'pt', name: 'Português', fmt: '' },
+                { code: 'it', name: 'Italiano', fmt: '' },
+                { code: 'de', name: 'Deutsch', fmt: '' },
+                { code: 'nl', name: 'Nederlands', fmt: '' },
+                { code: 'pl', name: 'Polski', fmt: '' },
+                { code: 'ar', name: 'العربية', fmt: '' },
+                { code: 'ru', name: 'Русский', fmt: '' },
+                { code: 'zh', name: '中文', fmt: '' },
+                { code: 'hi', name: 'हिन्दी', fmt: '' },
+              ]}
+              currentPageLang={locale}
+            />
+          );
+        })}
+      </div>
+
+      <Newsletter
+        title={newsletter?.title || 'Rejoignez la newsletter'}
+        subtitle={newsletter?.subtitle || 'Une méditation par semaine, directement dans votre boîte mail'}
+        buttonText={newsletter?.buttonText || "S'abonner"}
+        placeholder={newsletter?.placeholder || 'votre@email.com'}
+        availability={footer?.availability || 'Livres disponibles en papier, ebook et audio.'}
+      />
+
+      <FAQ
+        title={faq?.title || 'Questions fréquentes'}
+        items={faqItems}
+      />
+
+      <CTAStrip
+        text={ctaText}
+        buttonText={ctaButtonText}
+        buttonHref={ctaButtonHref}
       />
     </div>
-
-    <div class="books-grid" id="books-grid">
-      {books.map((book, index) => {
-        const translated = bookData[book.id];
-        const coverImage = translated?.coverImage || book.image;
-        const offers = translated?.offers || book.offers;
-        const translatedBook = {
-          ...book,
-          name: translated?.name || book.name,
-          inLanguage: locale,
-          image: coverImage,
-          offers: offers
-        };
-        return (
-          <BookCard
-            book={translatedBook}
-            t={booksTrans}
-            locale={locale}
-            key={book.id}
-            hook={translated?.description || booksTrans.hook}
-            seriesPrefix={booksTrans.seriesPrefix}
-            benefits={booksTrans.benefits}
-            metaSuffix={booksTrans.metaSuffix}
-            languagesLabel={translated?.languagesLabel || booksTrans.languagesLabel}
-            languages={translated?.languages || booksTrans.languages}
-          />
-        );
-      })}
-    </div>
   </section>
-  <Newsletter
-    title={newsletter.title}
-    description={newsletter.description}
-    placeholder={newsletter.placeholder}
-    buttonText={newsletter.buttonText}
-    tinyText={newsletter.tinyText}
-  />
-
-  <FAQ
-    title={faq.title}
-    items={faq.items}
-  />
-
-  <CTAStrip
-    text={cta?.text || "Prêt à commencer votre chemin ? Choisissez le livre qui résonne — le premier pas change tout."}
-    buttonText={cta?.buttonText || "Voir les 4 livres"}
-    buttonHref={cta?.buttonHref || "#livres"}
-  />
-
-  <Footer
-    nav={footer?.nav?.map((label) => ({
-      label,
-      href: label === 'Accueil' || label === 'Home' || label === 'Inicio' || label === 'Start'
-        ? `/${locale}/`
-        : label === 'Blog' || label === 'Блог' || label === '博客' || label === 'ब्लॉग'
-          ? `/${locale}/blog/`
-          : `/#${label.toLowerCase()}`
-    })) || []}
-    social={footer?.social?.map((label, i) => ({
-      label,
-      href: i === 0 ? "https://www.instagram.com/kikienchrist1/" : "https://fr.pinterest.com/kikienchrist/",
-      external: true
-    })) || []}
-    availability={footer?.availability || "Livres disponibles en papier, ebook et audio."}
-    copyright={footer?.copyright || "Kiki en Christ. Tous droits réservés."}
-    locale={locale}
-  />
 </MainLayout>
+
+<style is:global>
+  .bq-books-section { padding: var(--space-3xl) 0; }
+  .bq-section-intro { text-align: center; color: var(--muted); font-size: var(--text-lg); font-family: Georgia, serif; max-width: 700px; margin: 0 auto var(--space-2xl); }
+  .bq-books-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-xl); margin-bottom: var(--space-2xl); }
+</style>

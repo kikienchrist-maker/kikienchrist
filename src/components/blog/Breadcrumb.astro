@@ -1,5 +1,5 @@
 ---
-// Breadcrumb.astro - Fil d'Ariane avec JSON-LD BreadcrumbList
+// Breadcrumb.astro - Fil d'Ariane avec JSON-LD BreadcrumbList (lafoidieu .bq classes)
 interface Props {
   items: Array<{
     label: string;
@@ -23,13 +23,13 @@ const jsonLd = {
 };
 ---
 
-<nav class="breadcrumb" aria-label="Fil d'Ariane" itemscope itemtype="https://schema.org/BreadcrumbList">
+<nav class="bq-breadcrumb" aria-label="Fil d'Ariane" itemscope itemtype="https://schema.org/BreadcrumbList">
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   
-  <ol class="breadcrumb-list" role="list">
+  <ol class="bq-breadcrumb-list" role="list">
     {items.map((item, index) => (
       <li 
-        class="breadcrumb-item" 
+        class="bq-breadcrumb-item" 
         itemprop="itemListElement" 
         itemscope 
         itemtype="https://schema.org/ListItem"
@@ -41,7 +41,7 @@ const jsonLd = {
           <a 
             href={item.href} 
             itemprop="item"
-            class="breadcrumb-link"
+            class="bq-breadcrumb-link"
             aria-current={item.current ? 'page' : undefined}
           >
             <span itemprop="name">{item.label}</span>
@@ -49,7 +49,7 @@ const jsonLd = {
         ) : (
           <span 
             itemprop="name" 
-            class="breadcrumb-current"
+            class="bq-breadcrumb-current"
             aria-current="page"
           >
             {item.label}
@@ -57,7 +57,7 @@ const jsonLd = {
         )}
         
         {index < items.length - 1 && (
-          <span class="breadcrumb-separator" aria-hidden="true">
+          <span class="bq-breadcrumb-separator" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
@@ -69,57 +69,11 @@ const jsonLd = {
 </nav>
 
 <style is:global>
-  .breadcrumb {
-    margin-bottom: var(--space-lg);
-    font-size: var(--text-sm);
-  }
-
-  .breadcrumb-list {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--space-sm);
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .breadcrumb-item {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-  }
-
-  .breadcrumb-link {
-    color: var(--color-ink-light);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-  }
-
-  .breadcrumb-link:hover {
-    color: var(--color-gold);
-  }
-
-  .breadcrumb-current {
-    color: var(--color-ink);
-    font-weight: 500;
-  }
-
-  .breadcrumb-separator {
-    display: flex;
-    align-items: center;
-    color: var(--color-ink-light);
-    opacity: 0.5;
-    flex-shrink: 0;
-  }
-
-  .breadcrumb-separator svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  /* RTL support */
-  [dir="rtl"] .breadcrumb-separator svg {
-    transform: rotate(180deg);
-  }
+  .bq-breadcrumb { margin-bottom: var(--space-lg); font-size: var(--text-sm); }
+  .bq-breadcrumb-list { display: flex; flex-wrap: wrap; align-items: center; list-style: none; margin: 0; padding: 0; gap: var(--space-xs); color: var(--muted); }
+  .bq-breadcrumb-item { display: flex; align-items: center; }
+  .bq-breadcrumb-link { color: var(--muted); text-decoration: none; transition: color var(--transition-fast); }
+  .bq-breadcrumb-link:hover { color: var(--gold-ink); }
+  .bq-breadcrumb-current { color: var(--ink); font-weight: 500; }
+  .bq-breadcrumb-separator { color: var(--line); flex-shrink: 0; }
 </style>

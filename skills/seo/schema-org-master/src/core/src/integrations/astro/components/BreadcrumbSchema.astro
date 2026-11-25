@@ -1,0 +1,46 @@
+---
+// BreadcrumbSchema.astro — Composant Schema.org BreadcrumbList (schema-org-master)
+// Utilisation: <BreadcrumbSchema items={[{name: 'Accueil', url: '/fr/'}, {name: 'Blog', url: '/fr/blog/'}, {name: 'Article'}]} />
+
+import { BreadcrumbListBuilder } from '../../builder/base';
+
+interface Props {
+  /** Éléments du breadcrumb (dernier sans URL = page courante) */
+  items: Array<{ name: string; url?: string }>;
+  /** Code langue */
+  lang?: string;
+  /** Injecter dans head */
+  injectInHead?: boolean;
+  /** Pretty print */
+  pretty?: boolean;
+}
+
+const { items, lang = 'fr', injectInHead = true, pretty = true } = Astro.props;
+
+// Construire BreadcrumbList
+const breadcrumbBuilder = BreadcrumbListBuilder.create();
+
+const itemListElements = items.map((item, index) => ({
+  '@type': 'ListItem' as const,
+  position: index + 1,
+  item: item.url
+    ? { '@id': item.url, name: item.name }
+    : { name: item.name },
+}));
+
+breadcrumbBuilder.itemListElement(itemListElements);
+breadcrumbBuilder.inLanguage(lang);
+
+const breadcrumb = breadcrumbBuilder.build();
+
+const script = `<script type="application/ld+json">${pretty ? JSON.stringify(breadcrumb, null, 2) : JSON.stringify(breadcrumb)}</script>`;
+
+---
+
+{injectInHead ? (
+  <head>
+    <slot name="breadcrumb-schema" set:html={script} />
+  </head>
+) : (
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumb, null, pretty ? 2 : 0)} />
+)}

@@ -1,0 +1,87 @@
+---
+// WebSiteSchema.astro — Composant Schema.org WebSite avec SearchAction (schema-org-master)
+// Utilisation: <WebSiteSchema lang="fr" />
+
+import { WebSiteBuilder } from '../../builder/base';
+
+interface Props {
+  /** Nom du site */
+  name?: string;
+  /** URL du site */
+  url?: string;
+  /** Template URL recherche (avec {search_term_string}) */
+  searchUrlTemplate?: string;
+  /** Code langue */
+  lang?: string;
+  /** Nom alternatif */
+  alternateName?: string;
+  /** Description */
+  description?: string;
+  /** Publisher */
+  publisher?: {
+    name: string;
+    url?: string;
+  };
+  /** Injecter dans head */
+  injectInHead?: boolean;
+  /** Pretty print */
+  pretty?: boolean;
+}
+
+const {
+  name = 'Kiki en Christ',
+  url = 'https://kikienchrist.vercel.app',
+  searchUrlTemplate = 'https://kikienchrist.vercel.app/{lang}/recherche?q={search_term_string}',
+  lang = 'fr',
+  alternateName,
+  description,
+  publisher,
+  injectInHead = true,
+  pretty = true,
+} = Astro.props;
+
+// Construire WebSite
+const websiteBuilder = WebSiteBuilder.create()
+  .name(name)
+  .url(url)
+  .inLanguage(lang);
+
+if (alternateName) websiteBuilder.alternateName(alternateName);
+if (description) websiteBuilder.description(description);
+
+// SearchAction pour Sitelinks Searchbox
+websiteBuilder.potentialAction({
+  '@type': 'SearchAction',
+  target: {
+    '@type': 'EntryPoint',
+    urlTemplate: searchUrlTemplate.replace('{lang}', lang),
+    actionPlatform: [
+      'http://schema.org/DesktopWebPlatform',
+      'http://schema.org/MobileWebPlatform',
+    ],
+  },
+  'query-input': 'required name=search_term_string',
+});
+
+// Publisher
+if (publisher) {
+  websiteBuilder.publisher({
+    '@type': 'Organization',
+    name: publisher.name,
+    url: publisher.url,
+  });
+}
+
+const website = websiteBuilder.build();
+
+const script = `<script type="application/ld+json">${pretty ? JSON.stringify(website, null, 2) : JSON.stringify(website)}</script>`;
+
+---
+
+{injectInHead ? (
+  <head>
+    <slot name="website-schema" set:html={script} />
+  </head>
+) : (
+  <script type="application/ld+json" set:html={JSON.stringify(website, null, pretty ? 2 : 0)} />
+)}

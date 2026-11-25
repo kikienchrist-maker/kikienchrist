@@ -53,12 +53,12 @@ function getTagSize(count: number): string {
 ---
 
 {sortedTags.length > 0 && (
-  <div class="tag-cloud" aria-label={t.title}>
-    <div class="tag-cloud-list" role="list">
+  <div class="bq-tag-cloud" aria-label={t.title}>
+    <div class="bq-tag-cloud-list" role="list">
       {sortedTags.map(([tag, count]) => (
         <a
           href={`/${lang}/blog/tag/${tag.toLowerCase().replace(/\s+/g, '-')}/`}
-          class="tag-item"
+          class="bq-tag-item"
           style={{ fontSize: getTagSize(count) }}
           aria-label={`${tag} (${count} article${count > 1 ? 's' : ''})`}
           aria-current={currentTag === tag ? 'page' : undefined}
@@ -69,3 +69,21 @@ function getTagSize(count: number): string {
     </div>
   </div>
 )}
+
+<style is:global>
+  .bq-tag-cloud { margin-bottom: var(--space-xl); }
+  .bq-tag-cloud-list { display: flex; flex-wrap: wrap; gap: var(--space-sm); justify-content: center; }
+  .bq-tag-item {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    line-height: 1.5;
+  }
+  .bq-tag-item:hover { background: var(--gold-soft); border-color: var(--gold); color: var(--gold-ink); }
+  .bq-tag-item[aria-current="page"] { background: var(--gold-ink); border-color: var(--gold-ink); color: var(--cream); }
+</style>

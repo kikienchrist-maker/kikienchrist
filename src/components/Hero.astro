@@ -1,63 +1,69 @@
 ---
-// Hero.astro — Hero section component with fan images (lafoidieu design system)
+// Hero.astro — Hero section with overlapped book fan (lafoidieu design system .bq classes)
 
 interface Props {
   eyebrow?: string;
   title: string;
   subtitle: string;
-  ctaText: string;
-  ctaHref: string;
-  secondaryCtaText: string;
-  secondaryCtaHref: string;
+  ctaText?: string;
+  ctaHref?: string;
   fanImages?: string[];
+  fanAltTexts?: string[];
 }
 
 const {
   eyebrow = "Nouveauté",
   title,
   subtitle,
-  ctaText,
-  ctaHref,
-  secondaryCtaText,
-  secondaryCtaHref,
+  ctaText = "Recevez « 7 prières » gratuitement — Un verset, une méditation, un encouragement chaque semaine",
+  ctaHref = "/fr/contact",
   fanImages = [
     "https://assets.lulu.com/cover_thumbs/z/6/z6gg2r-front-shortedge-384.jpg",
     "https://assets.lulu.com/cover_thumbs/n/k/nk9wg4-front-shortedge-384.jpg",
     "https://assets.lulu.com/cover_thumbs/7/k/7kgm227-front-shortedge-384.jpg",
     "https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg"
+  ],
+  fanAltTexts = [
+    "Le visage de Dieu : la quête de la spiritualité et de la transcendance",
+    "Les secrets de la Trinité enfin dévoilés",
+    "Le dernier Combat : garder la Foi",
+    "Le mystère du Salut"
   ]
 } = Astro.props;
 
-const showFan = fanImages.length === 4;
+const showFan = fanImages.length === 4 && fanImages.length === fanAltTexts.length;
 ---
 
-<section class="bq hero" aria-labelledby="hero-title">
-  <div class="wrap">
-    <header class="hero-head">
-      {eyebrow && <span class="eyebrow">{eyebrow}</span>}
-      <h1 id="hero-title" class="hero-title">{title}</h1>
-      <p class="hero-subtitle">{subtitle}</p>
+<section class="bq-hero" aria-labelledby="hero-title">
+  <div class="bq-container">
+    <header class="bq-hero-header">
+      {eyebrow && <span class="bq-eyebrow">{eyebrow}</span>}
+      <h1 id="hero-title" class="bq-hero-title">{title}</h1>
+      <p class="bq-hero-subtitle">{subtitle}</p>
     </header>
 
-    <div class="hero-ctas">
-      <a href={ctaHref} class="btn btn-primary">{ctaText}</a>
-      <a href={secondaryCtaHref} class="btn btn-ghost">{secondaryCtaText}</a>
+    <div class="bq-hero-ctas">
+      <a href={ctaHref} class="bq-btn bq-btn-primary bq-btn-lg">{ctaText}</a>
     </div>
 
     {showFan && (
-      <div class="fan" aria-hidden="true">
-        <img class="fan-1" src={fanImages[0]} alt="" loading="eager" />
-        <img class="fan-2" src={fanImages[1]} alt="" loading="eager" />
-        <img class="fan-3" src={fanImages[2]} alt="" loading="eager" />
-        <img class="fan-4" src={fanImages[3]} alt="" loading="eager" />
+      <div class="bq-hero-fan" aria-label="Nos 4 livres" role="list">
+        {fanImages.map((src, i) => (
+          <img
+            class={`bq-hero-fan-img bq-hero-fan-img--${i}`}
+            src={src}
+            alt={fanAltTexts[i] || `Livre ${i + 1}`}
+            loading={i === 0 ? "eager" : "lazy"}
+          />
+        ))}
       </div>
     )}
   </div>
 </section>
 
 <style is:global>
-  /* Hero styles aligned with lafoidieu design system */
-  .bq .hero {
+  /* Hero standalone .bq-* classes */
+  .bq-hero {
     max-width: none;
     position: relative;
     padding: 0;
@@ -68,7 +74,7 @@ const showFan = fanImages.length === 4;
       radial-gradient(90% 130% at 50% -40%, #fff 0%, rgba(255,255,255,0) 58%),
       linear-gradient(180deg, #fffdf9 0%, #f8f2e7 100%);
   }
-  .bq .hero::before {
+  .bq-hero::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -77,13 +83,13 @@ const showFan = fanImages.length === 4;
     background-image: radial-gradient(rgba(28,26,23,.07) 1px, transparent 1px);
     background-size: 24px 24px;
   }
-  .bq .hero .wrap {
+  .bq-hero .bq-container {
     position: relative;
     z-index: 1;
     padding-top: clamp(52px, 7.5vw, 92px);
     padding-bottom: clamp(44px, 6.5vw, 74px);
   }
-  .bq .hero .eyebrow {
+  .bq-eyebrow {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -95,144 +101,161 @@ const showFan = fanImages.length === 4;
     color: var(--gold-ink);
     margin: 0 0 24px;
   }
-  .bq .hero .eyebrow::before,
-  .bq .hero .eyebrow::after {
+  .bq-eyebrow::before,
+  .bq-eyebrow::after {
     content: "";
     height: 1px;
     width: clamp(22px, 6vw, 56px);
     flex: 0 0 auto;
   }
-  .bq .hero .eyebrow::before { background: linear-gradient(90deg, transparent, var(--gold)); }
-  .bq .hero .eyebrow::after { background: linear-gradient(90deg, var(--gold), transparent); }
+  .bq-eyebrow::before { background: linear-gradient(90deg, transparent, var(--gold)); }
+  .bq-eyebrow::after { background: linear-gradient(90deg, var(--gold), transparent); }
 
-  .bq .hero h1.hero-title {
+  .bq-hero-title {
     font-size: clamp(31px, 5.2vw, 58px);
     line-height: 1.07;
     letter-spacing: -.022em;
     font-weight: 400;
     margin: 0 auto 24px;
     max-width: 760px;
-    font-feature-settings: "kern", "liga";
-  }
-
-  .bq .hero .hero-subtitle {
-    font-size: clamp(16px, 1.9vw, 19.5px);
-    line-height: 1.7;
-    color: var(--muted);
-    max-width: 600px;
-    margin: 0 auto 36px;
-  }
-
-  .bq .hero .hero-ctas {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .bq .hero .btn {
-    display: inline-block;
-    padding: 17px 32px;
-    border-radius: 6px;
-    text-decoration: none;
-    font: 600 15px/1 system-ui, sans-serif;
-    letter-spacing: .03em;
-    border: 1.5px solid transparent;
-    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
-  }
-  .bq .hero .btn-primary {
-    background: var(--ink);
-    color: #fff;
-    box-shadow: 0 6px 18px rgba(28,26,23,.22);
-  }
-  .bq .hero .btn-primary:hover {
-    background: #000;
-    transform: translateY(-2px);
-    box-shadow: 0 12px 26px rgba(28,26,23,.3);
-  }
-  .bq .hero .btn-ghost {
-    border-color: #cfc5b3;
+    font-family: Georgia, 'Times New Roman', serif;
     color: var(--ink);
-    background: #fff;
   }
-  .bq .hero .btn-ghost:hover {
-    border-color: var(--ink);
-    background: #fffdf8;
-    transform: translateY(-1px);
+  .bq-hero-subtitle {
+    font-size: clamp(18px, 2.5vw, 22px);
+    line-height: 1.5;
+    color: var(--muted);
+    margin: 0 auto 32px;
+    max-width: 600px;
+    font-family: Georgia, 'Times New Roman', serif;
   }
-  .bq .hero .btn-primary::after {
-    content: "↓";
-    margin-left: 10px;
-    font-weight: 400;
-    opacity: .75;
+  .bq-hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-bottom: clamp(32px, 5vw, 56px);
   }
 
-  /* FAN — Cover spread in Hero (lafoidieu exact) */
-  .bq .hero .fan {
-    position: relative;
+  /* ===== OVERLAPPED BOOK FAN (Deck de cartes - superposé gauche→droite) ===== */
+  .bq-hero-fan {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    margin: clamp(38px, 5vw, 62px) auto 0;
-    max-width: 720px;
-  }
-  .bq .hero .fan img {
+    gap: clamp(-60px, -8vw, -40px); /* NÉGATIF = superposition */
+    max-width: 900px;
+    margin: 0 auto;
+    padding-bottom: clamp(20px, 3vw, 40px);
     position: relative;
-    display: block;
-    width: clamp(96px, 14.4vw, 182px);
-    height: auto;
-    border-radius: 2px;
-    box-shadow: 0 1px 2px rgba(28,26,23,.2), 0 9px 18px -8px rgba(28,26,23,.32);
-    transition: transform .5s cubic-bezier(.16,1,.3,1);
-    transform-origin: 50% 100%;
-  }
-  .bq .hero .fan img + img { margin-left: clamp(-40px, -3.2vw, -20px); }
-  .bq .hero .fan .fan-1 { transform: rotate(-9deg) translateY(10px); z-index: 1; }
-  .bq .hero .fan .fan-2 { transform: rotate(-3deg); z-index: 2; }
-  .bq .hero .fan .fan-3 { transform: rotate(3deg); z-index: 3; }
-  .bq .hero .fan .fan-4 { transform: rotate(9deg) translateY(10px); z-index: 4; }
-  .bq .hero .fan:hover .fan-1 { transform: rotate(-12deg) translate(-8px, 4px); }
-  .bq .hero .fan:hover .fan-2 { transform: rotate(-4deg) translateY(-5px); }
-  .bq .hero .fan:hover .fan-3 { transform: rotate(4deg) translateY(-5px); }
-  .bq .hero .fan:hover .fan-4 { transform: rotate(12deg) translate(8px, 4px); }
-  @media (max-width: 900px) {
-    .bq .hero .fan img { width: clamp(88px, 26vw, 150px); }
   }
 
-  /* Mobile: keep fan horizontal with smaller images and reduced rotations */
-  @media (max-width: 480px) {
-    .bq .hero .fan {
-      flex-direction: row;
-      flex-wrap: nowrap;
-      justify-content: center;
-      gap: 2px;
-      max-width: 100%;
-      overflow-x: auto;
-      padding: 4px 8px;
+  .bq-hero-fan-img {
+    width: clamp(140px, 17vw, 200px);
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow:
+      0 20px 40px rgba(28,26,23,.25),
+      0 8px 16px rgba(28,26,23,.15),
+      0 0 0 1px var(--line);
+    border: 1px solid var(--line);
+    background: var(--paper);
+    cursor: pointer;
+    transition:
+      transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+      box-shadow 0.4s ease,
+      z-index 0.1s;
+    will-change: transform, box-shadow, z-index;
+    flex-shrink: 0;
+  }
+
+  /* Positions de base : léger échelonnement Y + rotation perspective */
+  .bq-hero-fan-img--0 { transform: translateY(0) rotateY(6deg) rotateZ(-1.5deg); z-index: 4; }
+  .bq-hero-fan-img--1 { transform: translateY(-8px) rotateY(2deg) rotateZ(-0.5deg); z-index: 3; }
+  .bq-hero-fan-img--2 { transform: translateY(-16px) rotateY(-2deg) rotateZ(0.5deg); z-index: 2; }
+  .bq-hero-fan-img--3 { transform: translateY(-24px) rotateY(-6deg) rotateZ(1.5deg); z-index: 1; }
+
+  /* Hover: livre pop vers le haut + agrandit + z-index max */
+  .bq-hero-fan-img:hover,
+  .bq-hero-fan-img:focus {
+    transform:
+      translateY(-clamp(48px, 6vw, 72px))
+      rotateY(0deg)
+      rotateZ(0deg)
+      scale(1.12) !important;
+    z-index: 50 !important;
+    box-shadow:
+      0 48px 96px rgba(28,26,23,.4),
+      0 20px 40px rgba(28,26,23,.3),
+      0 0 0 3px var(--gold) !important;
+  }
+
+  /* Focus visible pour accessibilité */
+  .bq-hero-fan-img:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 4px;
+  }
+
+  /* Entrance animation - stagger gauche→droite */
+  @keyframes fan-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(40px) rotateY(10deg) scale(0.9);
     }
-    .bq .hero .fan img {
-      width: clamp(55px, 18vw, 80px);
-      height: auto;
-      margin: 0 !important;
-      flex-shrink: 0;
+    to {
+      opacity: 1;
+      transform: translateY(var(--final-y, 0)) rotateY(var(--final-ry, 0deg)) scale(1);
     }
-    .bq .hero .fan .fan-1 { transform: rotate(-5deg) translateY(4px); z-index: 1; }
-    .bq .hero .fan .fan-2 { transform: rotate(-1.5deg); z-index: 2; }
-    .bq .hero .fan .fan-3 { transform: rotate(1.5deg); z-index: 3; }
-    .bq .hero .fan .fan-4 { transform: rotate(5deg) translateY(4px); z-index: 4; }
-    .bq .hero .fan:hover .fan-1 { transform: rotate(-7deg) translate(-3px, 2px); }
-    .bq .hero .fan:hover .fan-2 { transform: rotate(-2.5deg) translateY(-2px); }
-    .bq .hero .fan:hover .fan-3 { transform: rotate(2.5deg) translateY(-2px); }
-    .bq .hero .fan:hover .fan-4 { transform: rotate(7deg) translate(3px, 2px); }
+  }
+
+  .bq-hero-fan-img--0 {
+    animation: fan-slide-up 0.7s cubic-bezier(0.23, 1, 0.32, 1) backwards;
+    --final-y: 0;
+    --final-ry: 6deg;
+  }
+  .bq-hero-fan-img--1 {
+    animation: fan-slide-up 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.08s backwards;
+    --final-y: -8px;
+    --final-ry: 2deg;
+  }
+  .bq-hero-fan-img--2 {
+    animation: fan-slide-up 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.16s backwards;
+    --final-y: -16px;
+    --final-ry: -2deg;
+  }
+  .bq-hero-fan-img--3 {
+    animation: fan-slide-up 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.24s backwards;
+    --final-y: -24px;
+    --final-ry: -6deg;
   }
 
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    .bq .hero .fan img { transition: none !important; }
-    .bq .hero .fan .fan-1 { transform: rotate(-4deg); }
-    .bq .hero .fan .fan-2 { transform: rotate(-1.5deg); }
-    .bq .hero .fan .fan-3 { transform: rotate(1.5deg); }
-    .bq .hero .fan .fan-4 { transform: rotate(4deg); }
-    .bq .hero .fan:hover img { transform: none; }
+    .bq-hero-fan-img { animation: none; transition: none; }
+    .bq-hero-fan-img:hover { transform: none; }
+  }
+
+  /* Mobile: stack vertical avec léger éventail */
+  @media (max-width: 640px) {
+    .bq-hero-fan {
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(-40px, -6vw, -24px);
+      padding-bottom: clamp(16px, 4vw, 24px);
+    }
+    .bq-hero-fan-img {
+      width: clamp(130px, 35vw, 180px);
+    }
+    .bq-hero-fan-img--0 { transform: translateY(0) rotateY(4deg) rotateZ(-1deg); }
+    .bq-hero-fan-img--1 { transform: translateY(-6px) rotateY(1.5deg) rotateZ(-0.3deg); }
+    .bq-hero-fan-img--2 { transform: translateY(-12px) rotateY(-1.5deg) rotateZ(0.3deg); }
+    .bq-hero-fan-img--3 { transform: translateY(-18px) rotateY(-4deg) rotateZ(1deg); }
+    .bq-hero-fan-img:hover {
+      transform:
+        translateY(-clamp(32px, 4vw, 48px))
+        rotateY(0deg)
+        rotateZ(0deg)
+        scale(1.1) !important;
+    }
   }
 </style>

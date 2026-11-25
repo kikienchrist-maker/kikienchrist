@@ -36,7 +36,7 @@ export class TranslationPipeline {
       ollama: {
         baseUrl: 'http://localhost:11434',
         defaultModel: 'qwen2.5:1.5b',
-        timeoutMs: 120000,
+        timeoutMs: 600000,
       },
       libretranslate: {
         baseUrl: 'https://libretranslate.de',
@@ -319,12 +319,12 @@ export async function translateArticles(options: {
 } = {}): Promise<BatchTranslationResult> {
   const config: Partial<TranslationConfig> = {
     defaultProvider: options.provider || 'ollama',
-    ollama: { defaultModel: options.model || 'qwen2.5:1.5b', baseUrl: 'http://localhost:11434', timeoutMs: 120000 },
+    ollama: { defaultModel: options.model || 'qwen2.5:1.5b', baseUrl: 'http://localhost:11434', timeoutMs: 600000 },
     concurrency: options.concurrency || 2,
     dryRun: options.dryRun || false,
     outputDir: options.sourceDir || 'src/content/blog',
   };
 
   const pipeline = new TranslationPipeline(config);
-  return pipeline.run();
+  return pipeline.run(undefined, options.targetLangs);
 }

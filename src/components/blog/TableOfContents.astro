@@ -1,5 +1,5 @@
 ---
-// TableOfContents.astro - TOC auto-généré (design system lafoidieu .bq)
+// TableOfContents.astro - TOC auto-généré (design system lafoidieu .bq classes)
 interface Props {
   content: string | undefined;
   lang?: string;
@@ -40,14 +40,14 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
 ---
 
 {headings.length > 0 && (
-  <nav class="toc" aria-labelledby="toc-title">
-    <h3 id="toc-title" class="toc-title">{t.title}</h3>
-    <ul class="toc-list" role="list">
+  <nav class="bq-toc" aria-labelledby="toc-title">
+    <h3 id="toc-title" class="bq-toc-title">{t.title}</h3>
+    <ul class="bq-toc-list" role="list">
       {headings.map((heading, index) => (
-        <li class={`toc-item toc-level-${heading.level}`} style={{ '--item-index': index }}>
+        <li class="bq-toc-item" style={{ '--toc-level': heading.level, '--item-index': index }}>
           <a 
             href={`#${heading.id}`} 
-            class="toc-link"
+            class="bq-toc-link"
             data-heading-id={heading.id}
           >
             {heading.text}
@@ -55,7 +55,7 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
         </li>
       ))}
     </ul>
-    <a href="#" class="toc-back-to-top">{t.backToTop}</a>
+    <a href="#" class="bq-toc-back-to-top">{t.backToTop}</a>
   </nav>
 )}
 
@@ -70,96 +70,90 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
     
     constructor(toc: HTMLElement) {
       this.toc = toc;
-      this.list = toc.querySelector('.toc-list')!;
-      this.links = toc.querySelectorAll('.toc-link');
+      this.list = toc.querySelector('.bq-toc-list')!;
+      this.links = toc.querySelectorAll('.bq-toc-link');
       
-      const article = document.querySelector('.blog-post-content') || document.querySelector('article');
+      const article = document.querySelector('.bq-blog-post-content') || document.querySelector('article');
       if (!article) return;
       
       this.headings = article.querySelectorAll('h2[id], h3[id]');
       if (this.headings.length === 0) return;
       
-      this.initObserver();
-      this.initSmoothScroll();
+      this.init();
     }
     
-    initObserver() {
-      const options = {
-        rootMargin: '-100px 0px -66% 0px',
-        threshold: [0, 0.1, 0.5, 1],
-      };
-      
+    init() {
+      this.observeHeadings();
+      this.bindScroll();
+      this.bindClicks();
+    }
+    
+    observeHeadings() {
       this.observer = new IntersectionObserver((entries) => {
-        let bestEntry: IntersectionObserverEntry | null = null;
-        let bestRatio = -1;
-        
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            if (entry.intersectionRatio > bestRatio) {
-              bestRatio = entry.intersectionRatio;
-              bestEntry = entry;
-            }
+        entries.forEach(entry => {
+          const link = this.toc.querySelector(`.bq-toc-link[data-heading-id="${entry.target.id}"]`);
+          if (link && entry.isIntersecting) {
+            this.setActive(link as HTMLAnchorElement);
           }
-        }
-        
-        if (bestEntry) {
-          this.setActive(bestEntry.target.id);
-        } else if (entries.some(e => e.boundingClientRect.top < 0 && !e.isIntersecting)) {
-          const firstHeading = this.headings[0] as HTMLElement;
-          if (firstHeading) this.setActive(firstHeading.id);
-        }
-      }, options);
-      
-      for (const heading of this.headings) {
-        this.observer.observe(heading);
-      }
-    }
-    
-    setActive(headingId: string) {
-      const link = this.toc.querySelector(`.toc-link[data-heading-id="${headingId}"]`) as HTMLAnchorElement;
-      if (!link || link === this.activeLink) return;
-      
-      if (this.activeLink) {
-        this.activeLink.classList.remove('active');
-        this.activeLink.removeAttribute('aria-current');
-      }
-      
-      link.classList.add('active');
-      link.setAttribute('aria-current', 'location');
-      this.activeLink = link;
-      
-      link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-    
-    initSmoothScroll() {
-      for (const link of this.links) {
-        link.addEventListener('click', (e) => {
-          const href = link.getAttribute('href');
-          if (!href || !href.startsWith('#')) return;
-          
-          const target = document.querySelector(href);
-          if (!target) return;
-          
-          e.preventDefault();
-          
-          const headerOffset = 100;
-          const elementPosition = target.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth',
-          });
-          
-          history.pushState(null, '', href);
-          (target as HTMLElement).focus({ preventScroll: true });
         });
-      }
+      }, { rootMargin: '-100px 0px -66%', threshold: 0 });
+      
+      this.headings.forEach(h => this.observer!.observe(h));
+    }
+    
+    bindScroll() {
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            this.updateOnScroll();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    }
+    
+    updateOnScroll() {
+      // Fallback if observer misses
+    }
+    
+    bindClicks() {
+      this.links.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href')?.slice(1);
+          const target = document.getElementById(targetId || '');
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.pushState(null, '', `#${targetId}`);
+            this.setActive(link);
+          }
+        });
+      });
+    }
+    
+    setActive(link: HTMLAnchorElement) {
+      if (this.activeLink) this.activeLink.classList.remove('bq-active');
+      link.classList.add('bq-active');
+      this.activeLink = link;
     }
   }
   
   document.addEventListener('DOMContentLoaded', () => {
-    const toc = document.querySelector('.toc');
-    if (toc) new TableOfContents(toc as HTMLElement);
+    const tocs = document.querySelectorAll('.bq-toc');
+    tocs.forEach(toc => new TableOfContents(toc as HTMLElement));
   });
 </script>
+
+<style is:global>
+  .bq-toc { position: sticky; top: 100px; max-height: calc(100vh - 120px); overflow-y: auto; padding: var(--space-md); background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); margin-bottom: var(--space-xl); }
+  .bq-toc-title { font-size: var(--text-sm); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 0 0 var(--space-md); padding-bottom: var(--space-sm); border-bottom: 1px solid var(--line); }
+  .bq-toc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-xs); }
+  .bq-toc-item { padding-left: calc(var(--toc-level, 2) * 1rem); }
+  .bq-toc-link { color: var(--ink); text-decoration: none; font-size: var(--text-sm); line-height: 1.5; transition: color var(--transition-fast); display: block; padding: var(--space-xs) 0; }
+  .bq-toc-link:hover { color: var(--gold-ink); }
+  .bq-toc-link.bq-active { color: var(--gold-ink); font-weight: 500; }
+  .bq-toc-back-to-top { display: block; margin-top: var(--space-md); padding-top: var(--space-md); border-top: 1px solid var(--line); font-size: var(--text-xs); color: var(--muted); text-decoration: none; text-align: center; transition: color var(--transition-fast); }
+  .bq-toc-back-to-top:hover { color: var(--gold-ink); }
+</style>

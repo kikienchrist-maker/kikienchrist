@@ -1,0 +1,50 @@
+---
+// FAQExtractor.astro — Extraction FAQ depuis contenu HTML (schema-org-master)
+// Utilisation: <FAQExtractor html={htmlContent} /> ou dans un layout après rendu
+
+interface Props {
+  /** Contenu HTML à analyser */
+  html: string;
+  /** Langue de la page */
+  lang?: string;
+  /** Nombre max de FAQ à extraire */
+  max?: number;
+  /** Sélecteurs personnalisés pour FAQ */
+  selectors?: {
+    container?: string;
+    question?: string;
+    answer?: string;
+  };
+}
+
+import { extractFAQFromHTML } from '../middleware';
+
+const { html, lang = 'fr', max = 50, selectors } = Astro.props;
+
+// Extraire FAQ
+const faqs = extractFAQFromHTML(html).slice(0, max);
+
+// Si FAQ trouvées, générer JSON-LD FAQPage
+if (faqs.length > 0) {
+  const { FAQPageBuilder } = await import('../../builder/base');
+  
+  const faqSchema = FAQPageBuilder.create()
+    .mainEntity(faqs.map((faq, index) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })))
+    .kikiSource('legal')
+    .kikiDetectedQuestions(faqs.length)
+    .inLanguage(lang)
+    .build();
+  
+  const script = `<script type="application/ld+json">${JSON.stringify(faqSchema, null, 2)}</script>`;
+  
+  <slot set:html={script} />
+} else {
+  <!-- Aucune FAQ détectée -->
+}

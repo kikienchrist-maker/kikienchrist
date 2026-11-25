@@ -26,7 +26,7 @@ export class OllamaProvider implements TranslationProvider {
   private defaultModel: string;
   private timeoutMs: number;
 
-  constructor(baseUrl = 'http://localhost:11434', defaultModel = 'qwen2.5:1.5b', timeoutMs = 120000) {
+  constructor(baseUrl = 'http://localhost:11434', defaultModel = 'qwen2.5:1.5b', timeoutMs = 600000) {
     this.baseUrl = baseUrl;
     this.defaultModel = defaultModel;
     this.timeoutMs = timeoutMs;

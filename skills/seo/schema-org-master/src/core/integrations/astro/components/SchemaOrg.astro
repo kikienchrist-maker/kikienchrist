@@ -1,0 +1,98 @@
+---
+// SchemaOrg.astro — Composant Astro principal (schema-org-master)
+// Injection JSON-LD automatique dans <head> avec slots pour override
+
+import { generateSchemaOrgScript } from '../../../injector';
+import type { InjectorConfig } from '../../../injector';
+import type { SupportedSchemaType, KikiLangCode } from '../../../types';
+
+interface Props {
+  /** Configuration globale (optionnelle, peut être définie dans layout) */
+  config?: InjectorConfig;
+  /** Données page courante */
+  pageType?: 'home' | 'book' | 'article' | 'category' | 'legal' | 'search' | '404';
+  /** Livre (si pageType === 'book') */
+  book?: SupportedSchemaType;
+  /** Article (si pageType === 'article') */
+  article?: SupportedSchemaType;
+  /** Breadcrumbs: [{ name, url }] */
+  breadcrumbs?: Array<{ name: string; url: string }>;
+  /** FAQ: [{ question, answer }] */
+  faq?: Array<{ question: string; answer: string }>;
+  /** Langue page */
+  lang?: KikiLangCode;
+  /** URL canonique */
+  canonicalUrl?: string;
+  /** Titre page */
+  title?: string;
+  /** Description page */
+  description?: string;
+  /** Image OG */
+  ogImage?: string;
+  /** Slot pour schemas custom additionnels */
+  additionalSchemas?: SupportedSchemaType[];
+  /** Désactiver injection auto WebSite/Organization */
+  disableAuto?: boolean;
+}
+
+// Récupérer config globale depuis Astro.locals ou props
+const globalConfig = Astro.locals?.schemaOrgConfig;
+const config: InjectorConfig = {
+  ...globalConfig,
+  ...Astro.props.config,
+  globalData: {
+    ...globalConfig?.globalData,
+    ...Astro.props.config?.globalData,
+  },
+  autoTypes: Astro.props.disableAuto ? [] : (Astro.props.config?.autoTypes || ['WebSite', 'Organization', 'BreadcrumbList', 'FAQPage']),
+};
+
+const pageData = {
+  pageType: Astro.props.pageType,
+  book: Astro.props.book,
+  article: Astro.props.article,
+  breadcrumbs: Astro.props.breadcrumbs,
+  faq: Astro.props.faq,
+  lang: Astro.props.lang,
+  canonicalUrl: Astro.props.canonicalUrl,
+  title: Astro.props.title,
+  description: Astro.props.description,
+  ogImage: Astro.props.ogImage,
+};
+
+// Générer script principal
+const mainScript = generateSchemaOrgScript(pageData, config);
+
+// Générer scripts additionnels si fournis
+const additionalScripts = (Astro.props.additionalSchemas || []).map(schema => {
+  const { stringifyJsonLd, createContext } = await import('../../../context');
+  const ctx = createContext(Astro.props.lang || 'fr');
+  const merged = { '@context': ctx, '@graph': [schema] };
+  return `<script type="application/ld+json">${stringifyJsonLd(merged, { pretty: true, context: ctx })}</script>`;
+}) || [];
+
+// ============================================================================
+// TEMPLATE — Injection dans <head> via slot Astro
+// ============================================================================
+
+<!-- Injection automatique dans <head> -->
+<script set:html={mainScript} />
+
+<!-- Schemas additionnels -->
+{additionalScripts.map(s => <script set:html={s} />)}
+
+<!-- 
+  Note: Pour injection dans <head> depuis n'importe quel composant,
+  utilisez <head> slot dans le layout parent :
+  
+  <head>
+    <slot name="head" />
+  </head>
+  
+  Et dans la page :
+  
+  <SchemaOrg slot="head" {...props} />
+-->
+<style is:global>
+  /* Pas de styles - composant invisible */
+</style>

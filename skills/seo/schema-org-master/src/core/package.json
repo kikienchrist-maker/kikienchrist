@@ -1,0 +1,70 @@
+{
+  "name": "schema-org-master",
+  "version": "0.1.0",
+  "description": "Complete Schema.org JSON-LD generator, validator & Astro injector for maximum SEO",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./integrations/astro": {
+      "types": "./dist/integrations/astro/index.d.ts",
+      "import": "./dist/integrations/astro/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc && tsc -p tsconfig.cjs.json",
+    "dev": "tsc -w",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src --ext ts",
+    "typecheck": "tsc --noEmit",
+    "cli": "node ./dist/cli/index.js",
+    "prepack": "npm run build && npm run test",
+    "update-types": "node ./dist/cli/update-types.js"
+  },
+  "keywords": [
+    "schema.org",
+    "json-ld",
+    "structured-data",
+    "seo",
+    "astro",
+    "typescript",
+    "rich-results",
+    "google"
+  ],
+  "author": "Kiki en Christ",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "integrations",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "dependencies": {
+    "schema-dts": "^1.1.2",
+    "zod": "^3.22.4",
+    "commander": "^12.0.0",
+    "chalk": "^5.3.0",
+    "glob": "^10.3.10"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0",
+    "@vitest/coverage-v8": "^1.2.0",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "tsx": "^4.7.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

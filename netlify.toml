@@ -1,0 +1,29 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[identity]
+  enabled = true
+  url = "https://kikienchrist.vercel.app"
+  audience = "https://kikienchrist.vercel.app"
+  external_providers = ["google","github"]
+  registration_preferences = "email_password"
+  password_strength = 3
+
+[git_gateway]
+  enabled = true
+  branch = "main"
+  

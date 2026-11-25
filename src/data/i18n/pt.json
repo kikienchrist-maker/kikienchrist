@@ -1,0 +1,148 @@
+{
+  "lang": "pt",
+  "dir": "ltr",
+  "name": "Português",
+  "meta": {
+    "title": "Livros cristãos para fortalecer sua fé — Kiki en Christ",
+    "description": "Quatro livros para quem busca a Deus além dos dogmas. Papel, ebook e áudio, em português e até 9 idiomas. Entrega em 3-5 dias.",
+    "ogTitle": "Livros cristãos para fortalecer sua fé — Kiki en Christ",
+    "ogDescription": "Quatro livros para quem busca a Deus além dos dogmas. Papel, ebook e áudio, em português e até 9 idiomas. Entrega em 3-5 dias."
+  },
+  "hero": {
+    "eyebrow": "Novo",
+    "title": "Livros para quem busca a Deus além dos dogmas",
+    "subtitle": "Quatro obras independentes. Papel, ebook e áudio. Disponíveis em 9 idiomas. Inscreva-se para receber o guia grátis « 7 orações ».",
+    "ctaText": "Receba « 7 orações » grátis",
+    "ctaHref": "#newsletter",
+    "secondaryCtaText": "Descobrir os livros",
+    "secondaryCtaHref": "#livros"
+  },
+  "books": {
+    "title": "Nossos Livros",
+    "subtitle": "Livros para nutrir sua fé e aprofundar seu relacionamento com Deus",
+    "badge": "Bestseller",
+    "pages": "Páginas",
+    "isbn": "ISBN",
+    "published": "Publicado",
+    "benefitsLabel": "Pontos fortes",
+    "ebookBtn": "E-book (PDF/EPUB)",
+    "paperBtn": "Capa mole",
+    "instant": "Download instantâneo",
+    "delivery": "Entrega 5-10 dias",
+    "guarantee": "Garantia 14 dias",
+    "whyTitle": "Por que escolher nossos livros?",
+    "why1Title": "Fundamento bíblico",
+    "why1Text": "Cada livro é profundamente enraizado na Escritura para uma teologia sólida e acessível.",
+    "why2Title": "Vida prática",
+    "why2Text": "Ensinamentos aplicáveis ao dia a dia para transformar sua caminhada com Cristo.",
+    "why3Title": "Comunidade",
+    "why3Text": "Junte-se a milhares de leitores crescendo juntos na fé.",
+    "faqTitle": "Perguntas frequentes sobre nossos livros",
+    "testimonialsTitle": "O que dizem nossos leitores"
+  },
+  "newsletter": {
+    "title": "Receba « 7 orações » grátis",
+    "description": "Um guia PDF para se aproximar da oração, especialmente quando você não sabe por onde começar.",
+    "placeholder": "Seu email",
+    "buttonText": "Quero o guia",
+    "tinyText": "Sem spam. Cancelamento em 1 clique. Seus dados permanecem privados."
+  },
+  "faq": {
+    "title": "Perguntas frequentes",
+    "items": [
+      {
+        "question": "Estes livros estão ligados a uma confissão particular?",
+        "answer": "Não. Eles se dirigem a toda pessoa em busca de Deus, além dos rótulos confessionais."
+      },
+      {
+        "question": "Podem ser lidos em qualquer ordem?",
+        "answer": "Sim. Cada obra é autônoma. Comece pela que ressoe com sua pergunta atual."
+      },
+      {
+        "question": "Existem em versão papel?",
+        "answer": "Sim, brochuras na Lulu. Ebooks no Payhip. Áudio no Google Play. Os links estão em cada ficha."
+      },
+      {
+        "question": "As traduções são fiéis?",
+        "answer": "Cada versão é revisada por um falante nativo. O sentido teológico é preservado."
+      }
+    ]
+  },
+  "cta": {
+    "text": "Pronto para começar sua jornada? Escolha o livro que ressoe — o primeiro passo muda tudo.",
+    "buttonText": "Ver os 4 livros",
+    "buttonHref": "#livros"
+  },
+  "footer": {
+    "nav": ["Início", "Livros", "Blog", "Newsletter", "FAQ", "Contato"],
+    "social": ["Instagram", "Pinterest"],
+    "availability": "Livros disponíveis em papel, ebook e áudio.",
+    "copyright": "Kiki en Christ. Todos os direitos reservados."
+  },
+  "formats": {
+    "paper": "Papel",
+    "ebook": "Ebook",
+    "audio": "Áudio",
+    "paperPrice": "9,99 €",
+    "ebookPrice": "3,99 €",
+    "audioPrice": "5,49 €"
+  },
+  "legal": {
+    "mentionsLegales": "Aviso legal",
+    "confidentialite": "Política de privacidade",
+    "cookies": "Cookies",
+    "cgv": "Condições de venda",
+    "accessibilite": "Acessibilidade"
+  },
+  "blog": {
+    "title": "Blog",
+    "readMore": "Ler mais",
+    "readingTime": "min de leitura",
+    "categories": {
+      "priere": "Oração",
+      "etude-biblique": "Estudo bíblico",
+      "temoignage": "Testemunho",
+      "vie-chretienne": "Vida cristã",
+      "theologie": "Teologia",
+      "jeunes": "Jovens",
+      "famille": "Família",
+      "guerre-spirituelle": "Guerra espiritual",
+      "guérison": "Cura",
+      "impossible": "Impossível",
+      "enfants": "Crianças",
+      "couple": "Casal",
+      "matin-soir": "Manhã e noite",
+      "generation-z": "Geração Z",
+      "routine": "Rotina",
+      "autorite": "Autoridade",
+      "desert-spirituel": "Deserto espiritual"
+    }
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "retry": "Tentar novamente",
+    "close": "Fechar",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "create": "Criar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "next": "Próximo",
+    "previous": "Anterior",
+    "page": "Página",
+    "of": "de",
+    "results": "resultados",
+    "noResults": "Sem resultados",
+    "backToHome": "Voltar ao início",
+    "readMore": "Ler mais",
+    "share": "Compartilhar",
+    "copy": "Copiar",
+    "copied": "Copiado!",
+    "language": "Idioma",
+    "selectLanguage": "Selecionar idioma"
+  }
+}

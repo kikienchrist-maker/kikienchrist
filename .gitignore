@@ -1,4 +1,52 @@
-.vercel
+# Dependencies
 node_modules/
+.pnpm-store/
+
+# Build outputs
 dist/
+build/
+.astro/
+
+# Vercel
 .vercel/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Test coverage
+coverage/
+
+# Playwright
+playwright-report/
+test-results/
+
+# Lighthouse
+.lighthouseci/
+
+# Environment files
+.env
+.env.local
+.env.production.local
+.env.development.local
+
+# Turbo
+.turbo/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Misc
+*.tgz
+.cache/

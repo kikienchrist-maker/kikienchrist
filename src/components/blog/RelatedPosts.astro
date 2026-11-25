@@ -53,9 +53,9 @@ const t = ui[currentLang as keyof typeof ui] || ui.fr;
 ---
 
 {relatedPosts.length > 0 && (
-  <section class="related-posts" aria-labelledby="related-posts-title">
-    <h2 id="related-posts-title">{t.title}</h2>
-    <div class="related-posts-grid" role="list">
+  <section class="bq-related-posts" aria-labelledby="related-posts-title">
+    <h2 id="related-posts-title" class="bq-section-title">{t.title}</h2>
+    <div class="bq-related-posts-grid" role="list">
       {relatedPosts.map(post => (
         <BlogPostCard 
           post={post} 
@@ -66,3 +66,8 @@ const t = ui[currentLang as keyof typeof ui] || ui.fr;
     </div>
   </section>
 )}
+
+<style is:global>
+  .bq-related-posts { margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--line); }
+  .bq-related-posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-lg); }
+</style>

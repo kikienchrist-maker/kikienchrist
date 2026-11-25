@@ -1,60 +1,279 @@
 ---
-// BandeauFormats.astro — Localized version
+// BandeauFormats.astro — Formats avec prix EUR localisés (lafoidieu .bq classes)
 
 interface Props {
   paperLabel?: string;
   ebookLabel?: string;
   audioLabel?: string;
+  paperPrice?: string;   // ex: "9,99 €"
+  ebookPrice?: string;   // ex: "3,99 €"
+  audioPrice?: string;   // ex: "5,49 €"
+  paperHref?: string;    // lien Lulu
+  ebookHref?: string;    // lien Payhip
+  audioHref?: string;    // lien Google Play
 }
 
-const bandPaperLabel = Astro.props.paperLabel ?? "Papier — Lulu";
-const bandEbookLabel = Astro.props.ebookLabel ?? "Ebook — Payhip";
-const bandAudioLabel = Astro.props.audioLabel ?? "Audio — Google Play";
+const {
+  paperLabel = "Papier",
+  ebookLabel = "Ebook",
+  audioLabel = "Audio",
+  paperPrice = "9,99 €",
+  ebookPrice = "3,99 €",
+  audioPrice = "5,49 €",
+  paperHref = "https://www.lulu.com/fr/fr/shop/kiki-en-christ",
+  ebookHref = "https://payhip.com/kikienchrist",
+  audioHref = "https://play.google.com/store/books"
+} = Astro.props;
+
+const formats = [
+  { label: paperLabel, price: paperPrice, href: paperHref, icon: '📖', desc: 'Livre broché', platform: 'Lulu' },
+  { label: ebookLabel, price: ebookPrice, href: ebookHref, icon: '📱', desc: 'PDF / EPUB', platform: 'Payhip' },
+  { label: audioLabel, price: audioPrice, href: audioHref, icon: '🎧', desc: 'MP3 / Streaming', platform: 'Google Play' },
+] as const;
 ---
 
-<div class="band" role="region" aria-label="Formats disponibles">
-  <span>{bandPaperLabel}</span>
-  <strong>{bandEbookLabel}</strong>
-  <span>{bandAudioLabel}</span>
+<div class="bq-bandeau-formats" role="region" aria-label="Formats disponibles">
+  {formats.map((fmt, i) => (
+    <a
+      class={`bq-format-card ${i === 1 ? 'bq-format-card--highlight' : ''}`}
+      href={fmt.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${fmt.label} — ${fmt.price} — ${fmt.platform}`}
+    >
+      <span class="bq-format-icon" aria-hidden="true">{fmt.icon}</span>
+      <div class="bq-format-content">
+        <span class="bq-format-label">{fmt.label}</span>
+        <span class="bq-format-desc">{fmt.desc}</span>
+        <span class="bq-format-platform">{fmt.platform}</span>
+      </div>
+      <span class="bq-format-price">{fmt.price}</span>
+      <svg class="bq-format-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </a>
+  ))}
 </div>
 
+<script>
+  // Conversion prix vers EUR si pays européen (détecté via cookie ou navigator.language)
+  // Le middleware Vercel définit un cookie 'user-country' avec le code ISO pays
+  function isEUCountry(countryCode: string): boolean {
+    const euCountries = [
+      'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT',
+      'NL','PL','PT','RO','SK','SI','ES','SE'
+    ];
+    return euCountries.includes(countryCode.toUpperCase());
+  }
+
+  function getCountryFromCookie(): string | null {
+    const match = document.cookie.match(/(?:^|; )\s*user-country=([^;]+)/);
+    return match ? decodeURIComponent(match[1]) : null;
+  }
+
+  function getCountryFromLang(): string | null {
+    // Fallback: déduire du lang de la page (ex: /fr/ -> FR, /de/ -> DE)
+    const path = window.location.pathname;
+    const match = path.match(/^\/(fr|en|es|pt|de|it|nl|pl|ar|ru|zh|hi)\//);
+    if (match) {
+      const langToCountry: Record<string, string> = {
+        fr: 'FR', en: 'US', es: 'ES', pt: 'PT', de: 'DE', it: 'IT',
+        nl: 'NL', pl: 'PL', ar: 'SA', ru: 'RU', zh: 'CN', hi: 'IN'
+      };
+      return langToCountry[match[1]] || null;
+    }
+    return null;
+  }
+
+  function updatePricesForEU() {
+    const country = getCountryFromCookie() || getCountryFromLang();
+    if (!country || !isEUCountry(country)) return;
+
+    // Prix de base en USD (pour conversion)
+    const usdRates = { paper: 9.99, ebook: 3.99, audio: 5.49 };
+    const eurRate = 0.92; // Taux approx USD->EUR (à mettre à jour ou via API)
+
+    document.querySelectorAll('.bq-format-card').forEach((card, i) => {
+      const priceEl = card.querySelector('.bq-format-price');
+      if (!priceEl) return;
+      const keys = ['paper', 'ebook', 'audio'] as const;
+      const usd = usdRates[keys[i]];
+      const eur = (usd * eurRate).toFixed(2).replace('.', ',');
+      priceEl.textContent = `${eur} €`;
+      priceEl.setAttribute('data-currency', 'EUR');
+    });
+  }
+
+  // Exécuter au chargement
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updatePricesForEU);
+  } else {
+    updatePricesForEU();
+  }
+</script>
+
 <style is:global>
-  .band {
+  /* Bandeau Formats - standalone .bq-* classes */
+  .bq-bandeau-formats {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: stretch;
-    text-align: center;
-    background: var(--paper);
+    gap: var(--space-md);
+    padding: var(--space-lg) var(--space-md);
+    background:
+      linear-gradient(180deg, var(--surface) 0%, var(--paper) 100%);
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
-    font: 500 13px/1.5 system-ui, sans-serif;
-    color: #5c554a;
+    margin: var(--space-xl) calc(-1 * var(--space-lg));
+    padding-left: var(--space-lg);
+    padding-right: var(--space-lg);
   }
-  .band > span,
-  .band > strong {
+
+  .bq-format-card {
     position: relative;
-    padding: 16px 26px;
-  }
-  .band > span + span::before,
-  .band > strong::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 24%;
-    height: 52%;
-    width: 1px;
-    background: var(--line);
-  }
-  .band > strong {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+    min-width: 160px;
+    max-width: 200px;
+    flex: 1;
+    padding: var(--space-md) var(--space-sm);
+    background: var(--surface);
+    border: 2px solid var(--line);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
     color: var(--ink);
-    font-weight: 700;
+    transition:
+      border-color var(--transition-normal),
+      box-shadow var(--transition-normal),
+      transform var(--transition-fast);
+    box-shadow: var(--shadow-sm);
   }
+
+  .bq-format-card:hover,
+  .bq-format-card:focus {
+    border-color: var(--gold);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+    color: var(--ink);
+  }
+
+  .bq-format-card:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .bq-format-card--highlight {
+    border-color: var(--gold);
+    background: linear-gradient(180deg, var(--gold-soft) 0%, var(--surface) 100%);
+    box-shadow: var(--shadow-md), 0 0 0 1px var(--gold-soft);
+  }
+  .bq-format-card--highlight:hover {
+    box-shadow: var(--shadow-xl), 0 0 0 2px var(--gold);
+  }
+
+  .bq-format-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(28,26,23,.15));
+  }
+
+  .bq-format-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    text-align: center;
+  }
+
+  .bq-format-label {
+    font: 600 var(--text-base) system-ui, sans-serif;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .bq-format-desc {
+    font: var(--text-xs) system-ui, sans-serif;
+    color: var(--muted);
+    text-transform: capitalize;
+  }
+
+  .bq-format-platform {
+    font: 500 var(--text-xs) system-ui, sans-serif;
+    color: var(--gold-ink);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .bq-format-price {
+    font: 700 var(--text-xl) Georgia, serif;
+    color: var(--ink);
+    background: var(--gold-soft);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,.3);
+  }
+
+  .bq-format-arrow {
+    width: 20px;
+    height: 20px;
+    color: var(--muted);
+    transition: transform var(--transition-fast), color var(--transition-fast);
+    margin-top: var(--space-xs);
+  }
+
+  .bq-format-card:hover .bq-format-arrow,
+  .bq-format-card:focus .bq-format-arrow {
+    transform: translateX(4px);
+    color: var(--gold);
+  }
+
+  /* Séparateurs verticaux sur desktop */
+  @media (min-width: 721px) {
+    .bq-format-card:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: calc(-1 * var(--space-md) / 2);
+      top: 20%;
+      height: 60%;
+      width: 1px;
+      background: var(--line);
+    }
+  }
+
   @media (max-width: 720px) {
-    .band { flex-direction: column; }
-    .band > span,
-    .band > strong { padding: 8px 20px; }
-    .band > span + span::before,
-    .band > strong::before { display: none; }
+    .bq-bandeau-formats {
+      flex-direction: column;
+      align-items: stretch;
+      margin: var(--space-lg) calc(-1 * var(--space-md));
+      padding: var(--space-md);
+      gap: var(--space-sm);
+    }
+    .bq-format-card {
+      flex-direction: row;
+      justify-content: flex-start;
+      text-align: left;
+      min-width: auto;
+      max-width: none;
+      padding: var(--space-sm) var(--space-md);
+      gap: var(--space-md);
+    }
+    .bq-format-icon { font-size: 2rem; }
+    .bq-format-content { align-items: flex-start; text-align: left; }
+    .bq-format-price { align-self: flex-end; margin-left: auto; }
+    .bq-format-arrow { margin-top: 0; }
+    @media (min-width: 721px) {
+      .bq-format-card:not(:last-child)::after { display: none; }
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .bq-format-card { transition: none; }
+    .bq-format-card:hover { transform: none; }
   }
 </style>

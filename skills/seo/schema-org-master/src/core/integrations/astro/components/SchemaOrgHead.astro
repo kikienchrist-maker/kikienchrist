@@ -1,0 +1,67 @@
+---
+// SchemaOrgHead.astro — Injection forcée dans <head> (schema-org-master)
+// Utilise le slot "head" du layout pour injection garantie dans <head>
+
+import { generateSchemaOrgScript } from '../../../injector';
+import type { InjectorConfig } from '../../../injector';
+import type { SupportedSchemaType, KikiLangCode } from '../../../types';
+
+interface Props {
+  config?: InjectorConfig;
+  pageType?: 'home' | 'book' | 'article' | 'category' | 'legal' | 'search' | '404';
+  book?: SupportedSchemaType;
+  article?: SupportedSchemaType;
+  breadcrumbs?: Array<{ name: string; url: string }>;
+  faq?: Array<{ question: string; answer: string }>;
+  lang?: KikiLangCode;
+  canonicalUrl?: string;
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  additionalSchemas?: SupportedSchemaType[];
+  disableAuto?: boolean;
+}
+
+const globalConfig = Astro.locals?.schemaOrgConfig;
+const config: InjectorConfig = {
+  ...globalConfig,
+  ...Astro.props.config,
+  globalData: {
+    ...globalConfig?.globalData,
+    ...Astro.props.config?.globalData,
+  },
+  autoTypes: Astro.props.disableAuto ? [] : (Astro.props.config?.autoTypes || ['WebSite', 'Organization', 'BreadcrumbList', 'FAQPage']),
+};
+
+const pageData = {
+  pageType: Astro.props.pageType,
+  book: Astro.props.book,
+  article: Astro.props.article,
+  breadcrumbs: Astro.props.breadcrumbs,
+  faq: Astro.props.faq,
+  lang: Astro.props.lang,
+  canonicalUrl: Astro.props.canonicalUrl,
+  title: Astro.props.title,
+  description: Astro.props.description,
+  ogImage: Astro.props.ogImage,
+};
+
+const mainScript = generateSchemaOrgScript(pageData, config);
+
+const additionalScripts = (Astro.props.additionalSchemas || []).map(schema => {
+  const { stringifyJsonLd, createContext } = await import('../../../context');
+  const ctx = createContext(Astro.props.lang || 'fr');
+  const merged = { '@context': ctx, '@graph': [schema] };
+  return `<script type="application/ld+json">${stringifyJsonLd(merged, { pretty: true, context: ctx })}</script>`;
+}) || [];
+---
+
+<!-- Injection via slot "head" — DOIT être dans un layout avec <slot name="head" /> dans <head> -->
+<slot name="head">
+  <script set:html={mainScript} />
+  {additionalScripts.map(s => <script set:html={s} />)}
+</slot>
+
+<style is:global>
+  /* Invisible */
+</style>

@@ -1,0 +1,65 @@
+---
+// SchemaOrgBody.astro — Injection fallback dans <body> (schema-org-master)
+// Utilisé si layout n'a pas de slot "head" dans <head>
+
+import { generateSchemaOrgScript } from '../../../injector';
+import type { InjectorConfig } from '../../../injector';
+import type { SupportedSchemaType, KikiLangCode } from '../../../types';
+
+interface Props {
+  config?: InjectorConfig;
+  pageType?: 'home' | 'book' | 'article' | 'category' | 'legal' | 'search' | '404';
+  book?: SupportedSchemaType;
+  article?: SupportedSchemaType;
+  breadcrumbs?: Array<{ name: string; url: string }>;
+  faq?: Array<{ question: string; answer: string }>;
+  lang?: KikiLangCode;
+  canonicalUrl?: string;
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  additionalSchemas?: SupportedSchemaType[];
+  disableAuto?: boolean;
+}
+
+const globalConfig = Astro.locals?.schemaOrgConfig;
+const config: InjectorConfig = {
+  ...globalConfig,
+  ...Astro.props.config,
+  globalData: {
+    ...globalConfig?.globalData,
+    ...Astro.props.config?.globalData,
+  },
+  autoTypes: Astro.props.disableAuto ? [] : (Astro.props.config?.autoTypes || ['WebSite', 'Organization', 'BreadcrumbList', 'FAQPage']),
+};
+
+const pageData = {
+  pageType: Astro.props.pageType,
+  book: Astro.props.book,
+  article: Astro.props.article,
+  breadcrumbs: Astro.props.breadcrumbs,
+  faq: Astro.props.faq,
+  lang: Astro.props.lang,
+  canonicalUrl: Astro.props.canonicalUrl,
+  title: Astro.props.title,
+  description: Astro.props.description,
+  ogImage: Astro.props.ogImage,
+};
+
+const mainScript = generateSchemaOrgScript(pageData, config);
+
+const additionalScripts = (Astro.props.additionalSchemas || []).map(schema => {
+  const { stringifyJsonLd, createContext } = await import('../../../context');
+  const ctx = createContext(Astro.props.lang || 'fr');
+  const merged = { '@context': ctx, '@graph': [schema] };
+  return `<script type="application/ld+json">${stringifyJsonLd(merged, { pretty: true, context: ctx })}</script>`;
+}) || [];
+---
+
+<!-- Injection directe dans <body> (fallback) -->
+<script set:html={mainScript} />
+{additionalScripts.map(s => <script set:html={s} />)}
+
+<style is:global>
+  /* Invisible */
+</style>

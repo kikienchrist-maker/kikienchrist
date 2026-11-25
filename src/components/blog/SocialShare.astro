@@ -1,5 +1,5 @@
 ---
-// SocialShare.astro - Partage social (design system lafoidieu .bq)
+// SocialShare.astro - Partage social (design system lafoidieu .bq classes)
 interface Props {
   url: string;
   title: string;
@@ -78,339 +78,187 @@ const ui = {
 const t = ui[lang as keyof typeof ui] || ui.fr;
 ---
 
-<div class={`social-share ${className}`} role="group" aria-label={t.share}>
-  {/* Web Share API */}
-  {navigator.share && (
-    <button 
-      class="social-share-trigger native"
-      type="button"
-      aria-label={t.share}
-      data-share-url={url}
-      data-share-title={title}
-      data-share-text={description}
-    >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <circle cx="18" cy="5" r="3"/>
-        <circle cx="6" cy="19" r="3"/>
-        <path d="M8.59 13.51a6 6 0 0 0 8.82 0L16 9.5"/>
-      </svg>
-      <span class="share-text">{t.share}</span>
-    </button>
-  )}
+<div class="bq-social-share" data-url={url} data-title={title}>
+  <button 
+    class="bq-social-share-trigger" 
+    aria-expanded="false" 
+    aria-controls="social-share-menu"
+    aria-label={t.share}
+  >
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="bq-social-share-icon" aria-hidden="true">
+      <circle cx="18" cy="5" r="3" />
+      <circle cx="6" cy="19" r="3" />
+      <circle cx="18" cy="19" r="3" />
+      <path d="M8.59 13.51L16.18 6" />
+      <path d="M17.5 18.09A6 6 0 0 1 5 15" />
+      <path d="M21.5 7.91A6 6 0 0 1 13 4" />
+    </svg>
+    <span class="bq-social-share-text">{t.share}</span>
+  </button>
 
-  {/* Dropdown */}
-  <div class="social-share-dropdown">
-    <button 
-      class="social-share-trigger"
-      type="button"
-      aria-label={t.share}
-      aria-expanded="false"
-      aria-haspopup="true"
-      aria-controls="social-share-menu"
-    >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <circle cx="18" cy="5" r="3"/>
-        <circle cx="6" cy="19" r="3"/>
-        <path d="M8.59 13.51a6 6 0 0 0 8.82 0L16 9.5"/>
-      </svg>
-      <span class="share-text">{t.share}</span>
-    </button>
-
-    <div 
-      id="social-share-menu" 
-      class="social-share-menu" 
-      role="menu"
-      aria-label={t.share}
-    >
-      {socialNetworks.map(network => {
-        const shareUrl = network.url 
-          ? network.url === 'copy' 
-            ? null 
-            : network.url(url, title)
-          : null;
-        
-        return (
+  <div id="social-share-menu" class="bq-social-share-dropdown" role="menu" aria-label={t.share} hidden>
+    <div class="bq-social-share-menu">
+      {socialNetworks.map(network => (
+        network.url ? (
+          <a
+            href={network.url(url, title)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bq-social-share-link"
+            role="menuitem"
+            aria-label={network.label}
+            data-network={network.id}
+          >
+            <span class="bq-social-share-link-icon" set:html={network.icon} />
+            <span class="bq-social-share-link-label">{network.label}</span>
+          </a>
+        ) : (
           <button
             type="button"
+            class="bq-social-share-link"
             role="menuitem"
-            class="social-share-item"
+            aria-label={network.label}
+            data-action="copy-link"
             data-network={network.id}
-            data-url={shareUrl}
-            aria-label={`Partager sur ${network.label}`}
           >
-            <span class="social-icon" aria-hidden="true">{network.icon}</span>
-            <span class="social-label">{network.label}</span>
+            <span class="bq-social-share-link-icon" set:html={network.icon} />
+            <span class="bq-social-share-link-label">{t.copyLink}</span>
           </button>
-        );
-      })}
+        )
+      ))}
     </div>
   </div>
 </div>
 
 <script>
-  class SocialShare {
-    container: HTMLElement;
-    triggers: NodeListOf<HTMLButtonElement>;
-    menu: HTMLElement;
-    isOpen: boolean = false;
-    
-    constructor(container: HTMLElement) {
-      this.container = container;
-      this.triggers = container.querySelectorAll('.social-share-trigger');
-      this.menu = container.querySelector('.social-share-menu')!;
-      this.init();
-    }
-    
-    init() {
-      const nativeBtn = this.container.querySelector('.social-share-trigger.native');
-      if (nativeBtn) {
-        nativeBtn.addEventListener('click', (e) => this.handleNativeShare(e));
-      }
-      
-      const dropdownTrigger = this.container.querySelector('.social-share-trigger:not(.native)');
-      if (dropdownTrigger) {
-        dropdownTrigger.addEventListener('click', (e) => this.toggleMenu(e));
-      }
-      
-      this.menu?.addEventListener('click', (e) => this.handleMenuClick(e));
-      
-      document.addEventListener('click', (e) => this.handleOutsideClick(e));
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && this.isOpen) this.closeMenu();
-      });
-    }
-    
-    async handleNativeShare(e: Event) {
-      const btn = e.currentTarget as HTMLButtonElement;
-      const url = btn.dataset.shareUrl!;
-      const title = btn.dataset.shareTitle!;
-      const text = btn.dataset.shareText!;
-      
-      try {
-        await navigator.share({ title, text, url });
-      } catch (err) {
-        if ((err as Error).name !== 'AbortError') {
-          console.warn('Web Share API failed:', err);
-        }
-      }
-    }
-    
-    toggleMenu(e: Event) {
-      e.stopPropagation();
-      this.isOpen ? this.closeMenu() : this.openMenu();
-    }
-    
-    openMenu() {
-      this.menu.style.display = 'block';
-      this.menu.setAttribute('aria-hidden', 'false');
-      const trigger = this.container.querySelector('.social-share-trigger:not(.native)') as HTMLButtonElement;
-      trigger?.setAttribute('aria-expanded', 'true');
-      this.isOpen = true;
-      
-      const firstItem = this.menu.querySelector('[role="menuitem"]') as HTMLElement;
-      firstItem?.focus();
-    }
-    
-    closeMenu() {
-      this.menu.style.display = 'none';
-      this.menu.setAttribute('aria-hidden', 'true');
-      const trigger = this.container.querySelector('.social-share-trigger:not(.native)') as HTMLButtonElement;
-      trigger?.setAttribute('aria-expanded', 'false');
-      this.isOpen = false;
-    }
-    
-    handleMenuClick(e: Event) {
-      const item = (e.target as HTMLElement).closest('[role="menuitem"]') as HTMLButtonElement;
-      if (!item) return;
-      
-      const network = item.dataset.network;
-      const url = item.dataset.url;
-      
-      if (network === 'copy') {
-        this.copyToClipboard();
-      } else if (url) {
-        window.open(url, '_blank', 'noopener,noreferrer,width=600,height=400');
-      }
-      
-      this.closeMenu();
-    }
-    
-    async copyToClipboard() {
-      const shareUrl = this.container.querySelector('[data-share-url]')?.dataset.shareUrl || window.location.href;
-      
-      try {
-        await navigator.clipboard.writeText(shareUrl);
-        this.showToast(t.copied);
-      } catch {
-        const textarea = document.createElement('textarea');
-        textarea.value = shareUrl;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-        this.showToast(t.copied);
-      }
-    }
-    
-    showToast(message: string) {
-      const toast = document.createElement('div');
-      toast.className = 'social-share-toast';
-      toast.textContent = message;
-      toast.setAttribute('role', 'status');
-      toast.setAttribute('aria-live', 'polite');
-      document.body.appendChild(toast);
-      
-      setTimeout(() => toast.classList.add('show'), 10);
-      setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => toast.remove(), 300);
-      }, 2000);
-    }
-    
-    handleOutsideClick(e: Event) {
-      if (this.isOpen && !this.container.contains(e.target as Node)) {
-        this.closeMenu();
-      }
-    }
-  }
-  
   document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.social-share').forEach(el => new SocialShare(el as HTMLElement));
+    const triggers = document.querySelectorAll('.bq-social-share-trigger');
+    triggers.forEach(trigger => {
+      const container = trigger.closest('.bq-social-share');
+      if (!container) return;
+      
+      const dropdown = container.querySelector('.bq-social-share-dropdown');
+      const menu = container.querySelector('.bq-social-share-menu');
+      let isOpen = false;
+      let closeTimeout: number;
+
+      const open = () => {
+        dropdown.hidden = false;
+        requestAnimationFrame(() => {
+          dropdown.classList.add('bq-open');
+        });
+        trigger.setAttribute('aria-expanded', 'true');
+        isOpen = true;
+      };
+
+      const close = () => {
+        dropdown.classList.remove('bq-open');
+        setTimeout(() => {
+          if (!isOpen) dropdown.hidden = true;
+        }, 200);
+        trigger.setAttribute('aria-expanded', 'false');
+        isOpen = false;
+      };
+
+      const toggle = () => {
+        if (isOpen) close();
+        else open();
+      };
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggle();
+      });
+
+      dropdown.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        if (target.hasAttribute('data-action')) {
+          if (target.getAttribute('data-action') === 'copy-link') {
+            navigator.clipboard.writeText(url).then(() => {
+              const originalText = target.querySelector('.bq-social-share-link-label');
+              if (originalText) {
+                const oldText = originalText.textContent;
+                originalText.textContent = t.copied;
+                setTimeout(() => { originalText.textContent = oldText; }, 2000);
+              }
+            });
+          }
+        }
+      });
+
+      // Close on outside click
+      document.addEventListener('click', (e) => {
+        if (isOpen && !container.contains(e.target as Node)) {
+          close();
+        }
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isOpen) close();
+      });
+    });
   });
 </script>
 
 <style is:global>
-  .social-share {
+  .bq-social-share { display: inline-flex; position: relative; }
+  .bq-social-share-trigger {
     display: inline-flex;
     align-items: center;
     gap: var(--space-sm);
-  }
-
-  .social-share-trigger {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-sm);
-    padding: var(--space-sm) var(--space-md);
-    border: 1px solid var(--color-border);
+    padding: var(--space-xs) var(--space-md);
+    background: var(--paper);
+    border: 1px solid var(--line);
     border-radius: var(--radius-full);
-    background: var(--color-paper);
-    color: var(--color-ink);
-    font: 500 var(--text-sm)/1 system-ui, sans-serif;
+    color: var(--ink);
+    font-size: var(--text-sm);
+    font-weight: 500;
     cursor: pointer;
     transition: all var(--transition-fast);
-    white-space: nowrap;
   }
-
-  .social-share-trigger:hover {
-    background: var(--color-cream);
-    border-color: var(--color-gold);
-    color: var(--color-gold-ink);
-  }
-
-  .social-share-trigger.native {
-    background: var(--color-gold);
-    border-color: var(--color-gold);
-    color: var(--color-ink);
-  }
-
-  .social-share-trigger.native:hover {
-    background: var(--color-gold-soft);
-    border-color: var(--color-gold-soft);
-    color: var(--color-ink);
-  }
-
-  .share-text {
-    display: none;
-  }
-
-  @media (min-width: 640px) {
-    .share-text {
-      display: inline;
-    }
-  }
-
-  .social-share-dropdown {
-    position: relative;
-    display: inline-block;
-  }
-
-  .social-share-menu {
-    display: none;
+  .bq-social-share-trigger:hover { background: var(--gold-soft); border-color: var(--gold); color: var(--gold-ink); }
+  .bq-social-share-icon { width: 18px; height: 18px; }
+  .bq-social-share-dropdown {
     position: absolute;
-    bottom: 100%;
-    right: 0;
-    margin-bottom: var(--space-sm);
-    padding: var(--space-sm);
-    background: var(--color-paper);
-    border: 1px solid var(--color-border);
+    bottom: calc(100% + var(--space-sm));
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+    z-index: 100;
+  }
+  .bq-social-share-dropdown.bq-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .bq-social-share-menu {
+    display: flex;
+    gap: var(--space-xs);
+    background: var(--paper);
+    border: 1px solid var(--line);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
-    z-index: 100;
-    min-width: 180px;
+    padding: var(--space-sm);
   }
-
-  .social-share-menu[aria-hidden="false"] {
-    display: block;
-    animation: fadeInUp 0.2s ease-out;
-  }
-
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .social-share-item {
-    display: flex;
+  .bq-social-share-link {
+    display: inline-flex;
     align-items: center;
     gap: var(--space-sm);
-    width: 100%;
     padding: var(--space-sm) var(--space-md);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
     border: none;
     background: transparent;
-    color: var(--color-ink);
-    font: var(--text-sm)/1 system-ui, sans-serif;
-    text-align: left;
     cursor: pointer;
-    border-radius: var(--radius-md);
-    transition: background var(--transition-fast);
+    font-family: inherit;
   }
-
-  .social-share-item:hover {
-    background: var(--color-cream);
-    color: var(--color-gold-ink);
-  }
-
-  .social-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-  }
-
-  .social-icon svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .social-share-toast {
-    position: fixed;
-    bottom: var(--space-xl);
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    padding: var(--space-md) var(--space-lg);
-    background: var(--color-ink);
-    color: var(--color-paper);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-lg);
-    opacity: 0;
-    transition: all var(--transition-normal);
-    z-index: 1000;
-  }
-
-  .social-share-toast.show {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-  }
+  .bq-social-share-link:hover { background: var(--gold-soft); color: var(--gold-ink); }
+  .bq-social-share-link-icon { width: 20px; height: 20px; flex-shrink: 0; }
+  .bq-social-share-link-label { white-space: nowrap; }
 </style>

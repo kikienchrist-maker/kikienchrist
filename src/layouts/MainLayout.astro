@@ -3,6 +3,7 @@ import '../styles/lafoidieu-design.css';
 import type { AstroGlobal } from 'astro';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 import NewsletterForm from '../components/NewsletterForm.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 
 // Import translations directly to avoid import issues
 import * as fs from 'fs';
@@ -41,8 +42,8 @@ const baseUrl = 'https://kikienchrist.vercel.app';
 
 // ─── AUTO TITLE ───
 const pageTitle = title 
-  ? `${title} | ${siteName}`
-  : `${t.home?.title || siteName} | ${siteName}`;
+  ? (title === siteName ? siteName : `${title} | ${siteName}`)
+  : (t.home?.title === siteName ? siteName : `${t.home?.title || siteName} | ${siteName}`);
 
 // ─── AUTO DESCRIPTION ───
 const pageDescription = description 
@@ -200,8 +201,8 @@ alternateLangs['x-default'] = `${baseUrl}/fr${currentPath}`;
   <link rel="stylesheet" href="/styles/lafoidieu-design.css" />
   
   {/* ─── FAVICON ─── */}
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="manifest" href="/manifest.webmanifest" />
   
   {/* ─── RSS ─── */}
@@ -209,17 +210,14 @@ alternateLangs['x-default'] = `${baseUrl}/fr${currentPath}`;
   
   {Astro.slots.has('head') && <slot name="head" />}
 </head>
-<body class="bq-body">
+<body class="bq">
   <a href="#main-content" class="bq-skip-link">Aller au contenu principal</a>
   
   <header class="bq-header" role="banner">
     <div class="bq-container">
       <div class="bq-header-inner">
         <a href={`/${lang}/`} class="bq-logo" aria-label={t.nav?.home || 'Accueil'}>
-          <svg class="bq-logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2"/>
-            <path d="M10 16l4 4 8-8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <img src="/favicon.png" alt="" class="bq-logo-icon" width="32" height="32" aria-hidden="true" />
           <span class="bq-logo-text">Kiki en Christ</span>
         </a>
         
@@ -249,10 +247,7 @@ alternateLangs['x-default'] = `${baseUrl}/fr${currentPath}`;
       <div class="bq-footer-grid">
         <div class="bq-footer-brand">
           <a href={`/${lang}/`} class="bq-footer-logo">
-            <svg class="bq-logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2"/>
-              <path d="M10 16l4 4 8-8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <img src="/favicon.png" alt="" class="bq-logo-icon" width="32" height="32" aria-hidden="true" />
             <span>Kiki en Christ</span>
           </a>
           <p class="bq-footer-tagline">{t.footer?.tagline || 'Priez, méditez, grandissez dans la foi'}</p>
@@ -280,33 +275,35 @@ alternateLangs['x-default'] = `${baseUrl}/fr${currentPath}`;
           </ul>
         </nav>
         
-        <div class="bq-footer-newsletter">
-          <h3 class="bq-footer-title">{t.footer?.newsletter || 'Newsletter'}</h3>
-          <p class="bq-footer-text">{t.footer?.newsletterDesc || 'Recevez nos prières et méditations hebdomadaires'}</p>
-          <NewsletterForm lang={lang} />
+        <div class="bq-footer-social">
+          <h3 class="bq-footer-title">{t.footer?.followUs || 'Suivez-nous'}</h3>
+          <div class="bq-social-links">
+            <a href="https://www.facebook.com/kikienchrist" class="bq-social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/kikienchrist" class="bq-social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://twitter.com/kikienchrist" class="bq-social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@kikienchrist" class="bq-social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
         </div>
       </div>
       
       <div class="bq-footer-bottom">
         <p class="bq-copyright">© {new Date().getFullYear()} Kiki en Christ. {t.footer?.allRights || 'Tous droits réservés.'}</p>
-        <div class="bq-social-links">
-          <a href="https://www.facebook.com/kikienchrist" class="bq-social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/kikienchrist" class="bq-social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </a>
-          <a href="https://twitter.com/kikienchrist" class="bq-social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
-          </a>
-          <a href="https://www.youtube.com/@kikienchrist" class="bq-social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          </a>
-        </div>
       </div>
     </div>
   </footer>
   
   <slot name="scripts" />
+
+  <!-- Bannière RGPD (Cookie Consent) -->
+  <CookieConsent />
+
 </body>
 </html>

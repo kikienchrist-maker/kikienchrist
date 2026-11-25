@@ -520,6 +520,121 @@
       "status": "ready",
       "created": "2026-11-24",
       "testCoverage": { "lines": 60, "functions": 60, "branches": 50, "statements": 60 }
+    },
+    {
+      "name": "design-system-audit",
+      "version": "1.0.0",
+      "description": "Audit complet conformité design system lafoidieu (.bq namespace): détection composants non-conformes, injection classes utilitaires, validation CSS tokens, rapport HTML/JSON, auto-fix basique",
+      "category": "core",
+      "path": "skills/core/design-system-audit",
+      "entry": "dist/index.js",
+      "cli": "dist/cli.js",
+      "schema": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "command": { "type": "string", "enum": ["audit", "fix", "report", "inject", "validate", "tokens"] },
+            "options": {
+              "type": "object",
+              "properties": {
+                "srcDir": { "type": "string", "default": "src" },
+                "cssFile": { "type": "string", "default": "src/styles/lafoidieu-design.css" },
+                "outputDir": { "type": "string", "default": "./design-audit-report" },
+                "fix": { "type": "boolean", "default": false },
+                "dryRun": { "type": "boolean", "default": false },
+                "format": { "type": "string", "enum": ["console", "json", "html"], "default": "html" },
+                "strict": { "type": "boolean", "default": true }
+              },
+              "required": []
+            }
+          },
+          "required": ["command"]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "success": { "type": "boolean" },
+            "totalComponents": { "type": "integer" },
+            "compliantComponents": { "type": "integer" },
+            "nonCompliantComponents": { "type": "integer" },
+            "complianceScore": { "type": "number" },
+            "issues": { "type": "array" },
+            "fixedCount": { "type": "integer" },
+            "reportPath": { "type": "string" }
+          },
+          "required": ["success", "totalComponents", "complianceScore"]
+        }
+      },
+      "dependencies": ["chalk", "commander", "glob", "ora", "postcss", "zod"],
+      "devDependencies": ["vitest", "typescript", "@types/node", "postcss-scss"],
+      "tags": ["design-system", "lafoidieu", "css", "bq-namespace", "audit", "astro", "components", "tokens"],
+      "status": "ready",
+      "created": "2026-11-25",
+      "testCoverage": { "lines": 50, "functions": 50, "branches": 40, "statements": 50 }
+    },
+    {
+      "name": "schema-org-master",
+      "version": "0.1.0",
+      "description": "Schema.org JSON-LD Generator, Validator & Auditor for Maximum SEO. Fluent TypeScript builders, Zod validation, Google Rich Results compliance, Astro integration, CLI tools.",
+      "category": "core",
+      "path": "skills/seo/schema-org-master",
+      "entry": "dist/index.js",
+      "cli": "dist/cli.js",
+      "schema": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "command": { "type": "string", "enum": ["generate", "validate", "audit", "update-types"] },
+            "options": {
+              "type": "object",
+              "properties": {
+                "type": { "type": "string", "description": "Schema type (Book, Product, Organization, WebSite, etc.)" },
+                "data": { "type": "string", "description": "Input data as JSON string" },
+                "file": { "type": "string", "description": "Input data from JSON file" },
+                "lang": { "type": "string", "enum": ["fr", "en", "es", "pt", "it", "de", "nl", "pl", "ar", "ru", "zh", "hi"], "default": "fr" },
+                "output": { "type": "string", "description": "Output file path" },
+                "pretty": { "type": "boolean", "default": true },
+                "strict": { "type": "boolean", "default": false },
+                "url": { "type": "string", "description": "Deployed URL to validate" },
+                "dir": { "type": "string", "description": "Directory to scan for JSON-LD files" },
+                "format": { "type": "string", "enum": ["console", "json", "html"], "default": "console" },
+                "google": { "type": "boolean", "default": true },
+                "pattern": { "type": "string", "description": "File glob pattern for directory scan" },
+                "baseUrl": { "type": "string", "description": "Base URL for site audit" },
+                "paths": { "type": "array", "items": { "type": "string" }, "description": "Paths to audit" },
+                "langs": { "type": "array", "items": { "type": "string" }, "description": "Language codes to audit" },
+                "outputDir": { "type": "string", "description": "Output directory for audit reports" },
+                "concurrency": { "type": "number", "default": 5 },
+                "sitemap": { "type": "boolean", "default": false },
+                "schemaDts": { "type": "boolean", "default": true },
+                "schemaOrg": { "type": "boolean", "default": false },
+                "kikiOnly": { "type": "boolean", "default": false }
+              },
+              "required": []
+            }
+          },
+          "required": ["command"]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "success": { "type": "boolean" },
+            "jsonLd": { "type": "string" },
+            "validation": { "type": "object" },
+            "auditResults": { "type": "array" },
+            "auditSummary": { "type": "object" },
+            "reportPath": { "type": "string" },
+            "typesGenerated": { "type": "boolean" }
+          },
+          "required": ["success"]
+        }
+      },
+      "dependencies": ["chalk", "commander", "zod", "schema-dts"],
+      "devDependencies": ["vitest", "typescript", "@types/node", "ts-node", "glob"],
+      "tags": ["schema-org", "json-ld", "structured-data", "seo", "rich-results", "astro", "typescript", "builder-pattern", "validation"],
+      "status": "ready",
+      "created": "2026-11-25",
+      "testCoverage": { "lines": 85, "functions": 80, "branches": 75, "statements": 85 }
     }
   ],
   "categories": {

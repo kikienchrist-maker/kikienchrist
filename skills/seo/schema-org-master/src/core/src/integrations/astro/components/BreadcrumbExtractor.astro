@@ -1,0 +1,47 @@
+---
+// BreadcrumbExtractor.astro — Extraction Breadcrumbs depuis HTML (schema-org-master)
+// Utilisation: <BreadcrumbExtractor html={htmlContent} />
+
+interface Props {
+  /** Contenu HTML à analyser */
+  html: string;
+  /** Langue de la page */
+  lang?: string;
+  /** URL de base pour résoudre URLs relatives */
+  baseUrl?: string;
+}
+
+import { extractBreadcrumbsFromHTML } from '../middleware';
+import { BreadcrumbListBuilder } from '../../builder/base';
+
+const { html, lang = 'fr', baseUrl = 'https://kikienchrist.vercel.app' } = Astro.props;
+
+// Extraire breadcrumbs
+const crumbs = extractBreadcrumbsFromHTML(html);
+
+// Si breadcrumbs trouvés, générer JSON-LD BreadcrumbList
+if (crumbs.length > 0) {
+  // Résoudre URLs relatives
+  const resolvedCrumbs = crumbs.map(crumb => ({
+    name: crumb.name,
+    url: crumb.url.startsWith('http') ? crumb.url : new URL(crumb.url, baseUrl).href,
+  }));
+  
+  // Filtrer le dernier élément sans URL (page courante)
+  const items = resolvedCrumbs.map((crumb, index) => ({
+    '@type': 'ListItem' as const,
+    position: index + 1,
+    item: crumb.url ? { '@id': crumb.url, name: crumb.name } : { name: crumb.name },
+  }));
+  
+  const breadcrumbSchema = BreadcrumbListBuilder.create()
+    .itemListElement(items)
+    .inLanguage(lang)
+    .build();
+  
+  const script = `<script type="application/ld+json">${JSON.stringify(breadcrumbSchema, null, 2)}</script>`;
+  
+  <slot set:html={script} />
+} else {
+  <!-- Aucun breadcrumb détecté -->
+}

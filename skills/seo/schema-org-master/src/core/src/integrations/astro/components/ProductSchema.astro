@@ -1,0 +1,146 @@
+---
+// ProductSchema.astro — Composant Schema.org Product avec Offers (schema-org-master)
+// Utilisation: <ProductSchema productData={...} lang="fr" />
+
+import { ProductBuilder, OfferBuilder } from '../../builder/base';
+
+interface Props {
+  /** Données produit */
+  productData: {
+    /** Nom du produit */
+    name: string;
+    /** SKU */
+    sku?: string;
+    /** GTIN13/EAN */
+    gtin13?: string;
+    /** Marque */
+    brand?: string;
+    /** Catégorie */
+    category?: string;
+    /** Description */
+    description?: string;
+    /** Image(s) */
+    image?: string | Array<string>;
+    /** URL canonique */
+    url?: string;
+  };
+  /** Offres (prix, formats, disponibilité) */
+  offers: Array<{
+    /** Format/Variante */
+    format: 'Paperback' | 'EBook' | 'Audiobook' | string;
+    /** Prix */
+    price: number;
+    /** Devise (ISO 4217) */
+    currency: string;
+    /** Disponibilité Schema.org */
+    availability?: string;
+    /** Vendeur */
+    seller?: string;
+    /** URL d'achat */
+    url?: string;
+    /** SKU spécifique à l'offre */
+    sku?: string;
+  }>;
+  /** Code langue */
+  lang?: string;
+  /** AggregateRating */
+  aggregateRating?: {
+    ratingValue: number;
+    reviewCount: number;
+    bestRating?: number;
+    worstRating?: number;
+  };
+  /** Avis */
+  reviews?: Array<{
+    author: string;
+    rating: number;
+    body: string;
+    datePublished: string;
+  }>;
+  /** Injecter dans head */
+  injectInHead?: boolean;
+  /** Pretty print */
+  pretty?: boolean;
+}
+
+const {
+  productData,
+  offers,
+  lang = 'fr',
+  aggregateRating,
+  reviews,
+  injectInHead = true,
+  pretty = true,
+} = Astro.props;
+
+// Construire Product
+const productBuilder = ProductBuilder.create()
+  .name(productData.name)
+  .inLanguage(lang);
+
+if (productData.sku) productBuilder.sku(productData.sku);
+if (productData.gtin13) productBuilder.gtin13(productData.gtin13);
+if (productData.brand) productBuilder.brand({ '@type': 'Brand', name: productData.brand });
+if (productData.category) productBuilder.category(productData.category);
+if (productData.description) productBuilder.description(productData.description);
+if (productData.image) productBuilder.image(productData.image);
+if (productData.url) productBuilder.url(productData.url);
+
+// Construire Offers
+const offerObjects = offers.map(offer => 
+  OfferBuilder.create()
+    .price(offer.price)
+    .priceCurrency(offer.currency)
+    .availability(offer.availability || 'https://schema.org/InStock')
+    .itemOffered({
+      '@type': 'Product',
+      name: productData.name,
+      sku: offer.sku || productData.sku,
+    })
+    .seller(offer.seller ? { '@type': 'Organization', name: offer.seller } : undefined)
+    .url(offer.url)
+    .build()
+);
+
+productBuilder.offers(offerObjects);
+
+// AggregateRating
+if (aggregateRating) {
+  productBuilder.aggregateRating({
+    '@type': 'AggregateRating',
+    ratingValue: aggregateRating.ratingValue,
+    reviewCount: aggregateRating.reviewCount,
+    bestRating: aggregateRating.bestRating || 5,
+    worstRating: aggregateRating.worstRating || 1,
+  });
+}
+
+// Reviews
+if (reviews && reviews.length > 0) {
+  productBuilder.review(reviews.map(review => ({
+    '@type': 'Review',
+    author: { '@type': 'Person', name: review.author },
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: review.rating,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    reviewBody: review.body,
+    datePublished: review.datePublished,
+  })));
+}
+
+const product = productBuilder.build();
+
+const script = `<script type="application/ld+json">${pretty ? JSON.stringify(product, null, 2) : JSON.stringify(product)}</script>`;
+
+---
+
+{injectInHead ? (
+  <head>
+    <slot name="product-schema" set:html={script} />
+  </head>
+) : (
+  <script type="application/ld+json" set:html={JSON.stringify(product, null, pretty ? 2 : 0)} />
+)}

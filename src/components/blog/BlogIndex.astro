@@ -24,20 +24,23 @@ interface Props {
 
 const { lang, category, tag, series, page = 1, perPage = 10, posts: passedPosts, pagination: passedPagination } = Astro.props;
 
-let allPosts: CollectionEntry<'blog'>[];
-let filteredPosts: CollectionEntry<'blog'>[];
-let totalPosts: number;
-let totalPages: number;
-let currentPage: number;
-let posts: CollectionEntry<'blog'>[];
+// Garde-fou : s'assurer que passedPosts est un tableau
+const safePassedPosts = Array.isArray(passedPosts) ? passedPosts : [];
 
-if (passedPosts && passedPagination) {
-  allPosts = passedPosts;
-  filteredPosts = passedPosts;
-  totalPosts = passedPagination.totalItems || passedPosts.length;
+let allPosts: CollectionEntry<'blog'>[] = [];
+let filteredPosts: CollectionEntry<'blog'>[] = [];
+let totalPosts = 0;
+let totalPages = 1;
+let currentPage = 1;
+let displayPosts: CollectionEntry<'blog'>[] = [];
+
+if (safePassedPosts.length > 0 && passedPagination) {
+  allPosts = safePassedPosts;
+  filteredPosts = safePassedPosts;
+  totalPosts = passedPagination.totalItems || safePassedPosts.length;
   totalPages = passedPagination.totalPages;
   currentPage = passedPagination.currentPage;
-  posts = passedPosts;
+  displayPosts = safePassedPosts;
 } else {
   allPosts = (await getCollection('blog', ({ data }) => data.lang === lang && !data.draft))
     .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
@@ -48,11 +51,11 @@ if (passedPosts && passedPagination) {
   if (series) filteredPosts = filteredPosts.filter(p => p.data.series === series);
 
   totalPosts = filteredPosts.length;
-  totalPages = Math.ceil(totalPosts / perPage);
+  totalPages = Math.max(1, Math.ceil(totalPosts / perPage));
   currentPage = Math.max(1, Math.min(page, totalPages));
   const start = (currentPage - 1) * perPage;
   const end = start + perPage;
-  posts = filteredPosts.slice(start, end);
+  displayPosts = filteredPosts.slice(start, end);
 }
 
 function getCategoryLabel(cat: string, lng: string): string {
@@ -79,7 +82,7 @@ function getSeriesLabel(s: string, lng: string): string {
     es: { 'apprendre-à-prier': 'Aprender a orar' },
     pt: { 'apprendre-à-prier': 'Aprender a orar' },
     it: { 'apprendre-à-prier': 'Imparare a pregare' },
-    de: { 'apprendre-à-prier': 'Beteln lernen' },
+    de: { 'apprendre-à-prier': 'Beten lernen' },
     nl: { 'apprendre-à-prier': 'Leren bidden' },
     pl: { 'apprendre-à-prier': 'Ucz się modlić' },
     ar: { 'apprendre-à-prier': 'تعلم الصلاة' },
@@ -89,192 +92,84 @@ function getSeriesLabel(s: string, lng: string): string {
   return labels[lng]?.[s] || labels['fr']?.[s] || s;
 }
 
-// Métadonnées SEO
-const pageTitle = category
-  ? `Blog — ${getCategoryLabel(category, lang)} | Kiki en Christ`
-  : tag
-    ? `Blog — Tag « ${tag} » | Kiki en Christ`
-    : series
-      ? `Blog — Série « ${getSeriesLabel(series, lang)} » | Kiki en Christ`
-      : `Blog — Articles & Ressources | Kiki en Christ`;
+const pageTitle = category ? getCategoryLabel(category, lang)
+  : tag ? `Articles tagués «${tag}»`
+  : series ? getSeriesLabel(series, lang)
+  : 'Blog';
 
-const pageDescription = category
-  ? `Découvrez tous nos articles sur « ${getCategoryLabel(category, lang)} » : prière, formation, témoignage, vie chrétienne...`
-  : tag
-    ? `Articles étiquetés « ${tag} » sur Kiki en Christ.`
-    : series
-      ? `Tous les articles de la série « ${getSeriesLabel(series, lang)} ».`
-      : 'Articles, enseignements, témoignages et ressources pour grandir dans votre foi. Blog chrétien multilingue.';
+const pageDescription = category 
+  ? `Tous les articles sur ${getCategoryLabel(category, lang).toLowerCase()}`
+  : tag ? `Articles tagués «${tag}»`
+  : series ? `Série : ${getSeriesLabel(series, lang)}`
+  : 'Articles, prières et méditations pour grandir dans la foi.';
 
-// URL canonique
-const baseUrl = new URL(`/${lang}/blog/`, Astro.site);
-if (category) baseUrl.pathname += `categorie/${category}/`;
-else if (tag) baseUrl.pathname += `tag/${tag}/`;
-else if (series) baseUrl.pathname += `serie/${series.toLowerCase().replace(/\s+/g, '-')}/`;
-if (currentPage > 1) baseUrl.pathname += `page/${currentPage}/`;
+// Calculer toutes les catégories disponibles (pour CategoryFilter)
+const allCategories = [...new Set(allPosts.map(p => p.data.category))].sort();
 
-const canonical = baseUrl.toString();
+const siteUrl = Astro.site?.toString() || 'https://kikienchrist.vercel.app';
 
-// JSON-LD Blog
-const jsonLd = generateBlogJsonLd(posts, Astro.site?.toString() || 'https://kikienchrist.vercel.app');
+// Convertir les posts Astro en BlogPostData pour JSON-LD
+const postsForJsonLd = displayPosts.map(post => ({
+  ...post.data,
+  slug: post.slug,
+  body: '',
+}));
 
-// Traductions UI
-const ui = {
-  fr: { filterTitle: 'Filtrer', categories: 'Catégories', tags: 'Mots-clés', series: 'Séries', clearFilters: 'Effacer les filtres', noPosts: 'Aucun article trouvé.', readingTime: 'min de lecture', relatedPosts: 'Articles similaires', newsletterTitle: 'Recevez nos nouveaux articles', newsletterDesc: 'Inscrivez-vous pour ne rien manquer de nos enseignements et témoignages.', subscribe: 'S\'abonner' },
-  en: { filterTitle: 'Filter', categories: 'Categories', tags: 'Tags', series: 'Series', clearFilters: 'Clear filters', noPosts: 'No articles found.', readingTime: 'min read', relatedPosts: 'Related posts', newsletterTitle: 'Get new articles', newsletterDesc: 'Subscribe to never miss our teachings and testimonies.', subscribe: 'Subscribe' },
-  es: { filterTitle: 'Filtrar', categories: 'Categorías', tags: 'Etiquetas', series: 'Series', clearFilters: 'Borrar filtros', noPosts: 'No se encontraron artículos.', readingTime: 'min de lectura', relatedPosts: 'Artículos relacionados', newsletterTitle: 'Recibe nuevos artículos', newsletterDesc: 'Suscríbete para no perderte nuestras enseñanzas y testimonios.', subscribe: 'Suscribirse' },
-  pt: { filterTitle: 'Filtrar', categories: 'Categorias', tags: 'Tags', series: 'Séries', clearFilters: 'Limpar filtros', noPosts: 'Nenhum artigo encontrado.', readingTime: 'min de leitura', relatedPosts: 'Artigos relacionados', newsletterTitle: 'Receba novos artigos', newsletterDesc: 'Inscreva-se para não perder nossos ensinamentos e testemunhos.', subscribe: 'Inscrever-se' },
-  it: { filterTitle: 'Filtra', categories: 'Categorie', tags: 'Tag', series: 'Serie', clearFilters: 'Cancella filtri', noPosts: 'Nessun articolo trovato.', readingTime: 'min di lettura', relatedPosts: 'Articoli correlati', newsletterTitle: 'Ricevi nuovi articoli', newsletterDesc: 'Iscriviti per non perdere i nostri insegnamenti e testimonianze.', subscribe: 'Iscriviti' },
-  de: { filterTitle: 'Filtern', categories: 'Kategorien', tags: 'Schlagwörter', series: 'Serien', clearFilters: 'Filter löschen', noPosts: 'Keine Artikel gefunden.', readingTime: 'Min. Lesezeit', relatedPosts: 'Ähnliche Artikel', newsletterTitle: 'Neue Artikel erhalten', newsletterDesc: 'Abonnieren Sie, um keine Lehren und Zeugnisse zu verpassen.', subscribe: 'Abonnieren' },
-  nl: { filterTitle: 'Filteren', categories: 'Categorieën', tags: 'Tags', series: 'Series', clearFilters: 'Filters wissen', noPosts: 'Geen artikelen gevonden.', readingTime: 'min lezen', relatedPosts: 'Gerelateerde artikelen', newsletterTitle: 'Ontvang nieuwe artikelen', newsletterDesc: 'Abonneer om geen lessen en getuigenissen te missen.', subscribe: 'Abonneren' },
-  pl: { filterTitle: 'Filtruj', categories: 'Kategorie', tags: 'Tagi', series: 'Serie', clearFilters: 'Wyczyść filtry', noPosts: 'Nie znaleziono artykułów.', readingTime: 'min czytania', relatedPosts: 'Pokrewne artykuły', newsletterTitle: 'Otrzymuj nowe artykuły', newsletterDesc: 'Zapisz się, by nie przegapić naszych nauczania i świadectw.', subscribe: 'Zapisz się' },
-  ar: { filterTitle: 'تصفية', categories: 'الفئات', tags: 'الوسوم', series: 'السلاسل', clearFilters: 'مسح الفلاتر', noPosts: 'لم يتم العثور على مقالات.', readingTime: 'دقيقة قراءة', relatedPosts: 'مقالات ذات صلة', newsletterTitle: 'احصل على المقالات الجديدة', newsletterDesc: 'اشترك لكي لا تفوت تعاليمنا وشهاداتنا.', subscribe: 'اشترك' },
-  hi: { filterTitle: 'फ़िल्टर', categories: 'श्रेणियाँ', tags: 'टैग', series: 'श्रृंखला', clearFilters: 'फ़िल्टर साफ़ करें', noPosts: 'कोई लेख नहीं मिला।', readingTime: 'मिनट पढ़ें', relatedPosts: 'संबंधित लेख', newsletterTitle: 'नए लेख प्राप्त करें', newsletterDesc: 'सदस्यता लें ताकि आप हमारी शिक्षाओं और गवाहियों से न चूकें।', subscribe: 'सदस्यता लें' },
-  zh: { filterTitle: '筛选', categories: '分类', tags: '标签', series: '系列', clearFilters: '清除筛选', noPosts: '未找到文章。', readingTime: '分钟阅读', relatedPosts: '相关文章', newsletterTitle: '获取新文章', newsletterDesc: '订阅以免错过我们的教导和见证。', subscribe: '订阅' },
-};
+const jsonLd = generateBlogJsonLd({ 
+  posts: postsForJsonLd, 
+  siteUrl, 
+  lang, 
+  category, 
+  tag, 
+  series, 
+  page: currentPage, 
+  totalPosts, 
+  totalPages 
+});
 
-const t = ui[lang] || ui.fr;
+const breadcrumbItems = [
+  { label: 'Accueil', href: `/${lang}/` },
+  { label: 'Blog', href: `/${lang}/blog/1` },
+];
+if (category) breadcrumbItems.push({ label: getCategoryLabel(category, lang), href: `/${lang}/blog/categorie/${category}/1` });
+if (tag) breadcrumbItems.push({ label: `Tag: ${tag}`, href: `/${lang}/blog/tag/${tag}/1` });
+if (series) breadcrumbItems.push({ label: getSeriesLabel(series, lang), href: `/${lang}/blog/serie/${series}/1` });
 ---
 
-<MainLayout
-  title={pageTitle}
-  description={pageDescription}
-  lang={lang}
-  canonical={canonical}
-  jsonLd={jsonLd}
->
-  <article class="blog-index">
-    
-    {/* Header */}
-    <header class="blog-header">
-      <div class="eyebrow">
-        <span>Blog</span>
-      </div>
-      <h1>{category ? getCategoryLabel(category, lang) : tag ? `#${tag}` : series ? getSeriesLabel(series, lang) : 'Articles & Ressources'}</h1>
-      {(!category && !tag && !series) && (
-        <p class="lead">Articles, enseignements, témoignages et ressources pour grandir dans votre foi.</p>
-      )}
+<MainLayout lang={lang} title={pageTitle} description={pageDescription} jsonLd={jsonLd} currentPath={`/${lang}/blog/`}>
+  <div class="bq-blog-index">
+    <header class="bq-blog-header">
+      <Breadcrumb items={breadcrumbItems} />
+      <h1 class="bq-section-title">{pageTitle}</h1>
+      <p class="bq-blog-lead">{pageDescription}</p>
     </header>
 
-    <div class="blog-grid">
-      {/* Sidebar */}
-      <aside class="blog-sidebar" aria-label={t.filterTitle}>
-        {category || tag || series ? (
-          <div class="active-filters">
-            <span class="filter-label">Filtres actifs :</span>
-            <div class="filter-chips">
-              {category && (
-                <span class="filter-chip">
-                  {getCategoryLabel(category, lang)}
-                  <a href={`/${lang}/blog/`} class="clear-filters" aria-label={t.clearFilters}>×</a>
-                </span>
-              )}
-              {tag && (
-                <span class="filter-chip">
-                  #{tag}
-                  <a href={`/${lang}/blog/`} class="clear-filters" aria-label={t.clearFilters}>×</a>
-                </span>
-              )}
-              {series && (
-                <span class="filter-chip">
-                  {getSeriesLabel(series, lang)}
-                  <a href={`/${lang}/blog/`} class="clear-filters" aria-label={t.clearFilters}>×</a>
-                </span>
-              )}
-            </div>
-            <a href={`/${lang}/blog/`} class="clear-filters">{t.clearFilters}</a>
-          </div>
-        ) : null}
+    <CategoryFilter lang={lang} currentCategory={category} currentTag={tag} currentSeries={series} allCategories={allCategories} posts={allPosts} totalPosts={totalPosts} />
 
-        <section class="sidebar-section" aria-labelledby="cat-title">
-          <h3 class="sidebar-title" id="cat-title">{t.categories}</h3>
-          <CategoryFilter 
-            lang={lang} 
-            currentCategory={category} 
-            allCategories={['priere', 'temoignage', 'enseignement', 'vie-chretienne', 'ressources']}
-            posts={allPosts}
-          />
-        </section>
-
-        <section class="sidebar-section" aria-labelledby="tag-title">
-          <h3 class="sidebar-title" id="tag-title">{t.tags}</h3>
-          <TagCloud lang={lang} currentTag={tag} posts={allPosts} />
-        </section>
-
-        {allPosts.some(p => p.data.series) && (
-          <section class="sidebar-section" aria-labelledby="series-title">
-            <h3 class="sidebar-title" id="series-title">{t.series}</h3>
-            <div class="series-list">
-              {
-                (() => {
-                  const seriesCounts = {};
-                  for (const p of allPosts) {
-                    if (p.data.series) {
-                      seriesCounts[p.data.series] = (seriesCounts[p.data.series] || 0) + 1;
-                    }
-                  }
-                  return Object.entries(seriesCounts).map(([seriesKey, count]) => (
-                    <a href={`/${lang}/blog/serie/${seriesKey.toLowerCase().replace(/\s+/g, '-')}/`} class="series-item">
-                      <span>{getSeriesLabel(seriesKey, lang)}</span>
-                      <span class="series-badge">{count}</span>
-                    </a>
-                  ));
-                })()
-              }
-            </div>
-          </section>
-        )}
-      </aside>
-
-      {/* Main Content */}
-      <main class="blog-main">
-        {posts.length > 0 ? (
-          <>
-            <div class="blog-posts-grid" role="list">
-              {posts.map(post => (
-                <BlogPostCard 
-                  post={post} 
-                  lang={lang} 
-                  readMoreText={t.readingTime} 
-                  featuredText="Mis en avant"
-                />
-              ))}
-            </div>
-
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <nav class="pagination" aria-label="Pagination">
-                {currentPage > 1 && (
-                  <a href={currentPage === 2 ? baseUrl.pathname.replace(/\/page\/[^/]+/, '') : baseUrl.pathname.replace(/page\/[^/]+/, `page/${currentPage - 1}/`)} rel="prev">← Précédent</a>
-                )}
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
-                  p === currentPage ? (
-                    <span class="current" aria-current="page">{p}</span>
-                  ) : (
-                    <a href={p === 1 ? baseUrl.pathname : `${baseUrl.pathname}page/${p}/`}>{p}</a>
-                  )
-                ))}
-                {currentPage < totalPages && (
-                  <a href={`${baseUrl.pathname}page/${currentPage + 1}/`} rel="next">Suivant →</a>
-                )}
-              </nav>
-            )}
-
-            {/* Newsletter CTA Bottom */}
-            <section class="newsletter-cta-bottom">
-              <div class="eyebrow"><span>Newsletter</span></div>
-              <h2>{t.newsletterTitle}</h2>
-              <p>{t.newsletterDesc}</p>
-              <NewsletterForm lang={lang} />
-            </section>
-          </>
-        ) : (
-          <div style="text-align:center; padding: var(--space-3xl); color: var(--color-ink-light);">
-            <p>{t.noPosts}</p>
-            <a href={`/${lang}/blog/`} class="btn btn-primary" style="margin-top: var(--space-lg); display: inline-block;">← Retour au blog</a>
-          </div>
-        )}
-      </main>
+    <div class="bq-blog-grid">
+      {displayPosts.map(post => (
+        <BlogPostCard post={post} lang={lang} />
+      ))}
     </div>
-  </article>
+
+    {totalPages > 1 && (
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        baseUrl={category ? `/${lang}/blog/categorie/${category}` : tag ? `/${lang}/blog/tag/${tag}` : series ? `/${lang}/blog/serie/${series}` : `/${lang}/blog`}
+      />
+    )}
+
+    <section class="bq-newsletter-section">
+      <NewsletterForm lang={lang} />
+    </section>
+  </div>
 </MainLayout>
+
+<style is:global>
+  .bq-blog-index { max-width: 1140px; margin: 0 auto; padding: var(--space-2xl) var(--space-md); }
+  .bq-blog-header { text-align: center; margin-bottom: var(--space-2xl); }
+  .bq-blog-lead { color: var(--muted); font-size: var(--text-lg); max-width: 700px; margin: var(--space-md) auto 0; font-family: Georgia, serif; }
+  .bq-blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--space-xl); margin-bottom: var(--space-2xl); }
+  .bq-newsletter-section { border-top: 1px solid var(--line); padding-top: var(--space-2xl); }
+</style>
