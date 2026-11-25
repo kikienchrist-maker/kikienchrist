@@ -1,0 +1,350 @@
+<!-- 
+  MailerLite Automation: Welcome Sequence (5 emails)
+  Trigger: Subscriber added to group "blog-subscribers"
+  
+  Setup in MailerLite Dashboard:
+  1. Automation > New Workflow > "Welcome Sequence"
+  2. Trigger: "When subscriber joins group" > "blog-subscribers"
+  3. Add 5 Email steps with delays
+  4. Use custom fields: {{lang}}, {{lead_magnet}}, {{source}}
+-->
+
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" color="#1a1a2e" line-height="1.6" />
+      <mj-text font-size="16px" />
+      <mj-button background-color="#c9a84c" color="#ffffff" font-weight="600" border-radius="8px" inner-padding="16px 32px" />
+      <mj-section background-color="#ffffff" />
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#f5f0e8">
+    <!-- ============================================================
+         EMAIL 1 — Immédiat : Bienvenue + Lead Magnet
+         ============================================================ -->
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-size="12px" color="#8b7a5c" text-transform="uppercase" letter-spacing="2px" padding-top="40px">
+          Kiki en Christ
+        </mj-text>
+        <mj-text align="center" font-size="28px" font-weight="700" color="#1a1a2e" padding="20px 0 10px">
+          Bienvenue dans la famille 🙏
+        </mj-text>
+        <mj-divider border-color="#c9a84c" border-width="2px" width="60px" />
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text font-size="18px" padding="20px 30px">
+          Bonjour {{name | default: "cher ami"}},
+        </mj-text>
+        <mj-text font-size="16px" padding="0 30px 20px">
+          Merci de nous avoir rejoint ! C'est une joie de t'accueillir parmi les lecteurs de <strong>Kiki en Christ</strong>.
+        </mj-text>
+        
+        {{#if lead_magnet}}
+        <mj-section background-color="#fffdf8" border="1px solid #f0e6d0" border-radius="12px" padding="20px">
+          <mj-column>
+            <mj-text font-size="16px" font-weight="600" color="#c9a84c" align="center">
+              🎁 Ton cadeau de bienvenue
+            </mj-text>
+            <mj-text font-size="15px" align="center" padding="10px 20px">
+              Comme promis, voici ton <strong>{{lead_magnet_title}}</strong> :
+            </mj-text>
+            <mj-button href="{{lead_magnet_url}}" padding="20px 0">
+              Télécharger mon guide gratuit
+            </mj-button>
+            <mj-text font-size="13px" color="#8b7a5c" align="center" padding-top="10px">
+              (Le lien expire dans 7 jours)
+            </mj-text>
+          </mj-column>
+        </mj-section>
+        {{/if}}
+
+        <mj-text font-size="16px" padding="20px 30px">
+          Dans les prochains jours, tu recevras :
+        </mj-text>
+        <mj-text font-size="15px" padding="0 30px 20px">
+          📖 <strong>Mon histoire</strong> — Pourquoi j'ai écrit ces livres<br/>
+          🙏 <strong>Mon témoignage</strong> — Comment la prière a transformé ma vie<br/>
+          ✨ <strong>3 habitudes</strong> — Pour prier chaque jour sans effort<br/>
+          🤝 <strong>Invitation</strong> — Rejoins notre communauté de prière
+        </mj-text>
+
+        <mj-divider border-color="#f0e6d0" padding="20px 30px" />
+
+        <mj-text font-size="15px" color="#5a5a5a" padding="0 30px 30px">
+          Une question ? Réponds simplement à cet email, je lis tout personnellement.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-size="13px" color="#8b7a5c" padding="20px">
+          Kiki en Christ · <a href="https://kikienchrist.vercel.app" style="color:#c9a84c">kikienchrist.vercel.app</a><br/>
+          <a href="{{unsubscribe_url}}" style="color:#8b7a5c">Se désabonner</a> · <a href="{{preferences_url}}" style="color:#8b7a5c">Préférences</a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
+
+<!-- ============================================================
+     EMAIL 2 — J+1 : "Pourquoi j'ai écrit ces livres"
+     ============================================================ -->
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" color="#1a1a2e" line-height="1.6" />
+      <mj-text font-size="16px" />
+      <mj-button background-color="#c9a84c" color="#ffffff" font-weight="600" border-radius="8px" inner-padding="16px 32px" />
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#f5f0e8">
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-size="12px" color="#8b7a5c" text-transform="uppercase" letter-spacing="2px" padding-top="40px">
+          Kiki en Christ
+        </mj-text>
+        <mj-text align="center" font-size="28px" font-weight="700" color="#1a1a2e" padding="20px 0 10px">
+          Pourquoi j'ai écrit ces livres ✍️
+        </mj-text>
+        <mj-divider border-color="#c9a84c" border-width="2px" width="60px" />
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text font-size="18px" padding="20px 30px">
+          Bonjour {{name | default: "cher ami"}},
+        </mj-text>
+        <mj-text font-size="16px" padding="0 30px 20px">
+          Il y a 5 ans, je traversais une période de <strong>désert spirituel</strong>. Je priais, mais j'avais l'impression que mes prières heurtaient le plafond.
+        </mj-text>
+        <mj-text font-size="16px" padding="0 30px 20px">
+          C'est là que j'ai découvert une vérité qui a tout changé : <em>la prière n'est pas une technique, c'est une relation.</em>
+        </mj-text>
+        <mj-text font-size="16px" padding="0 30px 20px">
+          J'ai écrit <strong>"Le Visage de Dieu"</strong> pour partager ce chemin — pas comme un expert, mais comme un compagnon de route qui a trébuché et s'est relevé.
+        </mj-text>
+        <mj-text font-size="16px" padding="0 30px 20px">
+          Puis sont venus <strong>"La Trinité"</strong>, <strong>"Le Salut"</strong> et <strong>"Le Combat Spirituel"</strong> — chacun né d'une question brûlante que je me posais.
+        </mj-text>
+
+        <mj-button href="https://kikienchrist.vercel.app/fr/livres/" padding="20px 0">
+          Découvrir mes 4 livres
+        </mj-button>
+
+        <mj-text font-size="15px" color="#5a5a5a" padding="20px 30px 30px">
+          Quel livre t'appelle le plus en ce moment ? Réponds-moi, j'aimerais savoir.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-size="13px" color="#8b7a5c" padding="20px">
+          Kiki en Christ · <a href="https://kikienchrist.vercel.app" style="color:#c9a84c">kikienchrist.vercel.app</a><br/>
+          <a href="{{unsubscribe_url}}" style="color:#8b7a5c">Se désabonner</a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
+
+<!-- ============================================================
+     EMAIL 3 — J+3 : "Mon témoignage personnel"
+     ============================================================ -->
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" color="#1a1a2e" line-height="1.6" />
+      <mj-text font-size="16px" />
+      <mj-button background-color="#c9a84c" color="#ffffff" font-weight="600" border-radius="8px" inner-padding="16px 32px" />
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#f5f0e8">
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-size="12px" color="#8b7a5c" text-transform="uppercase" letter-spacing="2px" padding-top="40px">
+          Kiki en Christ
+        </mj-text>
+        <mj-text align="center" font-size="28px" font-weight="700" color="#1a1a2e" padding="20px 0 10px">
+          Mon témoignage : du silence à la voix 🎙️
+        </mj-text>
+        <mj-divider border-color="#c9a84c" border-width="2px" width="60px" />
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text font-size="18px" padding="20px 30px">
+          Bonjour {{name | default: "cher ami"}},
+        </mj-text>
+        <mj-text font-size="16px" padding="0 30px 20px">
+          Je ne t'ai pas tout dit hier.
+        </mj-text>
+        <mj-text font-size="16px" padding="0 30px 20px">
+          Avant d'écrire, j'ai vécu 3 ans de <strong>silence de Dieu</strong>. Pas de réponses, pas de paix, juste... le vide.
+        </mj:text>
+        <mj-text font-size="16px" padding="0 30px 20px">
+          C'est dans ce silence que j'ai appris la prière la plus puissante : <em>"Seigneur, je ne sais pas prier, apprends-moi."</em>
+        </mj:text>
+        <mj-text font-size="16px" padding="0 30px 20px">
+          Cette prière a ouvert une porte. Pas spectaculaire. Juste une présence douce, constante, qui ne m'a plus quitté.
+        </mj:text>
+
+        <mj-button href="https://kikienchrist.vercel.app/fr/blog/priere-impossible-desert-spirituel/" padding="20px 0">
+          Lire l'article : "Prier dans le désert"
+        </mj-button>
+
+        <mj-text font-size="15px" color="#5a5a5a" padding="20px 30px 30px">
+          Si tu traverses un désert, sache que tu n'es pas seul. Dieu est là, même dans le silence.
+        </mj:text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-size="13px" color="#8b7a5c" padding="20px">
+          Kiki en Christ · <a href="https://kikienchrist.vercel.app" style="color:#c9a84c">kikienchrist.vercel.app</a><br/>
+          <a href="{{unsubscribe_url}}" style="color:#8b7a5c">Se désabonner</a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
+
+<!-- ============================================================
+     EMAIL 4 — J+7 : "3 habitudes pour prier chaque jour"
+     ============================================================ -->
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" color="#1a1a2e" line-height="1.6" />
+      <mj-text font-size="16px" />
+      <mj-button background-color="#c9a84c" color="#ffffff" font-weight="600" border-radius="8px" inner-padding="16px 32px" />
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#f5f0e8">
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-size="12px" color="#8b7a5c" text-transform="uppercase" letter-spacing="2px" padding-top="40px">
+          Kiki en Christ
+        </mj-text>
+        <mj-text align="center" font-size="28px" font-weight="700" color="#1a1a2e" padding="20px 0 10px">
+          3 habitudes pour prier chaque jour 🌅
+        </mj-text>
+        <mj-divider border-color="#c9a84c" border-width="2px" width="60px" />
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text font-size="18px" padding="20px 30px">
+          Bonjour {{name | default: "cher ami"}},
+        </mj-text>
+        <mj-text font-size="16px" padding="0 30px 20px">
+          La régularité bat l'intensité. Toujours.
+        </mj-text>
+        <mj-text font-size="16px" padding="0 30px 20px">
+          Voici mes 3 habitudes simples (5 min chacune) :
+        </mj-text>
+
+        <mj-text font-size="16px" font-weight="600" padding="0 30px 5px">1. La prière du matin — "Seigneur, voici ma journée"</mj-text>
+        <mj-text font-size="15px" padding="0 30px 15px">Avant le téléphone, avant le café. 2 minutes pour déposer la journée entre ses mains.</mj-text>
+
+        <mj-text font-size="16px" font-weight="600" padding="0 30px 5px">2. La pause du milieu — "Esprit Saint, guide-moi"</mj-text>
+        <mj-text font-size="15px" padding="0 30px 15px">Midi. Une respiration. Un verset. Un réalignement.</mj-text>
+
+        <mj-text font-size="16px" font-weight="600" padding="0 30px 5px">3. L'examen du soir — "Merci pour... Pardon pour... Demain je..."</mj-text>
+        <mj-text font-size="15px" padding="0 30px 20px">3 minutes pour relire la journée avec Dieu. Gratitude, repentance, abandon.</mj-text>
+
+        <mj-button href="https://kikienchrist.vercel.app/fr/blog/priere-matin-soir-routine/" padding="20px 0">
+          Lire l'article complet : Routine de prière
+        </mj-button>
+
+        <mj-text font-size="15px" color="#5a5a5a" padding="20px 30px 30px">
+          Essaie une seule habitude cette semaine. Dis-moi comment ça va !
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-size="13px" color="#8b7a5c" padding="20px">
+          Kiki en Christ · <a href="https://kikienchrist.vercel.app" style="color:#c9a84c">kikienchrist.vercel.app</a><br/>
+          <a href="{{unsubscribe_url}}" style="color:#8b7a5c">Se désabonner</a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
+
+<!-- ============================================================
+     EMAIL 5 — J+14 : "Invitation : Rejoins la communauté"
+     ============================================================ -->
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" color="#1a1a2e" line-height="1.6" />
+      <mj-text font-size="16px" />
+      <mj-button background-color="#c9a84c" color="#ffffff" font-weight="600" border-radius="8px" inner-padding="16px 32px" />
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#f5f0e8">
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-size="12px" color="#8b7a5c" text-transform="uppercase" letter-spacing="2px" padding-top="40px">
+          Kiki en Christ
+        </mj-text>
+        <mj-text align="center" font-size="28px" font-weight="700" color="#1a1a2e" padding="20px 0 10px">
+          Une invitation pour toi 🤝
+        </mj-text>
+        <mj-divider border-color="#c9a84c" border-width="2px" width="60px" />
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text font-size="18px" padding="20px 30px">
+          Bonjour {{name | default: "cher ami"}},
+        </mj-text>
+        <mj-text font-size="16px" padding="0 30px 20px">
+          Deux semaines que nous cheminons ensemble. Merci d'être là.
+        </mj-text>
+        <mj-text font-size="16px" padding="0 30px 20px">
+          La foi ne se vit pas en solo. Nous avons besoin les uns des autres — pour porter, encourager, prier.
+        </mj-text>
+        <mj-text font-size="16px" padding="0 30px 20px">
+          C'est pourquoi j'ai créé <strong>la Communauté Kiki en Christ</strong> : un espace privé pour :
+        </mj-text>
+        <mj-text font-size="15px" padding="0 30px 20px">
+          🙏 Partager ses intentions de prière<br/>
+          📖 Étudier la Parole ensemble<br/>
+          💬 Échanger dans la bienveillance<br/>
+          🎧 Accéder aux contenus exclusifs (podcasts, vidéos, guides)
+        </mj-text>
+
+        <mj-button href="https://kikienchrist.vercel.app/fr/communaute/" padding="20px 0">
+          Rejoindre la communauté (gratuit)
+        </mj-button>
+
+        <mj-text font-size="15px" color="#5a5a5a" padding="20px 30px 30px">
+          Tu y trouveras des frères et sœurs qui prient pour toi. Oui, pour toi.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-size="13px" color="#8b7a5c" padding="20px">
+          Kiki en Christ · <a href="https://kikienchrist.vercel.app" style="color:#c9a84c">kikienchrist.vercel.app</a><br/>
+          <a href="{{unsubscribe_url}}" style="color:#8b7a5c">Se désabonner</a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

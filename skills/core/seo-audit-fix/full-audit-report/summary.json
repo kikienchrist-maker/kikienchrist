@@ -1,0 +1,515 @@
+{
+  "timestamp": "2026-11-24T10:47:26.042Z",
+  "baseUrl": "https://kikienchrist.vercel.app",
+  "totalPages": 300,
+  "auditedPages": 300,
+  "failedPages": 0,
+  "averageScore": 58,
+  "pagesNeedingFix": 300,
+  "lighthouseAverages": {
+    "performance": 0,
+    "accessibility": 0,
+    "bestPractices": 0,
+    "seo": 0
+  },
+  "issuesByCategory": {
+    "meta": 1158,
+    "schema": 1163,
+    "content": 1114,
+    "hreflang": 11
+  },
+  "issuesBySeverity": {
+    "error": 2751,
+    "warning": 395,
+    "info": 300
+  },
+  "topIssues": [
+    {
+      "message": "Temps de lecture manquant",
+      "category": "content",
+      "severity": "info",
+      "count": 300
+    },
+    {
+      "message": "JSON-LD: @type manquant",
+      "category": "schema",
+      "severity": "error",
+      "count": 289
+    },
+    {
+      "message": "BreadcrumbList: itemListElement manquant ou invalide",
+      "category": "schema",
+      "severity": "error",
+      "count": 289
+    },
+    {
+      "message": "twitterDescription: twitterDescription invalide",
+      "category": "meta",
+      "severity": "error",
+      "count": 237
+    },
+    {
+      "message": "Type Schema.org requis manquant: Organization (pour page type: legal)",
+      "category": "schema",
+      "severity": "error",
+      "count": 171
+    },
+    {
+      "message": "Type Schema.org requis manquant: FAQPage (pour page type: legal)",
+      "category": "schema",
+      "severity": "error",
+      "count": 171
+    },
+    {
+      "message": "H1 multiples (2)",
+      "category": "content",
+      "severity": "error",
+      "count": 162
+    },
+    {
+      "message": "twitterTitle: twitterTitle invalide",
+      "category": "meta",
+      "severity": "error",
+      "count": 119
+    },
+    {
+      "message": "Type Schema.org requis manquant: Organization (pour page type: default)",
+      "category": "schema",
+      "severity": "error",
+      "count": 50
+    },
+    {
+      "message": "Type Schema.org requis manquant: WebPage (pour page type: default)",
+      "category": "schema",
+      "severity": "error",
+      "count": 50
+    },
+    {
+      "message": "Lien cassé: https://kikienchrist.vercel.app/partenaires/kit/ (HTTP 404)",
+      "category": "content",
+      "severity": "error",
+      "count": 44
+    },
+    {
+      "message": "description: description trop court (88/120)",
+      "category": "meta",
+      "severity": "error",
+      "count": 39
+    },
+    {
+      "message": "ogDescription: ogDescription trop court (88/120)",
+      "category": "meta",
+      "severity": "error",
+      "count": 39
+    },
+    {
+      "message": "Image sans alt: https://assets.lulu.com/cover_thumbs/n/v/nvg4d9k-front-shortedge-384.jpg",
+      "category": "content",
+      "severity": "warning",
+      "count": 36
+    },
+    {
+      "message": "title: title trop long (75/60)",
+      "category": "meta",
+      "severity": "error",
+      "count": 32
+    },
+    {
+      "message": "ogTitle: ogTitle trop long (75/60)",
+      "category": "meta",
+      "severity": "error",
+      "count": 32
+    },
+    {
+      "message": "Type Schema.org requis manquant: Organization (pour page type: blogPost)",
+      "category": "schema",
+      "severity": "error",
+      "count": 31
+    },
+    {
+      "message": "Type Schema.org requis manquant: Article (pour page type: blogPost)",
+      "category": "schema",
+      "severity": "error",
+      "count": 31
+    },
+    {
+      "message": "description: description trop court (79/120)",
+      "category": "meta",
+      "severity": "error",
+      "count": 31
+    },
+    {
+      "message": "ogDescription: ogDescription trop court (79/120)",
+      "category": "meta",
+      "severity": "error",
+      "count": 31
+    }
+  ],
+  "failedUrls": [
+    {
+      "url": "https://kikienchrist.vercel.app",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/#main-content",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/1",
+      "status": 200,
+      "score": 46
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/contact",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/",
+      "status": 200,
+      "score": 20
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/#livres",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/#newsletter",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/#contact",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/#faq",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/1#main-content",
+      "status": 200,
+      "score": 46
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/priere-generation-z-jeunes/",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/priere-guerison-maladie/",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/priere-matin-soir-routine/",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/priere-impossible-desert-spirituel/",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/guerre-spirituelle-priere-autorite/",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/apprendre-prier-enfants/",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/jeuner-prier/",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/priere-couple/",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/contact#main-content",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/en/contact",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/en/blog/1",
+      "status": 200,
+      "score": 43
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/en/blog/",
+      "status": 200,
+      "score": 20
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/#books",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/es/blog/1",
+      "status": 200,
+      "score": 43
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/es/contact",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/es/blog/",
+      "status": 200,
+      "score": 20
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/#contacto",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/es/mentions-legales",
+      "status": 200,
+      "score": 40
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/#libros",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/de/contact",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/#b%C3%BCcher",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/de/blog/",
+      "status": 200,
+      "score": 15
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/#kontakt",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/de/mentions-legales",
+      "status": 200,
+      "score": 40
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/pt/contact",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/#in%C3%ADcio",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/#livros",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/pt/blog/",
+      "status": 200,
+      "score": 15
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/it/blog/1",
+      "status": 200,
+      "score": 43
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/it/blog/",
+      "status": 200,
+      "score": 20
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/it/contact",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/#libri",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/#contatto",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/it/mentions-legales",
+      "status": 200,
+      "score": 40
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/ru/blog/1",
+      "status": 200,
+      "score": 29
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/ru/contact",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/ru/blog/",
+      "status": 200,
+      "score": 20
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/ru/accessibilite",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/zh/blog/1",
+      "status": 200,
+      "score": 29
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/zh/contact",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/zh/blog/",
+      "status": 200,
+      "score": 20
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/zh/mentions-legales",
+      "status": 200,
+      "score": 40
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/zh/confidentialite",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/zh/cgv",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/zh/cookies",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/zh/accessibilite",
+      "status": 200,
+      "score": 45
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/hi/blog/",
+      "status": 200,
+      "score": 15
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/hi/contact",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/hi/cookies",
+      "status": 200,
+      "score": 43
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/contact/",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/1/",
+      "status": 200,
+      "score": 46
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/priere-generation-z-jeunes/#main-content",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/priere-guerison-maladie/#main-content",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/priere-matin-soir-routine/#main-content",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/guerre-spirituelle-priere-autorite/#main-content",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/priere-impossible-desert-spirituel/#main-content",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/priere-couple/#main-content",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/apprendre-prier-enfants/#main-content",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/fr/blog/jeuner-prier/#main-content",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/en/blog/1#main-content",
+      "status": 200,
+      "score": 43
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/en/contact#main-content",
+      "status": 200,
+      "score": 48
+    },
+    {
+      "url": "https://kikienchrist.vercel.app/en/blog/1/",
+      "status": 200,
+      "score": 43
+    }
+  ]
+}

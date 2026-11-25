@@ -1,0 +1,198 @@
+---
+// src/pages/[lang]/contact.astro
+import MainLayout from '../../layouts/MainLayout.astro';
+import type { Lang } from '../../data/translations.json';
+import fs from 'fs';
+import path from 'path';
+
+const translations = JSON.parse(fs.readFileSync(path.resolve('./src/data/translations.json'), 'utf-8'));
+
+export async function getStaticPaths() {
+  const langs = ['fr', 'en', 'es', 'pt', 'de', 'it', 'nl', 'pl', 'ar', 'ru', 'zh', 'hi'] as const;
+  return langs.map(lang => ({ params: { lang }, props: { lang } }));
+}
+
+const { lang } = Astro.props;
+const t = translations[lang] || translations.fr;
+
+const pageTitle = t.contact?.title || 'Contact';
+const pageDescription = t.contact?.description || 'Contactez Kiki en Christ pour vos questions, témoignages, partenariats ou support. Réponse sous 48h.';
+const canonicalURL = `https://kikienchrist.vercel.app/${lang}/contact/`;
+const ogImage = `https://kikienchrist.vercel.app/og/contact-${lang}.jpg`;
+
+const jsonLd = {
+  '@type': 'ContactPage',
+  name: pageTitle,
+  description: pageDescription,
+  mainEntity: {
+    '@type': 'Organization',
+    name: 'Kiki en Christ',
+    url: `https://kikienchrist.vercel.app/${lang}/`,
+    contactPoint: [
+      { '@type': 'ContactPoint', telephone: '+33-00-00-00-00', contactType: 'customer service', availableLanguage: lang },
+      { '@type': 'ContactPoint', contactType: 'technical support', availableLanguage: lang, email: 'support@kikienchrist.com' },
+    ],
+  },
+};
+---
+
+<MainLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalURL={canonicalURL}
+  ogImage={ogImage}
+  lang={lang}
+  currentPath="/contact/"
+  jsonLd={jsonLd}
+>
+  <section class="bq-contact-page" aria-labelledby="contact-title">
+    <header class="bq-page-header">
+      <h1 id="contact-title" class="bq-page-title">{pageTitle}</h1>
+      <p class="bq-page-subtitle">{t.contact?.subtitle || 'Nous serions ravis d\'avoir de vos nouvelles. Réponse garantie sous 48h.'}</p>
+    </header>
+
+    <div class="bq-contact-grid">
+      {/* FORMULAIRE */}
+      <form class="bq-contact-form" action="https://api.netlify.com/forms" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact" />
+        <input type="hidden" name="bot-field" value="" />
+        <input type="hidden" name="lang" value={lang} />
+        
+        <div class="bq-form-row">
+          <div class="bq-form-group">
+            <label for="name">{t.contact?.nameLabel || 'Nom'}</label>
+            <input type="text" id="name" name="name" required placeholder="Jean Dupont" autocomplete="name" />
+          </div>
+          <div class="bq-form-group">
+            <label for="email">{t.contact?.emailLabel || 'Email'}</label>
+            <input type="email" id="email" name="email" required placeholder="jean@email.com" autocomplete="email" />
+          </div>
+        </div>
+        
+        <div class="bq-form-group">
+          <label for="subject">{t.contact?.subjectLabel || 'Sujet'}</label>
+          <select id="subject" name="subject" required>
+            <option value="question">{t.contact?.subjectQuestion || 'Question générale'}</option>
+            <option value="testimony">{t.contact?.subjectTestimony || 'Témoignage'}</option>
+            <option value="partnership">{t.contact?.subjectPartnership || 'Partenariat / Affiliation'}</option>
+            <option value="support">{t.contact?.subjectSupport || 'Support technique'}</option>
+            <option value="press">{t.contact?.subjectPress || 'Presse / Médias'}</option>
+            <option value="other">{t.contact?.subjectOther || 'Autre'}</option>
+          </select>
+        </div>
+        
+        <div class="bq-form-group">
+          <label for="message">{t.contact?.messageLabel || 'Message'}</label>
+          <textarea id="message" name="message" rows="6" required placeholder={t.contact?.messagePlaceholder || 'Votre message...'}></textarea>
+        </div>
+        
+        <button type="submit" class="bq-btn bq-btn-primary bq-btn-lg bq-btn-full">
+          <svg class="bq-btn-icon" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          {t.contact?.submitBtn || 'Envoyer le message'}
+        </button>
+        
+        <p class="bq-form-note">{t.contact?.privacyNote || 'Vos données ne sont jamais vendues. <a href="/politique-confidentialite/">Politique de confidentialité</a>.'}</p>
+      </form>
+
+      {/* INFOS CONTACT */}
+      <aside class="bq-contact-info" aria-labelledby="info-title">
+        <h2 id="info-title" class="bq-section-title">{t.contact?.infoTitle || 'Autres moyens de nous joindre'}</h2>
+        
+        <div class="bq-contact-methods">
+          <article class="bq-contact-method">
+            <svg class="bq-method-icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            <div>
+              <h3>{t.contact?.emailTitle || 'Email'}</h3>
+              <a href="mailto:kikienchrist@gmail.com">kikienchrist@gmail.com</a>
+              <p class="bq-method-note">{t.contact?.emailNote || 'Réponse sous 48h ouvrées'}</p>
+            </div>
+          </article>
+          
+          <article class="bq-contact-method">
+            <svg class="bq-method-icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><path d="M12 10a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
+            <div>
+              <h3>{t.contact?.addressTitle || 'Adresse postale'}</h3>
+              <address>Kiki en Christ<br>123 Rue de la Foi<br>75000 Paris, France</address>
+              <p class="bq-method-note">{t.contact?.addressNote || 'Pour courriers et retours'}</p>
+            </div>
+          </article>
+          
+          <article class="bq-contact-method">
+            <svg class="bq-method-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div>
+              <h3>{t.contact?.phoneTitle || 'Téléphone'}</h3>
+              <a href="tel:+3300000000">+33 00 00 00 00</a>
+              <p class="bq-method-note">{t.contact?.phoneNote || 'Lun-Ven 9h-17h (heure de Paris)'}</p>
+            </div>
+          </article>
+        </div>
+
+        {/* RÉSEAUX SOCIAUX */}
+        <div class="bq-contact-social" aria-labelledby="social-title">
+          <h3 id="social-title">{t.contact?.socialTitle || 'Suivez-nous'}</h3>
+          <div class="bq-social-links">
+            <a href="https://facebook.com/kikienchrist" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="bq-social-link"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="https://instagram.com/kikienchrist" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="bq-social-link"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+            <a href="https://youtube.com/@kikienchrist" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="bq-social-link"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/><polygon points="10 15 15 12 10 9"/></svg></a>
+            <a href="https://twitter.com/kikienchrist" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="bq-social-link"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    {/* FAQ CONTACT */}
+    <section class="bq-contact-faq" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="bq-section-title">{t.contact?.faqTitle || 'Questions fréquentes'}</h2>
+      <dl>
+        <dt>Quel est le délai de réponse ?</dt>
+        <dd>Nous répondons sous 48h ouvrées maximum. Pour les urgences techniques, précisez "URGENT" dans l'objet.</dd>
+        <dt>Puis-je proposer un article invité ?</dt>
+        <dd>Oui ! Choisissez "Partenariat" dans l'objet et présentez votre idée. Nous étudions toutes les propositions.</dd>
+        <dt>Comment signaler une erreur dans un livre ?</dt>
+        <dd>Merci de nous écrire via le formulaire (sujet "Support technique") en précisant le livre, la page et l'erreur.</dd>
+        <dt>Les données du formulaire sont-elles sécurisées ?</dt>
+        <dd>Oui, transmission HTTPS, stockage chiffré Netlify Forms, jamais revendues. Voir notre <a href="/politique-confidentialite/">politique de confidentialité</a>.</dd>
+      </dl>
+    </section>
+  </section>
+</MainLayout>
+
+<style>
+  .bq-contact-page { max-width: 1100px; margin: 0 auto; padding: var(--bq-space-8) var(--bq-space-4); }
+  .bq-page-header { text-align: center; margin-bottom: var(--bq-space-12); }
+  .bq-page-title { font-size: clamp(var(--bq-text-3xl), 5vw, var(--bq-text-5xl)); margin-bottom: var(--bq-space-4); }
+  .bq-page-subtitle { font-size: var(--bq-text-xl); color: var(--bq-color-text-muted); max-width: 700px; margin: 0 auto; }
+  .bq-contact-grid { display: grid; grid-template-columns: 1fr 350px; gap: var(--bq-space-12); }
+  @media (max-width: 900px) { .bq-contact-grid { grid-template-columns: 1fr; } }
+  .bq-contact-form { background: var(--bq-color-surface); border: 1px solid var(--bq-color-border); border-radius: var(--bq-radius-xl); padding: var(--bq-space-8); }
+  .bq-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--bq-space-4); }
+  @media (max-width: 600px) { .bq-form-row { grid-template-columns: 1fr; } }
+  .bq-form-group { display: flex; flex-direction: column; gap: var(--bq-space-1); margin-bottom: var(--bq-space-4); }
+  .bq-form-group label { font-weight: 500; font-size: var(--bq-text-sm); }
+  .bq-form-group input, .bq-form-group select, .bq-form-group textarea { padding: var(--bq-space-3); border: 1px solid var(--bq-color-border); border-radius: var(--bq-radius-md); font-size: var(--bq-text-base); background: var(--bq-color-bg); color: var(--bq-color-text); font-family: inherit; }
+  .bq-form-group input:focus, .bq-form-group select:focus, .bq-form-group textarea:focus { outline: none; border-color: var(--bq-color-primary); box-shadow: 0 0 0 3px var(--bq-color-primary-light); }
+  .bq-btn-lg { padding: var(--bq-space-4) var(--bq-space-6); font-size: var(--bq-text-lg); width: 100%; }
+  .bq-btn-icon { width: 24px; height: 24px; margin-right: var(--bq-space-2); }
+  .bq-form-note { text-align: center; font-size: var(--bq-text-sm); color: var(--bq-color-text-muted); margin-top: var(--bq-space-4); }
+  .bq-form-note a { color: var(--bq-color-primary); }
+  .bq-contact-info { padding: var(--bq-space-6); }
+  .bq-section-title { font-size: var(--bq-text-xl); margin-bottom: var(--bq-space-6); padding-bottom: var(--bq-space-3); border-bottom: 1px solid var(--bq-color-border); }
+  .bq-contact-methods { display: flex; flex-direction: column; gap: var(--bq-space-6); margin-bottom: var(--bq-space-8); }
+  .bq-contact-method { display: flex; gap: var(--bq-space-4); }
+  .bq-method-icon { width: 40px; height: 40px; color: var(--bq-color-primary); flex-shrink: 0; margin-top: 2px; }
+  .bq-contact-method h3 { margin-bottom: var(--bq-space-1); font-size: var(--bq-text-base); }
+  .bq-contact-method a { color: var(--bq-color-primary); text-decoration: none; }
+  .bq-contact-method a:hover { text-decoration: underline; }
+  .bq-contact-method address { font-style: normal; color: var(--bq-color-text-muted); font-size: var(--bq-text-sm); line-height: 1.6; }
+  .bq-method-note { font-size: var(--bq-text-xs); color: var(--bq-color-text-muted); margin-top: var(--bq-space-1); }
+  .bq-contact-social { padding-top: var(--bq-space-6); border-top: 1px solid var(--bq-color-border); }
+  .bq-contact-social h3 { margin-bottom: var(--bq-space-4); font-size: var(--bq-text-base); }
+  .bq-social-links { display: flex; gap: var(--bq-space-4); }
+  .bq-social-link { width: 44px; height: 44px; border-radius: 50%; background: var(--bq-color-bg-muted); display: flex; align-items: center; justify-content: center; color: var(--bq-color-text); transition: all 0.2s; }
+  .bq-social-link:hover { background: var(--bq-color-primary); color: var(--bq-color-on-primary); transform: translateY(-2px); }
+  .bq-social-link svg { width: 20px; height: 20px; }
+  .bq-contact-faq { margin-top: var(--bq-space-16); padding-top: var(--bq-space-12); border-top: 1px solid var(--bq-color-border); }
+  .bq-contact-faq dl { max-width: 800px; margin: 0 auto; }
+  .bq-contact-faq dt { font-weight: 600; margin-top: var(--bq-space-6); }
+  .bq-contact-faq dd { color: var(--bq-color-text-muted); margin: var(--bq-space-2) 0 0 0; line-height: 1.7; }
+</style>

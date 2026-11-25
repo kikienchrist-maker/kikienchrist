@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+skills/
+scripts/
+tests/
+playwright-report/
+test-results/
+*.config.*
+*.d.ts
+lighthouserc.json
+*.cjs
+src/content/legalPages/
+src/data/

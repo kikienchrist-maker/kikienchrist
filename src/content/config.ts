@@ -1,78 +1,68 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
-// Collection Blog - Articles multilingues
-export const blog = defineCollection({
-  type: 'content',
+// ──────────────────────────────────────────────
+// Blog Collection (Markdown + Frontmatter)
+// ──────────────────────────────────────────────
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
-    // Métadonnées obligatoires
     title: z.string().min(1).max(120),
     description: z.string().min(10).max(300),
-    pubDate: z.string().datetime({ offset: true }), // ISO 8601 avec timezone
+    pubDate: z.string().datetime({ offset: true }),
     updatedDate: z.string().datetime({ offset: true }).optional(),
-    author: z.string().default('Équipe Kiki en Christ'),
+    author: z.string().default('Kiki en Christ'),
     authorRole: z.string().optional(),
-    
-    // Langue & Localisation
     lang: z.enum(['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'pl', 'ar', 'ru', 'zh', 'hi']),
-    translationKey: z.string().optional(), // Clé pour lier les traductions d'un même article
-    
-    // Catégorisation
+    translationKey: z.string().optional(),
     category: z.enum([
-      'prière',           // Vie de prière
-      'formation',        // Enseignement / Formation
-      'témoignage',       // Témoignages
-      'vie-chrétienne',   // Vie pratique
-      'famille',          // Famille / Couple / Enfants
-      'mission',          // Mission / Évangélisation
-      'actualité',        // Actualités du ministère
-      'ressource',        // Outils / Ressources
-      'discernement',     // Entendre la voix de Dieu
-      'jeûne',            // Jeûne et prière
-      'épreuves',         // Désert spirituel / silêncio de Dieu
-      'guerre spirituelle', // Armure de Dieu / autorité
-      'guérison',         // Prière pour la guérison
-      'routine',          // Routines spirituelles matin/soir
-      'jeunes',           // Génération Z / Jeunes
-      'couple'            // Mariage / Prière en couple
+      'prière',
+      'formation',
+      'témoignage',
+      'vie-chrétienne',
+      'famille',
+      'mission',
+      'actualité',
+      'ressource',
+      'discernement',
+      'jeûne',
+      'épreuves',
+      'guerre spirituelle',
+      'guérison',
+      'routine',
+      'jeunes',
+      'couple',
     ]),
     tags: z.array(z.string()).default([]),
-    series: z.string().optional(), // Ex: "Les 7 Prières", "Combat Spirituel"
+    series: z.string().optional(),
     seriesOrder: z.number().int().positive().optional(),
-    
-    // SEO
-    canonicalURL: z.string().url().optional(),
-    noindex: z.boolean().default(false),
-    nofollow: z.boolean().default(false),
-    ogImage: z.string().url().optional(), // Image Open Graph spécifique
-    ogTitle: z.string().max(60).optional(),
-    ogDescription: z.string().max(160).optional(),
-    
-    // Contenu
-    featured: z.boolean().default(false), // Article mis en avant
+    featured: z.boolean().default(false),
     draft: z.boolean().default(false),
-    readingTime: z.number().int().positive().optional(), // Minutes (calculé auto si absent)
-    
-    // Lead Magnet
+    readingTime: z.number().int().positive().optional(),
     isLeadMagnet: z.boolean().default(false),
     leadMagnetTitle: z.string().optional(),
     leadMagnetDescription: z.string().optional(),
-    leadMagnetFile: z.string().url().optional(), // URL PDF/guide
-    
-    // Podcast / Vidéo liés
-    relatedPodcastEpisode: z.string().optional(), // ID épisode
+    leadMagnetFile: z.string().url().optional(),
+    relatedPodcastEpisode: z.string().optional(),
     relatedVideo: z.string().url().optional(),
-    
-    // Données structurées JSON-LD
-    structuredData: z.object({
-      type: z.enum(['BlogPosting', 'Article', 'NewsArticle']).default('BlogPosting'),
-      wordCount: z.number().int().positive().optional(),
-    }).optional(),
+    canonicalURL: z.string().url().optional(),
+    ogImage: z.string().url().optional(),
+    ogTitle: z.string().max(60).optional(),
+    ogDescription: z.string().max(160).optional(),
+    structuredData: z
+      .object({
+        type: z.enum(['BlogPosting', 'Article']).default('BlogPosting'),
+        wordCount: z.number().int().positive().optional(),
+      })
+      .optional(),
   }),
 });
 
-// Collection Auteurs (pour pages auteur + schema Person)
-export const authors = defineCollection({
-  type: 'data',
+// ──────────────────────────────────────────────
+// Authors Collection (Data files - JSON)
+// ──────────────────────────────────────────────
+const authors = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/content/authors' }),
   schema: z.object({
     id: z.string(),
     name: z.string(),
@@ -87,34 +77,156 @@ export const authors = defineCollection({
       nl: z.string(),
       pl: z.string(),
       ar: z.string(),
-      ru: z.string(),
       zh: z.string(),
       hi: z.string(),
     }),
     avatar: z.string().url(),
-    social: z.object({
-      twitter: z.string().url().optional(),
-      linkedin: z.string().url().optional(),
-      instagram: z.string().url().optional(),
-      youtube: z.string().url().optional(),
-    }).optional(),
+    social: z
+      .object({
+        twitter: z.string().url().optional(),
+        linkedin: z.string().url().optional(),
+        instagram: z.string().url().optional(),
+        youtube: z.string().url().optional(),
+      })
+      .optional(),
     email: z.string().email().optional(),
   }),
 });
 
-// Collection Pages statiques (Mentions légales, CGV, etc. - 11 langues)
-export const legalPages = defineCollection({
-  type: 'content',
+// ──────────────────────────────────────────────
+// Legal Pages Collection
+// ──────────────────────────────────────────────
+const legalPages = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/legalPages' }),
   schema: z.object({
     title: z.string(),
-    pageSlug: z.string(), // mentions-legales, confidentialite, cookies, cgv, accessibilite (renommé car 'slug' est réservé par Astro)
+    description: z.string(),
+    pageSlug: z.string().regex(/^[a-z-]+$/),
+    slug: z
+      .string()
+      .regex(/^[a-z-]+$/)
+      .optional(), // Legacy support for old frontmatter
     lang: z.enum(['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'pl', 'ar', 'ru', 'zh', 'hi']),
-    lastUpdated: z.string().datetime({ offset: true }),
-    version: z.string(),
-    // content: z.string() — retiré: pour type:'content', Astro injecte le body Markdown dans entry.data.content automatiquement
-    requiredByLaw: z.boolean().default(true),
-    jurisdiction: z.array(z.string()).default(['EU', 'FR']), // EU, FR, US, CA, BR, CN, etc.
+    translationKey: z.string().optional(),
+    lastUpdated: z.string().date(),
+    version: z.string().optional(),
   }),
 });
 
-export const collections = { blog, authors, legalPages };
+// ──────────────────────────────────────────────
+// Books Collection (Decap CMS managed - Markdown in src/content/books)
+// ──────────────────────────────────────────────
+const books = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/books' }),
+  schema: z.object({
+    id: z.string().regex(/^[a-z-]+$/),
+    title: z.string(),
+    subtitle: z.string().optional(),
+    description: z.string(),
+    author: z.string().default('Kiki en Christ'),
+    isbn: z.string().optional(),
+    priceEUR: z.number().positive().optional(),
+    promoPriceEUR: z.number().positive().optional(),
+    payhipUrl: z.string().url().optional(),
+    luluUrl: z.string().url().optional(),
+    amazonUrl: z.string().url().optional(),
+    coverImageFr: z.string().optional(),
+    coverImageEn: z.string().optional(),
+    coverImageEs: z.string().optional(),
+    pubDate: z.string().date(),
+    pageCount: z.number().int().positive().optional(),
+    category: z.enum(['Spiritualité', 'Prière', 'Théologie', 'Vie chrétienne', 'Jeunesse']),
+    tags: z.array(z.string()).default([]),
+    active: z.boolean().default(true),
+  }),
+});
+
+// ──────────────────────────────────────────────
+// Translations (i18n) Collection - Data files in src/data/i18n
+// ──────────────────────────────────────────────
+const translations = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/data/i18n' }),
+  schema: z.object({
+    lang: z.enum(['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'pl', 'ar', 'zh', 'hi']),
+    nativeName: z.string(),
+    englishName: z.string(),
+    dir: z.enum(['ltr', 'rtl']),
+    dateFormat: z.string(),
+    translations: z.object({
+      nav: z.object({
+        home: z.string(),
+        blog: z.string(),
+        books: z.string(),
+        contact: z.string(),
+        search: z.string(),
+        language: z.string(),
+      }),
+      hero: z.object({
+        title: z.string(),
+        subtitle: z.string(),
+        ctaPrimary: z.string(),
+        ctaSecondary: z.string(),
+      }),
+      footer: z.object({
+        copyright: z.string(),
+        mentionsLegales: z.string(),
+        confidentialite: z.string(),
+        cookies: z.string(),
+        cgv: z.string(),
+        accessibilite: z.string(),
+      }),
+      blog: z.object({
+        filterTitle: z.string(),
+        categories: z.string(),
+        tags: z.string(),
+        series: z.string(),
+        clearFilters: z.string(),
+        noPosts: z.string(),
+        readingTime: z.string(),
+        relatedPosts: z.string(),
+        newsletterTitle: z.string(),
+        newsletterDesc: z.string(),
+        subscribe: z.string(),
+      }),
+      legal: z.object({
+        mentionsLegalesTitle: z.string(),
+        confidentialiteTitle: z.string(),
+        cookiesTitle: z.string(),
+        cgvTitle: z.string(),
+        accessibiliteTitle: z.string(),
+      }),
+      forms: z.object({
+        emailPlaceholder: z.string(),
+        submit: z.string(),
+        submitting: z.string(),
+        success: z.string(),
+        error: z.string(),
+        privacy: z.string(),
+      }),
+    }),
+  }),
+});
+
+// ──────────────────────────────────────────────
+// Site Config (Global) - Single JSON file in src/data/config
+// ──────────────────────────────────────────────
+const siteConfig = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/data/config' }),
+  schema: z.object({
+    siteName: z.string(),
+    siteUrl: z.string().url(),
+    defaultLang: z.enum(['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'pl', 'ar', 'zh', 'hi']),
+    contactEmail: z.string().email(),
+    ga4Id: z.string().optional(),
+    metaPixelId: z.string().optional(),
+  }),
+});
+
+export const collections = {
+  blog,
+  authors,
+  legalPages,
+  books,
+  translations,
+  siteConfig,
+};

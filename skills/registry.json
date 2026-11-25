@@ -1,0 +1,531 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "skills": [
+    {
+      "name": "markdown-sanitizer",
+      "version": "1.0.0",
+      "description": "Nettoie, valide et corrige les fichiers Markdown + frontmatter YAML (slugs, types, encoding, tags, collections Astro)",
+      "category": "utils",
+      "path": "skills/markdown-sanitizer",
+      "entry": "dist/index.js",
+      "cli": "dist/cli.js",
+      "schema": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "content": { "type": "string", "description": "Contenu Markdown brut" },
+            "options": {
+              "type": "object",
+              "properties": {
+                "collection": { "type": "string", "enum": ["blog", "legal", "book", "auto"] },
+                "sourceLang": { "type": "string", "enum": ["fr", "en", "es", "pt", "it", "de", "nl", "pl", "ar", "ru", "zh", "hi"] },
+                "knownBaseSlugs": { "type": "array", "items": { "type": "string" } },
+                "autoFix": { "type": "boolean", "default": true },
+                "dryRun": { "type": "boolean", "default": false }
+              },
+              "required": []
+            }
+          },
+          "required": ["content"]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "success": { "type": "boolean" },
+            "content": { "type": "string", "description": "Markdown corrigé" },
+            "frontmatter": { "type": "object", "description": "Frontmatter validé et typé" },
+            "errors": { "type": "array", "items": { "type": "string" } },
+            "warnings": { "type": "array", "items": { "type": "string" } },
+            "fixes": { "type": "array", "items": { "type": "string" } },
+            "collection": { "type": "string", "enum": ["blog", "legal", "book", "unknown"] },
+            "baseSlug": { "type": "string" },
+            "lang": { "type": "string" }
+          },
+          "required": ["success", "content", "frontmatter"]
+        }
+      },
+      "dependencies": ["gray-matter", "js-yaml", "slugify", "zod", "commander"],
+      "devDependencies": ["vitest", "typescript", "@types/js-yaml", "@types/node"],
+      "tags": ["markdown", "frontmatter", "yaml", "sanitizer", "astro", "i18n", "validation"],
+      "status": "ready",
+      "created": "2026-11-24",
+      "testCoverage": { "lines": 80, "functions": 80, "branches": 70, "statements": 80 }
+    },
+    {
+      "name": "blog-translation",
+      "version": "1.0.0",
+      "description": "Pipeline de traduction d'articles blog multilingues (Ollama, LibreTranslate, DeepL) avec glossaire contextuel, fallback auto, validation et reprise",
+      "category": "content",
+      "path": "skills/content/blog-translation",
+      "entry": "dist/index.js",
+      "cli": "dist/cli.js",
+      "schema": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "sourceDir": { "type": "string", "default": "src/content/blog" },
+            "targetLangs": { "type": "array", "items": { "type": "string", "enum": ["fr", "en", "es", "pt", "it", "de", "nl", "pl", "ar", "ru", "zh", "hi"] }, "default": ["en", "es", "pt", "it", "de", "nl", "pl", "ar", "ru", "zh", "hi"] },
+            "provider": { "type": "string", "enum": ["ollama", "libretranslate", "deepl"], "default": "ollama" },
+            "model": { "type": "string", "default": "qwen2.5:1.5b" },
+            "concurrency": { "type": "integer", "minimum": 1, "maximum": 10, "default": 2 },
+            "dryRun": { "type": "boolean", "default": false },
+            "outputDir": { "type": "string", "default": "src/content/blog" }
+          },
+          "required": []
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "job": { "type": "object" },
+                  "success": { "type": "boolean" },
+                  "translatedFrontmatter": { "type": "object" },
+                  "translatedBody": { "type": "string" },
+                  "error": { "type": "string" },
+                  "durationMs": { "type": "integer" },
+                  "provider": { "type": "string" },
+                  "model": { "type": "string" }
+                },
+                "required": ["job", "success", "durationMs", "provider"]
+              }
+            },
+            "summary": {
+              "type": "object",
+              "properties": {
+                "total": { "type": "integer" },
+                "success": { "type": "integer" },
+                "failed": { "type": "integer" },
+                "totalDurationMs": { "type": "integer" },
+                "byProvider": { "type": "object" },
+                "byLang": { "type": "object" }
+              },
+              "required": ["total", "success", "failed", "totalDurationMs"]
+            }
+          },
+          "required": ["results", "summary"]
+        }
+      },
+      "dependencies": ["axios", "chalk", "commander", "ora", "p-limit", "yaml", "gray-matter", "@kikienchrist/markdown-sanitizer"],
+      "devDependencies": ["vitest", "typescript", "@types/node"],
+      "tags": ["translation", "i18n", "blog", "astro", "ollama", "deepl", "libretranslate", "glossary", "christian"],
+      "status": "ready",
+      "created": "2026-11-24",
+      "testCoverage": { "lines": 70, "functions": 70, "branches": 60, "statements": 70 }
+    },
+    {
+      "name": "seo-audit-fix",
+      "version": "1.0.0",
+      "description": "Audit SEO complet + auto-fix pour sites Astro statiques: Lighthouse, Meta tags, Schema.org, Hreflang, Contenu. Génère rapports HTML/JSON/Markdown + plan corrections.",
+      "category": "core",
+      "path": "skills/core/seo-audit-fix",
+      "entry": "dist/index.js",
+      "cli": "dist/cli.js",
+      "schema": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "baseUrl": { "type": "string", "format": "uri", "default": "https://kikienchrist.vercel.app" },
+            "urls": { "type": "array", "items": { "type": "string", "format": "uri" }, "description": "URLs spécifiques à auditer (optionnel, sinon sitemap + crawl)" },
+            "runLighthouse": { "type": "boolean", "default": false },
+            "lighthousePreset": { "type": "string", "enum": ["desktop", "mobile"], "default": "mobile" },
+            "outputDir": { "type": "string", "default": "./seo-audit-report" },
+            "thresholds": {
+              "type": "object",
+              "properties": {
+                "performance": { "type": "integer", "minimum": 0, "maximum": 100, "default": 90 },
+                "accessibility": { "type": "integer", "minimum": 0, "maximum": 100, "default": 95 },
+                "bestPractices": { "type": "integer", "minimum": 0, "maximum": 100, "default": 90 },
+                "seo": { "type": "integer", "minimum": 0, "maximum": 100, "default": 90 }
+              },
+              "default": { "performance": 90, "accessibility": 95, "bestPractices": 90, "seo": 90 }
+            },
+            "concurrency": { "type": "integer", "minimum": 1, "maximum": 20, "default": 5 },
+            "excludePatterns": { "type": "array", "items": { "type": "string" }, "default": ["/404", "/admin", "/private"] }
+          },
+          "required": []
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "timestamp": { "type": "string", "format": "date-time" },
+            "summary": {
+              "type": "object",
+              "properties": {
+                "totalPages": { "type": "integer" },
+                "auditedPages": { "type": "integer" },
+                "failedPages": { "type": "integer" },
+                "averageScore": { "type": "integer" },
+                "pagesNeedingFix": { "type": "integer" },
+                "lighthouseAverages": {
+                  "type": "object",
+                  "properties": {
+                    "performance": { "type": "integer" },
+                    "accessibility": { "type": "integer" },
+                    "bestPractices": { "type": "integer" },
+                    "seo": { "type": "integer" }
+                  }
+                }
+              },
+              "required": ["totalPages", "auditedPages", "averageScore"]
+            },
+            "pages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "url": { "type": "string" },
+                  "lang": { "type": "string" },
+                  "score": { "type": "integer" },
+                  "issues": { "type": "array" },
+                  "fixes": { "type": "array" }
+                }
+              }
+            }
+          },
+          "required": ["timestamp", "summary", "pages"]
+        }
+      },
+      "dependencies": ["axios", "chalk", "commander", "jsdom", "ora", "p-limit", "lighthouse"],
+      "devDependencies": ["vitest", "typescript", "@types/node", "@types/jsdom"],
+      "tags": ["seo", "audit", "lighthouse", "meta", "schema-org", "hreflang", "astro", "static-site", "ci-cd"],
+      "status": "ready",
+      "created": "2026-11-24",
+      "testCoverage": { "lines": 65, "functions": 65, "branches": 55, "statements": 65 }
+    },
+    {
+      "name": "i18n-management",
+      "version": "1.0.0",
+      "description": "Gestion centralisée de l'i18n pour 11 langues: translations.json, fichiers i18n split, middleware, routes, validation, extraction clés",
+      "category": "core",
+      "path": "skills/core/i18n-management",
+      "entry": "dist/index.js",
+      "cli": "dist/cli.js",
+      "schema": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "basePath": { "type": "string", "default": "." },
+            "translationsFile": { "type": "string", "default": "src/data/translations.json" },
+            "i18nDir": { "type": "string", "default": "src/data/i18n" },
+            "middlewareFile": { "type": "string", "default": "src/middleware.ts" },
+            "routesDir": { "type": "string", "default": "src/pages" },
+            "command": { "type": "string", "enum": ["validate", "sync", "middleware", "routes", "extract", "stats"] },
+            "options": { "type": "object" }
+          },
+          "required": ["command"]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "success": { "type": "boolean" },
+            "validation": { "type": "object" },
+            "syncResult": { "type": "object" },
+            "middlewareCode": { "type": "string" },
+            "routesAnalysis": { "type": "object" },
+            "extractionResult": { "type": "object" },
+            "stats": { "type": "object" }
+          },
+          "required": ["success"]
+        }
+      },
+      "dependencies": ["axios", "chalk", "commander", "ora", "p-limit", "yaml", "zod"],
+      "devDependencies": ["vitest", "typescript", "@types/node"],
+      "tags": ["i18n", "astro", "multilingual", "translations", "middleware", "routes", "decap-cms", "icu"],
+      "status": "ready",
+      "created": "2026-11-24",
+      "testCoverage": { "lines": 60, "functions": 60, "branches": 50, "statements": 60 }
+    },
+    {
+      "name": "decap-cms-setup",
+      "version": "1.0.0",
+      "description": "Configuration complète Decap CMS pour Netlify Identity/Git Gateway: collections blog, legal, i18n, books, authors, site-config avec workflow éditorial et templates de prévisualisation",
+      "category": "content",
+      "path": "skills/core/decap-cms-setup",
+      "entry": "dist/index.js",
+      "cli": "dist/cli.js",
+      "schema": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "command": { "type": "string", "enum": ["full", "generate", "netlify", "preview", "identity-widget"] },
+            "options": {
+              "type": "object",
+              "properties": {
+                "outputDir": { "type": "string", "default": "." },
+                "siteUrl": { "type": "string", "default": "https://kikienchrist.vercel.app" },
+                "logoUrl": { "type": "string" },
+                "branch": { "type": "string", "default": "main" },
+                "repo": { "type": "string" },
+                "simple": { "type": "boolean", "default": false }
+              },
+              "required": []
+            }
+          },
+          "required": ["command"]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "success": { "type": "boolean" },
+            "filesGenerated": { "type": "array", "items": { "type": "string" } },
+            "configYml": { "type": "string" },
+            "netlifyToml": { "type": "string" },
+            "previewTemplates": { "type": "string" },
+            "identityWidgetCode": { "type": "string" }
+          },
+          "required": ["success"]
+        }
+      },
+      "dependencies": ["axios", "chalk", "commander", "js-yaml", "ora", "zod"],
+      "devDependencies": ["vitest", "typescript", "@types/node", "@types/js-yaml"],
+      "tags": ["decap-cms", "netlify-cms", "git-gateway", "netlify-identity", "editorial-workflow", "preview-templates", "multilingual", "astro"],
+      "status": "ready",
+      "created": "2026-11-24",
+      "testCoverage": { "lines": 60, "functions": 60, "branches": 50, "statements": 60 }
+    },
+    {
+      "name": "vercel-blob-migration",
+      "version": "1.0.0",
+      "description": "Migration images vers Vercel Blob: upload IMGBB/local, mapping, mise à jour frontmatter, génération OptimizedImage.astro compatible lafoidieu design system",
+      "category": "infra",
+      "path": "skills/infra/vercel-blob-migration",
+      "entry": "dist/index.js",
+      "cli": "dist/cli.js",
+      "schema": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "command": { "type": "string", "enum": ["full", "imgbb", "local", "frontmatter", "optimized-image"] },
+            "options": {
+              "type": "object",
+              "properties": {
+                "token": { "type": "string" },
+                "storeId": { "type": "string" },
+                "publicUrl": { "type": "string" },
+                "prefix": { "type": "string", "default": "images/" },
+                "concurrency": { "type": "number", "default": 3 },
+                "dryRun": { "type": "boolean", "default": false },
+                "mappingFile": { "type": "string" },
+                "sourceDir": { "type": "string" },
+                "contentDir": { "type": "string" },
+                "pattern": { "type": "string" },
+                "outputFile": { "type": "string" }
+              },
+              "required": []
+            }
+          },
+          "required": ["command"]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "success": { "type": "boolean" },
+            "mappings": { "type": "array" },
+            "errors": { "type": "array" },
+            "stats": { "type": "object" },
+            "frontmatterUpdated": { "type": "number" },
+            "optimizedImageGenerated": { "type": "boolean" }
+          },
+          "required": ["success"]
+        }
+      },
+      "dependencies": ["@vercel/blob", "axios", "chalk", "commander", "glob", "js-yaml", "ora", "sharp", "zod"],
+      "devDependencies": ["vitest", "typescript", "@types/node", "@types/js-yaml"],
+      "tags": ["vercel-blob", "image-migration", "imgbb", "astro", "optimized-image", "cdn", "frontmatter"],
+      "status": "ready",
+      "created": "2026-11-24",
+      "testCoverage": { "lines": 60, "functions": 60, "branches": 50, "statements": 60 }
+    },
+    {
+      "name": "github-actions-ci",
+      "version": "1.0.0",
+      "description": "Générateur pipeline GitHub Actions CI/CD complet: lint, typecheck, unit, build, e2e (Playwright), a11y (axe-core), Lighthouse CI, security (npm audit + CodeQL), deploy Vercel preview/production",
+      "category": "infra",
+      "path": "skills/infra/github-actions-ci",
+      "entry": "dist/index.js",
+      "cli": "dist/cli.js",
+      "schema": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "command": { "type": "string", "enum": ["full", "generate", "lighthouse-config", "playwright-config"] },
+            "options": {
+              "type": "object",
+              "properties": {
+                "outputDir": { "type": "string", "default": ".github/workflows" },
+                "projectName": { "type": "string", "default": "kikienchrist" },
+                "nodeVersion": { "type": "string", "default": "20" },
+                "pnpmVersion": { "type": "string", "default": "9" },
+                "enableAll": { "type": "boolean", "default": false },
+                "disable": { "type": "string" },
+                "vercelProjectId": { "type": "string", "default": "${{ secrets.VERCEL_PROJECT_ID }}" },
+                "vercelOrgId": { "type": "string", "default": "${{ secrets.VERCEL_ORG_ID }}" },
+                "lighthousePerf": { "type": "number", "default": 90 },
+                "lighthouseA11y": { "type": "number", "default": 95 },
+                "lighthouseBp": { "type": "number", "default": 90 },
+                "lighthouseSeo": { "type": "number", "default": 90 },
+                "dryRun": { "type": "boolean", "default": false }
+              },
+              "required": []
+            }
+          },
+          "required": ["command"]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "success": { "type": "boolean" },
+            "filesGenerated": { "type": "array", "items": { "type": "string" } },
+            "workflowYml": { "type": "string" }
+          },
+          "required": ["success"]
+        }
+      },
+      "dependencies": ["chalk", "commander", "js-yaml", "ora", "zod"],
+      "devDependencies": ["vitest", "typescript", "@types/node", "@types/js-yaml"],
+      "tags": ["github-actions", "ci-cd", "vercel", "playwright", "lighthouse", "accessibility", "security", "codeql", "astro"],
+      "status": "ready",
+      "created": "2026-11-24",
+      "testCoverage": { "lines": 60, "functions": 60, "branches": 50, "statements": 60 }
+    },
+    {
+      "name": "ollama-client",
+      "version": "1.0.0",
+      "description": "Client Ollama standardisé: generate, chat, streaming, batch, translate (glossaire théologique), embeddings, modèles management, retry/timeout",
+      "category": "utils",
+      "path": "skills/utils/ollama-client",
+      "entry": "dist/index.js",
+      "cli": "dist/cli.js",
+      "schema": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "command": { "type": "string", "enum": ["generate", "chat", "batch", "translate", "models", "pull", "delete", "health", "presets"] },
+            "options": {
+              "type": "object",
+              "properties": {
+                "model": { "type": "string", "default": "qwen2.5:1.5b" },
+                "baseUrl": { "type": "string", "default": "http://localhost:11434" },
+                "timeout": { "type": "number", "default": 120000 },
+                "retries": { "type": "number", "default": 3 },
+                "temperature": { "type": "number", "default": 0.7 },
+                "topP": { "type": "number", "default": 0.9 },
+                "maxTokens": { "type": "number", "default": 2048 },
+                "stream": { "type": "boolean", "default": false },
+                "concurrency": { "type": "number", "default": 3 },
+                "sourceLang": { "type": "string", "default": "fr" },
+                "targetLang": { "type": "string", "default": "en" },
+                "context": { "type": "string" },
+                "glossary": { "type": "string" },
+                "output": { "type": "string" }
+              },
+              "required": []
+            }
+          },
+          "required": ["command"]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "success": { "type": "boolean" },
+            "response": { "type": "string" },
+            "translations": { "type": "array" },
+            "models": { "type": "array" },
+            "duration": { "type": "number" },
+            "tokensUsed": { "type": "number" }
+          },
+          "required": ["success"]
+        }
+      },
+      "dependencies": ["chalk", "commander", "ora", "zod"],
+      "devDependencies": ["vitest", "typescript", "@types/node"],
+      "tags": ["ollama", "llm", "translation", "batch", "streaming", "chat", "embeddings", "ai", "theology"],
+      "status": "ready",
+      "created": "2026-11-24",
+      "testCoverage": { "lines": 60, "functions": 60, "branches": 50, "statements": 60 }
+    },
+    {
+      "name": "git-workflow",
+      "version": "1.0.0",
+      "description": "Utilitaires Git complets: conventional commits parsing/validation, changelog auto (conventional-changelog), semantic release, Husky hooks, commitlint, lint-staged",
+      "category": "utils",
+      "path": "skills/utils/git-workflow",
+      "entry": "dist/index.js",
+      "cli": "dist/cli.js",
+      "schema": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "command": { "type": "string", "enum": ["commit", "template", "types", "changelog", "release", "version", "analyze", "setup", "config"] },
+            "options": {
+              "type": "object",
+              "properties": {
+                "message": { "type": "string" },
+                "validate": { "type": "boolean" },
+                "format": { "type": "boolean" },
+                "type": { "type": "string" },
+                "scope": { "type": "string" },
+                "subject": { "type": "string" },
+                "body": { "type": "string" },
+                "breaking": { "type": "boolean" },
+                "output": { "type": "string", "default": "CHANGELOG.md" },
+                "from": { "type": "string" },
+                "to": { "type": "string" },
+                "count": { "type": "number" },
+                "write": { "type": "boolean" },
+                "dryRun": { "type": "boolean" },
+                "branch": { "type": "string" },
+                "prerelease": { "type": "string" },
+                "skipPublish": { "type": "boolean" },
+                "skipGit": { "type": "boolean" },
+                "debug": { "type": "boolean" },
+                "bump": { "type": "string", "enum": ["major", "minor", "patch"] },
+                "set": { "type": "string" },
+                "show": { "type": "boolean" },
+                "range": { "type": "string" },
+                "dir": { "type": "string" },
+                "commitlint": { "type": "boolean" },
+                "lintstaged": { "type": "boolean" },
+                "husky": { "type": "boolean" },
+                "releaserc": { "type": "boolean" },
+                "all": { "type": "boolean" }
+              },
+              "required": []
+            }
+          },
+          "required": ["command"]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "success": { "type": "boolean" },
+            "valid": { "type": "boolean" },
+            "errors": { "type": "array", "items": { "type": "string" } },
+            "changelog": { "type": "string" },
+            "version": { "type": "string" },
+            "versionBump": { "type": "string" },
+            "commitsAnalyzed": { "type": "number" }
+          },
+          "required": ["success"]
+        }
+      },
+      "dependencies": ["chalk", "commander", "conventional-changelog", "conventional-commits-parser", "execa", "ora", "semver", "zod"],
+      "devDependencies": ["vitest", "typescript", "@types/node", "@types/semver"],
+      "tags": ["git", "conventional-commits", "semantic-release", "changelog", "husky", "commitlint", "release", "versioning"],
+      "status": "ready",
+      "created": "2026-11-24",
+      "testCoverage": { "lines": 60, "functions": 60, "branches": 50, "statements": 60 }
+    }
+  ],
+  "categories": {
+    "core": "Compétences fondamentales (build, deploy, collections, i18n, SEO, a11y, PWA)",
+    "content": "Gestion contenu (traduction blog, pages légales, sanitizer, Decap CMS)",
+    "infra": "Infrastructure (Vercel Blob, GitHub Actions, secrets, monitoring)",
+    "utils": "Utilitaires réutilisables (Ollama client, git workflow, markdown utils)"
+  }
+}

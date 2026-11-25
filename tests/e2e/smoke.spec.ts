@@ -5,9 +5,9 @@ test.describe('Smoke Tests - Core Pages Load (HTTP 200)', () => {
     { path: '/fr/', name: 'Homepage FR' },
     { path: '/en/', name: 'Homepage EN' },
     { path: '/fr/blog/1/', name: 'Blog Index FR' },
-    { path: '/en/blog/1/', name: 'Blog Index EN' },
+    { path: '/en/blog/', name: 'Blog Index EN (redirect)' },
     { path: '/fr/blog/priere-quotidienne-7-cles/', name: 'Blog Article FR' },
-    { path: '/fr/blog/categorie/priere/', name: 'Category Priere FR' },
+    { path: '/fr/blog/categorie/priere/1/', name: 'Category Priere FR' },
     { path: '/fr/mentions-legales/', name: 'Mentions Légales FR' },
     { path: '/fr/confidentialite/', name: 'Confidentialité FR' },
     { path: '/fr/cookies/', name: 'Cookies FR' },
@@ -39,6 +39,22 @@ test.describe('Basic Accessibility Checks', () => {
   });
 
   test('Legal pages have main content area', async ({ page }) => {
+    await page.goto('/fr/mentions-legales/');
+    const main = page.locator('main, [role="main"], article').first();
+    await expect(main).toBeVisible();
+  });
+});
+
+test.describe('Mobile Accessibility Checks', () => {
+  test('Homepage has lang attribute on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/fr/');
+    const html = page.locator('html');
+    await expect(html).toHaveAttribute('lang', 'fr');
+  });
+
+  test('Legal pages load on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/fr/mentions-legales/');
     const main = page.locator('main, [role="main"], article').first();
     await expect(main).toBeVisible();

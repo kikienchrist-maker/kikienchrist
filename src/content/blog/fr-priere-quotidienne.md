@@ -1,19 +1,21 @@
 ---
-title: "La prière quotidienne : 7 clés pour une vie spirituelle féconde"
-slug: "priere-quotidienne-7-cles"
-lang: fr
-pubDate: "2025-01-20T08:00:00+01:00"
-updatedDate: "2025-01-20T08:00:00+01:00"
-description: "Découvrez 7 clés bibliques pour établir une prière quotidienne solide et transformer votre relation avec Dieu. Guide pratique avec versets et exercices."
-category: "prière"
-series: "apprendre-à-prier"
-tags: ["prière", "quotidien", "discipline spirituelle", "versets bibliques"]
-coverImage: "/images/blog/priere-quotidienne-cover.jpg"
-ogImage: "https://kikienchrist.vercel.app/og/blog/priere-quotidienne-7-cles.png"
-readingTime: 12
-author: "kikienchrist"
+title: 'La prière quotidienne : 7 clés pour une vie spirituelle féconde'
+description: 'Découvrez 7 clés bibliques pour établir une prière quotidienne solide et transformer votre relation avec Dieu. Guide pratique avec versets et exercices.'
+pubDate: '2025-01-20T08:00:00+01:00'
+updatedDate: '2026-11-24T08:56:24.892Z'
+author: 'kikienchrist'
+lang: 'fr'
+translationKey: 'priere-quotidienne-7-cles'
+category: 'prière'
+tags: ['prière', 'quotidien', 'discipline spirituelle', 'versets bibliques']
+series: 'apprendre-à-prier'
 featured: true
 draft: false
+readingTime: 12
+isLeadMagnet: false
+ogImage: 'https://kikienchrist.vercel.app/og/blog/priere-quotidienne-7-cles.png'
+coverImage: '/images/blog/priere-quotidienne-cover.jpg'
+slug: 'priere-quotidienne-7-cles'
 ---
 
 # La prière quotidienne : 7 clés pour une vie spirituelle féconde
@@ -32,12 +34,12 @@ Jésus avait l'habitude de se retirer **« le matin, très tôt, dans un lieu d�
 
 Un cadre simple pour ne pas tourner en rond :
 
-| Lettre | Signification | Exemple |
-|--------|--------------|---------|
-| **A** | **Adoration** | « Seigneur, Tu es saint, tout-puissant, fidèle... » |
-| **C** | **Confession** | « Pardonne-moi pour [péché spécifique]... » |
-| **T** | **Thanksgiving** | « Merci pour [bénédiction d'hier]... » |
-| **S** | **Supplication** | « Je Te prie pour [besoin précis]... » |
+| Lettre | Signification    | Exemple                                             |
+| ------ | ---------------- | --------------------------------------------------- |
+| **A**  | **Adoration**    | « Seigneur, Tu es saint, tout-puissant, fidèle... » |
+| **C**  | **Confession**   | « Pardonne-moi pour [péché spécifique]... »         |
+| **T**  | **Thanksgiving** | « Merci pour [bénédiction d'hier]... »              |
+| **S**  | **Supplication** | « Je Te prie pour [besoin précis]... »              |
 
 ## 3. Prier la Parole (Lectio Divina)
 
@@ -65,25 +67,25 @@ La prière est un **dialogue**. Après avoir parlé, **taisez-vous 2-3 minutes**
 
 ## 🎯 Défi 7 jours
 
-| Jour | Focus | Verset clé |
-|------|-------|------------|
-| 1 | Adoration | Psaume 100 |
-| 2 | Confession | 1 Jean 1:9 |
-| 3 | Gratitude | 1 Thessaloniciens 5:18 |
-| 4 | Intercession | Éphésiens 6:18 |
-| 5 | Prière de la Parole | Psaume 119:105 |
-| 6 | Silence & écoute | 1 Rois 19:12 |
-| 7 | Engagement renouvelé | Luc 18:1 |
+| Jour | Focus                | Verset clé             |
+| ---- | -------------------- | ---------------------- |
+| 1    | Adoration            | Psaume 100             |
+| 2    | Confession           | 1 Jean 1:9             |
+| 3    | Gratitude            | 1 Thessaloniciens 5:18 |
+| 4    | Intercession         | Éphésiens 6:18         |
+| 5    | Prière de la Parole  | Psaume 119:105         |
+| 6    | Silence & écoute     | 1 Rois 19:12           |
+| 7    | Engagement renouvelé | Luc 18:1               |
 
 ---
 
 ## 📖 Pour aller plus loin
 
-- **Livre recommandé** : *La prière, cet inconnu* — Ole Hallesby
+- **Livre recommandé** : _La prière, cet inconnu_ — Ole Hallesby
 - **Guide gratuit** : Inscrivez-vous à la newsletter pour recevoir **« 7 prières pour chaque jour de la semaine »**
 - **Série complète** : [Apprendre à prier](/fr/blog/serie/apprendre-a-prier/) (4 articles)
 
-> *« La prière ne change pas les circonstances, elle change les personnes, et les personnes changent les circonstances. »* — Leonard Ravenhill
+> _« La prière ne change pas les circonstances, elle change les personnes, et les personnes changent les circonstances. »_ — Leonard Ravenhill
 
 ---
 

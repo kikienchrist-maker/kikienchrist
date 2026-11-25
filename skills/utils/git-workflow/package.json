@@ -1,0 +1,44 @@
+{
+  "name": "@kikienchrist/git-workflow",
+  "version": "1.0.0",
+  "description": "Utilitaires Git: conventional commits, semantic release, changelog auto, hooks husky, release workflow",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "git-workflow": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src --ext .ts",
+    "cli": "node dist/cli.js"
+  },
+  "keywords": [
+    "git",
+    "conventional-commits",
+    "semantic-release",
+    "changelog",
+    "husky",
+    "commitlint",
+    "release"
+  ],
+  "author": "Kiki en Christ",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "conventional-changelog": "^6.0.0",
+    "conventional-commits-parser": "^7.1.4",
+    "execa": "^9.0.0",
+    "ora": "^8.0.0",
+    "semver": "^7.6.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.0",
+    "@types/semver": "^7.5.8",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  }
+}

@@ -1,0 +1,54 @@
+---
+// src/components/SkipLink.astro
+// Lien d'évitement "Aller au contenu principal" - doit être le premier élément focusable
+// Placez-le tout en haut de <body> dans MainLayout.astro
+
+import { getTranslations } from '../utils/translations';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'fr' } = Astro.props;
+const t = getTranslations(lang);
+---
+
+<!-- Skip Link - masqué visuellement jusqu'au focus -->
+<a 
+  href="#main-content" 
+  class="bq-skip-link"
+  data-testid="skip-link"
+>
+  {t.common?.skipToContent || 'Aller au contenu principal'}
+</a>
+
+<style is:global>
+  .bq-skip-link {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: var(--bq-space-3) var(--bq-space-4);
+    background: var(--bq-color-primary);
+    color: var(--bq-color-on-primary);
+    font-weight: 600;
+    border-radius: var(--bq-radius-md);
+    z-index: 10000;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: var(--bq-shadow-lg);
+    transition: top 0.2s ease;
+  }
+  
+  .bq-skip-link:focus,
+  .bq-skip-link:focus-visible {
+    top: var(--bq-space-4);
+    outline: 3px solid var(--bq-color-focus);
+    outline-offset: 2px;
+  }
+  
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .bq-skip-link { transition: none; }
+  }
+</style>

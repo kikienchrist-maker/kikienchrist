@@ -1,0 +1,66 @@
+---
+// src/components/ICUMessage.astro
+// Composant pour rendre des messages ICU (pluriels, select, etc.) côté client
+// Utilise Intl.MessageFormat (polyfill) ou formatage natif si supporté
+
+import { LANG_TO_LOCALE } from '../lib/i18n/format';
+import { formatPluralMessage } from '../lib/i18n/plural';
+
+interface Props {
+  message: string; // Message ICU: "{count, plural, one {# minute} other {# minutes}}"
+  values: Record<string, string | number>; // { count: 5 }
+  lang?: string; // code court: 'fr', 'en'...
+  fallback?: string; // fallback si parsing échoue
+}
+
+const { message, values, lang = 'fr', fallback } = Astro.props;
+const locale = LANG_TO_LOCALE[lang] || 'fr-FR';
+
+// Tentative de formatage côté serveur (build) pour les pluriels simples
+let rendered = fallback || message;
+try {
+  // Remplacement basique pour {var, plural, ...}
+  // Note: Pour production complète, utiliser @formatjs/intl-messageformat
+  for (const [key, val] of Object.entries(values)) {
+    if (typeof val === 'number' && message.includes(`${key}, plural`)) {
+      rendered = formatPluralMessage(val, message, locale);
+      break;
+    } else {
+      rendered = message.replace(new RegExp(`\\{${key}\\}`, 'g'), String(val));
+    }
+  }
+} catch {
+  rendered = fallback || message;
+}
+---
+
+<!-- Rendu côté serveur (build) -->
+<span data-icu-message data-message={message} data-values={JSON.stringify(values)} data-lang={lang}>
+  {rendered}
+</span>
+
+<!-- Hydration côté client pour Intl.MessageFormat natif (si dispo) -->
+<script is:inline>
+  (function() {
+    const el = document.currentScript?.previousElementSibling;
+    if (!el) return;
+    
+    const message = el.dataset.icuMessage;
+    const values = JSON.parse(el.dataset.icuValues || '{}');
+    const lang = el.dataset.icuLang || 'fr';
+    const locale = {
+      fr: 'fr-FR', en: 'en-US', es: 'es-ES', pt: 'pt-PT', it: 'it-IT',
+      de: 'de-DE', nl: 'nl-NL', pl: 'pl-PL', ar: 'ar-SA', zh: 'zh-CN', hi: 'hi-IN'
+    }[lang] || 'fr-FR';
+    
+    // Si Intl.MessageFormat dispo (Chrome 119+, Firefox 118+, Safari 17.4+)
+    if (typeof Intl !== 'undefined' && Intl.MessageFormat) {
+      try {
+        const mf = new Intl.MessageFormat(message, locale);
+        el.textContent = mf.format(values);
+      } catch {
+        // Fallback: garder le rendu serveur
+      }
+    }
+  })();
+</script>

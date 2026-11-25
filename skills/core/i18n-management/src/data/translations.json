@@ -1,0 +1,46 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-11-24T11:05:03.172Z",
+  "entries": [
+    {
+      "key": "common.hello",
+      "values": {
+        "fr": "Hello-fr",
+        "en": "Hello-en",
+        "es": "Hello-es",
+        "pt": "Hello-pt",
+        "it": "Hello-it",
+        "de": "Hello-de",
+        "nl": "Hello-nl",
+        "pl": "Hello-pl",
+        "ar": "Hello-ar",
+        "ru": "Hello-ru",
+        "zh": "Hello-zh",
+        "hi": "Hello-hi",
+        "x-default": "Hello-fr"
+      },
+      "description": "",
+      "category": "common"
+    },
+    {
+      "key": "new.key",
+      "values": {
+        "fr": "New-fr",
+        "en": "New-en",
+        "es": "New-es",
+        "pt": "New-pt",
+        "it": "New-it",
+        "de": "New-de",
+        "nl": "New-nl",
+        "pl": "New-pl",
+        "ar": "New-ar",
+        "ru": "New-ru",
+        "zh": "New-zh",
+        "hi": "New-hi",
+        "x-default": "New-fr"
+      },
+      "description": "",
+      "category": "common"
+    }
+  ]
+}

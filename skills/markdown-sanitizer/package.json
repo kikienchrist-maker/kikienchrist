@@ -1,0 +1,38 @@
+{
+  "name": "@kikienchrist/markdown-sanitizer",
+  "version": "1.0.0",
+  "description": "Nettoie et valide les fichiers Markdown + frontmatter YAML (slugs, encoding, types, tags, slugs uniques)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "markdown-sanitizer": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "lint": "eslint src --ext .ts"
+  },
+  "keywords": [
+    "markdown",
+    "frontmatter",
+    "yaml",
+    "sanitizer",
+    "astro",
+    "i18n"
+  ],
+  "author": "Kiki en Christ",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^15.1.0",
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0",
+    "slugify": "^1.6.6",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  }
+}

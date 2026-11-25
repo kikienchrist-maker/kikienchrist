@@ -1,0 +1,193 @@
+# Decap CMS Configuration - Kiki en Christ
+# Collections: blog, legalPages, books, translations
+
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: "cms: create {{collection}} \"{{slug}}\""
+    update: "cms: update {{collection}} \"{{slug}}\""
+    delete: "cms: delete {{collection}} \"{{slug}}\""
+    uploadMedia: "cms: upload media \"{{path}}\""
+    uploadMediaWithUnused: "cms: upload media \"{{path}}\" (with unused)"
+
+media_folder: public/images/cms
+public_folder: /images/cms
+
+site_url: https://kikienchrist.vercel.app
+logo_url: https://kikienchrist.vercel.app/logo.png
+
+publish_mode: editorial_workflow
+
+slug:
+  encoding: ascii
+  sanitize_replacement: '-'
+
+locale: fr
+
+# ──────────────────────────────────────────────
+# Collections
+# ──────────────────────────────────────────────
+collections:
+  # ─── Blog Articles ───
+  - name: blog
+    label: Articles de Blog
+    folder: src/content/blog
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "/{{lang}}/blog/{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string", required: true }
+      - { label: "Description SEO", name: "description", widget: "text", required: true }
+      - { label: "Date publication", name: "pubDate", widget: "datetime", required: true, format: "YYYY-MM-DDTHH:mm:ssZ", date_format: "DD/MM/YYYY", time_format: "HH:mm" }
+      - { label: "Date mise à jour", name: "updatedDate", widget: "datetime", required: false, format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - { label: "Auteur", name: "author", widget: "string", default: "Kiki en Christ" }
+      - { label: "Rôle auteur", name: "authorRole", widget: "string", required: false }
+      - { label: "Langue", name: "lang", widget: "select", options: ["fr", "en", "es", "pt", "it", "de", "nl", "pl", "ar", "zh", "hi"], default: "fr", required: true }
+      - { label: "Clé traduction", name: "translationKey", widget: "string", required: false, hint: "Identifiant commun pour lier les traductions" }
+      - { label: "Catégorie", name: "category", widget: "select", options: ["prière", "formation", "témoignage", "vie-chrétienne", "famille", "mission", "actualité", "ressource"], required: true }
+      - { label: "Mots-clés", name: "tags", widget: "list", required: false }
+      - { label: "Série", name: "series", widget: "select", options: ["Apprendre à prier", ""], required: false }
+      - { label: "Ordre dans la série", name: "seriesOrder", widget: "number", required: false, min: 1 }
+      - { label: "Article mis en avant", name: "featured", widget: "boolean", default: false }
+      - { label: "Brouillon", name: "draft", widget: "boolean", default: false }
+      - { label: "Temps de lecture (min)", name: "readingTime", widget: "number", required: false }
+      - { label: "Lead Magnet", name: "isLeadMagnet", widget: "boolean", default: false }
+      - { label: "Titre Lead Magnet", name: "leadMagnetTitle", widget: "string", required: false }
+      - { label: "Description Lead Magnet", name: "leadMagnetDescription", widget: "text", required: false }
+      - { label: "Fichier Lead Magnet (URL)", name: "leadMagnetFile", widget: "string", required: false }
+      - { label: "Épisode Podcast lié", name: "relatedPodcastEpisode", widget: "string", required: false }
+      - { label: "Vidéo liée (URL)", name: "relatedVideo", widget: "string", required: false }
+      - { label: "URL Canonique", name: "canonicalURL", widget: "string", required: false }
+      - { label: "Image OG (URL)", name: "ogImage", widget: "string", required: false }
+      - { label: "Titre OG", name: "ogTitle", widget: "string", required: false }
+      - { label: "Description OG", name: "ogDescription", widget: "text", required: false }
+      - { label: "Données structurées", name: "structuredData", widget: "object", required: false, fields: [
+          { label: "Type", name: "type", widget: "select", options: ["BlogPosting", "Article"], default: "BlogPosting" },
+          { label: "Nombre de mots", name: "wordCount", widget: "number", required: false }
+        ] }
+      - { label: "Contenu", name: "body", widget: "markdown", required: true }
+
+  # ─── Pages Légales ───
+  - name: legalPages
+    label: Pages Légales
+    folder: src/content/legal
+    create: true
+    slug: "{{slug}}"
+    preview_path: "/{{lang}}/{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string", required: true }
+      - { label: "Description SEO", name: "description", widget: "text", required: true }
+      - { label: "Slug URL", name: "slug", widget: "string", required: true, pattern: ['^[a-z-]+$', 'Slug en minuscules avec tirets uniquement'] }
+      - { label: "Langue", name: "lang", widget: "select", options: ["fr", "en", "es", "pt", "it", "de", "nl", "pl", "ar", "zh", "hi"], default: "fr", required: true }
+      - { label: "Clé traduction", name: "translationKey", widget: "string", required: false }
+      - { label: "Dernière mise à jour", name: "lastUpdated", widget: "datetime", required: true, format: "YYYY-MM-DD" }
+      - { label: "Contenu", name: "body", widget: "markdown", required: true }
+
+  # ─── Livres ───
+  - name: books
+    label: Livres
+    folder: src/content/books
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "ID interne", name: "id", widget: "string", required: true, pattern: ['^[a-z-]+$', 'ID en minuscules avec tirets'] }
+      - { label: "Titre", name: "title", widget: "string", required: true }
+      - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text", required: true }
+      - { label: "Auteur", name: "author", widget: "string", default: "Kiki en Christ" }
+      - { label: "ISBN", name: "isbn", widget: "string", required: false }
+      - { label: "Prix (EUR)", name: "priceEUR", widget: "number", required: false, value_type: "float" }
+      - { label: "Prix promo (EUR)", name: "promoPriceEUR", widget: "number", required: false, value_type: "float" }
+      - { label: "URL Payhip", name: "payhipUrl", widget: "string", required: false }
+      - { label: "URL Lulu", name: "luluUrl", widget: "string", required: false }
+      - { label: "URL Amazon", name: "amazonUrl", widget: "string", required: false }
+      - { label: "Image couverture FR", name: "coverImageFr", widget: "image", required: false }
+      - { label: "Image couverture EN", name: "coverImageEn", widget: "image", required: false }
+      - { label: "Image couverture ES", name: "coverImageEs", widget: "image", required: false }
+      - { label: "Date publication", name: "pubDate", widget: "datetime", required: true, format: "YYYY-MM-DD" }
+      - { label: "Nombre de pages", name: "pageCount", widget: "number", required: false }
+      - { label: "Catégorie", name: "category", widget: "select", options: ["Spiritualité", "Prière", "Théologie", "Vie chrétienne", "Jeunesse"], required: true }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Actif", name: "active", widget: "boolean", default: true }
+
+  # ─── Traductions UI (i18n) ───
+  - name: translations
+    label: Traductions UI
+    folder: src/data/i18n
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Code langue", name: "lang", widget: "string", required: true, pattern: ['^[a-z]{2}$', 'Code ISO 639-1 (ex: fr, en, es)'] }
+      - { label: "Nom natif", name: "nativeName", widget: "string", required: true }
+      - { label: "Nom anglais", name: "englishName", widget: "string", required: true }
+      - { label: "Direction", name: "dir", widget: "select", options: ["ltr", "rtl"], default: "ltr" }
+      - { label: "Format date", name: "dateFormat", widget: "string", required: true }
+      - { label: "Traductions", name: "translations", widget: "object", required: true, fields: [
+          # Common UI
+          { label: "Navigation", name: "nav", widget: "object", fields: [
+              { label: "Accueil", name: "home", widget: "string" },
+              { label: "Blog", name: "blog", widget: "string" },
+              { label: "Livres", name: "books", widget: "string" },
+              { label: "Contact", name: "contact", widget: "string" },
+              { label: "Recherche", name: "search", widget: "string" },
+              { label: "Langue", name: "language", widget: "string" }
+            ] },
+          { label: "Hero", name: "hero", widget: "object", fields: [
+              { label: "Titre principal", name: "title", widget: "string" },
+              { label: "Sous-titre", name: "subtitle", widget: "string" },
+              { label: "CTA principal", name: "ctaPrimary", widget: "string" },
+              { label: "CTA secondaire", name: "ctaSecondary", widget: "string" }
+            ] },
+          { label: "Footer", name: "footer", widget: "object", fields: [
+              { label: "Copyright", name: "copyright", widget: "string" },
+              { label: "Mentions légales", name: "mentionsLegales", widget: "string" },
+              { label: "Confidentialité", name: "confidentialite", widget: "string" },
+              { label: "Cookies", name: "cookies", widget: "string" },
+              { label: "CGV", name: "cgv", widget: "string" },
+              { label: "Accessibilité", name: "accessibilite", widget: "string" }
+            ] },
+          { label: "Blog", name: "blog", widget: "object", fields: [
+              { label: "Filtrer", name: "filterTitle", widget: "string" },
+              { label: "Catégories", name: "categories", widget: "string" },
+              { label: "Mots-clés", name: "tags", widget: "string" },
+              { label: "Séries", name: "series", widget: "string" },
+              { label: "Effacer les filtres", name: "clearFilters", widget: "string" },
+              { label: "Aucun article", name: "noPosts", widget: "string" },
+              { label: "Temps de lecture", name: "readingTime", widget: "string" },
+              { label: "Articles similaires", name: "relatedPosts", widget: "string" },
+              { label: "Newsletter titre", name: "newsletterTitle", widget: "string" },
+              { label: "Newsletter description", name: "newsletterDesc", widget: "string" },
+              { label: "S'abonner", name: "subscribe", widget: "string" }
+            ] },
+          { label: "Legal Pages", name: "legal", widget: "object", fields: [
+              { label: "Mentions légales - Titre", name: "mentionsLegalesTitle", widget: "string" },
+              { label: "Confidentialité - Titre", name: "confidentialiteTitle", widget: "string" },
+              { label: "Cookies - Titre", name: "cookiesTitle", widget: "string" },
+              { label: "CGV - Titre", name: "cgvTitle", widget: "string" },
+              { label: "Accessibilité - Titre", name: "accessibiliteTitle", widget: "string" }
+            ] },
+          { label: "Forms", name: "forms", widget: "object", fields: [
+              { label: "Email placeholder", name: "emailPlaceholder", widget: "string" },
+              { label: "Soumettre", name: "submit", widget: "string" },
+              { label: "Envoi...", name: "submitting", widget: "string" },
+              { label: "Succès", name: "success", widget: "string" },
+              { label: "Erreur", name: "error", widget: "string" },
+              { label: "Vie privée", name: "privacy", widget: "string" }
+            ] }
+        ] }
+
+# ──────────────────────────────────────────────
+# Global Fields (reusable)
+# ──────────────────────────────────────────────
+globals:
+  - name: siteConfig
+    label: Configuration Site
+    file: src/data/site-config.json
+    fields:
+      - { label: "Nom du site", name: "siteName", widget: "string", default: "Kiki en Christ" }
+      - { label: "URL du site", name: "siteUrl", widget: "string", default: "https://kikienchrist.vercel.app" }
+      - { label: "Langue par défaut", name: "defaultLang", widget: "select", options: ["fr", "en", "es", "pt", "it", "de", "nl", "pl", "ar", "zh", "hi"], default: "fr" }
+      - { label: "Email contact", name: "contactEmail", widget: "string", default: "kikienchrist@gmail.com" }
+      - { label: "GA4 Measurement ID", name: "ga4Id", widget: "string", required: false }
+      - { label: "Meta Pixel ID", name: "metaPixelId", widget: "string", required: false }

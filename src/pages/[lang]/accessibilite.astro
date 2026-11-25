@@ -15,8 +15,9 @@ export async function getStaticPaths() {
 }
 
 const { page } = Astro.props;
-const { title, description, pageSlug, lang, lastUpdated, version } = page.data;
+const { title, description, pageSlug, lang, lastUpdated } = page.data;
 const content = page.body; // Astro type:'content' injecte le body Markdown dans .body
+const version = '1.0';
 ---
 
 <LegalLayout

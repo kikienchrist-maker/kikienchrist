@@ -1,0 +1,31 @@
+{
+  "name": "@kikienchrist/ollama-client",
+  "version": "1.0.0",
+  "description": "Client Ollama standardisé: batch, streaming, retry, modèles multiples, gestion contexte, traduction",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "ollama-cli": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src --ext .ts",
+    "cli": "node dist/cli.js"
+  },
+  "keywords": ["ollama", "llm", "translation", "batch", "streaming", "retry", "ai"],
+  "author": "Kiki en Christ",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "ora": "^8.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "lang": "fr",
+  "nativeName": "Français",
+  "englishName": "French",
+  "dir": "ltr",
+  "dateFormat": "DD/MM/YYYY",
+  "translations": {
+    "nav": {
+      "home": "Accueil",
+      "blog": "Blog",
+      "books": "Livres",
+      "contact": "Contact",
+      "search": "Recherche",
+      "language": "Langue"
+    },
+    "hero": {
+      "title": "Des livres pour ceux qui cherchent Dieu au-delà des dogmes",
+      "subtitle": "Découvrez une spiritualité authentique, ancrée dans l'Écriture et vivante au quotidien.",
+      "ctaPrimary": "Découvrir les livres",
+      "ctaSecondary": "Lire le blog"
+    },
+    "footer": {
+      "copyright": "© 2025 Kiki en Christ. Tous droits réservés.",
+      "mentionsLegales": "Mentions légales",
+      "confidentialite": "Confidentialité",
+      "cookies": "Cookies",
+      "cgv": "CGV",
+      "accessibilite": "Accessibilité"
+    },
+    "blog": {
+      "filterTitle": "Filtrer",
+      "categories": "Catégories",
+      "tags": "Mots-clés",
+      "series": "Séries",
+      "clearFilters": "Effacer les filtres",
+      "noPosts": "Aucun article trouvé.",
+      "readingTime": "min de lecture",
+      "relatedPosts": "Articles similaires",
+      "newsletterTitle": "Recevez nos nouveaux articles",
+      "newsletterDesc": "Inscrivez-vous pour ne rien manquer de nos enseignements et témoignages.",
+      "subscribe": "S'abonner"
+    },
+    "legal": {
+      "mentionsLegalesTitle": "Mentions Légales",
+      "confidentialiteTitle": "Politique de Confidentialité",
+      "cookiesTitle": "Politique Cookies",
+      "cgvTitle": "Conditions Générales de Vente",
+      "accessibiliteTitle": "Accessibilité"
+    },
+    "forms": {
+      "emailPlaceholder": "Votre email",
+      "submit": "Je m'inscris",
+      "submitting": "Inscription...",
+      "success": "Merci ! Vérifiez votre boîte mail.",
+      "error": "Erreur. Réessayez plus tard.",
+      "privacy": "Nous respectons votre vie privée. Désinscription en 1 clic.",
+      "firstName": "Prénom",
+      "lastName": "Nom"
+    },
+    "partners": {
+      "title": "Devenir Partenaire — Kiki en Christ",
+      "description": "Rejoignez notre programme d'affiliation et gagnez 30% de commission sur chaque vente.",
+      "subtitle": "Partagez la foi, gagnez des revenus",
+      "benefit1_title": "30% Commission",
+      "benefit1_desc": "Sur chaque vente générée via votre lien unique.",
+      "benefit2_title": "Cookie 30 jours",
+      "benefit2_desc": "Attribution sur 30 jours même si achat différé.",
+      "benefit3_title": "Paiement mensuel",
+      "benefit3_desc": "Virement automatique dès 50€ cumulés.",
+      "benefit4_title": "Tableau de bord",
+      "benefit4_desc": "Suivi temps réel : clics, conversions, revenus.",
+      "signup_title": "Rejoindre le programme",
+      "signup_desc": "Inscrivez-vous en 2 minutes, recevez votre lien unique immédiatement.",
+      "submit_btn": "Devenir Partenaire",
+      "website_label": "Site web / Réseaux sociaux (optionnel)",
+      "terms_text": "J'accepte les <a href=\"/conditions-generales/\">Conditions Générales</a> et la <a href=\"/politique-confidentialite/\">Politique de Confidentialité</a>",
+      "assets_title": "Kit Médias & Ressources",
+      "assets_desc": "Tout ce qu'il vous faut pour promouvoir efficacement.",
+      "asset_banners": "Bannières",
+      "asset_banners_desc": "Formats 728x90, 300x250, 320x50, 1200x628",
+      "asset_social": "Visuels Réseaux Sociaux",
+      "asset_social_desc": "Posts Instagram, Facebook, Twitter/X, LinkedIn",
+      "asset_email": "Templates Email",
+      "asset_email_desc": "Séquence 3 emails prête à envoyer",
+      "asset_logos": "Logos & Guidelines",
+      "asset_logos_desc": "Logo principal, monochrome, favicon, charte couleurs",
+      "asset_covers": "Couvertures Livres HD",
+      "asset_covers_desc": "4 couvertures en 300 DPI pour print/web",
+      "asset_video": "Vidéos Promo",
+      "asset_video_desc": "Reels/TikTok 15s, YouTube 30s, 60s",
+      "download": "Télécharger",
+      "faq_title": "Questions Fréquentes",
+      "faq1_q": "Comment suis-je payé ?",
+      "faq1_a": "Virement bancaire mensuel (seuil 50€). IBAN requis dans votre espace.",
+      "faq2_q": "Puis-je m'inscrire depuis n'importe quel pays ?",
+      "faq2_a": "Oui, tant que vous avez un compte bancaire recevant des virements SEPA/internationaux.",
+      "faq3_q": "Y a-t-il un minimum de ventes ?",
+      "faq3_a": "Non, vous êtes payé dès la première vente validée.",
+      "faq4_q": "Comment suivre mes performances ?",
+      "faq4_a": "Tableau de bord FirstPromoter temps réel : clics, conversions, revenus, taux."
+    }
+  }
+}

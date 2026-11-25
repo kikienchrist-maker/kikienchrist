@@ -1,7 +1,11 @@
 ---
 // Footer.astro — Localized version with inline language switcher + legal links
 
-import translations from '../data/translations.json';
+import fs from 'fs';
+import path from 'path';
+import type { Lang } from '../data/translations.json';
+
+const translations = JSON.parse(fs.readFileSync(path.resolve('./src/data/translations.json'), 'utf-8'));
 
 interface NavItem {
   label: string;
@@ -27,7 +31,13 @@ interface Props {
   availability?: string;
   copyright?: string;
   locale?: string;
+  lang?: Lang;
+  currentPath?: string;
 }
+
+const { lang = 'fr', currentPath = '/' } = Astro.props;
+const t = translations[lang] || translations.fr;
+const currentLang = lang;
 
 const nav = Astro.props.nav ?? [
   { label: t.common?.home || "Accueil", href: `/${currentLang}/` },
@@ -43,11 +53,6 @@ const social = Astro.props.social ?? [
 ];
 
 // Legal navigation - built from translations if not provided
-const currentLang = Astro.props.locale || Astro.params.lang || 'fr';
-const t = translations[currentLang] || translations.fr;
-
-// Les routes Astro utilisent les slugs FR (pageSlug) pour toutes les langues
-// Ex: /en/mentions-legales/, /hi/mentions-legales/
 const legalSlugs = ['mentions-legales', 'confidentialite', 'cookies', 'cgv', 'accessibilite'] as const;
 const defaultLegalNav: LegalNavItem[] = legalSlugs.map(slug => ({
   label: t.legal?.nav?.[slug] || slug,
@@ -74,8 +79,6 @@ const SUPPORTED_LANGS = [
   { code: 'zh', name: '中文', flag: '🇨🇳' },
   { code: 'hi', name: 'हिन्दी', flag: '🇮🇳' },
 ];
-
-const currentPath = Astro.url.pathname;
 ---
 
 <footer class="site" role="contentinfo">

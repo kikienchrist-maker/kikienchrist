@@ -1,0 +1,117 @@
+---
+// src/components/OptimizedImage.astro
+// Wrapper Astro Image natif (astro:assets) + fallback pour URLs externes (Vercel Blob, etc.)
+
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: ImageMetadata | string; // import local OU URL externe (Vercel Blob, etc.)
+  alt: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'sync';
+  class?: string;
+  priority?: boolean; // preload pour LCP (hero, cover)
+  sizes?: string;
+  format?: 'avif' | 'webp' | 'jpg' | 'png';
+  quality?: number;
+  // Pour URLs externes : paramètres de transformation Vercel Blob / imgproxy
+  transform?: {
+    w?: number;
+    h?: number;
+    fit?: 'cover' | 'contain' | 'fill' | 'inside' | 'outside';
+    q?: number; // quality 1-100
+    f?: 'avif' | 'webp' | 'jpg' | 'png' | 'auto';
+  }[];
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  loading = 'lazy',
+  decoding = 'async',
+  class = '',
+  priority = false,
+  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
+  format = 'avif',
+  quality = 80,
+  transform = [],
+} = Astro.props;
+
+const isLocal = typeof src === 'object' && 'src' in src;
+
+// Génère srcset pour URL externe avec paramètres de transformation
+function generateSrcSet(baseUrl: string, transforms: NonNullable<Props['transform']>): string {
+  if (transforms.length === 0) return '';
+  return transforms
+    .map(t => {
+      const params = new URLSearchParams();
+      if (t.w) params.set('w', String(t.w));
+      if (t.h) params.set('h', String(t.h));
+      if (t.fit) params.set('fit', t.fit);
+      if (t.q) params.set('q', String(t.q));
+      if (t.f) params.set('f', t.f);
+      return `${baseUrl}?${params.toString()} ${t.w || t.h ? `${t.w || t.h}w` : ''}`;
+    })
+    .filter(s => s.trim())
+    .join(', ');
+}
+
+// Transform par défaut pour responsive (si non fourni)
+const defaultTransforms = transform.length > 0 ? transform : [
+  { w: 400, f: 'avif', q: 75 },
+  { w: 800, f: 'avif', q: 80 },
+  { w: 1200, f: 'avif', q: 85 },
+  { w: 400, f: 'webp', q: 75 },
+  { w: 800, f: 'webp', q: 80 },
+  { w: 1200, f: 'webp', q: 85 },
+];
+---
+
+{isLocal ? (
+  <!-- Image locale : optimisée par Astro + Sharp au build -->
+  <Image
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding={decoding}
+    class={class}
+    format={format}
+    quality={quality}
+    inferSize={true}
+    {/* priority géré via preload dans head si nécessaire */}
+  />
+) : (
+  <!-- URL externe (Vercel Blob, CDN) : picture + srcset manuel -->
+  <picture>
+    {priority && (
+      <link rel="preload" as="image" href={`${src}?w=800&f=webp&q=80`} />
+    )}
+    <source
+      type="image/avif"
+      srcSet={generateSrcSet(src, defaultTransforms.filter(t => t.f === 'avif'))}
+      sizes={sizes}
+    />
+    <source
+      type="image/webp"
+      srcSet={generateSrcSet(src, defaultTransforms.filter(t => t.f === 'webp'))}
+      sizes={sizes}
+    />
+    <img
+      src={`${src}?w=800&f=webp&q=80`}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding={decoding}
+      class={class}
+      sizes={sizes}
+    />
+  </picture>
+)}

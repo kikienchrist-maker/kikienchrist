@@ -1,0 +1,34 @@
+---
+// ABTest.astro - Render different variants based on middleware header
+// Usage: <ABTest experimentId="hero-cta-v1" variant-a={...} variant-b={...} />
+
+import { getVariantConfig } from '../lib/experiments';
+
+interface Props {
+  experimentId: string;
+  variantA: any; // Astro component or HTML string
+  variantB: any;
+  fallback?: 'a' | 'b'; // default variant if no header
+}
+
+const { experimentId, variantA, variantB, fallback = 'a' } = Astro.props;
+
+// Read variant from middleware header (injected via Vary header)
+const request = Astro.request;
+const headerName = `x-ab-${experimentId}`;
+const variant = request.headers.get(headerName) as 'a' | 'b' | null;
+
+// For static builds, use fallback; middleware only runs on Vercel Edge
+const activeVariant = variant || fallback;
+
+// Track which variant is rendered (for client-side GA4)
+const variantKey = activeVariant;
+---
+
+<script is:inline>
+  // Expose variant to client for GA4 tracking
+  window.__AB_VARIANTS__ = window.__AB_VARIANTS__ || {};
+  window.__AB_VARIANTS__['{experimentId}'] = '{variantKey}';
+</script>
+
+{activeVariant === 'a' ? variantA : variantB}

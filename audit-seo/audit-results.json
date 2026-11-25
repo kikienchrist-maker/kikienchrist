@@ -1,0 +1,4986 @@
+[
+  {
+    "url": "https://kikienchrist.vercel.app/fr",
+    "lang": "fr",
+    "status": 200,
+    "title": "Livres chrétiens pour fortifier votre foi — Kiki en Christ",
+    "metaDesc": "Quatre livres pour ceux qui cherchent Dieu au-delà des dogmes. Papier, ebook et audio, en français et jusqu'à 9 langues. Livraison en 3-5 jours.",
+    "h1": "Des livres pour ceux qui cherchent Dieu au-delà des dogmes",
+    "h1Count": 1,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "fr_FR",
+      "og:title": "Livres chrétiens pour fortifier votre foi — Kiki en Christ",
+      "og:description": "Quatre livres pour ceux qui cherchent Dieu au-delà des dogmes. Papier, ebook et audio, en français et jusqu'à 9 langues. Livraison en 3-5 jours.",
+      "og:url": "https://kikienchrist.vercel.app/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Livres chrétiens pour fortifier votre foi — Kiki en Christ"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 4668.100000000093,
+      "loadComplete": 6355.600000000093,
+      "fcp": 4672
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 100,
+      "issues": []
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi", "prière", "dieu"],
+    "motsCount": 917
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/fr/blog/",
+    "lang": "fr",
+    "status": 200,
+    "title": "Blog — Articles & Ressources | Kiki en Christ",
+    "metaDesc": "Articles, enseignements, témoignages et ressources pour grandir dans votre foi. Blog chrétien multilingue.",
+    "h1": "Articles & Ressources",
+    "h1Count": 1,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "fr_FR",
+      "og:title": "Blog — Articles & Ressources | Kiki en Christ",
+      "og:description": "Articles, enseignements, témoignages et ressources pour grandir dans votre foi. Blog chrétien multilingue.",
+      "og:url": "https://kikienchrist.vercel.app/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Blog — Articles & Ressources | Kiki en Christ"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 519.8000000002794,
+      "loadComplete": 519.8999999999069,
+      "fcp": 472
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 100,
+      "issues": []
+    },
+    "motsCles": ["kiki", "christ", "chrétien", "foi", "prière", "dieu", "esprit"],
+    "motsCount": 862
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/fr/livres/",
+    "lang": "fr",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 213.5,
+      "loadComplete": 223.1999999997206,
+      "fcp": 252
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/fr/partenaires/",
+    "lang": "fr",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 159.09999999962747,
+      "loadComplete": 159.1999999997206,
+      "fcp": 164
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/fr/contact/",
+    "lang": "fr",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 196.70000000018626,
+      "loadComplete": 197.40000000037253,
+      "fcp": 204
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/fr/mentions-legales/",
+    "lang": "fr",
+    "status": 200,
+    "title": "Mentions légales",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Mentions légales",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/fr/mentions-legales/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "fr_FR",
+      "og:title": "Mentions légales",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/fr/mentions-legales/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Mentions légales"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 574.2999999998137,
+      "loadComplete": 588,
+      "fcp": 584
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 16 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi"],
+    "motsCount": 758
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/fr/politique-confidentialite/",
+    "lang": "fr",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 189.10000000009313,
+      "loadComplete": 189.8000000002794,
+      "fcp": 208
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/fr/cookies/",
+    "lang": "fr",
+    "status": 200,
+    "title": "Politique des cookies",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Politique des cookies",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/fr/cookies/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "fr_FR",
+      "og:title": "Politique des cookies",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/fr/cookies/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Politique des cookies"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 480.89999999990687,
+      "loadComplete": 492.39999999990687,
+      "fcp": 500
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 21 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 874
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/fr/cgv/",
+    "lang": "fr",
+    "status": 200,
+    "title": "Conditions générales de vente",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Conditions générales de vente",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/fr/cgv/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "fr_FR",
+      "og:title": "Conditions générales de vente",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/fr/cgv/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Conditions générales de vente"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 470.40000000037253,
+      "loadComplete": 481,
+      "fcp": 480
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 29 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi", "dieu"],
+    "motsCount": 1007
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/fr/accessibilite/",
+    "lang": "fr",
+    "status": 200,
+    "title": "Accessibilité",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Accessibilité",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/fr/accessibilite/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "fr_FR",
+      "og:title": "Accessibilité",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/fr/accessibilite/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Accessibilité"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 495.20000000018626,
+      "loadComplete": 506,
+      "fcp": 500
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 13 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi", "dieu"],
+    "motsCount": 944
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/en",
+    "lang": "en",
+    "status": 200,
+    "title": "Christian books to strengthen your faith — Kiki en Christ",
+    "metaDesc": "Four books for those seeking God beyond dogma. Paperback, ebook, and audio, in English and up to 9 languages. Ships in 3-5 days.",
+    "h1": "Books for those seeking God beyond dogma",
+    "h1Count": 1,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/en/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "en_US",
+      "og:title": "Christian books to strengthen your faith — Kiki en Christ",
+      "og:description": "Four books for those seeking God beyond dogma. Paperback, ebook, and audio, in English and up to 9 languages. Ships in 3-5 days.",
+      "og:url": "https://kikienchrist.vercel.app/en/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Christian books to strengthen your faith — Kiki en Christ"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 437.5,
+      "loadComplete": 1206.7000000001863,
+      "fcp": 452
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 100,
+      "issues": []
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 889
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/en/blog/",
+    "lang": "en",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 184.39999999990687,
+      "loadComplete": 184.5,
+      "fcp": 192
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/en/livres/",
+    "lang": "en",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 164.6999999997206,
+      "loadComplete": 165.29999999981374,
+      "fcp": 172
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/en/partenaires/",
+    "lang": "en",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 182.89999999990687,
+      "loadComplete": 183.5,
+      "fcp": 188
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/en/contact/",
+    "lang": "en",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 177.89999999990687,
+      "loadComplete": 178.3000000002794,
+      "fcp": 184
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/en/mentions-legales/",
+    "lang": "en",
+    "status": 200,
+    "title": "Legal Notice",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Legal Notice",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/en/legal/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "en_US",
+      "og:title": "Legal Notice",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/en/legal/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Legal Notice"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 418.70000000018626,
+      "loadComplete": 427.90000000037253,
+      "fcp": 436
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 12 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 730
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/en/politique-confidentialite/",
+    "lang": "en",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 184.10000000009313,
+      "loadComplete": 184.70000000018626,
+      "fcp": 192
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/en/cookies/",
+    "lang": "en",
+    "status": 200,
+    "title": "Cookie Policy",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Cookie Policy",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/en/cookies/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "en_US",
+      "og:title": "Cookie Policy",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/en/cookies/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Cookie Policy"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 410.6999999997206,
+      "loadComplete": 424.6999999997206,
+      "fcp": 420
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 13 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 872
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/en/cgv/",
+    "lang": "en",
+    "status": 200,
+    "title": "Terms of Service",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Terms of Service",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/en/tos/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "en_US",
+      "og:title": "Terms of Service",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/en/tos/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Terms of Service"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 407.60000000009313,
+      "loadComplete": 419.89999999990687,
+      "fcp": 416
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 16 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi", "dieu"],
+    "motsCount": 1016
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/en/accessibilite/",
+    "lang": "en",
+    "status": 200,
+    "title": "Accessibility",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Accessibility",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/en/accessibility/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "en_US",
+      "og:title": "Accessibility",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/en/accessibility/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Accessibility"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 424.3000000002794,
+      "loadComplete": 434,
+      "fcp": 432
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 13 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "foi", "dieu"],
+    "motsCount": 940
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/es",
+    "lang": "es",
+    "status": 200,
+    "title": "Libros cristianos para fortalecer tu fe — Kiki en Christ",
+    "metaDesc": "Cuatro libros para quienes buscan a Dios más allá del dogma. Tapa blanda, ebook y audio, en español y hasta 9 idiomas. Envío en 3-5 días.",
+    "h1": "Libros para quienes buscan a Dios más allá del dogma",
+    "h1Count": 1,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/es/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "es_ES",
+      "og:title": "Libros cristianos para fortalecer tu fe — Kiki en Christ",
+      "og:description": "Cuatro libros para quienes buscan a Dios más allá del dogma. Tapa blanda, ebook y audio, en español y hasta 9 idiomas. Envío en 3-5 días.",
+      "og:url": "https://kikienchrist.vercel.app/es/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Libros cristianos para fortalecer tu fe — Kiki en Christ"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 467.29999999981374,
+      "loadComplete": 1015.2999999998137,
+      "fcp": 504
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 100,
+      "issues": []
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 896
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/es/blog/",
+    "lang": "es",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 186.5,
+      "loadComplete": 186.70000000018626,
+      "fcp": 192
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/es/livres/",
+    "lang": "es",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 187.79999999981374,
+      "loadComplete": 188.59999999962747,
+      "fcp": 200
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/es/partenaires/",
+    "lang": "es",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 195,
+      "loadComplete": 195.5,
+      "fcp": 200
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/es/contact/",
+    "lang": "es",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 180.3000000002794,
+      "loadComplete": 180.90000000037253,
+      "fcp": 188
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/es/mentions-legales/",
+    "lang": "es",
+    "status": 200,
+    "title": "Aviso Legal",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Aviso Legal",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/es/avis-legal/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "es_ES",
+      "og:title": "Aviso Legal",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/es/avis-legal/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Aviso Legal"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 428.70000000018626,
+      "loadComplete": 438.79999999981374,
+      "fcp": 444
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 11 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 756
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/es/politique-confidentialite/",
+    "lang": "es",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 180.60000000009313,
+      "loadComplete": 181.20000000018626,
+      "fcp": 200
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/es/cookies/",
+    "lang": "es",
+    "status": 200,
+    "title": "Política de Cookies",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Política de Cookies",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/es/cookies/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "es_ES",
+      "og:title": "Política de Cookies",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/es/cookies/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Política de Cookies"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 404.10000000009313,
+      "loadComplete": 414.29999999981374,
+      "fcp": 408
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 19 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 874
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/es/cgv/",
+    "lang": "es",
+    "status": 200,
+    "title": "Condiciones Generales de Venta",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Condiciones Generales de Venta",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/es/tyc/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "es_ES",
+      "og:title": "Condiciones Generales de Venta",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/es/tyc/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Condiciones Generales de Venta"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 417.20000000018626,
+      "loadComplete": 427.3000000002794,
+      "fcp": 424
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 80,
+      "issues": ["Meta desc: 41 chars (optimal 70-160)", "H1 count: 2 (doit être 1)"]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 1020
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/es/accessibilite/",
+    "lang": "es",
+    "status": 200,
+    "title": "Accesibilidad",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Accesibilidad",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/es/accesibilidad/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "es_ES",
+      "og:title": "Accesibilidad",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/es/accesibilidad/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Accesibilidad"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 392.10000000009313,
+      "loadComplete": 401.70000000018626,
+      "fcp": 400
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 13 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "foi", "dieu"],
+    "motsCount": 922
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pt",
+    "lang": "pt",
+    "status": 200,
+    "title": "Livros cristãos para fortalecer a sua fé — Kiki en Christ",
+    "metaDesc": "Quatro livros para quem busca a Deus além do dogma. Capa comum, ebook e áudio, em português e até 9 idiomas. Envio em 3-5 dias.",
+    "h1": "Livros para quem busca a Deus além do dogma",
+    "h1Count": 1,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/pt/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "pt_PT",
+      "og:title": "Livros cristãos para fortalecer a sua fé — Kiki en Christ",
+      "og:description": "Quatro livros para quem busca a Deus além do dogma. Capa comum, ebook e áudio, em português e até 9 idiomas. Envio em 3-5 dias.",
+      "og:url": "https://kikienchrist.vercel.app/pt/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Livros cristãos para fortalecer a sua fé — Kiki en Christ"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 419.20000000018626,
+      "loadComplete": 1001.7999999998137,
+      "fcp": 448
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 100,
+      "issues": []
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 918
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pt/blog/",
+    "lang": "pt",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 172.6999999997206,
+      "loadComplete": 172.89999999990687,
+      "fcp": 176
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pt/livres/",
+    "lang": "pt",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 178.90000000037253,
+      "loadComplete": 179.40000000037253,
+      "fcp": 188
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pt/partenaires/",
+    "lang": "pt",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 180.60000000009313,
+      "loadComplete": 181.70000000018626,
+      "fcp": 188
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pt/contact/",
+    "lang": "pt",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 185.20000000018626,
+      "loadComplete": 185.70000000018626,
+      "fcp": 192
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pt/mentions-legales/",
+    "lang": "pt",
+    "status": 200,
+    "title": "Aviso Legal",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Aviso Legal",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/pt/termos-legais/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "pt_PT",
+      "og:title": "Aviso Legal",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/pt/termos-legais/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Aviso Legal"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 436.89999999990687,
+      "loadComplete": 447.59999999962747,
+      "fcp": 452
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 11 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 741
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pt/politique-confidentialite/",
+    "lang": "pt",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 191.10000000009313,
+      "loadComplete": 191.70000000018626,
+      "fcp": 208
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pt/cookies/",
+    "lang": "pt",
+    "status": 200,
+    "title": "Política de Cookies",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Política de Cookies",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/pt/cookies/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "pt_PT",
+      "og:title": "Política de Cookies",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/pt/cookies/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Política de Cookies"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 387,
+      "loadComplete": 400.29999999981374,
+      "fcp": 392
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 19 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 872
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pt/cgv/",
+    "lang": "pt",
+    "status": 200,
+    "title": "Termos e Condições",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Termos e Condições",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/pt/tc/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "pt_PT",
+      "og:title": "Termos e Condições",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/pt/tc/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Termos e Condições"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 407.70000000018626,
+      "loadComplete": 418.10000000009313,
+      "fcp": 412
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 18 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "foi"],
+    "motsCount": 1014
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pt/accessibilite/",
+    "lang": "pt",
+    "status": 200,
+    "title": "Acessibilidade",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Acessibilidade",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/pt/acessibilidade/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "pt_PT",
+      "og:title": "Acessibilidade",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/pt/acessibilidade/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Acessibilidade"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 654.7000000001863,
+      "loadComplete": 665.9000000003725,
+      "fcp": 660
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "foi", "dieu"],
+    "motsCount": 951
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/de",
+    "lang": "de",
+    "status": 200,
+    "title": "Christliche Bücher für Ihren Glauben — Kiki en Christ",
+    "metaDesc": "Vier Bücher für diejenigen, die Gott jenseits von Dogmen suchen. Taschenbuch, E-Book und Hörbuch, auf Deutsch und in bis zu 9 Sprachen. Versand in 3-5 Tagen.",
+    "h1": "Bücher für diejenigen, die Gott jenseits von Dogmen suchen",
+    "h1Count": 1,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/de/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "de_DE",
+      "og:title": "Christliche Bücher für Ihren Glauben — Kiki en Christ",
+      "og:description": "Vier Bücher für diejenigen, die Gott jenseits von Dogmen suchen. Taschenbuch, E-Book und Hörbuch, auf Deutsch und in bis zu 9 Sprachen. Versand in 3-5 Tagen.",
+      "og:url": "https://kikienchrist.vercel.app/de/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Christliche Bücher für Ihren Glauben — Kiki en Christ"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 446,
+      "loadComplete": 977.6000000000931,
+      "fcp": 476
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 100,
+      "issues": []
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 903
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/de/blog/",
+    "lang": "de",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 168.29999999981374,
+      "loadComplete": 168.39999999990687,
+      "fcp": 172
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/de/livres/",
+    "lang": "de",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 159.6999999997206,
+      "loadComplete": 160.1999999997206,
+      "fcp": 164
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/de/partenaires/",
+    "lang": "de",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 190,
+      "loadComplete": 190.60000000009313,
+      "fcp": 196
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/de/contact/",
+    "lang": "de",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 162.3000000002794,
+      "loadComplete": 162.8000000002794,
+      "fcp": 168
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/de/mentions-legales/",
+    "lang": "de",
+    "status": 200,
+    "title": "Impressum",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Impressum",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/de/impressum/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "de_DE",
+      "og:title": "Impressum",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/de/impressum/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Impressum"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 449.29999999981374,
+      "loadComplete": 460.09999999962747,
+      "fcp": 468
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 9 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi"],
+    "motsCount": 762
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/de/politique-confidentialite/",
+    "lang": "de",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 180.89999999990687,
+      "loadComplete": 181.29999999981374,
+      "fcp": 200
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/de/cookies/",
+    "lang": "de",
+    "status": 200,
+    "title": "Cookie-Richtlinie",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Cookie-Richtlinie",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/de/cookies/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "de_DE",
+      "og:title": "Cookie-Richtlinie",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/de/cookies/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Cookie-Richtlinie"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 413.5,
+      "loadComplete": 424.60000000009313,
+      "fcp": 432
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 17 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 878
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/de/cgv/",
+    "lang": "de",
+    "status": 200,
+    "title": "Allgemeine Geschäftsbedingungen",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Allgemeine Geschäftsbedingungen",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/de/agb/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "de_DE",
+      "og:title": "Allgemeine Geschäftsbedingungen",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/de/agb/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Allgemeine Geschäftsbedingungen"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 478.5,
+      "loadComplete": 488.60000000009313,
+      "fcp": 484
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 80,
+      "issues": ["Meta desc: 41 chars (optimal 70-160)", "H1 count: 2 (doit être 1)"]
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi", "dieu"],
+    "motsCount": 1016
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/de/accessibilite/",
+    "lang": "de",
+    "status": 200,
+    "title": "Barrierefreiheit",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Barrierefreiheit",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/de/barrierefreiheit/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "de_DE",
+      "og:title": "Barrierefreiheit",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/de/barrierefreiheit/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Barrierefreiheit"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 399.20000000018626,
+      "loadComplete": 410.20000000018626,
+      "fcp": 404
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 16 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi", "dieu"],
+    "motsCount": 955
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/it",
+    "lang": "it",
+    "status": 200,
+    "title": "Libri cristiani per rafforzare la tua fede — Kiki en Christ",
+    "metaDesc": "Quattro libri per chi cerca Dio oltre i dogmi. Brossura, ebook e audiolibro, in italiano e fino a 9 lingue. Spedizione in 3-5 giorni.",
+    "h1": "Libri per chi cerca Dio oltre i dogmi",
+    "h1Count": 1,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/it/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "it_IT",
+      "og:title": "Libri cristiani per rafforzare la tua fede — Kiki en Christ",
+      "og:description": "Quattro libri per chi cerca Dio oltre i dogmi. Brossura, ebook e audiolibro, in italiano e fino a 9 lingue. Spedizione in 3-5 giorni.",
+      "og:url": "https://kikienchrist.vercel.app/it/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Libri cristiani per rafforzare la tua fede — Kiki en Christ"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 414.6999999997206,
+      "loadComplete": 1102.5,
+      "fcp": 480
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 100,
+      "issues": []
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 866
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/it/blog/",
+    "lang": "it",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 178.10000000009313,
+      "loadComplete": 178.20000000018626,
+      "fcp": 184
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/it/livres/",
+    "lang": "it",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 170.09999999962747,
+      "loadComplete": 170.59999999962747,
+      "fcp": 180
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/it/partenaires/",
+    "lang": "it",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 185.5,
+      "loadComplete": 186.1999999997206,
+      "fcp": 196
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/it/contact/",
+    "lang": "it",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 187.5,
+      "loadComplete": 188,
+      "fcp": 196
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/it/mentions-legales/",
+    "lang": "it",
+    "status": 200,
+    "title": "Note Legali",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Note Legali",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/it/note-legali/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "it_IT",
+      "og:title": "Note Legali",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/it/note-legali/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Note Legali"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 412.1999999997206,
+      "loadComplete": 422.5,
+      "fcp": 416
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 11 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 763
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/it/politique-confidentialite/",
+    "lang": "it",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 271.6999999997206,
+      "loadComplete": 272.29999999981374,
+      "fcp": 280
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/it/cookies/",
+    "lang": "it",
+    "status": 200,
+    "title": "Informativa sui Cookie",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Informativa sui Cookie",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/it/cookies/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "it_IT",
+      "og:title": "Informativa sui Cookie",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/it/cookies/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Informativa sui Cookie"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 394.39999999990687,
+      "loadComplete": 406,
+      "fcp": 412
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 22 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 880
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/it/cgv/",
+    "lang": "it",
+    "status": 200,
+    "title": "Condizioni Generali di Vendita",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Condizioni Generali di Vendita",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/it/tcv/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "it_IT",
+      "og:title": "Condizioni Generali di Vendita",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/it/tcv/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Condizioni Generali di Vendita"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 398.20000000018626,
+      "loadComplete": 407.70000000018626,
+      "fcp": 404
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 80,
+      "issues": ["Meta desc: 41 chars (optimal 70-160)", "H1 count: 2 (doit être 1)"]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 1038
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/it/accessibilite/",
+    "lang": "it",
+    "status": 200,
+    "title": "Accessibilità",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Accessibilità",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/it/accessibilita/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "it_IT",
+      "og:title": "Accessibilità",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/it/accessibilita/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Accessibilità"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 406,
+      "loadComplete": 415.70000000018626,
+      "fcp": 412
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 13 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "foi", "dieu"],
+    "motsCount": 971
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/nl",
+    "lang": "nl",
+    "status": 200,
+    "title": "Christian books to strengthen your faith — Kiki en Christ",
+    "metaDesc": "Four books for those seeking God beyond dogma. Paperback, ebook, and audio, in English and up to 9 languages. Ships in 3-5 days.",
+    "h1": "Books for those seeking God beyond dogma",
+    "h1Count": 1,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/nl/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "nl_NL",
+      "og:title": "Christian books to strengthen your faith — Kiki en Christ",
+      "og:description": "Four books for those seeking God beyond dogma. Paperback, ebook, and audio, in English and up to 9 languages. Ships in 3-5 days.",
+      "og:url": "https://kikienchrist.vercel.app/nl/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Christian books to strengthen your faith — Kiki en Christ"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 426.79999999981374,
+      "loadComplete": 983,
+      "fcp": 440
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 100,
+      "issues": []
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi", "dieu"],
+    "motsCount": 912
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/nl/blog/",
+    "lang": "nl",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 175.3000000002794,
+      "loadComplete": 175.39999999990687,
+      "fcp": 180
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/nl/livres/",
+    "lang": "nl",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 234,
+      "loadComplete": 234.60000000009313,
+      "fcp": 240
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/nl/partenaires/",
+    "lang": "nl",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 166.60000000009313,
+      "loadComplete": 167.10000000009313,
+      "fcp": 172
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/nl/contact/",
+    "lang": "nl",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 195.5,
+      "loadComplete": 196.39999999990687,
+      "fcp": 208
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/nl/mentions-legales/",
+    "lang": "nl",
+    "status": 200,
+    "title": "Rechtelijke Kennisgeving",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Rechtelijke Kennisgeving",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/nl/mentions-legales/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "nl_NL",
+      "og:title": "Rechtelijke Kennisgeving",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/nl/mentions-legales/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Rechtelijke Kennisgeving"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 443.90000000037253,
+      "loadComplete": 455.10000000009313,
+      "fcp": 460
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 24 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 756
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/nl/politique-confidentialite/",
+    "lang": "nl",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 190.20000000018626,
+      "loadComplete": 190.8000000002794,
+      "fcp": 220
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/nl/cookies/",
+    "lang": "nl",
+    "status": 200,
+    "title": "Cookiebeleid",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Cookiebeleid",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/nl/cookies/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "nl_NL",
+      "og:title": "Cookiebeleid",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/nl/cookies/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Cookiebeleid"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 411.79999999981374,
+      "loadComplete": 423.79999999981374,
+      "fcp": 424
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 12 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 904
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/nl/cgv/",
+    "lang": "nl",
+    "status": 200,
+    "title": "Algemene Voorwaarden",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Algemene Voorwaarden",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/nl/cgv/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "nl_NL",
+      "og:title": "Algemene Voorwaarden",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/nl/cgv/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Algemene Voorwaarden"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 425.5,
+      "loadComplete": 438.89999999990687,
+      "fcp": 432
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 20 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 1014
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/nl/accessibilite/",
+    "lang": "nl",
+    "status": 200,
+    "title": "Toegankelijkheid",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Toegankelijkheid",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/nl/accessibilite/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "nl_NL",
+      "og:title": "Toegankelijkheid",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/nl/accessibilite/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Toegankelijkheid"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 398.79999999981374,
+      "loadComplete": 409.20000000018626,
+      "fcp": 404
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 16 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "foi", "dieu"],
+    "motsCount": 952
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pl",
+    "lang": "pl",
+    "status": 200,
+    "title": "Christian books to strengthen your faith — Kiki en Christ",
+    "metaDesc": "Four books for those seeking God beyond dogma. Paperback, ebook, and audio, in English and up to 9 languages. Ships in 3-5 days.",
+    "h1": "Books for those seeking God beyond dogma",
+    "h1Count": 1,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/pl/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "pl_PL",
+      "og:title": "Christian books to strengthen your faith — Kiki en Christ",
+      "og:description": "Four books for those seeking God beyond dogma. Paperback, ebook, and audio, in English and up to 9 languages. Ships in 3-5 days.",
+      "og:url": "https://kikienchrist.vercel.app/pl/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Christian books to strengthen your faith — Kiki en Christ"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 437.1999999997206,
+      "loadComplete": 450.29999999981374,
+      "fcp": 456
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 100,
+      "issues": []
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi", "dieu"],
+    "motsCount": 912
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pl/blog/",
+    "lang": "pl",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 174.60000000009313,
+      "loadComplete": 174.60000000009313,
+      "fcp": 180
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pl/livres/",
+    "lang": "pl",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 363,
+      "loadComplete": 363.60000000009313,
+      "fcp": 372
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pl/partenaires/",
+    "lang": "pl",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 192.70000000018626,
+      "loadComplete": 193.3000000002794,
+      "fcp": 200
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pl/contact/",
+    "lang": "pl",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 185.70000000018626,
+      "loadComplete": 186.20000000018626,
+      "fcp": 192
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pl/mentions-legales/",
+    "lang": "pl",
+    "status": 200,
+    "title": "Informacje Prawne",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Informacje Prawne",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/pl/mentions-legales/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "pl_PL",
+      "og:title": "Informacje Prawne",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/pl/mentions-legales/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Informacje Prawne"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 419.10000000009313,
+      "loadComplete": 430.10000000009313,
+      "fcp": 428
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 17 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi"],
+    "motsCount": 764
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pl/politique-confidentialite/",
+    "lang": "pl",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 180.20000000018626,
+      "loadComplete": 180.89999999990687,
+      "fcp": 188
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pl/cookies/",
+    "lang": "pl",
+    "status": 200,
+    "title": "Polityka Ciasteczek",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Polityka Ciasteczek",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/pl/cookies/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "pl_PL",
+      "og:title": "Polityka Ciasteczek",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/pl/cookies/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Polityka Ciasteczek"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 424.09999999962747,
+      "loadComplete": 439.79999999981374,
+      "fcp": 432
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 19 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 880
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pl/cgv/",
+    "lang": "pl",
+    "status": 200,
+    "title": "Regulamin Zakupów",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Regulamin Zakupów",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/pl/cgv/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "pl_PL",
+      "og:title": "Regulamin Zakupów",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/pl/cgv/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Regulamin Zakupów"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 403.5,
+      "loadComplete": 413.70000000018626,
+      "fcp": 408
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 17 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "livre"],
+    "motsCount": 1018
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/pl/accessibilite/",
+    "lang": "pl",
+    "status": 200,
+    "title": "Dostępność",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Dostępność",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/pl/accessibilite/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "pl_PL",
+      "og:title": "Dostępność",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/pl/accessibilite/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Dostępność"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 404,
+      "loadComplete": 415.70000000018626,
+      "fcp": 412
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 10 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "foi", "dieu"],
+    "motsCount": 964
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ar",
+    "lang": "ar",
+    "status": 200,
+    "title": "Christian books to strengthen your faith — Kiki en Christ",
+    "metaDesc": "Four books for those seeking God beyond dogma. Paperback, ebook, and audio, in English and up to 9 languages. Ships in 3-5 days.",
+    "h1": "Books for those seeking God beyond dogma",
+    "h1Count": 1,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/ar/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "ar_AR",
+      "og:title": "Christian books to strengthen your faith — Kiki en Christ",
+      "og:description": "Four books for those seeking God beyond dogma. Paperback, ebook, and audio, in English and up to 9 languages. Ships in 3-5 days.",
+      "og:url": "https://kikienchrist.vercel.app/ar/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Christian books to strengthen your faith — Kiki en Christ"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 417.8000000002794,
+      "loadComplete": 427.20000000018626,
+      "fcp": 440
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 100,
+      "issues": []
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi", "dieu"],
+    "motsCount": 912
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ar/blog/",
+    "lang": "ar",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 172.5,
+      "loadComplete": 173.10000000009313,
+      "fcp": 224
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ar/livres/",
+    "lang": "ar",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 174.10000000009313,
+      "loadComplete": 175,
+      "fcp": 188
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ar/partenaires/",
+    "lang": "ar",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 191.70000000018626,
+      "loadComplete": 192.20000000018626,
+      "fcp": 204
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ar/contact/",
+    "lang": "ar",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 180.89999999990687,
+      "loadComplete": 181.5,
+      "fcp": 188
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ar/mentions-legales/",
+    "lang": "ar",
+    "status": 200,
+    "title": "إشعار قانوني",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "إشعار قانوني",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/ar/mentions-legales/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "ar_AR",
+      "og:title": "إشعار قانوني",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/ar/mentions-legales/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "إشعار قانوني"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 451.8000000002794,
+      "loadComplete": 462.3000000002794,
+      "fcp": 460
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 12 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi"],
+    "motsCount": 758
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ar/politique-confidentialite/",
+    "lang": "ar",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 179.10000000009313,
+      "loadComplete": 180.60000000009313,
+      "fcp": 212
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ar/cookies/",
+    "lang": "ar",
+    "status": 200,
+    "title": "سياسة ملفات تعريف الارتباط",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "سياسة ملفات تعريف الارتباط",
+    "h1Count": 3,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/ar/cookies/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "ar_AR",
+      "og:title": "سياسة ملفات تعريف الارتباط",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/ar/cookies/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "سياسة ملفات تعريف الارتباط"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 421,
+      "loadComplete": 431.59999999962747,
+      "fcp": 432
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 26 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 3 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 981
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ar/cgv/",
+    "lang": "ar",
+    "status": 200,
+    "title": "الشروط والأحكام",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "الشروط والأحكام",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/ar/cgv/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "ar_AR",
+      "og:title": "الشروط والأحكام",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/ar/cgv/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "الشروط والأحكام"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 442,
+      "loadComplete": 452,
+      "fcp": 448
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 15 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi", "dieu"],
+    "motsCount": 1005
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ar/accessibilite/",
+    "lang": "ar",
+    "status": 200,
+    "title": "إمكانية الوصول",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "إمكانية الوصول",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/ar/accessibilite/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "ar_AR",
+      "og:title": "إمكانية الوصول",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/ar/accessibilite/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "إمكانية الوصول"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 400.8000000002794,
+      "loadComplete": 410.70000000018626,
+      "fcp": 408
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi", "dieu"],
+    "motsCount": 1052
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ru",
+    "lang": "ru",
+    "status": 200,
+    "title": "Livres chrétiens pour fortifier votre foi — Kiki en Christ",
+    "metaDesc": "Quatre livres pour ceux qui cherchent Dieu au-delà des dogmes. Papier, ebook et audio, en français et jusqu'à 9 langues. Livraison en 3-5 jours.",
+    "h1": "Des livres pour ceux qui cherchent Dieu au-delà des dogmes",
+    "h1Count": 1,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/ru/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "ru_RU",
+      "og:title": "Livres chrétiens pour fortifier votre foi — Kiki en Christ",
+      "og:description": "Quatre livres pour ceux qui cherchent Dieu au-delà des dogmes. Papier, ebook et audio, en français et jusqu'à 9 langues. Livraison en 3-5 jours.",
+      "og:url": "https://kikienchrist.vercel.app/ru/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Livres chrétiens pour fortifier votre foi — Kiki en Christ"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 434.89999999990687,
+      "loadComplete": 526.8999999999069,
+      "fcp": 484
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 100,
+      "issues": []
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi", "prière", "dieu"],
+    "motsCount": 917
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ru/blog/",
+    "lang": "ru",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 180.89999999990687,
+      "loadComplete": 180.89999999990687,
+      "fcp": 188
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ru/livres/",
+    "lang": "ru",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 164.6999999997206,
+      "loadComplete": 165.29999999981374,
+      "fcp": 176
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ru/partenaires/",
+    "lang": "ru",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 187.39999999990687,
+      "loadComplete": 188.1999999997206,
+      "fcp": 196
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ru/contact/",
+    "lang": "ru",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 165.39999999990687,
+      "loadComplete": 165.89999999990687,
+      "fcp": 180
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ru/mentions-legales/",
+    "lang": "ru",
+    "status": 200,
+    "title": "Юридическая информация",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Юридическая информация",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/ru/юридическая-информация/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "ru_RU",
+      "og:title": "Юридическая информация",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/ru/юридическая-информация/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Юридическая информация"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 467.60000000009313,
+      "loadComplete": 479.8000000002794,
+      "fcp": 480
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 22 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 722
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ru/politique-confidentialite/",
+    "lang": "ru",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 177.89999999990687,
+      "loadComplete": 178.5,
+      "fcp": 188
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ru/cookies/",
+    "lang": "ru",
+    "status": 200,
+    "title": "Политика куки",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Политика куки",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/ru/cookies/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "ru_RU",
+      "og:title": "Политика куки",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/ru/cookies/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Политика куки"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 431.39999999990687,
+      "loadComplete": 443,
+      "fcp": 444
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 13 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 879
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ru/cgv/",
+    "lang": "ru",
+    "status": 200,
+    "title": "Условия продажи",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Условия продажи",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/ru/условия/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "ru_RU",
+      "og:title": "Условия продажи",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/ru/условия/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Условия продажи"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 397.59999999962747,
+      "loadComplete": 409.09999999962747,
+      "fcp": 404
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 15 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 1022
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/ru/accessibilite/",
+    "lang": "ru",
+    "status": 200,
+    "title": "Доступность",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Доступность",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/ru/доступность/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "ru_RU",
+      "og:title": "Доступность",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/ru/доступность/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Доступность"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 457.39999999990687,
+      "loadComplete": 468.89999999990687,
+      "fcp": 464
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 11 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "foi", "dieu"],
+    "motsCount": 931
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/zh",
+    "lang": "zh",
+    "status": 200,
+    "title": "Livres chrétiens pour fortifier votre foi — Kiki en Christ",
+    "metaDesc": "Quatre livres pour ceux qui cherchent Dieu au-delà des dogmes. Papier, ebook et audio, en français et jusqu'à 9 langues. Livraison en 3-5 jours.",
+    "h1": "Des livres pour ceux qui cherchent Dieu au-delà des dogmes",
+    "h1Count": 1,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/zh/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "zh_CN",
+      "og:title": "Livres chrétiens pour fortifier votre foi — Kiki en Christ",
+      "og:description": "Quatre livres pour ceux qui cherchent Dieu au-delà des dogmes. Papier, ebook et audio, en français et jusqu'à 9 langues. Livraison en 3-5 jours.",
+      "og:url": "https://kikienchrist.vercel.app/zh/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Livres chrétiens pour fortifier votre foi — Kiki en Christ"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 535.7000000001863,
+      "loadComplete": 548.5,
+      "fcp": 596
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 100,
+      "issues": []
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi", "prière", "dieu"],
+    "motsCount": 915
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/zh/blog/",
+    "lang": "zh",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 195,
+      "loadComplete": 195,
+      "fcp": 200
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/zh/livres/",
+    "lang": "zh",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 175.10000000009313,
+      "loadComplete": 175.70000000018626,
+      "fcp": 180
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/zh/partenaires/",
+    "lang": "zh",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 213.79999999981374,
+      "loadComplete": 214.29999999981374,
+      "fcp": 220
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/zh/contact/",
+    "lang": "zh",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 163.6999999997206,
+      "loadComplete": 164.1999999997206,
+      "fcp": 172
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/zh/mentions-legales/",
+    "lang": "zh",
+    "status": 200,
+    "title": "法律声明",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "法律声明",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/zh/法律声明/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "zh_CN",
+      "og:title": "法律声明",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/zh/法律声明/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "法律声明"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 539.1999999997206,
+      "loadComplete": 551.1999999997206,
+      "fcp": 544
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 4 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 524
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/zh/politique-confidentialite/",
+    "lang": "zh",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 204.29999999981374,
+      "loadComplete": 204.89999999990687,
+      "fcp": 216
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/zh/cookies/",
+    "lang": "zh",
+    "status": 200,
+    "title": "Cookie 政策",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "Cookie 政策",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/zh/cookies/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "zh_CN",
+      "og:title": "Cookie 政策",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/zh/cookies/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Cookie 政策"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 413.39999999990687,
+      "loadComplete": 423.89999999990687,
+      "fcp": 432
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 9 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 855
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/zh/cgv/",
+    "lang": "zh",
+    "status": 200,
+    "title": "销售条款",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "销售条款",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/zh/条款/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "zh_CN",
+      "og:title": "销售条款",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/zh/条款/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "销售条款"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 474.6999999997206,
+      "loadComplete": 486.79999999981374,
+      "fcp": 484
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 4 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 660
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/zh/accessibilite/",
+    "lang": "zh",
+    "status": 200,
+    "title": "无障碍",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "无障碍",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/zh/无障碍/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "zh_CN",
+      "og:title": "无障碍",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/zh/无障碍/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "无障碍"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 483.60000000009313,
+      "loadComplete": 497.60000000009313,
+      "fcp": 492
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 3 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "foi", "dieu"],
+    "motsCount": 612
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/hi",
+    "lang": "hi",
+    "status": 200,
+    "title": "Livres chrétiens pour fortifier votre foi — Kiki en Christ",
+    "metaDesc": "Quatre livres pour ceux qui cherchent Dieu au-delà des dogmes. Papier, ebook et audio, en français et jusqu'à 9 langues. Livraison en 3-5 jours.",
+    "h1": "Des livres pour ceux qui cherchent Dieu au-delà des dogmes",
+    "h1Count": 1,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/hi/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "hi_IN",
+      "og:title": "Livres chrétiens pour fortifier votre foi — Kiki en Christ",
+      "og:description": "Quatre livres pour ceux qui cherchent Dieu au-delà des dogmes. Papier, ebook et audio, en français et jusqu'à 9 langues. Livraison en 3-5 jours.",
+      "og:url": "https://kikienchrist.vercel.app/hi/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Livres chrétiens pour fortifier votre foi — Kiki en Christ"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 443.39999999990687,
+      "loadComplete": 690,
+      "fcp": 480
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 100,
+      "issues": []
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi", "prière", "dieu"],
+    "motsCount": 917
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/hi/blog/",
+    "lang": "hi",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 184.79999999981374,
+      "loadComplete": 184.89999999990687,
+      "fcp": 188
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/hi/livres/",
+    "lang": "hi",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 179.59999999962747,
+      "loadComplete": 180.09999999962747,
+      "fcp": 192
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/hi/partenaires/",
+    "lang": "hi",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 182.39999999990687,
+      "loadComplete": 182.79999999981374,
+      "fcp": 196
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/hi/contact/",
+    "lang": "hi",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 185.79999999981374,
+      "loadComplete": 186.89999999990687,
+      "fcp": 192
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/hi/mentions-legales/",
+    "lang": "hi",
+    "status": 200,
+    "title": "कानूनी नोटिस",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "कानूनी नोटिस",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/hi/कानूनी-नोटिस/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "hi_IN",
+      "og:title": "कानूनी नोटिस",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/hi/कानूनी-नोटिस/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "कानूनी नोटिस"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 472.59999999962747,
+      "loadComplete": 482.59999999962747,
+      "fcp": 476
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 12 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi"],
+    "motsCount": 764
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/hi/politique-confidentialite/",
+    "lang": "hi",
+    "status": 200,
+    "title": "404: NOT_FOUND",
+    "metaDesc": "",
+    "h1": "This page doesn’t exist",
+    "h1Count": 1,
+    "schemaOrg": false,
+    "canonical": "",
+    "ogTags": {},
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 188.60000000009313,
+      "loadComplete": 189.3000000002794,
+      "fcp": 216
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 40,
+      "issues": [
+        "Title: 14 chars (optimal 30-60)",
+        "Meta desc: 0 chars (optimal 70-160)",
+        "Canonical manquant",
+        "OG tags incomplets",
+        "Schema.org manquant",
+        "Contenu faible: 48 mots (min 300)"
+      ]
+    },
+    "motsCles": [],
+    "motsCount": 48
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/hi/cookies/",
+    "lang": "hi",
+    "status": 200,
+    "title": "कुकी नीति",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "कुकी नीति",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/hi/cookies/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "hi_IN",
+      "og:title": "कुकी नीति",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/hi/cookies/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "कुकी नीति"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 419.5,
+      "loadComplete": 432.70000000018626,
+      "fcp": 428
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 9 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ"],
+    "motsCount": 870
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/hi/cgv/",
+    "lang": "hi",
+    "status": 200,
+    "title": "बिक्री की शर्तें",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "बिक्री की शर्तें",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/hi/नियम-शर्तें/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "hi_IN",
+      "og:title": "बिक्री की शर्तें",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/hi/नियम-शर्तें/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "बिक्री की शर्तें"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 393.40000000037253,
+      "loadComplete": 404,
+      "fcp": 400
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 16 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "livre", "foi", "dieu"],
+    "motsCount": 1016
+  },
+  {
+    "url": "https://kikienchrist.vercel.app/hi/accessibilite/",
+    "lang": "hi",
+    "status": 200,
+    "title": "पहुंच",
+    "metaDesc": "Livres chrétiens pour fortifier votre foi",
+    "h1": "पहुंच",
+    "h1Count": 2,
+    "schemaOrg": true,
+    "canonical": "https://kikienchrist.vercel.app/hi/पहुंच/",
+    "ogTags": {
+      "og:type": "website",
+      "og:site_name": "Kiki en Christ",
+      "og:locale": "hi_IN",
+      "og:title": "पहुंच",
+      "og:description": "Livres chrétiens pour fortifier votre foi",
+      "og:url": "https://kikienchrist.vercel.app/hi/पहुंच/",
+      "og:image": "https://kikienchrist.vercel.app/og/accueil.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "पहुंच"
+    },
+    "performance": {
+      "lcp": 0,
+      "fid": 0,
+      "cls": 0,
+      "tbt": 0,
+      "domContentLoaded": 411.09999999962747,
+      "loadComplete": 423.59999999962747,
+      "fcp": 416
+    },
+    "accessibility": {
+      "score": 100,
+      "issues": []
+    },
+    "seo": {
+      "score": 70,
+      "issues": [
+        "Title: 5 chars (optimal 30-60)",
+        "Meta desc: 41 chars (optimal 70-160)",
+        "H1 count: 2 (doit être 1)"
+      ]
+    },
+    "motsCles": ["kiki", "christ", "foi", "dieu"],
+    "motsCount": 939
+  }
+]

@@ -1,0 +1,96 @@
+---
+// src/components/PWAInstallPrompt.astro
+// Affiche une invite d'installation personnalisée (après engagement utilisateur)
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'fr' } = Astro.props;
+---
+
+<div id="pwa-install-banner" class="bq-pwa-banner" hidden>
+  <div class="bq-pwa-content">
+    <svg class="bq-pwa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M12 2L2 7l10 5 10-5-10-5z" />
+      <path d="M2 17l10 5 10-5" />
+      <path d="M2 12l10 5 10-5" />
+    </svg>
+    <div class="bq-pwa-text">
+      <strong>Installer l'app</strong>
+      <span>Accédez à vos livres et articles hors-ligne</span>
+    </div>
+  </div>
+  <div class="bq-pwa-actions">
+    <button type="button" class="bq-btn bq-btn-secondary" data-action="dismiss">Plus tard</button>
+    <button type="button" class="bq-btn bq-btn-primary" data-action="install">Installer</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const banner = document.getElementById('pwa-install-banner');
+    if (!banner) return;
+    
+    let deferredPrompt = null;
+    const installBtn = banner.querySelector('[data-action="install"]');
+    const dismissBtn = banner.querySelector('[data-action="dismiss"]');
+    
+    // Écouter l'événement beforeinstallprompt
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      // Afficher après 30s de session ou 3 pages vues
+      setTimeout(() => showIfEligible(), 30000);
+    });
+    
+    function showIfEligible() {
+      const dismissed = localStorage.getItem('pwa-dismissed');
+      const installed = window.matchMedia('(display-mode: standalone)').matches;
+      if (!dismissed && !installed && deferredPrompt) {
+        banner.hidden = false;
+      }
+    }
+    
+    installBtn?.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        banner.hidden = true;
+        localStorage.setItem('pwa-installed', 'true');
+      }
+      deferredPrompt = null;
+    });
+    
+    dismissBtn?.addEventListener('click', () => {
+      banner.hidden = true;
+      localStorage.setItem('pwa-dismissed', 'true');
+    });
+    
+    // Détection installation réussie
+    window.addEventListener('appinstalled', () => {
+      banner.hidden = true;
+      localStorage.setItem('pwa-installed', 'true');
+    });
+  })();
+</script>
+
+<style is:global>
+  .bq-pwa-banner {
+    position: fixed; bottom: var(--bq-space-4); left: var(--bq-space-4); right: var(--bq-space-4);
+    max-width: 400px; margin: 0 auto; z-index: 1000;
+    background: var(--bq-color-surface); border: 1px solid var(--bq-color-border);
+    border-radius: var(--bq-radius-lg); box-shadow: var(--bq-shadow-xl);
+    padding: var(--bq-space-3); animation: bq-slide-up 0.3s ease;
+  }
+  @keyframes bq-slide-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+  .bq-pwa-content { display: flex; align-items: center; gap: var(--bq-space-3); }
+  .bq-pwa-icon { width: 40px; height: 40px; color: var(--bq-color-primary); flex-shrink: 0; }
+  .bq-pwa-text { display: flex; flex-direction: column; gap: 2px; }
+  .bq-pwa-text strong { font-size: var(--bq-text-base); }
+  .bq-pwa-text span { font-size: var(--bq-text-sm); color: var(--bq-color-text-muted); }
+  .bq-pwa-actions { display: flex; gap: var(--bq-space-2); margin-top: var(--bq-space-3); }
+  .bq-pwa-actions .bq-btn { flex: 1; }
+  @media (min-width: 640px) { .bq-pwa-banner { left: auto; right: var(--bq-space-4); } }
+</style>

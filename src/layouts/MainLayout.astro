@@ -1,357 +1,312 @@
 ---
-// MainLayout.astro — Main layout with lafoidieu design system + i18n support + GA4 + Cookie Banner
+import '../styles/lafoidieu-design.css';
+import type { AstroGlobal } from 'astro';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
 
-import { SUPPORTED_LANGS, DEFAULT_LANG, getLocalizedUrls, generateHreflangLinks } from '../utils/i18n.ts';
-import { getTranslations } from '../utils/translations.ts';
-import CookieBanner from '../components/CookieBanner.astro';
+// Import translations directly to avoid import issues
+import * as fs from 'fs';
+import * as path from 'path';
 
-interface Props {
-  title: string;
-  description: string;
-  canonicalURL: string;
-  ogImage: string;
-  lang?: string;
+const translationsPath = path.resolve('./src/data/translations.json');
+const translations = JSON.parse(fs.readFileSync(translationsPath, 'utf-8'));
+
+interface MainLayoutProps {
+  title?: string;
+  description?: string;
+  canonicalURL?: string;
+  ogImage?: string;
+  lang: string;
   currentPath?: string;
-  jsonLd?: Record<string, any>; // JSON-LD structured data (WebPage, BreadcrumbList, etc.)
+  jsonLd?: object | object[];
+  noIndex?: boolean;
+  children?: any;
 }
 
 const {
-  title = "Kiki en Christ",
-  description = "Livres chrétiens pour fortifier votre foi",
-  canonicalURL = "https://kikienchrist.vercel.app/",
-  ogImage = "https://kikienchrist.vercel.app/og/accueil.png",
-  lang = 'fr',
+  title,
+  description,
+  canonicalURL,
+  ogImage,
+  lang,
   currentPath = '/',
-  jsonLd = null
-} = Astro.props;
+  jsonLd,
+  noIndex = false,
+  ...rest
+} = Astro.props as MainLayoutProps;
 
-const locale = SUPPORTED_LANGS.includes(lang as any) ? lang : DEFAULT_LANG;
-const dir = locale === 'he' || locale === 'ar' ? 'rtl' : 'ltr';
+const t = translations[lang] || translations.fr;
+const siteName = 'Kiki en Christ';
 const baseUrl = 'https://kikienchrist.vercel.app';
 
-// Generate hreflang alternate URLs
-const hreflangLinks = generateHreflangLinks(baseUrl, currentPath);
+// ─── AUTO TITLE ───
+const pageTitle = title 
+  ? `${title} | ${siteName}`
+  : `${t.home?.title || siteName} | ${siteName}`;
 
-// Get translations for cookie banner
-const translations = getTranslations(locale);
+// ─── AUTO DESCRIPTION ───
+const pageDescription = description 
+  ? description 
+  : (t.home?.description || 'Kiki en Christ - Livre de prière et méditation chrétienne');
 
-// Récupération de l'ID GA4 au build time
-const GA4_ID = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID || 'G-XXXXXXXXXX';
-const GA4_CONFIGURED = GA4_ID && GA4_ID !== 'G-XXXXXXXXXX';
+// ─── AUTO CANONICAL ───
+const pageCanonical = canonicalURL 
+  ? canonicalURL 
+  : `${baseUrl}${currentPath}`;
 
-// Construction du script GA4 en string (pour injection via set:html)
-const ga4Script = GA4_CONFIGURED ? `
-  (function() {
-    var GA4_ID = '${GA4_ID}';
+// ─── AUTO OG IMAGE ───
+const pageOgImage = ogImage 
+  ? ogImage 
+  : `${baseUrl}/og/default.png`;
 
-    // dataLayer & gtag
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function gtag() {
-      window.dataLayer.push(arguments);
+// ─── AUTO JSON-LD (WebSite + Organization + Breadcrumb) ───
+const baseSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: siteName,
+  url: baseUrl,
+  inLanguage: lang,
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${baseUrl}/${lang}/search?q={search_term_string}`,
+    },
+    'query-input': 'required name=search_term_string',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: siteName,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${baseUrl}/logo.png`,
+    },
+    sameAs: [
+      'https://www.facebook.com/kikienchrist',
+      'https://www.instagram.com/kikienchrist',
+      'https://twitter.com/kikienchrist',
+      'https://www.youtube.com/@kikienchrist',
+    ],
+  },
+};
+
+// Ensure currentPath is a string
+const safeCurrentPath = typeof currentPath === 'string' ? currentPath : '/';
+
+const breadcrumbSchema = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t.nav?.home || 'Accueil', item: `${baseUrl}/${lang}/` },
+    ...(safeCurrentPath && safeCurrentPath !== '/' 
+      ? safeCurrentPath.split('/')
+          .filter((s): s is string => typeof s === 'string' && s.length > 0)
+          .map((seg, i) => {
+            const cleanSeg = String(seg).trim();
+            if (!cleanSeg || cleanSeg.length === 0) {
+              return undefined;
+            }
+            const firstChar = cleanSeg.charAt(0);
+            if (!firstChar || firstChar.length === 0) {
+              return undefined;
+            }
+            const name = firstChar.toUpperCase() + cleanSeg.slice(1).replace(/-/g, ' ');
+            if (!name || name.length === 0) {
+              return undefined;
+            }
+            return {
+              '@type': 'ListItem',
+              position: i + 2,
+              name: name,
+              item: `${baseUrl}/${lang}/${safeCurrentPath.split('/').slice(0, i+1).join('/')}/`,
+            };
+          }).filter((item): item is { '@type': 'ListItem'; position: number; name: string; item: string } => 
+            item !== undefined && 
+            item !== null && 
+            typeof item.name === 'string' && 
+            item.name.length > 0 && 
+            typeof item.item === 'string' && 
+            item.item.length > 0 && 
+            typeof item.position === 'number' && 
+            item.position > 0
+          )
+      : []),
+  ],
+};
+
+const finalSchema = jsonLd 
+  ? {
+      '@context': 'https://schema.org',
+      '@graph': [
+        baseSchema,
+        ...(Array.isArray(jsonLd) ? jsonLd : [jsonLd]),
+        breadcrumbSchema
+      ]
+    }
+  : {
+      '@context': 'https://schema.org',
+      '@graph': [
+        baseSchema,
+        breadcrumbSchema
+      ]
     };
 
-    // Consent Mode v2 par défaut (denied jusqu'à acceptation)
-    window.gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      wait_for_update: 500,
-    });
-
-    // Script GA4
-    var script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
-    document.head.appendChild(script);
-
-    // Config GA4 - FORCER cookie_domain sur le sous-domaine exact (évite .vercel.app invalide)
-    window.gtag('js', new Date());
-    window.gtag('config', GA4_ID, {
-      send_page_view: false,
-      anonymize_ip: true,
-      allow_google_signals: false,
-      allow_ad_personalization_signals: false,
-      cookie_domain: 'kikienchrist.vercel.app',
-      cookie_flags: 'SameSite=Lax;Secure',
-    });
-
-    // Exposer updateConsentMode pour le Cookie Banner
-    window.updateConsentMode = function(analyticsAccepted) {
-      if (!window.gtag) return;
-      window.gtag('consent', 'update', {
-        analytics_storage: analyticsAccepted ? 'granted' : 'denied',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-      });
-    };
-
-    // Écouter l'événement de mise à jour consentement
-    window.addEventListener('consent:updated', function(e) {
-      var prefs = e.detail;
-      if (window.updateConsentMode) {
-        window.updateConsentMode(prefs.analytics === true);
-      }
-    });
-
-    // Page view initiale
-    window.gtag('event', 'page_view', {
-      page_path: window.location.pathname,
-      page_title: document.title,
-      language: document.documentElement.lang || 'fr',
-    });
-
-    window.gtagInitialized = true;
-    if (window.console) console.log('[GA4] Initialisé avec Consent Mode v2');
-  })();
-` : '';
+const canonicalUrl = new URL(pageCanonical);
+const alternateLangs = ['fr', 'en', 'es', 'pt', 'de', 'it', 'nl', 'pl', 'ar', 'ru', 'zh', 'hi']
+  .reduce((acc, l) => {
+    acc[l] = `${baseUrl}/${l}${currentPath}`;
+    return acc;
+  }, {} as Record<string, string>);
+alternateLangs['x-default'] = `${baseUrl}/fr${currentPath}`;
 ---
 
 <!DOCTYPE html>
-<html lang={locale} dir={dir}>
+<html lang={lang} dir={['ar', 'he'].includes(lang) ? 'rtl' : 'ltr'}>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="generator" content="Astro">
-  <title>{title}</title>
-  <meta name="description" content={description}>
-  <link rel="canonical" href={canonicalURL}>
-
-  <!-- Hreflang alternates for SEO -->
-  <Fragment set:html={hreflangLinks} />
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Kiki en Christ">
-  <meta property="og:locale" content={{
-    fr: 'fr_FR', en: 'en_US', es: 'es_ES', de: 'de_DE', pt: 'pt_PT', it: 'it_IT',
-    nl: 'nl_NL', pl: 'pl_PL', ar: 'ar_AR', ru: 'ru_RU', zh: 'zh_CN', hi: 'hi_IN'
-  }[locale] || 'fr_FR'}>
-  <meta property="og:title" content={title}>
-  <meta property="og:description" content={description}>
-  <meta property="og:url" content={canonicalURL}>
-  <meta property="og:image" content={ogImage}>
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content={title}>
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content={title}>
-  <meta name="twitter:description" content={description}>
-  <meta name="twitter:image" content={ogImage}>
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="manifest" href="/site.webmanifest">
-
-  <!-- Preconnect for performance -->
-  <link rel="preconnect" href="https://assets.lulu.com" crossorigin>
-  <link rel="preconnect" href="https://www.lulu.com" crossorigin>
-  <link rel="preconnect" href="https://payhip.com" crossorigin>
-  <link rel="preconnect" href="https://play.google.com" crossorigin>
-
-  <!-- Preconnect GA4 (if configured) -->
-  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
-
-  <!-- Lafoidieu Design System CSS -->
-  <link rel="stylesheet" href="/styles/lafoidieu-design.css">
-
-  <!-- JSON-LD Structured Data (per-page) -->
-  {jsonLd && (
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  )}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  
+  {/* ─── TITLE & META ─── */}
+  <title>{pageTitle}</title>
+  <meta name="description" content={pageDescription} />
+  <link rel="canonical" href={pageCanonical} />
+  {noIndex && <meta name="robots" content="noindex, nofollow" />}
+  
+  {/* ─── HREFLANG ─── */}
+  {Object.entries(alternateLangs).map(([hreflang, href]) => (
+    <link rel="alternate" hreflang={hreflang} href={href} />
+  ))}
+  
+  {/* ─── OPEN GRAPH ─── */}
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={siteName} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={pageDescription} />
+  <meta property="og:url" content={pageCanonical} />
+  <meta property="og:image" content={pageOgImage} />
+  <meta property="og:locale" content={lang === 'fr' ? 'fr_FR' : lang === 'en' ? 'en_US' : lang === 'es' ? 'es_ES' : lang === 'pt' ? 'pt_PT' : lang === 'de' ? 'de_DE' : lang === 'it' ? 'it_IT' : lang === 'nl' ? 'nl_NL' : lang === 'pl' ? 'pl_PL' : lang === 'ar' ? 'ar_SA' : lang === 'ru' ? 'ru_RU' : lang === 'zh' ? 'zh_CN' : 'hi_IN'} />
+  
+  {/* ─── TWITTER CARD ─── */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@kikienchrist" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={pageDescription} />
+  <meta name="twitter:image" content={pageOgImage} />
+  
+  {/* ─── JSON-LD SCHEMA.ORG ─── */}
+  <script type="application/ld+json" set:html={JSON.stringify(finalSchema)} />
+  
+  {/* ─── STYLES ─── */}
+  <link rel="stylesheet" href="/styles/lafoidieu-design.css" />
+  
+  {/* ─── FAVICON ─── */}
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  
+  {/* ─── RSS ─── */}
+  <link rel="alternate" type="application/rss+xml" title="Kiki en Christ - Blog" href="/fr/blog/rss.xml" />
+  
+  {Astro.slots.has('head') && <slot name="head" />}
 </head>
-<body class="bq">
-  <slot />
-
-  <!-- Cookie Banner (RGPD / ePrivacy) - Version simplifiée 2 boutons -->
-  <CookieBanner locale={locale} translations={translations} />
-
-  <!-- GA4 Initialization (client-side only) - ID injecté au build -->
-  <script is:inline set:html={ga4Script} />
-
-  <!-- Cookie Banner Logic (JS pur inline, simplifié 2 boutons) -->
-  <script is:inline>
-    (function() {
-      // ------------------------------------------------------------------
-      // CONFIGURATION
-      // ------------------------------------------------------------------
-      var COOKIE_NAME = 'kikienchrist-consent';
-      var COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 an
-      var COOKIE_DOMAIN = ''; // vide = domaine actuel (évite "domaine invalide" sur vercel.app)
-
-      // Clés des cookies tiers à nettoyer si refus analytics
-      var THIRD_PARTY_COOKIES = {
-        analytics: ['_ga', '_ga_*', '_gid', '_gat'],
-        marketing: ['_fbp', '_fbc', 'fr', 'xs', 'datr'],
-        functional: ['__cf_bm', 'cf_clearance'],
-      };
-
-      // État (simplifié : analytics seulement, marketing/functional = false par défaut)
-      var preferences = {
-        necessary: true,
-        analytics: false,
-        marketing: false,
-        functional: false,
-      };
-
-      var banner = null;
-      var overlay = null;
-
-      // ------------------------------------------------------------------
-      // UTILITAIRES COOKIES
-      // ------------------------------------------------------------------
-      function setCookie(name, value, days) {
-        var expires = new Date(Date.now() + days * 864e5).toUTCString();
-        var domainPart = COOKIE_DOMAIN ? '; domain=' + COOKIE_DOMAIN : '';
-        document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/' + domainPart + '; SameSite=Lax; Secure';
-      }
-
-      function deleteCookie(name) {
-        var domainPart = COOKIE_DOMAIN ? '; domain=' + COOKIE_DOMAIN : '';
-        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + domainPart + '; SameSite=Lax; Secure';
-      }
-
-      function getConsentCookie(cookieName) {
-        var cookie = document.cookie.split('; ').find(function(row) { return row.startsWith(cookieName + '='); });
-        if (!cookie) return null;
-        try {
-          return JSON.parse(decodeURIComponent(cookie.split('=')[1]));
-        } catch (e) {
-          return null;
-        }
-      }
-
-      function saveConsent(cookieName) {
-        var consentData = {
-          necessary: preferences.necessary,
-          analytics: preferences.analytics,
-          marketing: preferences.marketing,
-          functional: preferences.functional,
-          timestamp: new Date().toISOString(),
-          version: '1.0',
-        };
-        setCookie(cookieName, JSON.stringify(consentData), 365);
-        window.dispatchEvent(new CustomEvent('consent:updated', { detail: preferences }));
-      }
-
-      function loadConsent(cookieName) {
-        var saved = getConsentCookie(cookieName);
-        if (saved) {
-          preferences.analytics = saved.analytics ?? false;
-          preferences.marketing = saved.marketing ?? false;
-          preferences.functional = saved.functional ?? false;
-          return true;
-        }
-        return false;
-      }
-
-      function applyConsent() {
-        if (typeof window.updateConsentMode === 'function') {
-          window.updateConsentMode(preferences.analytics);
-        }
-        // Nettoyer cookies tiers si analytics refusé
-        if (!preferences.analytics) {
-          THIRD_PARTY_COOKIES.analytics.forEach(function(cookieName) {
-            deleteCookie(cookieName);
-            if (cookieName.endsWith('*')) {
-              var prefix = cookieName.slice(0, -1);
-              document.cookie.split('; ').forEach(function(cookie) {
-                var name = cookie.split('=')[0];
-                if (name.startsWith(prefix)) deleteCookie(name);
-              });
-            }
-          });
-        }
-      }
-
-      // ------------------------------------------------------------------
-      // ACTIONS UI (simplifiées : accept / reject seulement)
-      // ------------------------------------------------------------------
-      function acceptAll(cookieName) {
-        preferences.analytics = true;
-        preferences.marketing = true;
-        preferences.functional = true;
-        saveConsent(cookieName);
-        applyConsent();
-        closeBanner();
-      }
-
-      function rejectAll(cookieName) {
-        preferences.analytics = false;
-        preferences.marketing = false;
-        preferences.functional = false;
-        saveConsent(cookieName);
-        applyConsent();
-        closeBanner();
-      }
-
-      function closeBanner() {
-        if (!banner || !overlay) return;
-        banner.hidden = true;
-        overlay.hidden = true;
-        document.body.style.overflow = '';
-      }
-
-      // ------------------------------------------------------------------
-      // INITIALISATION (attendre hydratation Astro via MutationObserver)
-      // ------------------------------------------------------------------
-      function initCookieBanner() {
-        banner = document.getElementById('cookie-banner');
-        overlay = document.getElementById('cookie-overlay');
-        if (!banner || !overlay) {
-          console.warn('[CookieBanner] Éléments DOM non trouvés', { banner: !!banner, overlay: !!overlay });
-          return;
-        }
-        if (loadConsent(COOKIE_NAME)) {
-          applyConsent();
-          banner.hidden = true;
-          overlay.hidden = true;
-          return;
-        }
-        banner.querySelector('[data-action="accept-all"]')?.addEventListener('click', function() { acceptAll(COOKIE_NAME); });
-        banner.querySelector('[data-action="reject-all"]')?.addEventListener('click', function() { rejectAll(COOKIE_NAME); });
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape' && !banner?.hidden) {
-            closeBanner();
-          }
-        });
-        // Afficher bannière après court délai (pour LCP)
-        setTimeout(function() {
-          banner.hidden = false;
-          overlay.hidden = false;
-        }, 500);
-      }
-
-      // Attendre que le slot Astro soit hydraté (MutationObserver sur body)
-      function startInit() {
-        // Si éléments déjà présents, initialiser direct
-        if (document.getElementById('cookie-banner') && document.getElementById('cookie-overlay')) {
-          initCookieBanner();
-          return;
-        }
-        // Sinon observer l'injection du slot
-        var observer = new MutationObserver(function(mutations, obs) {
-          if (document.getElementById('cookie-banner') && document.getElementById('cookie-overlay')) {
-            obs.disconnect();
-            setTimeout(initCookieBanner, 50);
-          }
-        });
-        observer.observe(document.body, { childList: true, subtree: true });
-        // Fallback sécurité : max 5s
-        setTimeout(function() { observer.disconnect(); }, 5000);
-      }
-
-      // Démarrer au DOMContentLoaded (ou direct si déjà prêt)
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', startInit);
-      } else {
-        startInit();
-      }
-    })();
-  </script>
+<body class="bq-body">
+  <a href="#main-content" class="bq-skip-link">Aller au contenu principal</a>
+  
+  <header class="bq-header" role="banner">
+    <div class="bq-container">
+      <div class="bq-header-inner">
+        <a href={`/${lang}/`} class="bq-logo" aria-label={t.nav?.home || 'Accueil'}>
+          <svg class="bq-logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 16l4 4 8-8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="bq-logo-text">Kiki en Christ</span>
+        </a>
+        
+        <nav class="bq-nav" role="navigation" aria-label={t.nav?.main || 'Navigation principale'}>
+          <ul class="bq-nav-list">
+            <li><a href={`/${lang}/`} class="bq-nav-link">{t.nav?.home || 'Accueil'}</a></li>
+            <li><a href={`/${lang}/livres`} class="bq-nav-link">{t.nav?.books || 'Livres'}</a></li>
+            <li><a href={`/${lang}/blog/1`} class="bq-nav-link">{t.nav?.blog || 'Blog'}</a></li>
+            <li><a href={`/${lang}/partenaires`} class="bq-nav-link">{t.nav?.partners || 'Partenaires'}</a></li>
+            <li><a href={`/${lang}/contact`} class="bq-nav-link">{t.nav?.contact || 'Contact'}</a></li>
+          </ul>
+        </nav>
+        
+        <div class="bq-header-actions">
+          <LanguageSwitcher currentLang={lang} currentPath={currentPath} />
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <main id="main-content" class="bq-main" role="main" {...rest}>
+    <slot />
+  </main>
+  
+  <footer class="bq-footer" role="contentinfo">
+    <div class="bq-container">
+      <div class="bq-footer-grid">
+        <div class="bq-footer-brand">
+          <a href={`/${lang}/`} class="bq-footer-logo">
+            <svg class="bq-logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2"/>
+              <path d="M10 16l4 4 8-8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Kiki en Christ</span>
+          </a>
+          <p class="bq-footer-tagline">{t.footer?.tagline || 'Priez, méditez, grandissez dans la foi'}</p>
+        </div>
+        
+        <nav class="bq-footer-nav" aria-label={t.footer?.navigation || 'Navigation'}>
+          <h3 class="bq-footer-title">{t.footer?.siteLinks || 'Le site'}</h3>
+          <ul class="bq-footer-list">
+            <li><a href={`/${lang}/`} class="bq-footer-link">{t.nav?.home || 'Accueil'}</a></li>
+            <li><a href={`/${lang}/livres`} class="bq-footer-link">{t.nav?.books || 'Nos livres'}</a></li>
+            <li><a href={`/${lang}/blog/1`} class="bq-footer-link">{t.nav?.blog || 'Blog'}</a></li>
+            <li><a href={`/${lang}/partenaires`} class="bq-footer-link">{t.nav?.partners || 'Partenaires'}</a></li>
+            <li><a href={`/${lang}/contact`} class="bq-footer-link">{t.nav?.contact || 'Contact'}</a></li>
+          </ul>
+        </nav>
+        
+        <nav class="bq-footer-nav" aria-label={t.footer?.legal || 'Mentions légales'}>
+          <h3 class="bq-footer-title">{t.footer?.legal || 'Mentions légales'}</h3>
+          <ul class="bq-footer-list">
+            <li><a href={`/${lang}/mentions-legales`} class="bq-footer-link">{t.footer?.mentionsLegales || 'Mentions légales'}</a></li>
+            <li><a href={`/${lang}/confidentialite`} class="bq-footer-link">{t.footer?.privacy || 'Confidentialité'}</a></li>
+            <li><a href={`/${lang}/cookies`} class="bq-footer-link">{t.footer?.cookies || 'Cookies'}</a></li>
+            <li><a href={`/${lang}/cgv`} class="bq-footer-link">{t.footer?.cgv || 'CGV'}</a></li>
+            <li><a href={`/${lang}/accessibilite`} class="bq-footer-link">{t.footer?.accessibility || 'Accessibilité'}</a></li>
+          </ul>
+        </nav>
+        
+        <div class="bq-footer-newsletter">
+          <h3 class="bq-footer-title">{t.footer?.newsletter || 'Newsletter'}</h3>
+          <p class="bq-footer-text">{t.footer?.newsletterDesc || 'Recevez nos prières et méditations hebdomadaires'}</p>
+          <NewsletterForm lang={lang} />
+        </div>
+      </div>
+      
+      <div class="bq-footer-bottom">
+        <p class="bq-copyright">© {new Date().getFullYear()} Kiki en Christ. {t.footer?.allRights || 'Tous droits réservés.'}</p>
+        <div class="bq-social-links">
+          <a href="https://www.facebook.com/kikienchrist" class="bq-social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/kikienchrist" class="bq-social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://twitter.com/kikienchrist" class="bq-social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@kikienchrist" class="bq-social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <slot name="scripts" />
 </body>
 </html>

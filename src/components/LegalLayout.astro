@@ -3,9 +3,11 @@
 // Sidebar sommaire auto, SEO, JSON-LD WebPage, breadcrumb
 
 import MainLayout from '../layouts/MainLayout.astro';
-import { getCollection } from 'astro:content';
-import translations from '../data/translations.json';
+import fs from 'fs';
+import path from 'path';
 import { marked } from 'marked';
+
+const translations = JSON.parse(fs.readFileSync(path.resolve('./src/data/translations.json'), 'utf-8'));
 
 interface Props {
   title: string;
@@ -93,7 +95,7 @@ const jsonLd = {
 };
 ---
 
-<MainLayout lang={lang} translations={translations} title={title} description={description} canonicalURL={canonicalURL} jsonLd={jsonLd}>
+<MainLayout lang={lang} title={title} description={description} canonicalURL={canonicalURL} jsonLd={jsonLd} currentPath={`/${lang}/${canonicalSlug}/`}>
   <article class="legal-page" aria-labelledby="legal-title">
     <header class="legal-header">
       <nav class="legal-breadcrumb breadcrumb" aria-label={common.breadcrumb || 'Fil d\'Ariane'}>

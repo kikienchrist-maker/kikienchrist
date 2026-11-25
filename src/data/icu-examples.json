@@ -1,0 +1,31 @@
+{
+  "blog": {
+    "readingTime": "{count, plural, one {# minute de lecture} other {# minutes de lecture}}",
+    "readingTime_short": "{count, plural, one {# min} other {# min}}",
+    "articlesCount": "{count, plural, one {# article} other {# articles}}",
+    "articlesCount_short": "{count, plural, one {# art.} other {# art.}}",
+    "commentsCount": "{count, plural, zero {Aucun commentaire} one {# commentaire} other {# commentaires}}",
+    "relatedPostsCount": "{count, plural, one {# article connexe} other {# articles connexes}}",
+    "searchResultsCount": "{count, plural, zero {Aucun résultat} one {# résultat} other {# résultats}}",
+    "newsletterSubscribersCount": "{count, plural, one {# abonné} other {# abonnés}}",
+    "seriesPartsCount": "{count, plural, one {# partie} other {# parties}}"
+  },
+  "books": {
+    "price": "{price, number, style:currency, currency:EUR}",
+    "price_promo": "{price, number, style:currency, currency:EUR} <span class='old-price'>{oldPrice, number, style:currency, currency:EUR}</span>",
+    "pagesCount": "{count, plural, one {# page} other {# pages}}",
+    "copiesSold": "{count, plural, one {# exemplaire vendu} other {# exemplaires vendus}}"
+  },
+  "common": {
+    "daysAgo": "{days, plural, one {il y a # jour} other {il y a # jours}}",
+    "hoursAgo": "{hours, plural, one {il y a # heure} other {il y a # heures}}",
+    "minutesAgo": "{minutes, plural, one {il y a # minute} other {il y a # minutes}}",
+    "shareCount": "{count, plural, one {# partage} other {# partages}}",
+    "viewCount": "{count, plural, one {# vue} other {# vues}}",
+    "downloadCount": "{count, plural, one {# téléchargement} other {# téléchargements}}"
+  },
+  "forms": {
+    "errorsCount": "{count, plural, one {# erreur} other {# erreurs}}",
+    "charactersRemaining": "{count, plural, one {# caractère restant} other {# caractères restants}}"
+  }
+}

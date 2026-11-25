@@ -1,0 +1,54 @@
+{
+  "siteName": "Kiki en Christ",
+  "baseUrl": "https://kikienchrist.vercel.app",
+  "defaultLang": "fr",
+  "languages": ["fr", "en", "es", "pt", "de", "it", "nl", "pl", "ar", "ru", "zh", "hi"],
+  "author": "Kiki",
+  "social": {
+    "facebook": "https://facebook.com/kikienchrist",
+    "instagram": "https://instagram.com/kikienchrist",
+    "youtube": "https://youtube.com/@kikienchrist",
+    "twitter": "https://twitter.com/kikienchrist"
+  },
+  "contact": {
+    "email": "kikienchrist@gmail.com",
+    "phone": "+33 00 00 00 00",
+    "address": "123 Rue de la Foi, 75000 Paris, France"
+  },
+  "seo": {
+    "defaultTitle": "Kiki en Christ - Livres chrétiens, prière, ressources spirituelles",
+    "defaultDescription": "Découvrez Kiki en Christ - Livres chrétiens, blog prière, ressources spirituelles. Livraison mondiale.",
+    "ogImage": "/og-default.jpg",
+    "twitterHandle": "@kikienchrist"
+  },
+  "books": [
+    {
+      "id": "visage",
+      "title": "Le Visage de Dieu",
+      "price": 19.9,
+      "pages": 240,
+      "isbn": "978-2-95XXXXX-X"
+    },
+    {
+      "id": "trinite",
+      "title": "La Trinité Vivante",
+      "price": 22.5,
+      "pages": 280,
+      "isbn": "978-2-95XXXXX-Y"
+    },
+    {
+      "id": "salut",
+      "title": "Le Chemin du Salut",
+      "price": 18.9,
+      "pages": 200,
+      "isbn": "978-2-95XXXXX-Z"
+    },
+    {
+      "id": "combat",
+      "title": "Le Combat Spirituel",
+      "price": 24.9,
+      "pages": 320,
+      "isbn": "978-2-95XXXXX-W"
+    }
+  ]
+}

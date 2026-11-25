@@ -1,0 +1,150 @@
+// Vercel Edge Middleware - A/B Testing Experiment Assignment
+// Runs at edge (Vercel) before any page render
+
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+// ──────────────────────────────────────────────
+// Experiment Configuration
+// ──────────────────────────────────────────────
+interface ExperimentConfig {
+  id: string;
+  name: string;
+  trafficPercent: number;
+  variants: {
+    control: string;
+    treatment: string;
+  };
+  cookieMaxAge: number;
+  paths?: string[];
+  excludePaths?: string[];
+}
+
+const EXPERIMENTS: ExperimentConfig[] = [
+  {
+    id: 'hero-cta-v1',
+    name: 'Hero CTA Button Text',
+    trafficPercent: 50,
+    variants: { control: 'a', treatment: 'b' },
+    cookieMaxAge: 60 * 60 * 24 * 30,
+    paths: ['/', '/fr/', '/en/', '/es/', '/pt/', '/it/', '/de/', '/nl/', '/pl/', '/ar/', '/zh/', '/hi/'],
+  },
+  {
+    id: 'book-price-display',
+    name: 'Book Price Display Format',
+    trafficPercent: 30,
+    variants: { control: 'a', treatment: 'b' },
+    cookieMaxAge: 60 * 60 * 24 * 14,
+    paths: ['/fr/livres/', '/en/books/', '/es/libros/'],
+  },
+  {
+    id: 'newsletter-form-position',
+    name: 'Newsletter Form Position',
+    trafficPercent: 40,
+    variants: { control: 'a', treatment: 'b' },
+    cookieMaxAge: 60 * 60 * 24 * 30,
+    paths: ['/fr/blog/', '/en/blog/'],
+  },
+];
+
+// ──────────────────────────────────────────────
+// Helpers
+// ──────────────────────────────────────────────
+function getCookie(request: NextRequest, name: string): string | undefined {
+  return request.cookies.get(name)?.value;
+}
+
+function setCookie(response: NextResponse, name: string, value: string, maxAge: number): void {
+  response.cookies.set(name, value, {
+    maxAge,
+    path: '/',
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+  });
+}
+
+function hashUserId(userId: string, experimentId: string): number {
+  let hash = 0;
+  const str = userId + experimentId;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash;
+  }
+  return Math.abs(hash) % 100;
+}
+
+function getOrCreateUserId(request: NextRequest, response: NextResponse): string {
+  let userId = getCookie(request, 'ab_user_id');
+  if (!userId) {
+    userId = crypto.randomUUID();
+    setCookie(response, 'ab_user_id', userId, 60 * 60 * 24 * 365);
+  }
+  return userId;
+}
+
+function shouldRunExperiment(pathname: string, experiment: ExperimentConfig): boolean {
+  if (experiment.excludePaths?.some(p => pathname.startsWith(p))) return false;
+  if (experiment.paths?.length && !experiment.paths.some(p => pathname.startsWith(p))) return false;
+  return true;
+}
+
+// ──────────────────────────────────────────────
+// Main Middleware
+// ──────────────────────────────────────────────
+export async function middleware(request: NextRequest) {
+  const response = NextResponse.next();
+  const pathname = request.nextUrl.pathname;
+
+  if (
+    pathname.startsWith('/_astro/') ||
+    pathname.startsWith('/api/') ||
+    pathname.startsWith('/admin/') ||
+    pathname.startsWith('/images/') ||
+    pathname.startsWith('/fonts/') ||
+    pathname.match(/\.(ico|png|jpg|jpeg|webp|svg|css|js|woff2?)$/)
+  ) {
+    return response;
+  }
+
+  const userId = getOrCreateUserId(request, response);
+
+  for (const experiment of EXPERIMENTS) {
+    if (!shouldRunExperiment(pathname, experiment)) continue;
+
+    const cookieName = `ab_exp_${experiment.id}`;
+    let variant = getCookie(request, cookieName) as 'a' | 'b' | undefined;
+
+    if (!variant) {
+      const bucket = hashUserId(userId, experiment.id);
+      if (bucket < experiment.trafficPercent) {
+        variant = (bucket % 2 === 0) ? experiment.variants.control : experiment.variants.treatment;
+        setCookie(response, cookieName, variant, experiment.cookieMaxAge);
+      } else {
+        variant = experiment.variants.control;
+      }
+    }
+
+    response.headers.set(`x-ab-${experiment.id}`, variant);
+  }
+
+  const variantHeaders: string[] = [];
+  for (const experiment of EXPERIMENTS) {
+    if (shouldRunExperiment(pathname, experiment)) {
+      const variant = response.headers.get(`x-ab-${experiment.id}`);
+      if (variant) variantHeaders.push(`${experiment.id}=${variant}`);
+    }
+  }
+  if (variantHeaders.length > 0) {
+    response.headers.set('x-ab-variants', variantHeaders.join(';'));
+  }
+
+  return response;
+}
+
+export const config = {
+  matcher: [
+    '/((?!_astro|api|admin|images|fonts|.*\\.(ico|png|jpg|jpeg|webp|svg|css|js|woff2?)).*)',
+  ],
+};

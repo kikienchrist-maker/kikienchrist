@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Hook désactivé - ne fonctionne pas en non-interactif
+# exec < /dev/tty && git commit --edit -m "$(cat $1)" || true
+exit 0

@@ -1,0 +1,73 @@
+// src/layouts/LegalLayout.astro
+import MainLayout from './MainLayout.astro';
+import { translations, type Lang } from '../data/translations.json';
+import { marked } from 'marked';
+import { markedGfmHeadingId } from 'marked-gfm-heading-id';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  currentPath: string;
+  content: string; // Markdown brut
+}
+
+const { title, description, lang, currentPath, content } = Astro.props;
+const t = translations[lang] || translations.fr;
+
+// Markdown → HTML avec IDs sur headings
+marked.use(markedGfmHeadingId());
+const htmlContent = marked.parse(content);
+
+// ─── EXTRAIRE LE PREMIER H1 DU CONTENU (pour éviter doublon) ───
+const firstH1Match = htmlContent.match(/<h1[^>]*>(.*?)<\/h1>/i);
+const contentWithoutFirstH1 = firstH1Match ? htmlContent.replace(/<h1[^>]*>.*?<\/h1>/i, '') : htmlContent;
+
+// ─── SCHEMA.ORG FAQ PAGE (si contenu contient FAQ) ───
+const isFaq = content.toLowerCase().includes('faq') || content.toLowerCase().includes('questions fréquentes') || content.toLowerCase().includes('questions frequentes');
+const faqSchema = isFaq ? {
+  '@type': 'FAQPage',
+  mainEntity: [...content.matchAll(/<h2[^>]*>(.*?)<\/h2>\s*<p>(.*?)<\/p>/gi)].map(([, q, a], i) => ({
+    '@type': 'Question',
+    name: q.replace(/<[^>]+>/g, ''),
+    acceptedAnswer: { '@type': 'Answer', text: a.replace(/<[^>]+>/g, '') },
+  })),
+} : null;
+---
+
+<MainLayout
+  title={title}
+  description={description}
+  lang={lang}
+  currentPath={currentPath}
+  jsonLd={faqSchema}
+>
+  <article class="bq-legal-page">
+    {/* H1 UNIQUE - soit le title prop, soit le premier H1 du markdown */}
+    <header class="bq-legal-header">
+      <h1 class="bq-legal-title">{title}</h1>
+      <p class="bq-legal-description">{description}</p>
+    </header>
+    
+    <div class="bq-legal-content" set:html={contentWithoutFirstH1} />
+  </article>
+</MainLayout>
+
+<style>
+  .bq-legal-page { max-width: 800px; margin: 0 auto; padding: var(--bq-space-8) var(--bq-space-4); }
+  .bq-legal-header { margin-bottom: var(--bq-space-10); text-align: center; }
+  .bq-legal-title { font-size: clamp(var(--bq-text-2xl), 4vw, var(--bq-text-4xl)); margin-bottom: var(--bq-space-3); }
+  .bq-legal-description { color: var(--bq-color-text-muted); font-size: var(--bq-text-lg); max-width: 600px; margin: 0 auto; }
+  .bq-legal-content { line-height: 1.8; }
+  .bq-legal-content h2 { margin-top: var(--bq-space-10); margin-bottom: var(--bq-space-4); padding-bottom: var(--bq-space-2); border-bottom: 1px solid var(--bq-color-border); }
+  .bq-legal-content h3 { margin-top: var(--bq-space-8); margin-bottom: var(--bq-space-3); }
+  .bq-legal-content p { margin-bottom: var(--bq-space-4); }
+  .bq-legal-content ul, .bq-legal-content ol { margin-bottom: var(--bq-space-4); padding-left: var(--bq-space-6); }
+  .bq-legal-content li { margin-bottom: var(--bq-space-2); }
+  .bq-legal-content a { color: var(--bq-color-primary); text-decoration: underline; }
+  .bq-legal-content a:hover { color: var(--bq-color-primary-dark); }
+  .bq-legal-content blockquote { border-left: 4px solid var(--bq-color-primary); padding-left: var(--bq-space-4); margin: var(--bq-space-6) 0; color: var(--bq-color-text-muted); font-style: italic; }
+  .bq-legal-content code { background: var(--bq-color-bg-muted); padding: 2px 6px; border-radius: var(--bq-radius-sm); font-family: monospace; }
+  .bq-legal-content pre { background: var(--bq-color-bg-dark); padding: var(--bq-space-4); border-radius: var(--bq-radius-lg); overflow-x: auto; }
+  .bq-legal-content pre code { background: none; padding: 0; }
+</style>

@@ -1,0 +1,226 @@
+---
+// src/pages/[lang]/partenaires.astro
+import MainLayout from '../../layouts/MainLayout.astro';
+import type { Lang } from '../../data/translations.json';
+import fs from 'fs';
+import path from 'path';
+
+const translations = JSON.parse(fs.readFileSync(path.resolve('./src/data/translations.json'), 'utf-8'));
+
+export async function getStaticPaths() {
+  const langs = ['fr', 'en', 'es', 'pt', 'de', 'it', 'nl', 'pl', 'ar', 'ru', 'zh', 'hi'] as const;
+  return langs.map(lang => ({ params: { lang }, props: { lang } }));
+}
+
+const { lang } = Astro.props;
+const t = translations[lang] || translations.fr;
+
+const pageTitle = t.partners?.title || 'Devenir Partenaire';
+const pageDescription = t.partners?.description || 'Rejoignez le programme d\'affiliation Kiki en Christ. Gagnez 30% de commission, ressources marketing, suivi temps réel. Inscription gratuite.';
+const canonicalURL = `https://kikienchrist.vercel.app/${lang}/partenaires/`;
+const ogImage = `https://kikienchrist.vercel.app/og/partners-${lang}.jpg`;
+
+const jsonLd = {
+  '@type': 'Service',
+  name: 'Programme d\'affiliation Kiki en Christ',
+  description: pageDescription,
+  provider: { '@type': 'Organization', name: 'Kiki en Christ' },
+  areaServed: 'Worldwide',
+  availableChannel: { '@type': 'ServiceChannel', serviceUrl: canonicalURL },
+  offers: {
+    '@type': 'Offer',
+    name: 'Inscription gratuite',
+    price: '0',
+    priceCurrency: 'EUR',
+    availability: 'https://schema.org/InStock',
+  },
+};
+---
+
+<MainLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalURL={canonicalURL}
+  ogImage={ogImage}
+  lang={lang}
+  currentPath="/partenaires/"
+  jsonLd={jsonLd}
+>
+  <section class="bq-partners-page" aria-labelledby="partners-title">
+    <header class="bq-page-header">
+      <h1 id="partners-title" class="bq-page-title">{pageTitle}</h1>
+      <p class="bq-page-subtitle">{t.partners?.subtitle || 'Gagnez 30% de commission en partageant des ressources chrétiennes de qualité'}</p>
+    </header>
+
+    {/* HERO AVANTAGES */}
+    <section class="bq-partners-hero" aria-labelledby="benefits-title">
+      <h2 id="benefits-title" class="bq-section-title">{t.partners?.benefitsTitle || 'Pourquoi devenir partenaire ?'}</h2>
+      <div class="bq-benefits-grid">
+        {[
+          { icon: '💰', title: t.partners?.benefit1Title || '30% Commission', desc: t.partners?.benefit1Desc || 'Sur chaque vente générée via votre lien unique, à vie.' },
+          { icon: '📊', title: t.partners?.benefit2Title || 'Tableau de bord temps réel', desc: t.partners?.benefit2Desc || 'Suivez vos clics, conversions et revenus en direct.' },
+          { icon: '🛠️', title: t.partners?.benefit3Title || 'Kit marketing complet', desc: t.partners?.benefit3Desc || 'Bannières, emails, visuels réseaux sociaux, landing pages.' },
+          { icon: '🎓', title: t.partners?.benefit4Title || 'Formation & support', desc: t.partners?.benefit4Desc || 'Guide démarrage, meilleures pratiques, support dédié.' },
+          { icon: '💳', title: t.partners?.benefit5Title || 'Paiements mensuels', desc: t.partners?.benefit5Desc || 'Versement automatique dès 50€, PayPal ou virement.' },
+          { icon: '🌍', title: t.partners?.benefit6Title || 'International', desc: t.partners?.benefit6Desc || 'Programme ouvert dans 50+ pays, multi-devises.' },
+        ].map(b => (
+          <article class="bq-benefit-card">
+            <span class="bq-benefit-icon">{b.icon}</span>
+            <h3>{b.title}</h3>
+            <p>{b.desc}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    {/* FORMULAIRE INSCRIPTION */}
+    <section class="bq-partners-signup" aria-labelledby="signup-title">
+      <h2 id="signup-title" class="bq-section-title">{t.partners?.signupTitle || 'Inscrivez-vous gratuitement'}</h2>
+      <form class="bq-signup-form" action="https://api.firstpromoter.com/v1/referrals" method="POST" target="_blank" rel="noopener">
+        <input type="hidden" name="api_key" value={import.meta.env.FIRSTPROMOTER_PUBLIC_KEY || ''} />
+        <input type="hidden" name="program_id" value="kikienchrist" />
+        
+        <div class="bq-form-row">
+          <div class="bq-form-group">
+            <label for="email">{t.partners?.emailLabel || 'Email'}</label>
+            <input type="email" id="email" name="email" required placeholder="votre@email.com" autocomplete="email" />
+          </div>
+          <div class="bq-form-group">
+            <label for="name">{t.partners?.nameLabel || 'Nom complet'}</label>
+            <input type="text" id="name" name="name" required placeholder="Jean Dupont" autocomplete="name" />
+          </div>
+        </div>
+        
+        <div class="bq-form-row">
+          <div class="bq-form-group">
+            <label for="website">{t.partners?.websiteLabel || 'Site web / Réseau social'}</label>
+            <input type="url" id="website" name="website" placeholder="https://votre-site.com ou @votrecompte" autocomplete="url" />
+          </div>
+          <div class="bq-form-group">
+            <label for="country">{t.partners?.countryLabel || 'Pays'}</label>
+            <select id="country" name="country" required>
+              <option value="FR">{t.partners?.countryFR || 'France'}</option>
+              <option value="BE">{t.partners?.countryBE || 'Belgique'}</option>
+              <option value="CH">{t.partners?.countryCH || 'Suisse'}</option>
+              <option value="CA">{t.partners?.countryCA || 'Canada'}</option>
+              <option value="US">{t.partners?.countryUS || 'États-Unis'}</option>
+              <option value="OTHER">{t.partners?.countryOther || 'Autre'}</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="bq-form-group bq-form-checkbox">
+          <input type="checkbox" id="terms" name="terms" required />
+          <label for="terms">{t.partners?.termsText || 'J\'accepte les <a href="/conditions-generales-affiliation/" target="_blank">conditions du programme</a> et la <a href="/politique-confidentialite/" target="_blank">politique de confidentialité</a>.'}</label>
+        </div>
+        
+        <button type="submit" class="bq-btn bq-btn-primary bq-btn-lg bq-btn-full">
+          <svg class="bq-btn-icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          {t.partners?.submitBtn || 'Devenir Partenaire Gratuitement'}
+        </button>
+        
+        <p class="bq-form-note">{t.partners?.noSpam || 'Sans engagement • Annulation instantanée • Pas de spam'}</p>
+      </form>
+    </section>
+
+    {/* KIT MARKETING */}
+    <section class="bq-partners-kit" aria-labelledby="kit-title">
+      <h2 id="kit-title" class="bq-section-title">{t.partners?.kitTitle || 'Votre kit marketing prêt à l\'emploi'}</h2>
+      <div class="bq-kit-grid">
+        {[
+          { title: t.partners?.kit1Title || 'Bannières publicitaires', desc: t.partners?.kit1Desc || '7 formats (300x250, 728x90, 320x100, 1080x1080, 1080x1920, 1200x628, 1920x1080)', formats: ['PNG', 'JPG', 'WebP'] },
+          { title: t.partners?.kit2Title || 'Templates emails', desc: t.partners?.kit2Desc || '5 séquences prêtes : bienvenue, éducation, promo, relance, témoignage.', formats: ['HTML', 'MJML', 'TXT'] },
+          { title: t.partners?.kit3Title || 'Visuels réseaux sociaux', desc: t.partners?.kit3Desc || 'Posts Instagram, Stories, Facebook, LinkedIn, Twitter/X, Pinterest.', formats: ['PSD', 'Canva', 'Figma'] },
+          { title: t.partners?.kit4Title || 'Landing pages', desc: t.partners?.kit4Desc || 'Pages de capture optimisées conversion, personnalisables avec votre lien.', formats: ['HTML', 'Astro', 'WordPress'] },
+        ].map(k => (
+          <article class="bq-kit-card">
+            <h3>{k.title}</h3>
+            <p>{k.desc}</p>
+            <div class="bq-kit-formats">
+              {k.formats.map(f => <span class="bq-format-tag">{f}</span>)}
+            </div>
+            <a href={`/partenaires/kit/#${k.title.toLowerCase().replace(/\s+/g, '-')}`} class="bq-btn bq-btn-outline bq-btn-sm">{t.partners?.kitDownload || 'Télécharger'}</a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    {/* FAQ PARTENAIRES */}
+    <section class="bq-partners-faq" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="bq-section-title">{t.partners?.faqTitle || 'Questions fréquentes'}</h2>
+      <dl>
+        <dt>Combien puis-je gagner ?</dt>
+        <dd>30% sur chaque vente. Avec 10 ventes/mois à 20€ = 60€/mois. Top partenaires : 500-2000€/mois.</dd>
+        <dt>Comment sont trackées mes ventes ?</dt>
+        <dd>Lien unique + cookie 30 jours + fingerprinting. Tableau de bord temps réel sur FirstPromoter.</dd>
+        <dt>Quand suis-je payé ?</dt>
+        <dd>Mensuel, vers le 15 du mois suivant. Seuil minimum 50€. PayPal ou virement SEPA.</dd>
+        <dt>Puis-je promouvoir sur les réseaux sociaux ?</dt>
+        <dd>Oui ! C'est même recommandé. Kit visuels fournis. Respectez les règles de chaque plateforme.</dd>
+        <dt>Y a-t-il un coût d'inscription ?</dt>
+        <dd>Non, 100% gratuit. Aucun frais caché. Vous ne gagnez que si vous vendez.</dd>
+      </dl>
+    </section>
+
+    {/* PREUVE SOCIALE */}
+    <section class="bq-partners-testimonials" aria-labelledby="testimonials-title">
+      <h2 id="testimonials-title" class="bq-section-title">{t.partners?.testimonialsTitle || 'Ils en parlent mieux que nous'}</h2>
+      <div class="bq-testimonials-grid">
+        {[
+          { name: 'David R.', role: 'Blogueur chrétien', text: 'En 3 mois, j\'ai gagné 450€ en partageant simplement mes lectures. Le tableau de bord est clair.', avatar: 'DR' },
+          { name: 'Léa M.', role: 'Influenceuse Instagram', text: 'Les visuels fournis sont pros. Mes stories convertissent bien. Support réactif quand j\'ai des questions.', avatar: 'LM' },
+          { name: 'Pasteur Jean', role: 'Église locale', text: 'Nous recommandons les livres à notre assemblée. Les revenus financent nos actions sociales.', avatar: 'PJ' },
+        ].map(t => (
+          <article class="bq-testimonial">
+            <div class="bq-testimonial-avatar">{t.avatar}</div>
+            <p class="bq-testimonial-text">"{t.text}"</p>
+            <footer class="bq-testimonial-author">{t.name} <span>— {t.role}</span></footer>
+          </article>
+        ))}
+      </div>
+    </section>
+  </section>
+</MainLayout>
+
+<style>
+  .bq-partners-page { max-width: 1000px; margin: 0 auto; padding: var(--bq-space-8) var(--bq-space-4); }
+  .bq-page-header { text-align: center; margin-bottom: var(--bq-space-12); }
+  .bq-page-title { font-size: clamp(var(--bq-text-3xl), 5vw, var(--bq-text-5xl)); margin-bottom: var(--bq-space-4); }
+  .bq-page-subtitle { font-size: var(--bq-text-xl); color: var(--bq-color-text-muted); max-width: 700px; margin: 0 auto; }
+  .bq-section-title { text-align: center; margin-bottom: var(--bq-space-8); font-size: var(--bq-text-2xl); }
+  .bq-benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--bq-space-6); margin-bottom: var(--bq-space-16); }
+  .bq-benefit-card { text-align: center; padding: var(--bq-space-6); background: var(--bq-color-surface); border: 1px solid var(--bq-color-border); border-radius: var(--bq-radius-lg); transition: transform 0.2s; }
+  .bq-benefit-card:hover { transform: translateY(-4px); box-shadow: var(--bq-shadow-lg); }
+  .bq-benefit-icon { font-size: 3rem; display: block; margin-bottom: var(--bq-space-4); }
+  .bq-benefit-card h3 { margin-bottom: var(--bq-space-2); }
+  .bq-benefit-card p { color: var(--bq-color-text-muted); font-size: var(--bq-text-sm); }
+  .bq-signup-form { max-width: 600px; margin: 0 auto var(--bq-space-16); padding: var(--bq-space-8); background: var(--bq-color-surface); border: 1px solid var(--bq-color-border); border-radius: var(--bq-radius-xl); }
+  .bq-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--bq-space-4); }
+  @media (max-width: 600px) { .bq-form-row { grid-template-columns: 1fr; } }
+  .bq-form-group { display: flex; flex-direction: column; gap: var(--bq-space-1); }
+  .bq-form-group label { font-weight: 500; font-size: var(--bq-text-sm); }
+  .bq-form-group input, .bq-form-group select { padding: var(--bq-space-3); border: 1px solid var(--bq-color-border); border-radius: var(--bq-radius-md); font-size: var(--bq-text-base); background: var(--bq-color-bg); color: var(--bq-color-text); }
+  .bq-form-group input:focus, .bq-form-group select:focus { outline: none; border-color: var(--bq-color-primary); box-shadow: 0 0 0 3px var(--bq-color-primary-light); }
+  .bq-form-checkbox { flex-direction: row; align-items: flex-start; gap: var(--bq-space-2); }
+  .bq-form-checkbox label { font-size: var(--bq-text-sm); color: var(--bq-color-text-muted); }
+  .bq-form-checkbox a { color: var(--bq-color-primary); }
+  .bq-btn-lg { padding: var(--bq-space-4) var(--bq-space-6); font-size: var(--bq-text-lg); }
+  .bq-btn-icon { width: 24px; height: 24px; margin-right: var(--bq-space-2); }
+  .bq-form-note { text-align: center; font-size: var(--bq-text-sm); color: var(--bq-color-text-muted); margin-top: var(--bq-space-4); }
+  .bq-kit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--bq-space-6); margin-bottom: var(--bq-space-16); }
+  .bq-kit-card { padding: var(--bq-space-6); background: var(--bq-color-surface); border: 1px solid var(--bq-color-border); border-radius: var(--bq-radius-lg); }
+  .bq-kit-card h3 { margin-bottom: var(--bq-space-2); }
+  .bq-kit-card p { color: var(--bq-color-text-muted); font-size: var(--bq-text-sm); margin-bottom: var(--bq-space-4); }
+  .bq-kit-formats { display: flex; flex-wrap: wrap; gap: var(--bq-space-2); margin-bottom: var(--bq-space-4); }
+  .bq-format-tag { font-size: var(--bq-text-xs); padding: 2px 8px; background: var(--bq-color-primary-bg); color: var(--bq-color-primary); border-radius: var(--bq-radius-full); }
+  .bq-partners-faq { margin-top: var(--bq-space-16); padding-top: var(--bq-space-12); border-top: 1px solid var(--bq-color-border); }
+  .bq-partners-faq dl { max-width: 800px; margin: 0 auto; }
+  .bq-partners-faq dt { font-weight: 600; margin-top: var(--bq-space-6); }
+  .bq-partners-faq dd { color: var(--bq-color-text-muted); margin: var(--bq-space-2) 0 0 0; line-height: 1.7; }
+  .bq-testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--bq-space-6); margin-top: var(--bq-space-8); }
+  .bq-testimonial { padding: var(--bq-space-6); background: var(--bq-color-surface); border: 1px solid var(--bq-color-border); border-radius: var(--bq-radius-lg); text-align: center; }
+  .bq-testimonial-avatar { width: 60px; height: 60px; border-radius: 50%; background: var(--bq-color-primary); color: var(--bq-color-on-primary); display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto var(--bq-space-4); font-size: var(--bq-text-lg); }
+  .bq-testimonial-text { font-style: italic; margin-bottom: var(--bq-space-4); line-height: 1.6; }
+  .bq-testimonial-author { font-size: var(--bq-text-sm); color: var(--bq-color-text-muted); }
+  .bq-testimonial-author span { display: block; margin-top: var(--bq-space-1); font-weight: 600; color: var(--bq-color-primary); }
+</style>

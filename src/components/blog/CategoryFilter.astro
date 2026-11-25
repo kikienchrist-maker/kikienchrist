@@ -60,7 +60,7 @@ const t = ui[lang as keyof typeof ui] || ui.fr;
     const catSlug = slugify(cat);
     return (
       <a 
-        href={`/${lang}/blog/categorie/${catSlug}/`} 
+        href={`/${lang}/blog/categorie/${catSlug}/1/`} 
         class={`category-item ${currentCategory === cat ? 'active' : ''}`}
         aria-current={currentCategory === cat ? 'page' : undefined}
       >

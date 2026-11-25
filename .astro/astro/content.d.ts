@@ -141,30 +141,23 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"blog": {
-"ar/first-article.md": {
-	id: "ar/first-article.md";
-  slug: "ar/first-article";
+"ar-entendre-voix-dieu.md": {
+	id: "ar-entendre-voix-dieu.md";
+  slug: "entendre-voix-dieu-ar";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
-"de/erster-artikel.md": {
-	id: "de/erster-artikel.md";
-  slug: "de/erster-artikel";
+"en-entendre-voix-dieu.md": {
+	id: "en-entendre-voix-dieu.md";
+  slug: "entendre-voix-dieu-en";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
-"en/first-article.md": {
-	id: "en/first-article.md";
-  slug: "en/first-article";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
-"es/primer-articulo.md": {
-	id: "es/primer-articulo.md";
-  slug: "es/primer-articulo";
+"es-entendre-voix-dieu.md": {
+	id: "es-entendre-voix-dieu.md";
+  slug: "entendre-voix-dieu-es";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
@@ -239,459 +232,519 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
-"fr/premiere-article.md": {
-	id: "fr/premiere-article.md";
-  slug: "fr/premiere-article";
+"it-entendre-voix-dieu.md": {
+	id: "it-entendre-voix-dieu.md";
+  slug: "entendre-voix-dieu-it";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
-"it/primo-articolo.md": {
-	id: "it/primo-articolo.md";
-  slug: "it/primo-articolo";
+"nl-entendre-voix-dieu.md": {
+	id: "nl-entendre-voix-dieu.md";
+  slug: "entendre-voix-dieu-nl";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
-"nl/eerste-artikel.md": {
-	id: "nl/eerste-artikel.md";
-  slug: "nl/eerste-artikel";
+"ru-entendre-voix-dieu.md": {
+	id: "ru-entendre-voix-dieu.md";
+  slug: "entendre-voix-dieu-ru";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
-"pl/pierwszy-artykul.md": {
-	id: "pl/pierwszy-artykul.md";
-  slug: "pl/pierwszy-artykul";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
-"pt/primeiro-artigo.md": {
-	id: "pt/primeiro-artigo.md";
-  slug: "pt/primeiro-artigo";
+"zh-entendre-voix-dieu.md": {
+	id: "zh-entendre-voix-dieu.md";
+  slug: "entendre-voix-dieu-zh";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 };
+"books": {
+"combat.md": {
+	id: "combat.md";
+  slug: "combat";
+  body: string;
+  collection: "books";
+  data: InferEntrySchema<"books">
+} & { render(): Render[".md"] };
+"salut.md": {
+	id: "salut.md";
+  slug: "salut";
+  body: string;
+  collection: "books";
+  data: InferEntrySchema<"books">
+} & { render(): Render[".md"] };
+"trinite.md": {
+	id: "trinite.md";
+  slug: "trinite";
+  body: string;
+  collection: "books";
+  data: InferEntrySchema<"books">
+} & { render(): Render[".md"] };
+"visage.md": {
+	id: "visage.md";
+  slug: "visage";
+  body: string;
+  collection: "books";
+  data: InferEntrySchema<"books">
+} & { render(): Render[".md"] };
+};
+"legal": {
+"accessibilite.md": {
+	id: "accessibilite.md";
+  slug: "accessibilite";
+  body: string;
+  collection: "legal";
+  data: any
+} & { render(): Render[".md"] };
+"cgv.md": {
+	id: "cgv.md";
+  slug: "cgv";
+  body: string;
+  collection: "legal";
+  data: any
+} & { render(): Render[".md"] };
+"confidentialite.md": {
+	id: "confidentialite.md";
+  slug: "confidentialite";
+  body: string;
+  collection: "legal";
+  data: any
+} & { render(): Render[".md"] };
+"cookies.md": {
+	id: "cookies.md";
+  slug: "cookies";
+  body: string;
+  collection: "legal";
+  data: any
+} & { render(): Render[".md"] };
+"mentions-legales.md": {
+	id: "mentions-legales.md";
+  slug: "mentions-legales";
+  body: string;
+  collection: "legal";
+  data: any
+} & { render(): Render[".md"] };
+};
 "legalPages": {
-"accessibilite-ar.md": {
-	id: "accessibilite-ar.md";
-  slug: "accessibilite-ar";
+"accessibilite.ar.md": {
+	id: "accessibilite.ar.md";
+  slug: "accessibilitear";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"accessibilite-de.md": {
-	id: "accessibilite-de.md";
-  slug: "accessibilite-de";
+"accessibilite.de.md": {
+	id: "accessibilite.de.md";
+  slug: "accessibilitede";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"accessibilite-en.md": {
-	id: "accessibilite-en.md";
-  slug: "accessibilite-en";
+"accessibilite.en.md": {
+	id: "accessibilite.en.md";
+  slug: "accessibiliteen";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"accessibilite-es.md": {
-	id: "accessibilite-es.md";
-  slug: "accessibilite-es";
+"accessibilite.es.md": {
+	id: "accessibilite.es.md";
+  slug: "accessibilitees";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"accessibilite-fr.md": {
-	id: "accessibilite-fr.md";
-  slug: "accessibilite-fr";
+"accessibilite.hi.md": {
+	id: "accessibilite.hi.md";
+  slug: "accessibilitehi";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"accessibilite-hi.md": {
-	id: "accessibilite-hi.md";
-  slug: "accessibilite-hi";
+"accessibilite.it.md": {
+	id: "accessibilite.it.md";
+  slug: "accessibiliteit";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"accessibilite-it.md": {
-	id: "accessibilite-it.md";
-  slug: "accessibilite-it";
+"accessibilite.md": {
+	id: "accessibilite.md";
+  slug: "accessibilite";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"accessibilite-nl.md": {
-	id: "accessibilite-nl.md";
-  slug: "accessibilite-nl";
+"accessibilite.nl.md": {
+	id: "accessibilite.nl.md";
+  slug: "accessibilitenl";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"accessibilite-pl.md": {
-	id: "accessibilite-pl.md";
-  slug: "accessibilite-pl";
+"accessibilite.pl.md": {
+	id: "accessibilite.pl.md";
+  slug: "accessibilitepl";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"accessibilite-pt.md": {
-	id: "accessibilite-pt.md";
-  slug: "accessibilite-pt";
+"accessibilite.pt.md": {
+	id: "accessibilite.pt.md";
+  slug: "accessibilitept";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"accessibilite-ru.md": {
-	id: "accessibilite-ru.md";
-  slug: "accessibilite-ru";
+"accessibilite.ru.md": {
+	id: "accessibilite.ru.md";
+  slug: "accessibiliteru";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"accessibilite-zh.md": {
-	id: "accessibilite-zh.md";
-  slug: "accessibilite-zh";
+"accessibilite.zh.md": {
+	id: "accessibilite.zh.md";
+  slug: "accessibilitezh";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cgv-ar.md": {
-	id: "cgv-ar.md";
-  slug: "cgv-ar";
+"cgv.ar.md": {
+	id: "cgv.ar.md";
+  slug: "cgvar";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cgv-de.md": {
-	id: "cgv-de.md";
-  slug: "cgv-de";
+"cgv.de.md": {
+	id: "cgv.de.md";
+  slug: "cgvde";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cgv-en.md": {
-	id: "cgv-en.md";
-  slug: "cgv-en";
+"cgv.en.md": {
+	id: "cgv.en.md";
+  slug: "cgven";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cgv-es.md": {
-	id: "cgv-es.md";
-  slug: "cgv-es";
+"cgv.es.md": {
+	id: "cgv.es.md";
+  slug: "cgves";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cgv-fr.md": {
-	id: "cgv-fr.md";
-  slug: "cgv-fr";
+"cgv.hi.md": {
+	id: "cgv.hi.md";
+  slug: "cgvhi";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cgv-hi.md": {
-	id: "cgv-hi.md";
-  slug: "cgv-hi";
+"cgv.it.md": {
+	id: "cgv.it.md";
+  slug: "cgvit";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cgv-it.md": {
-	id: "cgv-it.md";
-  slug: "cgv-it";
+"cgv.md": {
+	id: "cgv.md";
+  slug: "cgv";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cgv-nl.md": {
-	id: "cgv-nl.md";
-  slug: "cgv-nl";
+"cgv.nl.md": {
+	id: "cgv.nl.md";
+  slug: "cgvnl";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cgv-pl.md": {
-	id: "cgv-pl.md";
-  slug: "cgv-pl";
+"cgv.pl.md": {
+	id: "cgv.pl.md";
+  slug: "cgvpl";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cgv-pt.md": {
-	id: "cgv-pt.md";
-  slug: "cgv-pt";
+"cgv.pt.md": {
+	id: "cgv.pt.md";
+  slug: "cgvpt";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cgv-ru.md": {
-	id: "cgv-ru.md";
-  slug: "cgv-ru";
+"cgv.ru.md": {
+	id: "cgv.ru.md";
+  slug: "cgvru";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cgv-zh.md": {
-	id: "cgv-zh.md";
-  slug: "cgv-zh";
+"cgv.zh.md": {
+	id: "cgv.zh.md";
+  slug: "cgvzh";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"confidentialite-ar.md": {
-	id: "confidentialite-ar.md";
-  slug: "confidentialite-ar";
+"confidentialite.ar.md": {
+	id: "confidentialite.ar.md";
+  slug: "confidentialitear";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"confidentialite-de.md": {
-	id: "confidentialite-de.md";
-  slug: "confidentialite-de";
+"confidentialite.de.md": {
+	id: "confidentialite.de.md";
+  slug: "confidentialitede";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"confidentialite-en.md": {
-	id: "confidentialite-en.md";
-  slug: "confidentialite-en";
+"confidentialite.en.md": {
+	id: "confidentialite.en.md";
+  slug: "confidentialiteen";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"confidentialite-es.md": {
-	id: "confidentialite-es.md";
-  slug: "confidentialite-es";
+"confidentialite.es.md": {
+	id: "confidentialite.es.md";
+  slug: "confidentialitees";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"confidentialite-fr.md": {
-	id: "confidentialite-fr.md";
-  slug: "confidentialite-fr";
+"confidentialite.hi.md": {
+	id: "confidentialite.hi.md";
+  slug: "confidentialitehi";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"confidentialite-hi.md": {
-	id: "confidentialite-hi.md";
-  slug: "confidentialite-hi";
+"confidentialite.it.md": {
+	id: "confidentialite.it.md";
+  slug: "confidentialiteit";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"confidentialite-it.md": {
-	id: "confidentialite-it.md";
-  slug: "confidentialite-it";
+"confidentialite.md": {
+	id: "confidentialite.md";
+  slug: "confidentialite";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"confidentialite-nl.md": {
-	id: "confidentialite-nl.md";
-  slug: "confidentialite-nl";
+"confidentialite.nl.md": {
+	id: "confidentialite.nl.md";
+  slug: "confidentialitenl";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"confidentialite-pl.md": {
-	id: "confidentialite-pl.md";
-  slug: "confidentialite-pl";
+"confidentialite.pl.md": {
+	id: "confidentialite.pl.md";
+  slug: "confidentialitepl";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"confidentialite-pt.md": {
-	id: "confidentialite-pt.md";
-  slug: "confidentialite-pt";
+"confidentialite.pt.md": {
+	id: "confidentialite.pt.md";
+  slug: "confidentialitept";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"confidentialite-ru.md": {
-	id: "confidentialite-ru.md";
-  slug: "confidentialite-ru";
+"confidentialite.ru.md": {
+	id: "confidentialite.ru.md";
+  slug: "confidentialiteru";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"confidentialite-zh.md": {
-	id: "confidentialite-zh.md";
-  slug: "confidentialite-zh";
+"confidentialite.zh.md": {
+	id: "confidentialite.zh.md";
+  slug: "confidentialitezh";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cookies-ar.md": {
-	id: "cookies-ar.md";
-  slug: "cookies-ar";
+"cookies.ar.md": {
+	id: "cookies.ar.md";
+  slug: "cookiesar";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cookies-de.md": {
-	id: "cookies-de.md";
-  slug: "cookies-de";
+"cookies.de.md": {
+	id: "cookies.de.md";
+  slug: "cookiesde";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cookies-en.md": {
-	id: "cookies-en.md";
-  slug: "cookies-en";
+"cookies.en.md": {
+	id: "cookies.en.md";
+  slug: "cookiesen";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cookies-es.md": {
-	id: "cookies-es.md";
-  slug: "cookies-es";
+"cookies.es.md": {
+	id: "cookies.es.md";
+  slug: "cookieses";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cookies-fr.md": {
-	id: "cookies-fr.md";
-  slug: "cookies-fr";
+"cookies.hi.md": {
+	id: "cookies.hi.md";
+  slug: "cookieshi";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cookies-hi.md": {
-	id: "cookies-hi.md";
-  slug: "cookies-hi";
+"cookies.it.md": {
+	id: "cookies.it.md";
+  slug: "cookiesit";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cookies-it.md": {
-	id: "cookies-it.md";
-  slug: "cookies-it";
+"cookies.md": {
+	id: "cookies.md";
+  slug: "cookies";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cookies-nl.md": {
-	id: "cookies-nl.md";
-  slug: "cookies-nl";
+"cookies.nl.md": {
+	id: "cookies.nl.md";
+  slug: "cookiesnl";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cookies-pl.md": {
-	id: "cookies-pl.md";
-  slug: "cookies-pl";
+"cookies.pl.md": {
+	id: "cookies.pl.md";
+  slug: "cookiespl";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cookies-pt.md": {
-	id: "cookies-pt.md";
-  slug: "cookies-pt";
+"cookies.pt.md": {
+	id: "cookies.pt.md";
+  slug: "cookiespt";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cookies-ru.md": {
-	id: "cookies-ru.md";
-  slug: "cookies-ru";
+"cookies.ru.md": {
+	id: "cookies.ru.md";
+  slug: "cookiesru";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"cookies-zh.md": {
-	id: "cookies-zh.md";
-  slug: "cookies-zh";
+"cookies.zh.md": {
+	id: "cookies.zh.md";
+  slug: "cookieszh";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"mentions-legales-ar.md": {
-	id: "mentions-legales-ar.md";
-  slug: "mentions-legales-ar";
+"mentions-legales.ar.md": {
+	id: "mentions-legales.ar.md";
+  slug: "mentions-legalesar";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"mentions-legales-de.md": {
-	id: "mentions-legales-de.md";
-  slug: "mentions-legales-de";
+"mentions-legales.de.md": {
+	id: "mentions-legales.de.md";
+  slug: "mentions-legalesde";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"mentions-legales-en.md": {
-	id: "mentions-legales-en.md";
-  slug: "mentions-legales-en";
+"mentions-legales.en.md": {
+	id: "mentions-legales.en.md";
+  slug: "mentions-legalesen";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"mentions-legales-es.md": {
-	id: "mentions-legales-es.md";
-  slug: "mentions-legales-es";
+"mentions-legales.es.md": {
+	id: "mentions-legales.es.md";
+  slug: "mentions-legaleses";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"mentions-legales-fr.md": {
-	id: "mentions-legales-fr.md";
-  slug: "mentions-legales-fr";
+"mentions-legales.hi.md": {
+	id: "mentions-legales.hi.md";
+  slug: "mentions-legaleshi";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"mentions-legales-hi.md": {
-	id: "mentions-legales-hi.md";
-  slug: "mentions-legales-hi";
+"mentions-legales.it.md": {
+	id: "mentions-legales.it.md";
+  slug: "mentions-legalesit";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"mentions-legales-it.md": {
-	id: "mentions-legales-it.md";
-  slug: "mentions-legales-it";
+"mentions-legales.md": {
+	id: "mentions-legales.md";
+  slug: "mentions-legales";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"mentions-legales-nl.md": {
-	id: "mentions-legales-nl.md";
-  slug: "mentions-legales-nl";
+"mentions-legales.nl.md": {
+	id: "mentions-legales.nl.md";
+  slug: "mentions-legalesnl";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"mentions-legales-pl.md": {
-	id: "mentions-legales-pl.md";
-  slug: "mentions-legales-pl";
+"mentions-legales.pl.md": {
+	id: "mentions-legales.pl.md";
+  slug: "mentions-legalespl";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"mentions-legales-pt.md": {
-	id: "mentions-legales-pt.md";
-  slug: "mentions-legales-pt";
+"mentions-legales.pt.md": {
+	id: "mentions-legales.pt.md";
+  slug: "mentions-legalespt";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"mentions-legales-ru.md": {
-	id: "mentions-legales-ru.md";
-  slug: "mentions-legales-ru";
+"mentions-legales.ru.md": {
+	id: "mentions-legales.ru.md";
+  slug: "mentions-legalesru";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
 } & { render(): Render[".md"] };
-"mentions-legales-zh.md": {
-	id: "mentions-legales-zh.md";
-  slug: "mentions-legales-zh";
+"mentions-legales.zh.md": {
+	id: "mentions-legales.zh.md";
+  slug: "mentions-legaleszh";
   body: string;
   collection: "legalPages";
   data: InferEntrySchema<"legalPages">
@@ -705,11 +758,25 @@ declare module 'astro:content' {
   id: string;
   collection: "authors";
   data: InferEntrySchema<"authors">;
+  rendered?: RenderedContent;
+  filePath?: string;
+  body?: string 
 }>;
-"legal": Record<string, {
+"siteConfig": Record<string, {
   id: string;
-  collection: "legal";
-  data: any;
+  collection: "siteConfig";
+  data: InferEntrySchema<"siteConfig">;
+  rendered?: RenderedContent;
+  filePath?: string;
+  body?: string 
+}>;
+"translations": Record<string, {
+  id: string;
+  collection: "translations";
+  data: InferEntrySchema<"translations">;
+  rendered?: RenderedContent;
+  filePath?: string;
+  body?: string 
 }>;
 
 	};

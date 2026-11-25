@@ -1,0 +1,220 @@
+---
+// src/pages/[lang]/livres.astro
+import MainLayout from '../../layouts/MainLayout.astro';
+import type { Lang } from '../../data/translations.json';
+import fs from 'fs';
+import path from 'path';
+
+const translations = JSON.parse(fs.readFileSync(path.resolve('./src/data/translations.json'), 'utf-8'));
+
+export async function getStaticPaths() {
+  const langs = ['fr', 'en', 'es', 'pt', 'de', 'it', 'nl', 'pl', 'ar', 'ru', 'zh', 'hi'] as const;
+  return langs.map(lang => ({ params: { lang }, props: { lang } }));
+}
+
+const { lang } = Astro.props;
+const t = translations[lang] || translations.fr;
+const books = translations.booksData?.[lang] || translations.booksData?.fr || [];
+
+const pageTitle = t.books?.title || 'Nos Livres';
+const pageDescription = t.books?.description || `Découvrez nos ${books.length} livres chrétiens pour grandir dans la foi. E-books et versions papier disponibles.`;
+const canonicalURL = `https://kikienchrist.vercel.app/${lang}/livres/`;
+const ogImage = `https://kikienchrist.vercel.app/og/books-${lang}.jpg`;
+
+// Schema.org Book + ItemList
+const bookSchemas = books.map(book => ({
+  '@type': 'Book',
+  name: book.title,
+  author: { '@type': 'Person', name: 'Kiki' },
+  isbn: book.isbn,
+  numberOfPages: book.pages,
+  publisher: { '@type': 'Organization', name: 'Kiki en Christ' },
+  datePublished: book.publishedDate,
+  inLanguage: lang,
+  offers: {
+    '@type': 'Offer',
+    price: book.price,
+    priceCurrency: 'EUR',
+    availability: 'https://schema.org/InStock',
+    url: book.buyUrl,
+  },
+  description: book.description,
+}));
+
+const jsonLd = {
+  '@type': 'ItemList',
+  itemListElement: books.map((book, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: bookSchemas[i],
+  })),
+};
+---
+
+<MainLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalURL={canonicalURL}
+  ogImage={ogImage}
+  lang={lang}
+  currentPath="/livres/"
+  jsonLd={jsonLd}
+>
+  <section class="bq-books-page" aria-labelledby="books-title">
+    <header class="bq-page-header">
+      <h1 id="books-title" class="bq-page-title">{pageTitle}</h1>
+      <p class="bq-page-subtitle">{t.books?.subtitle || 'Des livres pour nourrir votre foi et approfondir votre relation avec Dieu'}</p>
+    </header>
+
+    <div class="bq-books-grid" role="list">
+      {books.map(book => (
+        <article class="bq-book-card" role="listitem" itemscope itemtype="https://schema.org/Book">
+          <div class="bq-book-cover">
+            <picture>
+              <source srcset={book.coverImage.replace('400w', '800w')} type="image/webp" media="(min-width: 600px)">
+              <img src={book.coverImage} alt={book.title} loading="lazy" width="300" height="450" itemprop="image">
+            </picture>
+            <span class="bq-book-badge">{book.badge || t.books?.badge || 'Bestseller'}</span>
+          </div>
+          
+          <div class="bq-book-info">
+            <h2 class="bq-book-title" itemprop="name">{book.title}</h2>
+            <p class="bq-book-subtitle" itemprop="description">{book.shortDescription}</p>
+            
+            <ul class="bq-book-meta" role="list">
+              <li><strong>{t.books?.pages || 'Pages'}:</strong> {book.pages} <span itemprop="numberOfPages" style="display:none">{book.pages}</span></li>
+              <li><strong>{t.books?.isbn || 'ISBN'}:</strong> {book.isbn} <span itemprop="isbn" style="display:none">{book.isbn}</span></li>
+              <li><strong>{t.books?.published || 'Paru'}:</strong> {book.publishedDate}</li>
+            </ul>
+            
+            <div class="bq-book-benefits" role="list" aria-label={t.books?.benefitsLabel || 'Points forts'}>
+              {book.benefits?.map(b => <li><svg class="bq-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> {b}</li>)}
+            </div>
+            
+            <div class="bq-book-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+              <span class="bq-price" itemprop="price" content={book.price}>{book.price.toFixed(2).replace('.', ',')} €</span>
+              <meta itemprop="priceCurrency" content="EUR" />
+              <meta itemprop="availability" content="https://schema.org/InStock" />
+            </div>
+            
+            <div class="bq-book-actions">
+              <a href={book.buyUrlEbook} target="_blank" rel="noopener noreferrer" class="bq-btn bq-btn-primary bq-btn-full" data-gtm="buy_ebook_{book.id}">
+                <svg class="bq-btn-icon" viewBox="0 0 24 24"><path d="M21 12V7H5v5"/><path d="M21 17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5"/></svg>
+                {t.books?.ebookBtn || 'E-book (PDF/EPUB)'}
+                <span class="bq-btn-sub">{t.books?.instant || 'Téléchargement instantané'}</span>
+              </a>
+              <a href={book.buyUrlPaper} target="_blank" rel="noopener noreferrer" class="bq-btn bq-btn-outline bq-btn-full" data-gtm="buy_paper_{book.id}">
+                <svg class="bq-btn-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                {t.books?.paperBtn || 'Version papier'}
+                <span class="bq-btn-sub">{t.books?.delivery || 'Livraison 5-10 jours'}</span>
+              </a>
+            </div>
+            
+            <p class="bq-book-guarantee"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> {t.books?.guarantee || 'Garantie 14 jours'}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    {/* SECTION CONTENU RICHE POUR SEO (>300 mots) */}
+    <section class="bq-books-rich-content" aria-labelledby="rich-title">
+      <h2 id="rich-title" class="bq-section-title">{t.books?.whyTitle || 'Pourquoi choisir nos livres ?'}</h2>
+      <div class="bq-rich-grid">
+        <article class="bq-rich-card">
+          <svg class="bq-rich-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <h3>{t.books?.why1Title || 'Ancrage biblique'}</h3>
+          <p>{t.books?.why1Text || 'Chaque livre est profondément enraciné dans les Écritures, pour une théologie solide et accessible.'}</p>
+        </article>
+        <article class="bq-rich-card">
+          <svg class="bq-rich-icon" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <h3>{t.books?.why2Title || 'Vie pratique'}</h3>
+          <p>{t.books?.why2Text || 'Des enseignements applicables au quotidien pour transformer votre marche avec Christ.'}</p>
+        </article>
+        <article class="bq-rich-card">
+          <svg class="bq-rich-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><path d="M9 11a4 4 0 0 0 0 8"/><path d="M15 11a4 4 0 0 0 0 8"/></svg>
+          <h3>{t.books?.why3Title || 'Communauté'}</h3>
+          <p>{t.books?.why3Text || 'Rejoignez des milliers de lecteurs qui grandissent ensemble dans la foi.'}</p>
+        </article>
+      </div>
+    </section>
+
+    {/* FAQ LIVRES */}
+    <section class="bq-books-faq" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="bq-section-title">{t.books?.faqTitle || 'Questions fréquentes'}</h2>
+      <dl>
+        <dt>Quels formats sont disponibles ?</dt>
+        <dd>E-book (PDF + EPUB) pour lecture immédiate sur tous appareils, et version brochée papier de qualité.</dd>
+        <dt>Puis-je lire sur ma liseuse Kindle / Kobo ?</dt>
+        <dd>Oui, le format EPUB est compatible avec toutes les liseuses modernes. Pour Kindle, envoyez le fichier par email @kindle.com.</dd>
+        <dt>Y a-t-il une garantie satisfait ou remboursé ?</dt>
+        <dd>Oui, 14 jours pour les e-books non téléchargés. Les versions papier suivent la politique du distributeur (Lulu/Amazon).</dd>
+        <dt>Comment se passe la livraison ?</dt>
+        <dd>E-book : lien de téléchargement immédiat après paiement sécurisé. Broché : impression à la demande, expédition 5-10 jours ouvrés.</dd>
+        <dt>Les livres sont-ils disponibles dans d'autres langues ?</dt>
+        <dd>Actuellement en français. Les traductions sont en cours pour l'anglais, l'espagnol et d'autres langues.</dd>
+      </dl>
+    </section>
+
+    {/* PREUVE SOCIALE */}
+    <section class="bq-books-testimonials" aria-labelledby="testimonials-title">
+      <h2 id="testimonials-title" class="bq-section-title">{t.books?.testimonialsTitle || 'Ce qu\'en disent nos lecteurs'}</h2>
+      <div class="bq-testimonials-grid">
+        {[
+          { name: 'Marie D.', stars: 5, text: 'Le "Visage de Dieu" a transformé ma compréhension de qui est Dieu. Simple, profond, puissant.', book: 'visage' },
+          { name: 'Pierre L.', stars: 5, text: 'Enfin une explication claire de la Trinité ! Je l\'offre à tous mes nouveaux convertis.', book: 'trinite' },
+          { name: 'Sophie M.', stars: 4, text: 'Le "Combat Spirituel" m\'a donné des armes concrètes pour mes temps de prière. Indispensable.', book: 'combat' },
+        ].map(t => (
+          <article class="bq-testimonial">
+            <div class="bq-testimonial-stars" aria-label={`${t.stars}/5 étoiles`}>{'★'.repeat(t.stars)}{'☆'.repeat(5-t.stars)}</div>
+            <p class="bq-testimonial-text">"{t.text}"</p>
+            <footer class="bq-testimonial-author">— {t.name} <span>({books.find(b => b.id === t.book)?.title})</span></footer>
+          </article>
+        ))}
+      </div>
+    </section>
+  </section>
+</MainLayout>
+
+<style>
+  .bq-books-page { max-width: 1200px; margin: 0 auto; padding: var(--bq-space-8) var(--bq-space-4); }
+  .bq-page-header { text-align: center; margin-bottom: var(--bq-space-12); }
+  .bq-page-title { font-size: clamp(var(--bq-text-3xl), 5vw, var(--bq-text-5xl)); margin-bottom: var(--bq-space-4); }
+  .bq-page-subtitle { font-size: var(--bq-text-xl); color: var(--bq-color-text-muted); max-width: 700px; margin: 0 auto; }
+  .bq-books-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--bq-space-8); margin-bottom: var(--bq-space-16); }
+  .bq-book-card { background: var(--bq-color-surface); border: 1px solid var(--bq-color-border); border-radius: var(--bq-radius-xl); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s; }
+  .bq-book-card:hover { transform: translateY(-4px); box-shadow: var(--bq-shadow-xl); }
+  .bq-book-cover { position: relative; aspect-ratio: 2/3; background: var(--bq-color-bg-muted); }
+  .bq-book-cover img { width: 100%; height: 100%; object-fit: cover; }
+  .bq-book-badge { position: absolute; top: var(--bq-space-3); left: var(--bq-space-3); background: var(--bq-color-primary); color: var(--bq-color-on-primary); padding: var(--bq-space-1) var(--bq-space-3); border-radius: var(--bq-radius-full); font-size: var(--bq-text-xs); font-weight: 600; }
+  .bq-book-info { padding: var(--bq-space-6); display: flex; flex-direction: column; flex: 1; }
+  .bq-book-title { font-size: var(--bq-text-xl); margin-bottom: var(--bq-space-2); }
+  .bq-book-subtitle { color: var(--bq-color-text-muted); font-size: var(--bq-text-sm); margin-bottom: var(--bq-space-4); flex: 1; }
+  .bq-book-meta { list-style: none; padding: 0; margin: var(--bq-space-4) 0; font-size: var(--bq-text-sm); color: var(--bq-color-text-muted); display: flex; flex-direction: column; gap: var(--bq-space-2); }
+  .bq-book-benefits { list-style: none; padding: 0; margin: var(--bq-space-4) 0; display: grid; grid-template-columns: 1fr 1fr; gap: var(--bq-space-2); }
+  .bq-book-benefits li { display: flex; align-items: flex-start; gap: var(--bq-space-2); font-size: var(--bq-text-sm); }
+  .bq-check { width: 18px; height: 18px; color: var(--bq-color-success); flex-shrink: 0; }
+  .bq-book-price { margin: var(--bq-space-4) 0; }
+  .bq-price { font-size: var(--bq-text-2xl); font-weight: 800; color: var(--bq-color-primary); }
+  .bq-book-actions { display: flex; flex-direction: column; gap: var(--bq-space-3); margin-top: auto; }
+  .bq-btn-full { width: 100%; justify-content: center; }
+  .bq-btn-icon { width: 20px; height: 20px; margin-right: var(--bq-space-2); }
+  .bq-btn-sub { display: block; font-size: var(--bq-text-xs); opacity: 0.8; margin-top: 2px; }
+  .bq-book-guarantee { display: flex; align-items: center; justify-content: center; gap: var(--bq-space-2); margin-top: var(--bq-space-4); color: var(--bq-color-success); font-weight: 500; font-size: var(--bq-text-sm); }
+  .bq-book-guarantee svg { width: 18px; height: 18px; }
+  .bq-rich-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--bq-space-6); margin-top: var(--bq-space-8); }
+  .bq-rich-card { text-align: center; padding: var(--bq-space-6); background: var(--bq-color-surface); border: 1px solid var(--bq-color-border); border-radius: var(--bq-radius-lg); }
+  .bq-rich-icon { width: 48px; height: 48px; color: var(--bq-color-primary); margin-bottom: var(--bq-space-4); }
+  .bq-rich-card h3 { margin-bottom: var(--bq-space-2); }
+  .bq-rich-card p { color: var(--bq-color-text-muted); font-size: var(--bq-text-sm); }
+  .bq-section-title { text-align: center; margin-bottom: var(--bq-space-8); font-size: var(--bq-text-2xl); }
+  .bq-books-faq { margin-top: var(--bq-space-16); padding-top: var(--bq-space-12); border-top: 1px solid var(--bq-color-border); }
+  .bq-books-faq dl { max-width: 800px; margin: 0 auto; }
+  .bq-books-faq dt { font-weight: 600; margin-top: var(--bq-space-4); cursor: pointer; }
+  .bq-books-faq dd { color: var(--bq-color-text-muted); margin: var(--bq-space-2) 0 0 0; line-height: 1.7; }
+  .bq-testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--bq-space-6); margin-top: var(--bq-space-8); }
+  .bq-testimonial { padding: var(--bq-space-6); background: var(--bq-color-surface); border: 1px solid var(--bq-color-border); border-radius: var(--bq-radius-lg); }
+  .bq-testimonial-stars { color: #fbbf24; margin-bottom: var(--bq-space-3); }
+  .bq-testimonial-text { font-style: italic; color: var(--bq-color-text); margin-bottom: var(--bq-space-4); line-height: 1.6; }
+  .bq-testimonial-author { font-size: var(--bq-text-sm); color: var(--bq-color-text-muted); }
+  .bq-testimonial-author span { font-weight: 600; color: var(--bq-color-primary); }
+</style>

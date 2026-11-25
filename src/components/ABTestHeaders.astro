@@ -1,0 +1,23 @@
+---
+// ABTestHeaders.astro - Inject middleware variant headers as meta tags for client-side tracking
+// Place in <head> of MainLayout
+
+const request = Astro.request;
+
+// Collect all x-ab-* headers
+const abHeaders: Record<string, string> = {};
+for (const [key, value] of request.headers.entries()) {
+  if (key.startsWith('x-ab-')) {
+    abHeaders[key] = value;
+  }
+}
+
+const headerEntries = Object.entries(abHeaders);
+const variantsHeader = abHeaders['x-ab-variants'];
+---
+
+{headerEntries.map(([key, value]) => (
+  <meta name={key} content={value} />
+))}
+
+{variantsHeader && <meta name="x-ab-variants" content={variantsHeader} />}

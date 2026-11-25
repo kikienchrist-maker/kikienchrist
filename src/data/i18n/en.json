@@ -1,0 +1,103 @@
+{
+  "lang": "en",
+  "nativeName": "English",
+  "englishName": "English",
+  "dir": "ltr",
+  "dateFormat": "MM/DD/YYYY",
+  "translations": {
+    "nav": {
+      "home": "Home",
+      "blog": "Blog",
+      "books": "Books",
+      "contact": "Contact",
+      "search": "Search",
+      "language": "Language"
+    },
+    "hero": {
+      "title": "Books for those seeking God beyond dogma",
+      "subtitle": "Discover an authentic spirituality, rooted in Scripture and alive in daily life.",
+      "ctaPrimary": "Discover Books",
+      "ctaSecondary": "Read Blog"
+    },
+    "footer": {
+      "copyright": "© 2025 Kiki en Christ. All rights reserved.",
+      "mentionsLegales": "Legal Notice",
+      "confidentialite": "Privacy Policy",
+      "cookies": "Cookies",
+      "cgv": "Terms of Sale",
+      "accessibilite": "Accessibility"
+    },
+    "blog": {
+      "filterTitle": "Filter",
+      "categories": "Categories",
+      "tags": "Tags",
+      "series": "Series",
+      "clearFilters": "Clear filters",
+      "noPosts": "No articles found.",
+      "readingTime": "min read",
+      "relatedPosts": "Related posts",
+      "newsletterTitle": "Get new articles",
+      "newsletterDesc": "Subscribe to never miss our teachings and testimonies.",
+      "subscribe": "Subscribe"
+    },
+    "legal": {
+      "mentionsLegalesTitle": "Legal Notice",
+      "confidentialiteTitle": "Privacy Policy",
+      "cookiesTitle": "Cookie Policy",
+      "cgvTitle": "Terms of Sale",
+      "accessibiliteTitle": "Accessibility"
+    },
+    "forms": {
+      "emailPlaceholder": "Your email",
+      "submit": "Subscribe",
+      "submitting": "Subscribing...",
+      "success": "Thanks! Check your inbox.",
+      "error": "Error. Please try again later.",
+      "privacy": "We respect your privacy. Unsubscribe in 1 click.",
+      "firstName": "First Name",
+      "lastName": "Last Name"
+    },
+    "partners": {
+      "title": "Become a Partner — Kiki en Christ",
+      "description": "Join our affiliate program and earn 30% commission on every sale.",
+      "subtitle": "Share the faith, earn income",
+      "benefit1_title": "30% Commission",
+      "benefit1_desc": "On every sale generated through your unique link.",
+      "benefit2_title": "30-Day Cookie",
+      "benefit2_desc": "Attribution for 30 days even if purchase is delayed.",
+      "benefit3_title": "Monthly Payout",
+      "benefit3_desc": "Automatic transfer from $50 earned.",
+      "benefit4_title": "Dashboard",
+      "benefit4_desc": "Real-time tracking: clicks, conversions, revenue.",
+      "signup_title": "Join the Program",
+      "signup_desc": "Sign up in 2 minutes, get your unique link instantly.",
+      "submit_btn": "Become a Partner",
+      "website_label": "Website / Social Media (optional)",
+      "terms_text": "I accept the <a href=\"/conditions-generales/\">Terms & Conditions</a> and <a href=\"/politique-confidentialite/\">Privacy Policy</a>",
+      "assets_title": "Media Kit & Resources",
+      "assets_desc": "Everything you need to promote effectively.",
+      "asset_banners": "Banners",
+      "asset_banners_desc": "Formats 728x90, 300x250, 320x50, 1200x628",
+      "asset_social": "Social Media Assets",
+      "asset_social_desc": "Instagram, Facebook, Twitter/X, LinkedIn posts",
+      "asset_email": "Email Templates",
+      "asset_email_desc": "Ready-to-send 3-email sequence",
+      "asset_logos": "Logos & Guidelines",
+      "asset_logos_desc": "Primary logo, monochrome, favicon, color palette",
+      "asset_covers": "Book Covers HD",
+      "asset_covers_desc": "4 covers in 300 DPI for print/web",
+      "asset_video": "Promo Videos",
+      "asset_video_desc": "Reels/TikTok 15s, YouTube 30s, 60s",
+      "download": "Download",
+      "faq_title": "Frequently Asked Questions",
+      "faq1_q": "How do I get paid?",
+      "faq1_a": "Monthly bank transfer (threshold $50). IBAN required in your dashboard.",
+      "faq2_q": "Can I join from any country?",
+      "faq2_a": "Yes, as long as you have a bank account receiving SEPA/international transfers.",
+      "faq3_q": "Is there a minimum sales requirement?",
+      "faq3_a": "No, you're paid from the first validated sale.",
+      "faq4_q": "How do I track my performance?",
+      "faq4_a": "FirstPromoter real-time dashboard: clicks, conversions, revenue, rates."
+    }
+  }
+}
