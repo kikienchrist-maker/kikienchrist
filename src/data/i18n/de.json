@@ -1,0 +1,148 @@
+{
+  "lang": "de",
+  "dir": "ltr",
+  "name": "Deutsch",
+  "meta": {
+    "title": "Christliche Bücher zur Stärkung Ihres Glaubens — Kiki en Christ",
+    "description": "Vier Bücher für diejenigen, die Gott jenseits von Dogmen suchen. Taschenbuch, Ebook und Audio, auf Deutsch und bis zu 9 Sprachen. Lieferung in 3-5 Tagen.",
+    "ogTitle": "Christliche Bücher zur Stärkung Ihres Glaubens — Kiki en Christ",
+    "ogDescription": "Vier Bücher für diejenigen, die Gott jenseits von Dogmen suchen. Taschenbuch, Ebook und Audio, auf Deutsch und bis zu 9 Sprachen. Lieferung in 3-5 Tagen."
+  },
+  "hero": {
+    "eyebrow": "Neuerscheinung",
+    "title": "Bücher für die Gott jenseits von Dogmen suchen",
+    "subtitle": "Vier unabhängige Werke. Taschenbuch, Ebook und Audio. In 9 Sprachen verfügbar. Registrieren Sie sich für den kostenlosen Leitfaden « 7 Gebete ».",
+    "ctaText": "Erhalten Sie « 7 Gebete » kostenlos",
+    "ctaHref": "#newsletter",
+    "secondaryCtaText": "Bücher entdecken",
+    "secondaryCtaHref": "#buecher"
+  },
+  "books": {
+    "title": "Unsere Bücher",
+    "subtitle": "Bücher, um Ihren Glauben zu nähren und Ihre Beziehung zu Gott zu vertiefen",
+    "badge": "Bestseller",
+    "pages": "Seiten",
+    "isbn": "ISBN",
+    "published": "Erschienen",
+    "benefitsLabel": "Hauptvorteile",
+    "ebookBtn": "E-book (PDF/EPUB)",
+    "paperBtn": "Taschenbuch",
+    "instant": "Sofortiger Download",
+    "delivery": "Lieferung 5-10 Tage",
+    "guarantee": "14-Tage-Garantie",
+    "whyTitle": "Warum unsere Bücher wählen?",
+    "why1Title": "Biblische Fundierung",
+    "why1Text": "Jedes Buch ist tief in der Heiligen Schrift verwurzelt für eine solide, zugängliche Theologie.",
+    "why2Title": "Praktisches Leben",
+    "why2Text": "Lehren, die im täglichen Leben anwendbar sind, um Ihren Wandel mit Christus zu transformieren.",
+    "why3Title": "Gemeinschaft",
+    "why3Text": "Schließen Sie sich Tausenden von Lesern an, die gemeinsam im Glauben wachsen.",
+    "faqTitle": "Häufige Fragen zu unseren Büchern",
+    "testimonialsTitle": "Was unsere Leser sagen"
+  },
+  "newsletter": {
+    "title": "Erhalten Sie « 7 Gebete » kostenlos",
+    "description": "Ein PDF-Leitfaden, um sich dem Gebet zu nähern, besonders wenn man nicht weiß, wo man anfangen soll.",
+    "placeholder": "Ihre E-Mail",
+    "buttonText": "Ich möchte den Leitfaden",
+    "tinyText": "Kein Spam. Abmeldung in 1 Klick. Ihre Daten bleiben privat."
+  },
+  "faq": {
+    "title": "Häufige Fragen",
+    "items": [
+      {
+        "question": "Sind diese Bücher an eine bestimmte Konfession gebunden?",
+        "answer": "Nein. Sie richten sich an jeden, der Gott sucht, jenseits konfessioneller Etiketten."
+      },
+      {
+        "question": "Kann man sie in beliebiger Reihenfolge lesen?",
+        "answer": "Ja. Jedes Werk ist eigenständig. Beginnen Sie mit dem, das Ihre aktuelle Frage anspricht."
+      },
+      {
+        "question": "Gibt es sie als Taschenbuch?",
+        "answer": "Ja, Taschenbücher bei Lulu. Ebooks bei Payhip. Audio bei Google Play. Links auf jeder Produktseite."
+      },
+      {
+        "question": "Sind die Übersetzungen getreu?",
+        "answer": "Jede Version wird von einem Muttersprachler geprüft. Die theologische Bedeutung wird bewahrt."
+      }
+    ]
+  },
+  "cta": {
+    "text": "Bereit, Ihre Reise zu beginnen? Wählen Sie das Buch, das widerhallt — der erste Schritt ändert alles.",
+    "buttonText": "Alle 4 Bücher ansehen",
+    "buttonHref": "#buecher"
+  },
+  "footer": {
+    "nav": ["Start", "Bücher", "Blog", "Newsletter", "FAQ", "Kontakt"],
+    "social": ["Instagram", "Pinterest"],
+    "availability": "Bücher erhältlich als Taschenbuch, Ebook und Audio.",
+    "copyright": "Kiki en Christ. Alle Rechte vorbehalten."
+  },
+  "formats": {
+    "paper": "Taschenbuch",
+    "ebook": "Ebook",
+    "audio": "Audio",
+    "paperPrice": "9,99 €",
+    "ebookPrice": "3,99 €",
+    "audioPrice": "5,49 €"
+  },
+  "legal": {
+    "mentionsLegales": "Impressum",
+    "confidentialite": "Datenschutz",
+    "cookies": "Cookies",
+    "cgv": "AGB",
+    "accessibilite": "Barrierefreiheit"
+  },
+  "blog": {
+    "title": "Blog",
+    "readMore": "Weiterlesen",
+    "readingTime": "Min. Lesezeit",
+    "categories": {
+      "priere": "Gebet",
+      "etude-biblique": "Bibelstudium",
+      "temoignage": "Zeugnis",
+      "vie-chretienne": "Christliches Leben",
+      "theologie": "Theologie",
+      "jeunes": "Jugendliche",
+      "famille": "Familie",
+      "guerre-spirituelle": "Geistlicher Kampf",
+      "guérison": "Heilung",
+      "impossible": "Unmöglich",
+      "enfants": "Kinder",
+      "couple": "Paar",
+      "matin-soir": "Morgen & Abend",
+      "generation-z": "Generation Z",
+      "routine": "Routine",
+      "autorite": "Autorität",
+      "desert-spirituel": "Geistliche Wüste"
+    }
+  },
+  "common": {
+    "loading": "Laden...",
+    "error": "Fehler",
+    "retry": "Wiederholen",
+    "close": "Schließen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "create": "Erstellen",
+    "search": "Suchen",
+    "filter": "Filtern",
+    "sort": "Sortieren",
+    "next": "Weiter",
+    "previous": "Zurück",
+    "page": "Seite",
+    "of": "von",
+    "results": "Ergebnisse",
+    "noResults": "Keine Ergebnisse",
+    "backToHome": "Zurück zum Start",
+    "readMore": "Weiterlesen",
+    "share": "Teilen",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "language": "Sprache",
+    "selectLanguage": "Sprache wählen"
+  }
+}

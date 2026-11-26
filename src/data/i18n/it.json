@@ -1,0 +1,148 @@
+{
+  "lang": "it",
+  "dir": "ltr",
+  "name": "Italiano",
+  "meta": {
+    "title": "Libri cristiani per rafforzare la tua fede — Kiki en Christ",
+    "description": "Quattro libri per chi cerca Dio oltre i dogmi. Cartaceo, ebook e audio, in italiano e fino a 9 lingue. Consegna in 3-5 giorni.",
+    "ogTitle": "Libri cristiani per rafforzare la tua fede — Kiki en Christ",
+    "ogDescription": "Quattro libri per chi cerca Dio oltre i dogmi. Cartaceo, ebook e audio, in italiano e fino a 9 lingue. Consegna in 3-5 giorni."
+  },
+  "hero": {
+    "eyebrow": "Novità",
+    "title": "Libri per chi cerca Dio oltre i dogmi",
+    "subtitle": "Quattro opere indipendenti. Cartaceo, ebook e audio. Disponibili in 9 lingue. Iscriviti per ricevere la guida gratuita « 7 preghiere ».",
+    "ctaText": "Ottieni « 7 preghiere » gratis",
+    "ctaHref": "#newsletter",
+    "secondaryCtaText": "Scopri i libri",
+    "secondaryCtaHref": "#libri"
+  },
+  "books": {
+    "title": "I nostri libri",
+    "subtitle": "Libri per nutrire la tua fede e approfondire la tua relazione con Dio",
+    "badge": "Bestseller",
+    "pages": "Pagine",
+    "isbn": "ISBN",
+    "published": "Pubblicato",
+    "benefitsLabel": "Punti di forza",
+    "ebookBtn": "E-book (PDF/EPUB)",
+    "paperBtn": "Copertina flessibile",
+    "instant": "Download istantaneo",
+    "delivery": "Consegna 5-10 giorni",
+    "guarantee": "Garanzia 14 giorni",
+    "whyTitle": "Perché scegliere i nostri libri?",
+    "why1Title": "Fondamento biblico",
+    "why1Text": "Ogni libro è profondamente radicato nella Scrittura per una teologia solida e accessibile.",
+    "why2Title": "Vita pratica",
+    "why2Text": "Insegnamenti applicabili alla vita quotidiana per trasformare il tuo cammino con Cristo.",
+    "why3Title": "Comunità",
+    "why3Text": "Unisciti a migliaia di lettori che crescono insieme nella fede.",
+    "faqTitle": "Domande frequenti sui nostri libri",
+    "testimonialsTitle": "Cosa dicono i nostri lettori"
+  },
+  "newsletter": {
+    "title": "Ricevi « 7 preghiere » gratis",
+    "description": "Una guida PDF per avvicinarsi alla preghiera, soprattutto quando non sai da dove iniziare.",
+    "placeholder": "La tua email",
+    "buttonText": "Voglio la guida",
+    "tinyText": "Niente spam. Disiscrizione in 1 click. I tuoi dati rimangono privati."
+  },
+  "faq": {
+    "title": "Domande frequenti",
+    "items": [
+      {
+        "question": "Questi libri sono legati a una confessione particolare?",
+        "answer": "No. Si rivolgono a chiunque cerchi Dio, oltre le etichette confessionali."
+      },
+      {
+        "question": "Possono essere letti in qualsiasi ordine?",
+        "answer": "Sì. Ogni opera è autonoma. Inizia con quella che risuona con la tua domanda attuale."
+      },
+      {
+        "question": "Esistono in versione cartacea?",
+        "answer": "Sì, brossura su Lulu. Ebook su Payhip. Audio su Google Play. I link sono su ogni scheda."
+      },
+      {
+        "question": "Le traduzioni sono fedeli?",
+        "answer": "Ogni versione è revisionata da un madrelingua. Il senso teologico è preservato."
+      }
+    ]
+  },
+  "cta": {
+    "text": "Pronto a iniziare il tuo cammino? Scegli il libro che risuona — il primo passo cambia tutto.",
+    "buttonText": "Vedi i 4 libri",
+    "buttonHref": "#libri"
+  },
+  "footer": {
+    "nav": ["Home", "Libri", "Blog", "Newsletter", "FAQ", "Contatto"],
+    "social": ["Instagram", "Pinterest"],
+    "availability": "Libri disponibili in cartaceo, ebook e audio.",
+    "copyright": "Kiki en Christ. Tutti i diritti riservati."
+  },
+  "formats": {
+    "paper": "Cartaceo",
+    "ebook": "Ebook",
+    "audio": "Audio",
+    "paperPrice": "9,99 €",
+    "ebookPrice": "3,99 €",
+    "audioPrice": "5,49 €"
+  },
+  "legal": {
+    "mentionsLegales": "Note legali",
+    "confidentialite": "Privacy",
+    "cookies": "Cookie",
+    "cgv": "Condizioni di vendita",
+    "accessibilite": "Accessibilità"
+  },
+  "blog": {
+    "title": "Blog",
+    "readMore": "Leggi di più",
+    "readingTime": "min di lettura",
+    "categories": {
+      "priere": "Preghiera",
+      "etude-biblique": "Studio biblico",
+      "temoignage": "Testimonianza",
+      "vie-chretienne": "Vita cristiana",
+      "theologie": "Teologia",
+      "jeunes": "Giovani",
+      "famille": "Famiglia",
+      "guerre-spirituelle": "Guerra spirituale",
+      "guérison": "Guarigione",
+      "impossible": "Impossibile",
+      "enfants": "Bambini",
+      "couple": "Coppia",
+      "matin-soir": "Mattina e sera",
+      "generation-z": "Generazione Z",
+      "routine": "Routine",
+      "autorite": "Autorità",
+      "desert-spirituel": "Deserto spirituale"
+    }
+  },
+  "common": {
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "retry": "Riprova",
+    "close": "Chiudi",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "create": "Crea",
+    "search": "Cerca",
+    "filter": "Filtra",
+    "sort": "Ordina",
+    "next": "Avanti",
+    "previous": "Indietro",
+    "page": "Pagina",
+    "of": "di",
+    "results": "risultati",
+    "noResults": "Nessun risultato",
+    "backToHome": "Torna alla home",
+    "readMore": "Leggi di più",
+    "share": "Condividi",
+    "copy": "Copia",
+    "copied": "Copiato!",
+    "language": "Lingua",
+    "selectLanguage": "Seleziona lingua"
+  }
+}
