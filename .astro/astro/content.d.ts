@@ -183,6 +183,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"fr-prier-guerison-7-cles.md": {
+	id: "fr-prier-guerison-7-cles.md";
+  slug: "prier-guerison-7-cles";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "fr-priere-couple.md": {
 	id: "fr-priere-couple.md";
   slug: "priere-couple";
@@ -265,6 +272,34 @@ declare module 'astro:content' {
 "combat.md": {
 	id: "combat.md";
   slug: "combat";
+  body: string;
+  collection: "books";
+  data: InferEntrySchema<"books">
+} & { render(): Render[".md"] };
+"livre-1.md": {
+	id: "livre-1.md";
+  slug: "livre-1";
+  body: string;
+  collection: "books";
+  data: InferEntrySchema<"books">
+} & { render(): Render[".md"] };
+"livre-2.md": {
+	id: "livre-2.md";
+  slug: "livre-2";
+  body: string;
+  collection: "books";
+  data: InferEntrySchema<"books">
+} & { render(): Render[".md"] };
+"livre-3.md": {
+	id: "livre-3.md";
+  slug: "livre-3";
+  body: string;
+  collection: "books";
+  data: InferEntrySchema<"books">
+} & { render(): Render[".md"] };
+"livre-4.md": {
+	id: "livre-4.md";
+  slug: "livre-4";
   body: string;
   collection: "books";
   data: InferEntrySchema<"books">
@@ -754,14 +789,13 @@ declare module 'astro:content' {
 	};
 
 	type DataEntryMap = {
-		"authors": Record<string, {
-  id: string;
+		"authors": {
+"kikienchrist": {
+	id: "kikienchrist";
   collection: "authors";
-  data: InferEntrySchema<"authors">;
-  rendered?: RenderedContent;
-  filePath?: string;
-  body?: string 
-}>;
+  data: InferEntrySchema<"authors">
+};
+};
 "siteConfig": Record<string, {
   id: string;
   collection: "siteConfig";

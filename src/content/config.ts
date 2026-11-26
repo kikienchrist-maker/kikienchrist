@@ -119,7 +119,7 @@ const legalPages = defineCollection({
 const books = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/books' }),
   schema: z.object({
-    id: z.string().regex(/^[a-z-]+$/),
+    id: z.string().regex(/^[a-z0-9-]+$/),
     title: z.string(),
     subtitle: z.string().optional(),
     description: z.string(),
@@ -146,65 +146,16 @@ const books = defineCollection({
 // ──────────────────────────────────────────────
 const translations = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/data/i18n' }),
-  schema: z.object({
-    lang: z.enum(['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'pl', 'ar', 'zh', 'hi']),
-    nativeName: z.string(),
-    englishName: z.string(),
-    dir: z.enum(['ltr', 'rtl']),
-    dateFormat: z.string(),
-    translations: z.object({
-      nav: z.object({
-        home: z.string(),
-        blog: z.string(),
-        books: z.string(),
-        contact: z.string(),
-        search: z.string(),
-        language: z.string(),
-      }),
-      hero: z.object({
-        title: z.string(),
-        subtitle: z.string(),
-        ctaPrimary: z.string(),
-        ctaSecondary: z.string(),
-      }),
-      footer: z.object({
-        copyright: z.string(),
-        mentionsLegales: z.string(),
-        confidentialite: z.string(),
-        cookies: z.string(),
-        cgv: z.string(),
-        accessibilite: z.string(),
-      }),
-      blog: z.object({
-        filterTitle: z.string(),
-        categories: z.string(),
-        tags: z.string(),
-        series: z.string(),
-        clearFilters: z.string(),
-        noPosts: z.string(),
-        readingTime: z.string(),
-        relatedPosts: z.string(),
-        newsletterTitle: z.string(),
-        newsletterDesc: z.string(),
-        subscribe: z.string(),
-      }),
-      legal: z.object({
-        mentionsLegalesTitle: z.string(),
-        confidentialiteTitle: z.string(),
-        cookiesTitle: z.string(),
-        cgvTitle: z.string(),
-        accessibiliteTitle: z.string(),
-      }),
-      forms: z.object({
-        emailPlaceholder: z.string(),
-        submit: z.string(),
-        submitting: z.string(),
-        success: z.string(),
-        error: z.string(),
-        privacy: z.string(),
-      }),
-    }),
-  }),
+  schema: z
+    .object({
+      lang: z.enum(['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'pl', 'ar', 'zh', 'hi']),
+      nativeName: z.string().optional(),
+      englishName: z.string().optional(),
+      dir: z.enum(['ltr', 'rtl']).optional(),
+      dateFormat: z.string().optional(),
+      translations: z.record(z.unknown()).optional(),
+    })
+    .passthrough(), // Accepte les champs supplémentaires (format plat existant)
 });
 
 // ──────────────────────────────────────────────

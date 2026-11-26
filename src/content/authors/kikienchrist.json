@@ -1,0 +1,25 @@
+{
+  "id": "kikienchrist",
+  "name": "Kiki en Christ",
+  "role": "editor",
+  "bio": {
+    "fr": "Équipe éditoriale de Kiki en Christ - Livres et ressources pour grandir dans la foi.",
+    "en": "Kiki en Christ editorial team - Books and resources to grow in faith.",
+    "es": "Equipo editorial de Kiki en Christ - Libros y recursos para crecer en la fe.",
+    "pt": "Equipe editorial do Kiki en Christ - Livros e recursos para crescer na fé.",
+    "it": "Team editoriale di Kiki en Christ - Libri e risorse per crescere nella fede.",
+    "de": "Kiki en Christ Redaktionsteam - Bücher und Ressourcen, um im Glauben zu wachsen.",
+    "nl": "Kiki en Christ redactieteam - Boeken en bronnen om in het geloof te groeien.",
+    "pl": "Zespół redakcyjny Kiki en Christ - Książki i zasoby do wzrastania w wierze.",
+    "ar": "فريق تحرير Kiki en Christ - كتب وموارد للنمو في الإيمان.",
+    "zh": "Kiki en Christ 编辑团队 - 帮助信徒在信仰中成长的书籍和资源。",
+    "hi": "Kiki en Christ संपादकीय टीम - विश्वास में बढ़ने के लिए किताबें और संसाधन।"
+  },
+  "avatar": "https://kikienchrist.vercel.app/images/authors/kikienchrist.jpg",
+  "social": {
+    "twitter": "https://twitter.com/kikienchrist",
+    "instagram": "https://instagram.com/kikienchrist",
+    "youtube": "https://youtube.com/@kikienchrist"
+  },
+  "email": "kikienchrist@gmail.com"
+}
