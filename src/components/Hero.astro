@@ -15,7 +15,7 @@ const {
   eyebrow = "Nouveauté",
   title,
   subtitle,
-  ctaText = "Recevez « 7 prières » gratuitement — Un verset, une méditation, un encouragement chaque semaine",
+  ctaText = "Découvrir les livres",
   ctaHref = "/fr/contact",
   fanImages = [
     "https://assets.lulu.com/cover_thumbs/z/6/z6gg2r-front-shortedge-384.jpg",
@@ -43,7 +43,7 @@ const showFan = fanImages.length === 4 && fanImages.length === fanAltTexts.lengt
     </header>
 
     <div class="bq-hero-ctas">
-      <a href={ctaHref} class="bq-btn bq-btn-primary bq-btn-lg">{ctaText}</a>
+      <a href={ctaHref} class="bq-btn bq-btn-primary bq-btn-lg">{ctaText || "Découvrir les livres"}</a>
     </div>
 
     {showFan && (

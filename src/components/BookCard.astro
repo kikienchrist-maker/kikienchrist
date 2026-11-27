@@ -132,6 +132,8 @@ const availableLangs = languages.filter(l => LANG_FLAGS[l.code]);
     src={book.image}
     alt={`Couverture : ${book.name}`}
     loading={book.position === 1 ? "eager" : "lazy"}
+    width={undefined}
+    height={undefined}
   />
 
   <div class="bq-card-content">
