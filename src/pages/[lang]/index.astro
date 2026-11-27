@@ -96,7 +96,24 @@ const canonicalURL = `https://kikienchrist.vercel.app/${locale}/`;
 
 const heroEyebrow = hero?.eyebrow || "Nouveauté";
 const heroTitle = hero?.title || "Kiki en Christ";
-const heroSubtitle = hero?.subtitle || "Priez, méditez, grandissez dans la foi";
+
+// Hero subtitle hardcodé par langue (bypass JSON cache Vercel)
+const heroSubtitles: Record<string, string> = {
+  fr: "Quatre ouvrages indépendants. Papier, ebook et audio. Disponibles en 9 langues.",
+  en: "Four independent books. Paper, ebook and audio. Available in 9 languages.",
+  es: "Cuatro libros independientes. Papel, ebook y audio. Disponibles en 9 idiomas.",
+  pt: "Quatro livros independentes. Papel, ebook e áudio. Disponíveis em 9 idiomas.",
+  it: "Quattro libri indipendenti. Carta, ebook e audio. Disponibili in 9 lingue.",
+  de: "Vier unabhängige Bücher. Taschenbuch, E-Book und Hörbuch. In 9 Sprachen verfügbar.",
+  nl: "Vier onafhankelijke boeken. Paperback, ebook en audio. Beschikbaar in 9 talen.",
+  pl: "Cztery niezależne książki. Papier, ebook i audio. Dostępne w 9 językach.",
+  ar: "أربعة كتب مستقلة. ورقي، كتاب إلكتروني، وصوتي. متاح بـ 9 لغات.",
+  ru: "Четыре независимые книги. Бумага, электронная книга и аудио. Доступны на 9 языках.",
+  zh: "四本独立著作。平装、电子书和有声书。提供 9 种语言版本。",
+  hi: "चार स्वतंत्र पुस्तकें। पेपरबैक, ईबुक और ऑडियो। 9 भाषाओं में उपलब्ध।",
+};
+const heroSubtitle = heroSubtitles[locale] || heroSubtitles.fr;
+
 const heroCtaText = "";
 const heroCtaHref = `/${locale}/livres`;
 const heroSecondaryCtaText = hero?.secondaryCtaText || "Rejoindre la newsletter";
