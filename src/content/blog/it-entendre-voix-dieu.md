@@ -1,21 +1,21 @@
 ---
-title: 'Come sentire la voce di Dio in un rumore di mondo'
-description: 'Dio parla ancora oggi? Come distinguere la voce del Pastore tra le nostre pensieri, le circostanze e il rumore ambientale? 5 criteri biblici di discernimento.'
-pubDate: '2025-01-27T08:00:00+01:00'
-updatedDate: '2025-01-27T08:00:00+01:00'
-author: 'kikienchrist'
-lang: 'it'
-translationKey: 'entendre-voix-dieu'
-category: 'vie-chrétienne'
-tags: ['voce di Dio', 'discernimento', 'Santissimo Spiritu', 'guida divina', 'saggezza']
-series: 'apprendere a pregare'
+title: "Come sentire la voce di Dio in un rumore di mondo"
+description: "Dio parla ancora oggi? Come distinguere la voce del Pastore tra le nostre pensieri, le circostanze e il rumore ambientale? 5 criteri biblici di discernimento."
+pubDate: "2025-01-27T08:00:00+01:00"
+updatedDate: "2025-01-27T08:00:00+01:00"
+author: "kikienchrist"
+lang: "it"
+translationKey: "entendre-voix-dieu"
+category: "vie-chrétienne"
+tags: ["voce di Dio", "discernimento", "Santissimo Spiritu", "guida divina", "saggezza"]
+series: "apprendere a pregare"
 featured: true
 draft: false
 readingTime: 10
 isLeadMagnet: false
-ogImage: 'https://kikienchrist.vercel.app/og/blog/sentire-voce-dio.png'
-coverImage: '/images/blog/sentire-voce-dio-cover.jpg'
-slug: 'entendre-voix-dieu-it'
+ogImage: "https://kikienchrist.vercel.app/og/blog/sentire-voce-dio.png"
+coverImage: "/images/blog/sentire-voce-dio-cover.jpg"
+slug: "entendre-voix-dieu-it"
 ---
 
 # Come sentire la voce di Dio in un rumore di mondo

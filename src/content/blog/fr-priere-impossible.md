@@ -1,21 +1,21 @@
 ---
-title: 'Quand la prière semble impossible : traverser le désert spirituel'
+title: "Quand la prière semble impossible : traverser le désert spirituel"
 description: "Vous avez l'impression que vos prières heurtent le plafond ? Que Dieu est silencieux ? 5 vérités bibliques pour tenir bon dans le désert spirituel (Psaume 13, Job, Mère Teresa)."
-pubDate: '2025-02-10T08:00:00+01:00'
-updatedDate: '2026-11-24T08:56:24.874Z'
-author: 'kikienchrist'
-lang: 'fr'
-translationKey: 'priere-impossible-desert-spirituel'
-category: 'épreuves'
-tags: ['désert spirituel', 'silence de Dieu', 'prière non exaucée', 'persévérance', 'foi']
-series: 'apprendre-à-prier'
+pubDate: "2025-02-10T08:00:00+01:00"
+updatedDate: "2026-11-24T08:56:24.874Z"
+author: "kikienchrist"
+lang: "fr"
+translationKey: "priere-impossible-desert-spirituel"
+category: "épreuves"
+tags: ["désert spirituel", "silence de Dieu", "prière non exaucée", "persévérance", "foi"]
+series: "apprendre-à-prier"
 featured: true
 draft: false
 readingTime: 9
 isLeadMagnet: false
-ogImage: 'https://kikienchrist.vercel.app/og/blog/priere-impossible-desert-spirituel.png'
-coverImage: '/images/blog/priere-impossible-cover.jpg'
-slug: 'priere-impossible-desert-spirituel'
+ogImage: "https://kikienchrist.vercel.app/og/blog/priere-impossible-desert-spirituel.png"
+coverImage: "/images/blog/priere-impossible-cover.jpg"
+slug: "priere-impossible-desert-spirituel"
 ---
 
 # Quand la prière semble impossible : traverser le désert spirituel

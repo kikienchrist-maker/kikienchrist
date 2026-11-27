@@ -1,18 +1,20 @@
 ---
-title: 'Prier pour la guérison : 7 clés bibliques + prières spécifiques (maladie, chronique, mental)'
+title: "Prier pour la guérison : 7 clés bibliques + prières spécifiques (maladie, chronique, mental)"
 description: "Dieu guérit-Il encore aujourd'hui ? Comment prier pour la guérison (aiguë, chronique, santé mentale) sans tomber dans le « tout-guérison » ni le « pas-guérison ». 7 clés bibliques + prières ciblées + accompagnement pratique."
-pubDate: '2024-11-25T10:00:00+01:00'
-updatedDate: '2024-11-25T10:00:00+01:00'
-author: 'kikienchrist'
-lang: 'fr'
-category: 'guérison'
-tags:
-  ['guérison', 'prière', 'maladie', 'santé mentale', 'maladie chronique', 'foi', 'Jéhovah-Rapha']
+pubDate: "2024-11-25T10:00:00+01:00"
+updatedDate: "2024-11-25T10:00:00+01:00"
+author: "kikienchrist"
+lang: "fr"
+translationKey: "prier-guerison-7-cles"
+category: "guérison"
+tags: ["guérison", "prière", "maladie", "santé mentale", "maladie chronique", "foi", "Jéhovah-Rapha"]
 featured: true
+draft: false
 readingTime: 14
-slug: 'prier-guerison-7-cles'
-translationKey: 'prier-guerison-7-cles'
-ogImage: 'https://kikienchrist.vercel.app/images/blog/guerison-default.jpg'
+isLeadMagnet: false
+ogImage: "https://kikienchrist.vercel.app/images/blog/guerison-default.jpg"
+coverImage: "/images/blog/default-cover.jpg"
+slug: "prier-guerison-7-cles"
 ---
 
 > **« C'est Lui qui pardonne toutes tes iniquités, qui guérit toutes tes maladies. »** — Psaume 103:3

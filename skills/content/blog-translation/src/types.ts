@@ -101,6 +101,7 @@ export interface BatchTranslationResult {
     totalDurationMs: number;
     byProvider: Record<ProviderName, { success: number; failed: number }>;
     byLang: Record<LangCode, { success: number; failed: number }>;
+    cacheStats?: { entries: number; providers: Record<string, number> };
   };
 }
 

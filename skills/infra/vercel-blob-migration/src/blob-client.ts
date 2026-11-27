@@ -1,25 +1,34 @@
 /**
  * Client Vercel Blob pour upload et gestion
  * Compatible @vercel/blob v0.23+
+ * Supporte token RW permanent ET OIDC token (via vercel link)
  */
 import { put, del, list, head } from '@vercel/blob';
 import type { BlobMigrationConfig, ImageMapping } from './types.js';
 
 export class VercelBlobClient {
-  private token: string;
+  private token?: string;
+  private oidcToken?: string;
   private storeId?: string;
   private publicUrl?: string;
   private prefix: string;
 
   constructor(config: BlobMigrationConfig) {
     this.token = config.token;
+    this.oidcToken = config.oidcToken;
     this.storeId = config.storeId;
     this.publicUrl = config.publicUrl;
     this.prefix = config.prefix || 'images/';
   }
 
-  private getOptions(): { token: string; storeId?: string } {
-    return { token: this.token, storeId: this.storeId };
+  private getOptions(): { token?: string; storeId?: string; oidcToken?: string } {
+    const options: { token?: string; storeId?: string; oidcToken?: string } = { storeId: this.storeId };
+    if (this.oidcToken) {
+      options.oidcToken = this.oidcToken;
+    } else if (this.token) {
+      options.token = this.token;
+    }
+    return options;
   }
 
   async upload(

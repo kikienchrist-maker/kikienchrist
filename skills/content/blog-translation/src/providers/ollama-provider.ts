@@ -26,7 +26,7 @@ export class OllamaProvider implements TranslationProvider {
   private defaultModel: string;
   private timeoutMs: number;
 
-  constructor(baseUrl = 'http://localhost:11434', defaultModel = 'qwen2.5:1.5b', timeoutMs = 600000) {
+  constructor(baseUrl = 'http://localhost:11434', defaultModel = 'qwen2.5:0.5b', timeoutMs = 180000) {
     this.baseUrl = baseUrl;
     this.defaultModel = defaultModel;
     this.timeoutMs = timeoutMs;
@@ -38,6 +38,25 @@ export class OllamaProvider implements TranslationProvider {
       return response.status === 200;
     } catch {
       return false;
+    }
+  }
+
+  async ensureModel(model: string): Promise<void> {
+    try {
+      const response = await axios.get(`${this.baseUrl}/api/tags`, { timeout: 5000 });
+      const models = response.data.models || [];
+      const hasModel = models.some((m: any) => m.name.startsWith(model.split(':')[0]));
+      
+      if (!hasModel) {
+        console.log(`📥 Modèle ${model} non trouvé, téléchargement...`);
+        await axios.post(`${this.baseUrl}/api/pull`, { name: model, stream: false }, { timeout: 300000 });
+        console.log(`✅ Modèle ${model} installé`);
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw new Error(`Impossible d'installer ${model}: ${error.response?.data?.error || error.message}`);
+      }
+      throw error;
     }
   }
 

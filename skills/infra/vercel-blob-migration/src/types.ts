@@ -3,7 +3,8 @@
  */
 
 export interface BlobMigrationConfig {
-  token: string;
+  token?: string;           // Token RW permanent (vercel_blob_rw_...) - optionnel si oidcToken fourni
+  oidcToken?: string;       // OIDC token depuis `vercel link` (.env.local) - optionnel si token fourni
   storeId?: string;
   publicUrl?: string;
   dryRun?: boolean;

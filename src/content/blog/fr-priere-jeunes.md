@@ -1,21 +1,21 @@
 ---
-title: 'Prière pour la génération Z : 5 défis uniques + 5 prières ciblées'
-description: 'Anxiété record, identité numérique, solitude connectée, justice sociale, déconstruction de foi. 5 prières bibliques pour les 15-25 ans (et ceux qui les aiment). Guide parents/mentors/jeunes.'
-pubDate: '2025-03-10T08:00:00+01:00'
-updatedDate: '2026-11-24T08:56:24.877Z'
-author: 'kikienchrist'
-lang: 'fr'
-translationKey: 'priere-generation-z-jeunes'
-category: 'jeunes'
-tags: ['génération Z', 'jeunes', 'anxiété', 'identité', 'réseaux sociaux', 'déconstruction']
-series: 'apprendre-à-prier'
+title: "Prière pour la génération Z : 5 défis uniques + 5 prières ciblées"
+description: "Anxiété record, identité numérique, solitude connectée, justice sociale, déconstruction de foi. 5 prières bibliques pour les 15-25 ans (et ceux qui les aiment). Guide parents/mentors/jeunes."
+pubDate: "2025-03-10T08:00:00+01:00"
+updatedDate: "2026-11-24T08:56:24.877Z"
+author: "kikienchrist"
+lang: "fr"
+translationKey: "priere-generation-z-jeunes"
+category: "jeunes"
+tags: ["génération Z", "jeunes", "anxiété", "identité", "réseaux sociaux", "déconstruction"]
+series: "apprendre-à-prier"
 featured: true
 draft: false
 readingTime: 11
 isLeadMagnet: false
-ogImage: 'https://kikienchrist.vercel.app/og/blog/priere-generation-z-jeunes.png'
-coverImage: '/images/blog/priere-jeunes-cover.jpg'
-slug: 'priere-generation-z-jeunes'
+ogImage: "https://kikienchrist.vercel.app/og/blog/priere-generation-z-jeunes.png"
+coverImage: "/images/blog/priere-jeunes-cover.jpg"
+slug: "priere-generation-z-jeunes"
 ---
 
 # Prière pour la génération Z : 5 défis uniques + 5 prières ciblées

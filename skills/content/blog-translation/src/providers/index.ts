@@ -29,6 +29,10 @@ export function createProvider(name: ProviderName, config: TranslationConfig): T
   }
 }
 
+export function createOllamaProvider(baseUrl = 'http://localhost:11434', model = 'qwen2.5:0.5b', timeoutMs = 180000): OllamaProvider {
+  return new OllamaProvider(baseUrl, model, timeoutMs);
+}
+
 export function getProviderNames(): ProviderName[] {
   return ['ollama', 'libretranslate', 'deepl'];
 }

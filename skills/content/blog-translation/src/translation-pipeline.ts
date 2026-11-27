@@ -1,13 +1,99 @@
 /**
  * Pipeline principal de traduction
  * Orchestre: extraction → traduction → validation → écriture
+ * Avec cache persistant + fallback intelligent
  */
-import { writeFileSync, mkdirSync, existsSync } from 'fs';
-import { join, dirname } from 'path';
+import { writeFileSync, mkdirSync, existsSync, readFileSync } from 'fs';
+import { join, dirname, resolve, isAbsolute } from 'path';
 import pLimit from 'p-limit';
 import ora from 'ora';
 import chalk from 'chalk';
 import { serializeMarkdownClean, slugifyText, generateTranslationSlug } from '@kikienchrist/markdown-sanitizer';
+import { createHash } from 'crypto';
+
+/**
+ * Trouve la racine du projet (contient package.json ou .git)
+ */
+function findProjectRoot(startDir: string = process.cwd()): string {
+  let dir = resolve(startDir);
+  while (dir !== resolve(dir, '..')) {
+    if (existsSync(join(dir, 'package.json')) || existsSync(join(dir, '.git'))) {
+      return dir;
+    }
+    dir = resolve(dir, '..');
+  }
+  return process.cwd();
+}
+
+/**
+ * Résout un chemin relatif par rapport à la racine du projet
+ */
+function resolveProjectPath(relativePath: string): string {
+  if (isAbsolute(relativePath)) return relativePath;
+  const root = findProjectRoot();
+  return resolve(root, relativePath);
+}
+
+/**
+ * Cache de traduction persistant (fichier JSON)
+ */
+class TranslationCache {
+  private cachePath: string;
+  private data: Record<string, { translated: string; timestamp: number; provider: string }> = {};
+  private dirty = false;
+
+  constructor(cachePath: string) {
+    this.cachePath = cachePath;
+    this.load();
+  }
+
+  private load(): void {
+    if (existsSync(this.cachePath)) {
+      try {
+        this.data = JSON.parse(readFileSync(this.cachePath, 'utf-8'));
+      } catch {
+        this.data = {};
+      }
+    }
+  }
+
+  private save(): void {
+    if (this.dirty) {
+      writeFileSync(this.cachePath, JSON.stringify(this.data, null, 2), 'utf-8');
+      this.dirty = false;
+    }
+  }
+
+  getKey(text: string, sourceLang: string, targetLang: string, provider: string): string {
+    const hash = createHash('sha256').update(`${provider}|${sourceLang}|${targetLang}|${text}`).digest('hex').slice(0, 32);
+    return hash;
+  }
+
+  get(text: string, sourceLang: string, targetLang: string, provider: string): string | null {
+    const key = this.getKey(text, sourceLang, targetLang, provider);
+    const entry = this.data[key];
+    if (entry) return entry.translated;
+    return null;
+  }
+
+  set(text: string, sourceLang: string, targetLang: string, provider: string, translated: string): void {
+    const key = this.getKey(text, sourceLang, targetLang, provider);
+    this.data[key] = { translated, timestamp: Date.now(), provider };
+    this.dirty = true;
+  }
+
+  flush(): void {
+    this.save();
+  }
+
+  stats(): { entries: number; providers: Record<string, number> } {
+    const providers: Record<string, number> = {};
+    for (const entry of Object.values(this.data)) {
+      providers[entry.provider] = (providers[entry.provider] || 0) + 1;
+    }
+    return { entries: Object.keys(this.data).length, providers };
+  }
+}
 import type {
   BlogArticle,
   BlogFrontmatter,
@@ -28,31 +114,39 @@ export class TranslationPipeline {
   private config: TranslationConfig;
   private providerCache: Map<string, TranslationProvider> = new Map();
   private results: TranslationResult[] = [];
+  private cache: TranslationCache;
 
   constructor(config: Partial<TranslationConfig> = {}) {
+    const resolvedOutputDir = config.outputDir ? resolveProjectPath(config.outputDir) : resolveProjectPath('src/content/blog');
+    const hasDeepLKey = config.deepl?.apiKey || process.env.DEEPL_API_KEY;
+    
     this.config = {
-      defaultProvider: 'ollama',
-      fallbackProviders: ['libretranslate'],
+      defaultProvider: hasDeepLKey ? 'deepl' : 'ollama',
+      fallbackProviders: hasDeepLKey ? ['ollama'] : ['libretranslate', 'ollama'],
       ollama: {
         baseUrl: 'http://localhost:11434',
-        defaultModel: 'qwen2.5:1.5b',
-        timeoutMs: 600000,
+        defaultModel: 'llama3.2:1b',
+        timeoutMs: 60000,
       },
       libretranslate: {
         baseUrl: 'https://libretranslate.de',
       },
       deepl: {
-        apiKey: '',
+        apiKey: hasDeepLKey || '',
         apiUrl: 'https://api-free.deepl.com/v2',
       },
       glossary: [],
       concurrency: 2,
       retryAttempts: 2,
       retryDelayMs: 5000,
-      outputDir: 'src/content/blog',
+      outputDir: resolvedOutputDir,
       dryRun: false,
       ...config,
     };
+
+    // Cache persistant dans le dossier du projet
+    const cachePath = resolveProjectPath('.translation-cache.json');
+    this.cache = new TranslationCache(cachePath);
   }
 
   async run(articles?: ExtractedArticle[], targetLangs?: LangCode[]): Promise<BatchTranslationResult> {
@@ -131,6 +225,17 @@ export class TranslationPipeline {
           
           if (!available) {
             throw new Error(`Provider ${providerName} non disponible`);
+          }
+
+          // Auto-install modèle Ollama si nécessaire
+          if (providerName === 'ollama' && 'ensureModel' in provider) {
+            const model = job.options?.model || (provider as any).defaultModel || 'qwen2.5:1.5b';
+            await (provider as any).ensureModel(model);
+          }
+
+          // Rate limiting pour DeepL Free API (max ~10 req/s, mais on joue safe)
+          if (providerName === 'deepl' && this.config.concurrency > 1) {
+            await new Promise(resolve => setTimeout(resolve, 200 * attempt));
           }
 
           // Préparer glossaire pour cette traduction
@@ -213,16 +318,28 @@ export class TranslationPipeline {
   ): Promise<string> {
     if (!text || text.trim() === '') return text;
     
+    // Vérifier le cache d'abord
+    const providerName = provider.name;
+    const cached = this.cache.get(text, sourceLang, targetLang, providerName);
+    if (cached) {
+      return cached;
+    }
+    
     // Pour le corps, on traduit par chunks si trop long
     if (context === 'body' && text.length > 3000) {
-      return this.translateLongText(provider, text, sourceLang, targetLang, glossary);
+      const result = await this.translateLongText(provider, text, sourceLang, targetLang, glossary);
+      this.cache.set(text, sourceLang, targetLang, providerName, result);
+      return result;
     }
 
-    return provider.translate(text, sourceLang, targetLang, {
+    const result = await provider.translate(text, sourceLang, targetLang, {
       glossary,
       context: `blog article chrétien - ${context}`,
       temperature: context === 'title' ? 0.2 : 0.3,
     });
+    
+    this.cache.set(text, sourceLang, targetLang, providerName, result);
+    return result;
   }
 
   private async translateLongText(
@@ -293,6 +410,10 @@ export class TranslationPipeline {
       byLang[targetLang][r.success ? 'success' : 'failed']++;
     }
 
+    // Flush cache à la fin
+    this.cache.flush();
+    const cacheStats = this.cache.stats();
+
     return {
       results,
       summary: {
@@ -302,6 +423,7 @@ export class TranslationPipeline {
         totalDurationMs: results.reduce((sum, r) => sum + r.durationMs, 0),
         byProvider: byProvider as any,
         byLang: byLang as any,
+        cacheStats,
       },
     };
   }

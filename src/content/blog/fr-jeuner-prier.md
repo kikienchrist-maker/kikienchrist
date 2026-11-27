@@ -1,21 +1,21 @@
 ---
-title: 'Jeûner et prier : le duo puissant que Jésus a modelé'
-description: 'Pourquoi Jésus a-t-Il jeûné 40 jours ? Comment associer jeûne et prière pour percer spirituellement ? Guide pratique : types de jeûne, précautions, calendrier biblique.'
-pubDate: '2025-02-03T08:00:00+01:00'
-updatedDate: '2026-11-24T08:56:24.860Z'
-author: 'kikienchrist'
-lang: 'fr'
-translationKey: 'jeuner-prier'
-category: 'jeûne'
-tags: ['jeûne', 'prière', 'discipline spirituelle', 'percée', 'Jésus']
-series: 'apprendre-à-prier'
+title: "Jeûner et prier : le duo puissant que Jésus a modelé"
+description: "Pourquoi Jésus a-t-Il jeûné 40 jours ? Comment associer jeûne et prière pour percer spirituellement ? Guide pratique : types de jeûne, précautions, calendrier biblique."
+pubDate: "2025-02-03T08:00:00+01:00"
+updatedDate: "2026-11-24T08:56:24.860Z"
+author: "kikienchrist"
+lang: "fr"
+translationKey: "jeuner-prier"
+category: "jeûne"
+tags: ["jeûne", "prière", "discipline spirituelle", "percée", "Jésus"]
+series: "apprendre-à-prier"
 featured: false
 draft: false
 readingTime: 11
 isLeadMagnet: false
-ogImage: 'https://kikienchrist.vercel.app/og/blog/jeuner-prier.png'
-coverImage: '/images/blog/jeuner-prier-cover.jpg'
-slug: 'jeuner-prier'
+ogImage: "https://kikienchrist.vercel.app/og/blog/jeuner-prier.png"
+coverImage: "/images/blog/jeuner-prier-cover.jpg"
+slug: "jeuner-prier"
 ---
 
 # Jeûner et prier : le duo puissant que Jésus a modelé

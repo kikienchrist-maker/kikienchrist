@@ -1,21 +1,21 @@
 ---
-title: 'Guerre spirituelle : prier avec autorité (Éphésiens 6) — Guide pratique'
+title: "Guerre spirituelle : prier avec autorité (Éphésiens 6) — Guide pratique"
 description: "Comment prier avec l'armure de Dieu ? 6 pièces d'équipement + 3 prières d'autorité bibliques. Débloquer les forteresses, protéger sa famille, avancer en territoire ennemi. Guide Éphésiens 6:10-18."
-pubDate: '2025-03-03T08:00:00+01:00'
-updatedDate: '2026-11-24T08:56:24.857Z'
-author: 'kikienchrist'
-lang: 'fr'
-translationKey: 'guerre-spirituelle-priere-autorite'
-category: 'guerre spirituelle'
-tags: ['guerre spirituelle', 'armure de Dieu', 'autorité spirituelle', 'Éphésiens 6', 'délivrance']
-series: 'apprendre-à-prier'
+pubDate: "2025-03-03T08:00:00+01:00"
+updatedDate: "2026-11-24T08:56:24.857Z"
+author: "kikienchrist"
+lang: "fr"
+translationKey: "guerre-spirituelle-priere-autorite"
+category: "guerre spirituelle"
+tags: ["guerre spirituelle", "armure de Dieu", "autorité spirituelle", "Éphésiens 6", "délivrance"]
+series: "apprendre-à-prier"
 featured: true
 draft: false
 readingTime: 13
 isLeadMagnet: false
-ogImage: 'https://kikienchrist.vercel.app/og/blog/guerre-spirituelle-priere-autorite.png'
-coverImage: '/images/blog/guerre-spirituelle-cover.jpg'
-slug: 'guerre-spirituelle-priere-autorite'
+ogImage: "https://kikienchrist.vercel.app/og/blog/guerre-spirituelle-priere-autorite.png"
+coverImage: "/images/blog/guerre-spirituelle-cover.jpg"
+slug: "guerre-spirituelle-priere-autorite"
 ---
 
 # Guerre spirituelle : prier avec autorité (Éphésiens 6) — Guide pratique

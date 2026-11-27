@@ -1,0 +1,119 @@
+{
+  "generatedAt": "2026-11-26T09:53:29.943Z",
+  "config": {
+    "prefix": "images/",
+    "dryRun": false
+  },
+  "mappings": [],
+  "errors": [
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\books\\visage-fr.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\books\\trinite-fr.png",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\books\\salut-fr.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\books\\combat-fr.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\pt-trinite.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\4-pt.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\4-hi.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\4-fr.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\4-es.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\4-en.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\4-de.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\3-fr.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\2-zh.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\2-ru.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\2-pt.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\2-it.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\2-hi.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\2-fr.png",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\2-fr.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\2-es.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\2-en.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\2-de.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\1-pt.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\1-fr.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\1-es.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\1-en.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    },
+    {
+      "originalUrl": "C:\\Users\\Admin\\Desktop\\site web livres\\kikienchrist-vercel-sync\\public\\images\\covers\\1-de.jpg",
+      "error": "Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls."
+    }
+  ],
+  "frontmatterUpdates": []
+}

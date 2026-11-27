@@ -1,21 +1,21 @@
 ---
-title: '如何在尘世的喧嚣中听见上帝的声音'
-description: '上帝今天是否说话？如何在思想、环境和周围环境的噪音中辨别祂的声音？5个圣经标准来辨别。'
-pubDate: '2025-01-27T08:00:00+01:00'
-updatedDate: '2025-01-27T08:00:00+01:00'
-author: 'kikienchrist'
-lang: 'zh'
-translationKey: 'entendre-voix-dieu'
-category: 'vie-chrétienne'
-tags: ['上帝的声音', '分辨', '圣灵', '神的指引', '智慧']
-series: '学习祷告'
+title: "如何在尘世的喧嚣中听见上帝的声音"
+description: "上帝今天是否说话？如何在思想、环境和周围环境的噪音中辨别祂的声音？5个圣经标准来辨别。"
+pubDate: "2025-01-27T08:00:00+01:00"
+updatedDate: "2025-01-27T08:00:00+01:00"
+author: "kikienchrist"
+lang: "zh"
+translationKey: "entendre-voix-dieu"
+category: "vie-chrétienne"
+tags: ["上帝的声音", "分辨", "圣灵", "神的指引", "智慧"]
+series: "学习祷告"
 featured: true
 draft: false
 readingTime: 10
 isLeadMagnet: false
-ogImage: 'https://kikienchrist.vercel.app/og/blog/entendre-voix-dieu.png'
-coverImage: '/images/blog/entendre-voix-dieu-cover.jpg'
-slug: 'entendre-voix-dieu-zh'
+ogImage: "https://kikienchrist.vercel.app/og/blog/entendre-voix-dieu.png"
+coverImage: "/images/blog/entendre-voix-dieu-cover.jpg"
+slug: "entendre-voix-dieu-zh"
 ---
 
 # 如何在尘世的喧嚣中听见上帝的声音

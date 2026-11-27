@@ -108,6 +108,18 @@ const allCategories = [...new Set(allPosts.map(p => p.data.category))].sort();
 
 const siteUrl = Astro.site?.toString() || 'https://kikienchrist.vercel.app';
 
+// Canonical URL selon contexte
+let canonicalURL: string;
+if (category) {
+  canonicalURL = `${siteUrl}/${lang}/blog/categorie/${category}/${currentPage}/`;
+} else if (tag) {
+  canonicalURL = `${siteUrl}/${lang}/blog/tag/${tag}/${currentPage}/`;
+} else if (series) {
+  canonicalURL = `${siteUrl}/${lang}/blog/serie/${series}/${currentPage}/`;
+} else {
+  canonicalURL = `${siteUrl}/${lang}/blog/${currentPage}/`;
+}
+
 // Convertir les posts Astro en BlogPostData pour JSON-LD
 const postsForJsonLd = displayPosts.map(post => ({
   ...post.data,
@@ -136,7 +148,7 @@ if (tag) breadcrumbItems.push({ label: `Tag: ${tag}`, href: `/${lang}/blog/tag/$
 if (series) breadcrumbItems.push({ label: getSeriesLabel(series, lang), href: `/${lang}/blog/serie/${series}/1` });
 ---
 
-<MainLayout lang={lang} title={pageTitle} description={pageDescription} jsonLd={jsonLd} currentPath={`/${lang}/blog/`}>
+<MainLayout lang={lang} title={pageTitle} description={pageDescription} canonicalURL={canonicalURL} jsonLd={jsonLd} currentPath={`/${lang}/blog/`}>
   <div class="bq-blog-index">
     <header class="bq-blog-header">
       <Breadcrumb items={breadcrumbItems} />

@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  libretranslate:
+    image: libretranslate/libretranslate:latest
+    container_name: kikienchrist-libretranslate
+    restart: unless-stopped
+    user: "root"
+    ports:
+      - "5000:5000"
+    environment:
+      - LT_LOAD_ONLY=en,fr,es,pt,it,de,nl,pl,ar,ru,zh,hi
+      - LT_THREADS=4
+      - LT_UPDATE_INTERVAL=86400
+    volumes:
+      - libretranslate_data:/home/libretranslate/.local/share
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2'
+
+volumes:
+  libretranslate_data:
+    driver: local

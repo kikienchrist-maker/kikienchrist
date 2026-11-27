@@ -1,3 +1,22 @@
+---
+title: "Sans titre"
+description: "Description manquante - à compléter"
+pubDate: "2026-11-27T04:38:39.140Z"
+updatedDate: "2026-11-27T04:38:39.141Z"
+author: "Kiki en Christ"
+lang: "fr"
+translationKey: "untitled"
+category: "vie-chrétienne"
+tags: []
+featured: false
+draft: false
+readingTime: 10
+isLeadMagnet: false
+ogImage: "https://kikienchrist.vercel.app/og/blog/default.png"
+coverImage: "/images/blog/default-cover.jpg"
+slug: "untitled"
+---
+
 # @kikienchrist/markdown-sanitizer
 
 > Nettoie, valide et corrige automatiquement les fichiers Markdown avec frontmatter YAML pour projets Astro multilingues.

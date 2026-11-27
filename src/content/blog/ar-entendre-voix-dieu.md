@@ -1,21 +1,21 @@
 ---
-title: 'كيف نسمع صوت الله في العالم'
-description: 'هل يتحدث الله اليوم؟ كيف نميز صوته بين أفكارنا وظروفنا وصوت العالم؟ 5 أضواء على كيفية التمييز.'
-pubDate: '2025-01-27T08:00:00+01:00'
-updatedDate: '2025-01-27T08:00:00+01:00'
-author: 'kikienchrist'
-lang: 'ar'
-translationKey: 'entendre-voix-dieu'
-category: 'vie-chrétienne'
-tags: ['صوت الله', 'الاستدلال', '圣灵', 'الإرشاد الإلهي', 'الحكمة']
-series: 'تعلم الصلح'
+title: "كيف نسمع صوت الله في العالم"
+description: "هل يتحدث الله اليوم؟ كيف نميز صوته بين أفكارنا وظروفنا وصوت العالم؟ 5 أضواء على كيفية التمييز."
+pubDate: "2025-01-27T08:00:00+01:00"
+updatedDate: "2025-01-27T08:00:00+01:00"
+author: "kikienchrist"
+lang: "ar"
+translationKey: "entendre-voix-dieu"
+category: "vie-chrétienne"
+tags: ["صوت الله", "الاستدلال", "圣灵", "الإرشاد الإلهي", "الحكمة"]
+series: "تعلم الصلح"
 featured: true
 draft: false
 readingTime: 10
 isLeadMagnet: false
-ogImage: 'https://kikienchrist.vercel.app/og/blog/entendre-voix-dieu.png'
-coverImage: '/images/blog/entendre-voix-dieu-cover.jpg'
-slug: 'entendre-voix-dieu-ar'
+ogImage: "https://kikienchrist.vercel.app/og/blog/entendre-voix-dieu.png"
+coverImage: "/images/blog/entendre-voix-dieu-cover.jpg"
+slug: "entendre-voix-dieu-ar"
 ---
 
 # كيف نسمع صوت الله في العالم

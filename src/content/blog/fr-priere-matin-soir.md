@@ -1,21 +1,21 @@
 ---
-title: 'Prière du matin & du soir : 2 ancres pour une journée victorieuse'
+title: "Prière du matin & du soir : 2 ancres pour une journée victorieuse"
 description: "Pourquoi Daniel priait 3 fois/jour ? Modèle biblique matin/soir + 7 modèles prêts à l'emploi (5 min chacun). Transformez votre journée en commençant et finissant avec Dieu. Inclut version couple/famille."
-pubDate: '2025-03-17T08:00:00+01:00'
-updatedDate: '2026-11-24T08:56:24.889Z'
-author: 'kikienchrist'
-lang: 'fr'
-translationKey: 'priere-matin-soir-routine'
-category: 'routine'
-tags: ['prière du matin', 'prière du soir', 'routine spirituelle', 'Daniel', 'discipline']
-series: 'apprendre-à-prier'
+pubDate: "2025-03-17T08:00:00+01:00"
+updatedDate: "2026-11-24T08:56:24.889Z"
+author: "kikienchrist"
+lang: "fr"
+translationKey: "priere-matin-soir-routine"
+category: "routine"
+tags: ["prière du matin", "prière du soir", "routine spirituelle", "Daniel", "discipline"]
+series: "apprendre-à-prier"
 featured: true
 draft: false
 readingTime: 10
 isLeadMagnet: false
-ogImage: 'https://kikienchrist.vercel.app/og/blog/priere-matin-soir-routine.png'
-coverImage: '/images/blog/priere-matin-soir-cover.jpg'
-slug: 'priere-matin-soir-routine'
+ogImage: "https://kikienchrist.vercel.app/og/blog/priere-matin-soir-routine.png"
+coverImage: "/images/blog/priere-matin-soir-cover.jpg"
+slug: "priere-matin-soir-routine"
 ---
 
 # Prière du matin & du soir : 2 ancres pour une journée victorieuse

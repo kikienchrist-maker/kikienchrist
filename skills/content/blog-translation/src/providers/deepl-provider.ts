@@ -61,16 +61,19 @@ export class DeepLProvider implements TranslationProvider {
       throw new Error(`Langue ${targetLang} non supportée par DeepL`);
     }
 
+    // DeepL Free API: NE JAMAIS envoyer source_lang (auto-détection obligatoire sur Free)
+    // DeepL détecte automatiquement la langue source
+
     try {
+      const requestBody: any = {
+        text: [text],
+        target_lang: target,
+        formality: 'prefer_more',
+      };
+
       const response = await axios.post(
         `${this.apiUrl}/translate`,
-        {
-          text: [text],
-          source_lang: DEEPL_LANG_MAP[sourceLang],
-          target_lang: target,
-          preserve_formatting: 1,
-          formality: 'prefer_more',
-        },
+        requestBody,
         {
           headers: {
             'Authorization': `DeepL-Auth-Key ${this.apiKey}`,

@@ -22,7 +22,8 @@ program
   .command('imgbb')
   .description('Migrer images depuis IMGBB vers Vercel Blob')
   .requiredOption('-m, --mapping <file>', 'Fichier JSON mapping (localPath -> imgbbUrl)')
-  .option('-t, --token <token>', 'Vercel Blob Token (ou BLOB_READ_WRITE_TOKEN env)', '')
+  .option('-t, --token <token>', 'Vercel Blob RW Token (vercel_blob_rw_...)', '')
+  .option('--oidc-token <token>', 'Vercel OIDC Token (depuis vercel link)', '')
   .option('--store-id <id>', 'Vercel Blob Store ID', '')
   .option('--public-url <url>', 'URL publique custom (ex: https://cdn.example.com)', '')
   .option('--prefix <prefix>', 'Préfixe chemin Blob', 'images/')
@@ -35,10 +36,12 @@ program
     
     try {
       const token = options.token || process.env.BLOB_READ_WRITE_TOKEN;
-      if (!token) throw new Error('Token Vercel Blob requis (--token ou BLOB_READ_WRITE_TOKEN)');
+      const oidcToken = options.oidcToken || process.env.VERCEL_OIDC_TOKEN;
+      if (!token && !oidcToken) throw new Error('Token Vercel Blob requis (--token, --oidc-token, BLOB_READ_WRITE_TOKEN ou VERCEL_OIDC_TOKEN)');
       
       const config: BlobMigrationConfig = {
         token,
+        oidcToken,
         storeId: options.storeId,
         publicUrl: options.publicUrl,
         prefix: options.prefix,
@@ -96,7 +99,8 @@ program
   .command('local')
   .description('Migrer images locales vers Vercel Blob')
   .requiredOption('-s, --source <dir>', 'Dossier source images')
-  .option('-t, --token <token>', 'Vercel Blob Token', '')
+  .option('-t, --token <token>', 'Vercel Blob RW Token (vercel_blob_rw_...)', '')
+  .option('--oidc-token <token>', 'Vercel OIDC Token (depuis vercel link)', '')
   .option('--store-id <id>', 'Store ID', '')
   .option('--public-url <url>', 'URL publique custom', '')
   .option('--prefix <prefix>', 'Préfixe chemin Blob', 'images/')
@@ -110,10 +114,12 @@ program
     
     try {
       const token = options.token || process.env.BLOB_READ_WRITE_TOKEN;
-      if (!token) throw new Error('Token Vercel Blob requis');
+      const oidcToken = options.oidcToken || process.env.VERCEL_OIDC_TOKEN;
+      if (!token && !oidcToken) throw new Error('Token Vercel Blob requis (--token, --oidc-token, BLOB_READ_WRITE_TOKEN ou VERCEL_OIDC_TOKEN)');
       
       const config: BlobMigrationConfig = {
         token,
+        oidcToken,
         storeId: options.storeId,
         publicUrl: options.publicUrl,
         prefix: options.prefix,
@@ -210,8 +216,9 @@ program
   .description('Migration complète: IMGBB + local + frontmatter + OptimizedImage')
   .requiredOption('-m, --mapping <file>', 'Mapping IMGBB JSON')
   .requiredOption('-s, --source <dir>', 'Dossier images locales')
-  .requiredOption('-c, --content <dir>', 'Dossier contenu (frontmatter)')
-  .option('-t, --token <token>', 'Token Vercel Blob', '')
+  .requiredOption('-d, --content-dir <dir>', 'Dossier contenu (frontmatter)')
+  .option('-t, --token <token>', 'Vercel Blob RW Token (vercel_blob_rw_...)', '')
+  .option('--oidc-token <token>', 'Vercel OIDC Token (depuis vercel link)', '')
   .option('--store-id <id>', 'Store ID', '')
   .option('--public-url <url>', 'URL publique', '')
   .option('--prefix <prefix>', 'Préfixe Blob', 'images/')
@@ -223,10 +230,12 @@ program
     
     try {
       const token = options.token || process.env.BLOB_READ_WRITE_TOKEN;
-      if (!token) throw new Error('Token Vercel Blob requis');
+      const oidcToken = options.oidcToken || process.env.VERCEL_OIDC_TOKEN;
+      if (!token && !oidcToken) throw new Error('Token Vercel Blob requis (--token, --oidc-token, BLOB_READ_WRITE_TOKEN ou VERCEL_OIDC_TOKEN)');
       
       const config: BlobMigrationConfig = {
         token,
+        oidcToken,
         storeId: options.storeId,
         publicUrl: options.publicUrl,
         prefix: options.prefix,
@@ -261,7 +270,7 @@ program
       
       // 3. Frontmatter
       spinner.info('Mise à jour frontmatter...');
-      const fmResult = updateFrontmatterImages(resolve(options.content), result.mappings);
+      const fmResult = updateFrontmatterImages(resolve(options.contentDir), result.mappings);
       spinner.info(`Frontmatter: ${fmResult.updated} fichiers`);
       
       // 4. OptimizedImage.astro

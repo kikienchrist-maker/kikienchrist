@@ -1,21 +1,21 @@
 ---
-title: 'Prier en couple : 7 clés pour une intimité spirituelle partagée'
+title: "Prier en couple : 7 clés pour une intimité spirituelle partagée"
 description: "Pourquoi prier à deux transforme le mariage ? 7 clés pratiques : temps protégé, main dans la main, liste partagée, prière pour l'autre, gratitude, silence, persévérance. Témoignages inclus."
-pubDate: '2025-02-24T08:00:00+01:00'
-updatedDate: '2026-11-24T08:56:24.864Z'
-author: 'kikienchrist'
-lang: 'fr'
-translationKey: 'priere-couple'
-category: 'couple'
-tags: ['couple', 'mariage', 'prière à deux', 'intimité spirituelle', 'unité']
-series: 'apprendre-à-prier'
+pubDate: "2025-02-24T08:00:00+01:00"
+updatedDate: "2026-11-24T08:56:24.864Z"
+author: "kikienchrist"
+lang: "fr"
+translationKey: "priere-couple"
+category: "couple"
+tags: ["couple", "mariage", "prière à deux", "intimité spirituelle", "unité"]
+series: "apprendre-à-prier"
 featured: true
 draft: false
 readingTime: 10
 isLeadMagnet: false
-ogImage: 'https://kikienchrist.vercel.app/og/blog/priere-couple.png'
-coverImage: '/images/blog/priere-couple-cover.jpg'
-slug: 'priere-couple'
+ogImage: "https://kikienchrist.vercel.app/og/blog/priere-couple.png"
+coverImage: "/images/blog/priere-couple-cover.jpg"
+slug: "priere-couple"
 ---
 
 # Prier en couple : 7 clés pour une intimité spirituelle partagée

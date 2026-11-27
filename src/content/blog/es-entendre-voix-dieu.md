@@ -1,21 +1,21 @@
 ---
-title: 'Cómo escuchar la voz de Dios en el ruido del mundo'
+title: "Cómo escuchar la voz de Dios en el ruido del mundo"
 description: "¿Has preguntado alguna vez: '¿Está Dios hablando conmigo, o mis propias ideas?' Aquí hay 5 criterios bíblicos para discernir la voz del pastor."
-pubDate: '2025-01-27T08:00:00+01:00'
-updatedDate: '2025-01-27T08:00:00+01:00'
-author: 'kikienchrist'
-lang: 'es'
-translationKey: 'entendre-voix-dieu'
-category: 'vie-chrétienne'
-tags: ['voz de Dios', 'discernimiento', 'Espíritu Santo', 'ayuda divina', 'sagacidad']
-series: 'aprender a orar'
+pubDate: "2025-01-27T08:00:00+01:00"
+updatedDate: "2025-01-27T08:00:00+01:00"
+author: "kikienchrist"
+lang: "es"
+translationKey: "entendre-voix-dieu"
+category: "vie-chrétienne"
+tags: ["voz de Dios", "discernimiento", "Espíritu Santo", "ayuda divina", "sagacidad"]
+series: "aprender a orar"
 featured: true
 draft: false
 readingTime: 10
 isLeadMagnet: false
-ogImage: 'https://kikienchrist.vercel.app/og/blog/escuchar-voz-dios.png'
-coverImage: '/images/blog/escuchar-voz-dios-cover.jpg'
-slug: 'entendre-voix-dieu-es'
+ogImage: "https://kikienchrist.vercel.app/og/blog/escuchar-voz-dios.png"
+coverImage: "/images/blog/escuchar-voz-dios-cover.jpg"
+slug: "entendre-voix-dieu-es"
 ---
 
 # ¿Cómo escuchar la voz de Dios en el ruido del mundo

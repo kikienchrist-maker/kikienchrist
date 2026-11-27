@@ -1,22 +1,21 @@
 ---
-title: 'Prier pour la guérison : 7 clés bibliques + prières spécifiques (maladie, chronique, mental)'
+title: "Prier pour la guérison : 7 clés bibliques + prières spécifiques (maladie, chronique, mental)"
 description: "Dieu guérit-Il encore aujourd'hui ? Comment prier pour la guérison (aiguë, chronique, santé mentale) sans tomber dans le « tout-guérison » ni le « pas-guérison ». 7 clés + prières ciblées + accompagnement."
-pubDate: '2025-03-24T08:00:00+01:00'
-updatedDate: '2026-11-24T08:56:24.882Z'
-author: 'kikienchrist'
-lang: 'fr'
-translationKey: 'priere-guerison-maladie'
-category: 'guérison'
-tags:
-  ['guérison', 'maladie', 'santé mentale', 'maladie chronique', 'prière intercédente', 'souffrance']
-series: 'apprendre-à-prier'
+pubDate: "2025-03-24T08:00:00+01:00"
+updatedDate: "2026-11-24T08:56:24.882Z"
+author: "kikienchrist"
+lang: "fr"
+translationKey: "priere-guerison-maladie"
+category: "guérison"
+tags: ["guérison", "maladie", "santé mentale", "maladie chronique", "prière intercédente", "souffrance"]
+series: "apprendre-à-prier"
 featured: true
 draft: false
 readingTime: 14
 isLeadMagnet: false
-ogImage: 'https://kikienchrist.vercel.app/og/blog/priere-guerison-maladie.png'
-coverImage: '/images/blog/priere-guerison-cover.jpg'
-slug: 'priere-guerison-maladie'
+ogImage: "https://kikienchrist.vercel.app/og/blog/priere-guerison-maladie.png"
+coverImage: "/images/blog/priere-guerison-cover.jpg"
+slug: "priere-guerison-maladie"
 ---
 
 # Prier pour la guérison : 7 clés bibliques + prières spécifiques

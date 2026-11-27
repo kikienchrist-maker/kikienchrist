@@ -1,21 +1,21 @@
 ---
-title: 'Как слышать голос Божий в мире'
-description: 'Божий голос еще слышится сегодня? Как разобрать Его голос среди наших мыслей, обстоятельств и окружающего шума? 5 критериями Библии для разбора.'
-pubDate: '2025-01-27T08:00:00+01:00'
-updatedDate: '2025-01-27T08:00:00+01:00'
-author: 'kikienchrist'
-lang: 'ru'
-translationKey: 'entendre-voix-dieu'
-category: 'vie-chrétienne'
-tags: ['голос Божий', 'разбор', 'Святой Дух', 'помощь Божия', 'созерцание']
-series: 'учить-петь'
+title: "Как слышать голос Божий в мире"
+description: "Божий голос еще слышится сегодня? Как разобрать Его голос среди наших мыслей, обстоятельств и окружающего шума? 5 критериями Библии для разбора."
+pubDate: "2025-01-27T08:00:00+01:00"
+updatedDate: "2025-01-27T08:00:00+01:00"
+author: "kikienchrist"
+lang: "ru"
+translationKey: "entendre-voix-dieu"
+category: "vie-chrétienne"
+tags: ["голос Божий", "разбор", "Святой Дух", "помощь Божия", "созерцание"]
+series: "учить-петь"
 featured: true
 draft: false
 readingTime: 10
 isLeadMagnet: false
-ogImage: 'https://kikienchrist.vercel.app/og/blog/слышать-голос-божий.png'
-coverImage: '/images/blog/слышать-голос-божий-cover.jpg'
-slug: 'entendre-voix-dieu-ru'
+ogImage: "https://kikienchrist.vercel.app/og/blog/слышать-голос-божий.png"
+coverImage: "/images/blog/слышать-голос-божий-cover.jpg"
+slug: "entendre-voix-dieu-ru"
 ---
 
 # Как слышать голос Божий в мире

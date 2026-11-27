@@ -92,7 +92,7 @@ const footer = t.footer || translations.fr.footer;
 // Get translated book data for this locale (with fallback to French)
 const bookData = t.bookData || translations.fr.bookData || {};
 
-const canonicalURL = `https://kikienchrist.vercel.app/${locale === 'fr' ? '' : locale + '/'}`;
+const canonicalURL = `https://kikienchrist.vercel.app/${locale}/`;
 
 const heroEyebrow = hero?.eyebrow || "Nouveauté";
 const heroTitle = hero?.title || "Kiki en Christ";

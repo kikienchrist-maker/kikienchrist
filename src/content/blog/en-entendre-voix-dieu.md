@@ -1,21 +1,21 @@
 ---
 title: "How to Hear God's Voice in the World's Noise"
-description: 'Does God still speak today? How can we discern His voice amidst our thoughts, circumstances, and ambient noise? 5 biblical criteria for discernment.'
-pubDate: '2025-01-27T08:00:00+01:00'
-updatedDate: '2025-01-27T08:00:00+01:00'
-author: 'kikienchrist'
-lang: 'en'
-translationKey: 'entendre-voix-dieu'
-category: 'vie-chrétienne'
-tags: ["God's voice", 'discernment', 'Holy Spirit', 'divine guidance', 'wisdom']
-series: 'learn-to-pray'
+description: "Does God still speak today? How can we discern His voice amidst our thoughts, circumstances, and ambient noise? 5 biblical criteria for discernment."
+pubDate: "2025-01-27T08:00:00+01:00"
+updatedDate: "2025-01-27T08:00:00+01:00"
+author: "kikienchrist"
+lang: "en"
+translationKey: "entendre-voix-dieu"
+category: "vie-chrétienne"
+tags: ["God's voice", "discernment", "Holy Spirit", "divine guidance", "wisdom"]
+series: "learn-to-pray"
 featured: true
 draft: false
 readingTime: 10
 isLeadMagnet: false
 ogImage: "https://kikienchrist.vercel.app/og/blog/hear-god's-voice.png"
 coverImage: "/images/blog/hear-god's-voice-cover.jpg"
-slug: 'entendre-voix-dieu-en'
+slug: "entendre-voix-dieu-en"
 ---
 
 # How to Hear God's Voice in the World's Noise

@@ -1,21 +1,21 @@
 ---
-title: 'Hoe je de Godt geluid hoorde in het geluid van het wereld'
-description: 'Godt spreekt het nog? Hoe kan je de geluid van zijn stem in de gedachten, de omstandigheden en het geluid om zich heen onderscheiden? 5 geluiden van God voor een goed onderscheid.'
-pubDate: '2025-01-27T08:00:00+01:00'
-updatedDate: '2025-01-27T08:00:00+01:00'
-author: 'kikienchrist'
-lang: 'nl'
-translationKey: 'entendre-voix-dieu'
-category: 'discernement'
-tags: ['geluid van God', 'onderzocht', 'Saint-Esprit', 'guidance divine', 'sagezin']
-series: 'leer om te praten'
+title: "Hoe je de Godt geluid hoorde in het geluid van het wereld"
+description: "Godt spreekt het nog? Hoe kan je de geluid van zijn stem in de gedachten, de omstandigheden en het geluid om zich heen onderscheiden? 5 geluiden van God voor een goed onderscheid."
+pubDate: "2025-01-27T08:00:00+01:00"
+updatedDate: "2025-01-27T08:00:00+01:00"
+author: "kikienchrist"
+lang: "nl"
+translationKey: "entendre-voix-dieu"
+category: "discernement"
+tags: ["geluid van God", "onderzocht", "Saint-Esprit", "guidance divine", "sagezin"]
+series: "leer om te praten"
 featured: true
 draft: false
 readingTime: 10
 isLeadMagnet: false
-ogImage: 'https://kikienchrist.vercel.app/og/blog/hoe-je-de-godt-geluid-hoorde.png'
-coverImage: '/images/blog/hoe-je-de-godt-geluid-hoorde-cover.jpg'
-slug: 'entendre-voix-dieu-nl'
+ogImage: "https://kikienchrist.vercel.app/og/blog/hoe-je-de-godt-geluid-hoorde.png"
+coverImage: "/images/blog/hoe-je-de-godt-geluid-hoorde-cover.jpg"
+slug: "entendre-voix-dieu-nl"
 ---
 
 # Hoe je de geluid van God hoorde in het geluid van het wereld

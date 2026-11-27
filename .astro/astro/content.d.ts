@@ -148,6 +148,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"en-apprendre-prier-enfants.md": {
+	id: "en-apprendre-prier-enfants.md";
+  slug: "apprendre-prier-enfants-en";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "en-entendre-voix-dieu.md": {
 	id: "en-entendre-voix-dieu.md";
   slug: "entendre-voix-dieu-en";
@@ -155,9 +162,142 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"en-guerre-spirituelle-priere-autorite.md": {
+	id: "en-guerre-spirituelle-priere-autorite.md";
+  slug: "guerre-spirituelle-priere-autorite-en";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"en-jeuner-prier.md": {
+	id: "en-jeuner-prier.md";
+  slug: "jeuner-prier-en";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"en-prier-guerison-7-cles.md": {
+	id: "en-prier-guerison-7-cles.md";
+  slug: "prier-guerison-7-cles-en";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"en-priere-couple.md": {
+	id: "en-priere-couple.md";
+  slug: "priere-couple-en";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"en-priere-generation-z-jeunes.md": {
+	id: "en-priere-generation-z-jeunes.md";
+  slug: "priere-generation-z-jeunes-en";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"en-priere-guerison-maladie.md": {
+	id: "en-priere-guerison-maladie.md";
+  slug: "priere-guerison-maladie-en";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"en-priere-impossible-desert-spirituel.md": {
+	id: "en-priere-impossible-desert-spirituel.md";
+  slug: "priere-impossible-desert-spirituel-en";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"en-priere-matin-soir-routine.md": {
+	id: "en-priere-matin-soir-routine.md";
+  slug: "priere-matin-soir-routine-en";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"en-priere-quotidienne-7-cles.md": {
+	id: "en-priere-quotidienne-7-cles.md";
+  slug: "priere-quotidienne-7-cles-en";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"es-apprendre-prier-enfants.md": {
+	id: "es-apprendre-prier-enfants.md";
+  slug: "apprendre-prier-enfants-es";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "es-entendre-voix-dieu.md": {
 	id: "es-entendre-voix-dieu.md";
   slug: "entendre-voix-dieu-es";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"es-guerre-spirituelle-priere-autorite.md": {
+	id: "es-guerre-spirituelle-priere-autorite.md";
+  slug: "guerre-spirituelle-priere-autorite-es";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"es-jeuner-prier.md": {
+	id: "es-jeuner-prier.md";
+  slug: "jeuner-prier-es";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"es-prier-guerison-7-cles.md": {
+	id: "es-prier-guerison-7-cles.md";
+  slug: "prier-guerison-7-cles-es";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"es-priere-couple.md": {
+	id: "es-priere-couple.md";
+  slug: "priere-couple-es";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"es-priere-generation-z-jeunes.md": {
+	id: "es-priere-generation-z-jeunes.md";
+  slug: "priere-generation-z-jeunes-es";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"es-priere-guerison-maladie.md": {
+	id: "es-priere-guerison-maladie.md";
+  slug: "priere-guerison-maladie-es";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"es-priere-impossible-desert-spirituel.md": {
+	id: "es-priere-impossible-desert-spirituel.md";
+  slug: "priere-impossible-desert-spirituel-es";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"es-priere-matin-soir-routine.md": {
+	id: "es-priere-matin-soir-routine.md";
+  slug: "priere-matin-soir-routine-es";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"es-priere-quotidienne-7-cles.md": {
+	id: "es-priere-quotidienne-7-cles.md";
+  slug: "priere-quotidienne-7-cles-es";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
@@ -249,6 +389,83 @@ declare module 'astro:content' {
 "nl-entendre-voix-dieu.md": {
 	id: "nl-entendre-voix-dieu.md";
   slug: "entendre-voix-dieu-nl";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"pt-apprendre-prier-enfants.md": {
+	id: "pt-apprendre-prier-enfants.md";
+  slug: "apprendre-prier-enfants-pt";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"pt-entendre-voix-dieu.md": {
+	id: "pt-entendre-voix-dieu.md";
+  slug: "entendre-voix-dieu-pt";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"pt-guerre-spirituelle-priere-autorite.md": {
+	id: "pt-guerre-spirituelle-priere-autorite.md";
+  slug: "guerre-spirituelle-priere-autorite-pt";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"pt-jeuner-prier.md": {
+	id: "pt-jeuner-prier.md";
+  slug: "jeuner-prier-pt";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"pt-prier-guerison-7-cles.md": {
+	id: "pt-prier-guerison-7-cles.md";
+  slug: "prier-guerison-7-cles-pt";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"pt-priere-couple.md": {
+	id: "pt-priere-couple.md";
+  slug: "priere-couple-pt";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"pt-priere-generation-z-jeunes.md": {
+	id: "pt-priere-generation-z-jeunes.md";
+  slug: "priere-generation-z-jeunes-pt";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"pt-priere-guerison-maladie.md": {
+	id: "pt-priere-guerison-maladie.md";
+  slug: "priere-guerison-maladie-pt";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"pt-priere-impossible-desert-spirituel.md": {
+	id: "pt-priere-impossible-desert-spirituel.md";
+  slug: "priere-impossible-desert-spirituel-pt";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"pt-priere-matin-soir-routine.md": {
+	id: "pt-priere-matin-soir-routine.md";
+  slug: "priere-matin-soir-routine-pt";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"pt-priere-quotidienne-7-cles.md": {
+	id: "pt-priere-quotidienne-7-cles.md";
+  slug: "priere-quotidienne-7-cles-pt";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
