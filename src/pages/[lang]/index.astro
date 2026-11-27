@@ -114,7 +114,7 @@ const heroSubtitles: Record<string, string> = {
 };
 const heroSubtitle = heroSubtitles[locale] || heroSubtitles.fr;
 
-const heroCtaText = "";
+const heroCtaText = hero?.ctaText || "Découvrir les livres";
 const heroCtaHref = `/${locale}/livres`;
 const heroSecondaryCtaText = hero?.secondaryCtaText || "Rejoindre la newsletter";
 const heroSecondaryCtaHref = `/${locale}/contact`;
