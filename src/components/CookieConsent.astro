@@ -62,21 +62,6 @@
   </div>
 </div>
 
-<!-- Bouton flottant pour rouvrir les préférences (après consentement) -->
-<button
-  id="bq-cookie-float"
-  class="bq-cookie-float"
-  aria-label="Gérer les cookies"
-  aria-expanded="false"
-  hidden
->
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-    <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
-    <path d="M12 6v6l4 2"/>
-  </svg>
-  <span class="bq-cookie-float-text">Cookies</span>
-</button>
-
 <script is:inline>
   // ===== GESTION CONSENTEMENT RGPD =====
   const COOKIE_NAME = 'kikienchrist-consent';
@@ -99,7 +84,6 @@
   };
 
   const banner = document.getElementById('bq-cookie-banner');
-  const floatBtn = document.getElementById('bq-cookie-float');
   const btnAccept = document.getElementById('bq-btn-accept');
   const btnRefuse = document.getElementById('bq-btn-refuse');
   const btnCustomize = document.getElementById('bq-btn-customize');
@@ -138,7 +122,6 @@
 
   function hideBanner() {
     banner.hidden = true;
-    floatBtn.hidden = false;
     document.body.style.overflow = '';
   }
 
