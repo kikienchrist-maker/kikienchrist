@@ -4,6 +4,9 @@
   "devCommand": "npm run dev",
   "installCommand": "npm ci",
   "framework": "astro",
+  "env": {
+    "BUILD_ID": "20241127-01"
+  },
   "rewrites": [
     {
       "source": "/(.*)",
