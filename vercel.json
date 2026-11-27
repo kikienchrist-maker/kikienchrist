@@ -1,11 +1,11 @@
 {
-  "buildCommand": "git clean -fdx && npm ci && npm run build",
+  "buildCommand": "rm -rf .git && git clone https://github.com/kikienchrist-maker/kikienchrist.git . && npm ci && npm run build",
   "outputDirectory": "dist",
   "devCommand": "npm run dev",
   "installCommand": "npm ci",
   "framework": "astro",
   "env": {
-    "BUILD_ID": "20241127-02"
+    "BUILD_ID": "20241127-03"
   },
   "rewrites": [
     {
