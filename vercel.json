@@ -1,11 +1,11 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "git clean -fdx && npm ci && npm run build",
   "outputDirectory": "dist",
   "devCommand": "npm run dev",
   "installCommand": "npm ci",
   "framework": "astro",
   "env": {
-    "BUILD_ID": "20241127-01"
+    "BUILD_ID": "20241127-02"
   },
   "rewrites": [
     {
