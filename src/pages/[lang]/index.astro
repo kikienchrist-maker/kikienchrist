@@ -97,7 +97,7 @@ const canonicalURL = `https://kikienchrist.vercel.app/${locale}/`;
 const heroEyebrow = hero?.eyebrow || "Nouveauté";
 const heroTitle = hero?.title || "Kiki en Christ";
 const heroSubtitle = hero?.subtitle || "Priez, méditez, grandissez dans la foi";
-const heroCtaText = hero?.ctaText || "Découvrir les livres";
+const heroCtaText = "";
 const heroCtaHref = `/${locale}/livres`;
 const heroSecondaryCtaText = hero?.secondaryCtaText || "Rejoindre la newsletter";
 const heroSecondaryCtaHref = `/${locale}/contact`;
@@ -209,5 +209,5 @@ const heroFanAlts = [
 <style is:global>
   .bq-books-section { padding: var(--space-3xl) 0; }
   .bq-section-intro { text-align: center; color: var(--muted); font-size: var(--text-lg); font-family: Georgia, serif; max-width: 700px; margin: 0 auto var(--space-2xl); }
-  .bq-books-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-xl); margin-bottom: var(--space-2xl); }
+  <bq-books-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-xl); margin-bottom: var(--space-2xl); }</bq-books-grid>
 </style>
