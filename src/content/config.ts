@@ -2,63 +2,6 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 // ──────────────────────────────────────────────
-// Blog Collection (Markdown + Frontmatter)
-// ──────────────────────────────────────────────
-const blog = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
-  schema: z.object({
-    title: z.string().min(1).max(120),
-    description: z.string().min(10).max(300),
-    pubDate: z.string().datetime({ offset: true }),
-    updatedDate: z.string().datetime({ offset: true }).optional(),
-    author: z.string().default('Kiki en Christ'),
-    authorRole: z.string().optional(),
-    lang: z.enum(['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'pl', 'ar', 'ru', 'zh', 'hi']),
-    translationKey: z.string().optional(),
-    category: z.enum([
-      'prière',
-      'formation',
-      'témoignage',
-      'vie-chrétienne',
-      'famille',
-      'mission',
-      'actualité',
-      'ressource',
-      'discernement',
-      'jeûne',
-      'épreuves',
-      'guerre spirituelle',
-      'guérison',
-      'routine',
-      'jeunes',
-      'couple',
-    ]),
-    tags: z.array(z.string()).default([]),
-    series: z.string().optional(),
-    seriesOrder: z.number().int().positive().optional(),
-    featured: z.boolean().default(false),
-    draft: z.boolean().default(false),
-    readingTime: z.number().int().positive().optional(),
-    isLeadMagnet: z.boolean().default(false),
-    leadMagnetTitle: z.string().optional(),
-    leadMagnetDescription: z.string().optional(),
-    leadMagnetFile: z.string().url().optional(),
-    relatedPodcastEpisode: z.string().optional(),
-    relatedVideo: z.string().url().optional(),
-    canonicalURL: z.string().url().optional(),
-    ogImage: z.string().url().optional(),
-    ogTitle: z.string().max(60).optional(),
-    ogDescription: z.string().max(160).optional(),
-    structuredData: z
-      .object({
-        type: z.enum(['BlogPosting', 'Article']).default('BlogPosting'),
-        wordCount: z.number().int().positive().optional(),
-      })
-      .optional(),
-  }),
-});
-
-// ──────────────────────────────────────────────
 // Authors Collection (Data files - JSON)
 // ──────────────────────────────────────────────
 const authors = defineCollection({
@@ -145,7 +88,7 @@ const books = defineCollection({
 // Translations (i18n) Collection - Data files in src/data/i18n
 // ──────────────────────────────────────────────
 const translations = defineCollection({
-  loader: glob({ pattern: '**/*.json', base: './src/data/i18n' }),
+  loader: glob({ pattern: '*.json', base: './src/data/i18n' }),
   schema: z
     .object({
       lang: z.enum(['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'pl', 'ar', 'zh', 'hi']),
@@ -155,14 +98,14 @@ const translations = defineCollection({
       dateFormat: z.string().optional(),
       translations: z.record(z.unknown()).optional(),
     })
-    .passthrough(), // Accepte les champs supplémentaires (format plat existant)
+    .passthrough(),
 });
 
 // ──────────────────────────────────────────────
 // Site Config (Global) - Single JSON file in src/data/config
 // ──────────────────────────────────────────────
 const siteConfig = defineCollection({
-  loader: glob({ pattern: '**/*.json', base: './src/data/config' }),
+  loader: glob({ pattern: '*.json', base: './src/data/config' }),
   schema: z.object({
     siteName: z.string(),
     siteUrl: z.string().url(),
@@ -174,7 +117,6 @@ const siteConfig = defineCollection({
 });
 
 export const collections = {
-  blog,
   authors,
   legalPages,
   books,
