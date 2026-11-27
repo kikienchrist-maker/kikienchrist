@@ -80,8 +80,16 @@
       "buttonHref": "#livres"
     },
     "footer": {
-      "nav": ["Accueil", "Livres", "Blog", "Newsletter", "FAQ", "Contact"],
-      "social": ["Instagram", "Pinterest"],
+      "nav": {
+        "home": "Accueil",
+        "books": "Livres",
+        "partners": "Partenaires",
+        "contact": "Contact"
+      },
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
       "availability": "Livres disponibles en papier, ebook et audio.",
       "copyright": "Kiki en Christ. Tous droits réservés."
     },
@@ -429,6 +437,12 @@
       "phoneNote": "Lun-Ven 9h-17h (heure de Paris)",
       "socialTitle": "Suivez-nous",
       "faqTitle": "Questions fréquentes contact"
+    },
+    "nav": {
+      "home": "Accueil",
+      "books": "Livres",
+      "partners": "Partenaires",
+      "contact": "Contact"
     }
   },
   "en": {
@@ -512,8 +526,16 @@
       "buttonHref": "#books"
     },
     "footer": {
-      "nav": ["Home", "Books", "Blog", "Newsletter", "FAQ", "Contact"],
-      "social": ["Instagram", "Pinterest"],
+      "nav": {
+        "home": "Home",
+        "books": "Books",
+        "partners": "Partners",
+        "contact": "Contact"
+      },
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
       "availability": "Books available in paperback, ebook, and audio.",
       "copyright": "Kiki en Christ. All rights reserved."
     },
@@ -832,6 +854,12 @@
       "phoneNote": "Mon-Fri 9am-5pm (Paris time)",
       "socialTitle": "Follow us",
       "faqTitle": "Contact FAQ"
+    },
+    "nav": {
+      "home": "Home",
+      "books": "Books",
+      "partners": "Partners",
+      "contact": "Contact"
     }
   },
   "es": {
@@ -915,8 +943,16 @@
       "buttonHref": "#libros"
     },
     "footer": {
-      "nav": ["Inicio", "Libros", "Blog", "Newsletter", "FAQ", "Contacto"],
-      "social": ["Instagram", "Pinterest"],
+      "nav": {
+        "home": "Inicio",
+        "books": "Libros",
+        "partners": "Socios",
+        "contact": "Contacto"
+      },
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
       "availability": "Libros disponibles en papel, ebook y audio.",
       "copyright": "Kiki en Christ. Todos los derechos reservados."
     },
@@ -1236,6 +1272,12 @@
       "phoneNote": "Lun-Ven 9h-17h (heure de Paris)",
       "socialTitle": "Suivez-nous",
       "faqTitle": "Questions fréquentes contact"
+    },
+    "nav": {
+      "home": "Inicio",
+      "books": "Libros",
+      "partners": "Socios",
+      "contact": "Contacto"
     }
   },
   "pt": {
@@ -1319,8 +1361,16 @@
       "buttonHref": "#livros"
     },
     "footer": {
-      "nav": ["Início", "Livros", "Blog", "Newsletter", "FAQ", "Contacto"],
-      "social": ["Instagram", "Pinterest"],
+      "nav": {
+        "home": "Início",
+        "books": "Livros",
+        "partners": "Parceiros",
+        "contact": "Contato"
+      },
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
       "availability": "Livros disponíveis em papel, ebook e áudio.",
       "copyright": "Kiki en Christ. Todos os direitos reservados."
     },
@@ -1640,6 +1690,12 @@
       "phoneNote": "Lun-Ven 9h-17h (heure de Paris)",
       "socialTitle": "Suivez-nous",
       "faqTitle": "Questions fréquentes contact"
+    },
+    "nav": {
+      "home": "Início",
+      "books": "Livros",
+      "partners": "Parceiros",
+      "contact": "Contato"
     }
   },
   "de": {
@@ -1723,8 +1779,16 @@
       "buttonHref": "#bücher"
     },
     "footer": {
-      "nav": ["Start", "Bücher", "Blog", "Newsletter", "FAQ", "Kontakt"],
-      "social": ["Instagram", "Pinterest"],
+      "nav": {
+        "home": "Start",
+        "books": "Bücher",
+        "partners": "Partner",
+        "contact": "Kontakt"
+      },
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
       "availability": "Bücher erhältlich als Taschenbuch, E-Book und Hörbuch.",
       "copyright": "Kiki en Christ. Alle Rechte vorbehalten."
     },
@@ -2044,6 +2108,12 @@
       "phoneNote": "Lun-Ven 9h-17h (heure de Paris)",
       "socialTitle": "Suivez-nous",
       "faqTitle": "Questions fréquentes contact"
+    },
+    "nav": {
+      "home": "Start",
+      "books": "Bücher",
+      "partners": "Partner",
+      "contact": "Kontakt"
     }
   },
   "it": {
@@ -2127,8 +2197,16 @@
       "buttonHref": "#libri"
     },
     "footer": {
-      "nav": ["Home", "Libri", "Blog", "Newsletter", "FAQ", "Contatto"],
-      "social": ["Instagram", "Pinterest"],
+      "nav": {
+        "home": "Home",
+        "books": "Libri",
+        "partners": "Partner",
+        "contact": "Contatto"
+      },
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
       "availability": "Libri disponibili in brossura, ebook e audiolibro.",
       "copyright": "Kiki en Christ. Tutti i diritti riservati."
     },
@@ -2383,6 +2461,12 @@
       "phoneNote": "Lun-Ven 9h-17h (heure de Paris)",
       "socialTitle": "Suivez-nous",
       "faqTitle": "Questions fréquentes contact"
+    },
+    "nav": {
+      "home": "Home",
+      "books": "Libri",
+      "partners": "Partner",
+      "contact": "Contatto"
     }
   },
   "ru": {
@@ -2466,8 +2550,16 @@
       "buttonHref": "#livres"
     },
     "footer": {
-      "nav": ["Accueil", "Livres", "Blog", "Newsletter", "FAQ", "Contact"],
-      "social": ["Instagram", "Pinterest"],
+      "nav": {
+        "home": "Главная",
+        "books": "Книги",
+        "partners": "Партнеры",
+        "contact": "Контакты"
+      },
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
       "availability": "Livres disponibles en papier, ebook et audio.",
       "copyright": "Kiki en Christ. Tous droits réservés."
     },
@@ -2815,6 +2907,12 @@
       "phoneNote": "Lun-Ven 9h-17h (heure de Paris)",
       "socialTitle": "Suivez-nous",
       "faqTitle": "Questions fréquentes contact"
+    },
+    "nav": {
+      "home": "Главная",
+      "books": "Книги",
+      "partners": "Партнеры",
+      "contact": "Контакты"
     }
   },
   "zh": {
@@ -2898,8 +2996,16 @@
       "buttonHref": "#livres"
     },
     "footer": {
-      "nav": ["Accueil", "Livres", "Blog", "Newsletter", "FAQ", "Contact"],
-      "social": ["Instagram", "Pinterest"],
+      "nav": {
+        "home": "首页",
+        "books": "书籍",
+        "partners": "合作伙伴",
+        "contact": "联系我们"
+      },
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
       "availability": "Livres disponibles en papier, ebook et audio.",
       "copyright": "Kiki en Christ. Tous droits réservés."
     },
@@ -3247,6 +3353,12 @@
       "phoneNote": "Lun-Ven 9h-17h (heure de Paris)",
       "socialTitle": "Suivez-nous",
       "faqTitle": "Questions fréquentes contact"
+    },
+    "nav": {
+      "home": "首页",
+      "books": "书籍",
+      "partners": "合作伙伴",
+      "contact": "联系我们"
     }
   },
   "hi": {
@@ -3330,8 +3442,16 @@
       "buttonHref": "#livres"
     },
     "footer": {
-      "nav": ["Accueil", "Livres", "Blog", "Newsletter", "FAQ", "Contact"],
-      "social": ["Instagram", "Pinterest"],
+      "nav": {
+        "home": "होम",
+        "books": "पुस्तकें",
+        "partners": "पार्टनर्स",
+        "contact": "संपर्क"
+      },
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
       "availability": "Livres disponibles en papier, ebook et audio.",
       "copyright": "Kiki en Christ. Tous droits réservés."
     },
@@ -3679,6 +3799,12 @@
       "phoneNote": "Lun-Ven 9h-17h (heure de Paris)",
       "socialTitle": "Suivez-nous",
       "faqTitle": "Questions fréquentes contact"
+    },
+    "nav": {
+      "home": "होम",
+      "books": "पुस्तकें",
+      "partners": "पार्टनर्स",
+      "contact": "संपर्क"
     }
   },
   "nl": {
@@ -3762,8 +3888,16 @@
       "buttonHref": "#books"
     },
     "footer": {
-      "nav": ["Home", "Books", "Blog", "Newsletter", "FAQ", "Contact"],
-      "social": ["Instagram", "Pinterest"],
+      "nav": {
+        "home": "Home",
+        "books": "Boeken",
+        "partners": "Partners",
+        "contact": "Contact"
+      },
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
       "availability": "Books available in paperback, ebook, and audio.",
       "copyright": "Kiki en Christ. All rights reserved."
     },
@@ -4111,6 +4245,12 @@
       "phoneNote": "Lun-Ven 9h-17h (heure de Paris)",
       "socialTitle": "Suivez-nous",
       "faqTitle": "Questions fréquentes contact"
+    },
+    "nav": {
+      "home": "Home",
+      "books": "Boeken",
+      "partners": "Partners",
+      "contact": "Contact"
     }
   },
   "pl": {
@@ -4194,8 +4334,16 @@
       "buttonHref": "#books"
     },
     "footer": {
-      "nav": ["Home", "Books", "Blog", "Newsletter", "FAQ", "Contact"],
-      "social": ["Instagram", "Pinterest"],
+      "nav": {
+        "home": "Strona główna",
+        "books": "Książki",
+        "partners": "Partnerzy",
+        "contact": "Kontakt"
+      },
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
       "availability": "Books available in paperback, ebook, and audio.",
       "copyright": "Kiki en Christ. All rights reserved."
     },
@@ -4543,6 +4691,12 @@
       "phoneNote": "Lun-Ven 9h-17h (heure de Paris)",
       "socialTitle": "Suivez-nous",
       "faqTitle": "Questions fréquentes contact"
+    },
+    "nav": {
+      "home": "Strona główna",
+      "books": "Książki",
+      "partners": "Partnerzy",
+      "contact": "Kontakt"
     }
   },
   "ar": {
@@ -4626,8 +4780,16 @@
       "buttonHref": "#books"
     },
     "footer": {
-      "nav": ["Home", "Books", "Blog", "Newsletter", "FAQ", "Contact"],
-      "social": ["Instagram", "Pinterest"],
+      "nav": {
+        "home": "الرئيسية",
+        "books": "الكتب",
+        "partners": "الشركاء",
+        "contact": "اتصل بنا"
+      },
+      "social": [
+        "Instagram",
+        "Pinterest"
+      ],
       "availability": "Books available in paperback, ebook, and audio.",
       "copyright": "Kiki en Christ. All rights reserved."
     },
@@ -4975,6 +5137,12 @@
       "phoneNote": "Lun-Ven 9h-17h (heure de Paris)",
       "socialTitle": "Suivez-nous",
       "faqTitle": "Questions fréquentes contact"
+    },
+    "nav": {
+      "home": "الرئيسية",
+      "books": "الكتب",
+      "partners": "الشركاء",
+      "contact": "اتصل بنا"
     }
   }
 }
